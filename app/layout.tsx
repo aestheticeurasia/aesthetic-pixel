@@ -31,7 +31,7 @@ export default function RootLayout({
         {/* Custom pages */}
         <TopBar/>
         <Header/>
-   <main style={{ minHeight: "80vh" }}>
+   <main style={{ minHeight: "200vh" }}>
                 {children}
             </main>
         <Footer/>

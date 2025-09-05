@@ -2,14 +2,13 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="w-full border-b bg-background">
+    <header className="w-full border-b bg-background sticky top-0 z-50 shadow-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
            <div className="flex-shrink-0">
