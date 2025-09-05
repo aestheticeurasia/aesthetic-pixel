@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-5">
               <span className="text-center md:text-left md:mb-0">  
                 <p className="text-md font-medium text-gray-500">© 2025 Aesthetic Pixel Studio. 
-                    All rights reserved by 
+                         All rights reserved by 
                     <a className="font-bold" href="https://www.aestheticeurasia.com" target="_blank" rel="noopener noreferrer">
                      <span className="text-black"><span className="text-red-700">   Aesthetic</span> Eurasia</span>  
                     </a>
