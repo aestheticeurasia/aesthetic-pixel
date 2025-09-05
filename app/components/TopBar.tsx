@@ -1,4 +1,3 @@
-"use client"
 
 import { Mail} from "lucide-react"
 import { FaWhatsapp,FaPhoneAlt  } from "react-icons/fa"

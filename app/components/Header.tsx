@@ -9,7 +9,7 @@ export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="w-full border-b bg-background sticky top-0 z-50 shadow-md">
+    <header className="w-full border-b bg-background sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex-shrink-0">
           <Link href="/">
