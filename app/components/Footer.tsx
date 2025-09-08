@@ -29,7 +29,7 @@ export default function Footer() {
           </h3>
           <nav className="flex space-x-6 text-3xl text-white">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/aestheticpixelstudio"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
