@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t bg-gradient-to-r from-pink-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+    <footer className="w-full border-t bg-grey-50 dark:bg-">
       {/* Main Footer Section */}
       <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
         
@@ -51,7 +51,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="border-t border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-6 py-6 text-center">
-          <p className="md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+          <span className="text-md text-gray-600 dark:text-gray-400 leading-relaxed">
             © 2025 Aesthetic Pixel Studio. All rights reserved by{" "}
             <a
               className="font-semibold hover:underline"
@@ -70,7 +70,7 @@ export default function Footer() {
                 <span className="text-red-700">Aesthetic</span> Eurasia
               </div>
             </a>
-          </p>
+          </span>
         </div>
       </div>
     </footer>
