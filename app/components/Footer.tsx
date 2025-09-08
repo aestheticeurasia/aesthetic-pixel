@@ -1,28 +1,78 @@
+import Image from "next/image";
 import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
-    return (
-        <footer className="w-full border-t bg-background">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-5">
-              <span className="text-center md:text-left md:mb-0">  
-                <p className="text-md font-medium text-gray-500">© 2025 Aesthetic Pixel Studio. 
-                         All rights reserved by 
-                    <a className="font-bold" href="https://www.aestheticeurasia.com" target="_blank" rel="noopener noreferrer">
-                     <span className="text-black"><span className="text-red-700">   Aesthetic</span> Eurasia</span>  
-                    </a>
-                    </p>
-              </span>
-              <span className="text-center md:text-right pt-3 md:pt-0">
-                      <nav className="flex space-x-6 text-2xl font-medium">
-                        <a href="/privacy" className="hover:text-primary">
-                        <FaFacebookSquare />
-                        </a>
-                        <a href="/terms" className="hover:text-primary">
-                        <FaYoutube />
-                        </a>
-                    </nav>
-              </span>
-            </div>
-        </footer>
-    );
+  return (
+    <footer className="w-full border-t bg-gradient-to-r from-pink-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+      {/* Main Footer Section */}
+      <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
+        
+        {/* Map Embed */}
+        <div className="w-full md:w-auto flex justify-center md:justify-start">
+          <div className="overflow-hidden rounded-2xl shadow-lg w-full max-w-[320px] h-[200px] border border-gray-200 dark:border-gray-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1878.6686024432474!2d90.36655142549787!3d23.805327058507654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1ae56136ed7%3A0x7e732822f8735331!2sAesthetic%20Eurasia%20Ltd!5e0!3m2!1sen!2sbd!4v1757136136842!5m2!1sen!2sbd"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+
+        {/* Social & Links */}
+        <div className="flex flex-col items-center md:items-end space-y-4 text-center md:text-right">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+            Connect With Us
+          </h3>
+          <nav className="flex space-x-6 text-3xl">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
+            >
+              <FaFacebookSquare />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-red-600 transition-colors duration-300"
+            >
+              <FaYoutube />
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="border-t border-gray-200 dark:border-gray-700">
+        <div className="container mx-auto px-6 py-6 text-center">
+          <p className="md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+            © 2025 Aesthetic Pixel Studio. All rights reserved by{" "}
+            <a
+              className="font-semibold hover:underline"
+              href="https://www.aestheticeurasia.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="text-gray-900 dark:text-gray-100 space-y-2 mt-2">
+                <Image
+                  src="/aelogo.png"
+                  alt="Aesthetic Eurasia"
+                  width={34}
+                  height={100}
+                  className="inline-block ml-3 mr-2"
+                />
+                <span className="text-red-700">Aesthetic</span> Eurasia
+              </div>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 }

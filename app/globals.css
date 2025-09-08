@@ -121,13 +121,7 @@
   }
 }
 
-body{
+/* body{
   background-color: #edeef0;
-}
+} */
 
-.image-bg {
-  background-image: url('/home.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-}

@@ -18,10 +18,16 @@ export default function TopBar() {
         {/* Right side - Contact icons */}
         <div className="flex items-center space-x-4 text-muted-foreground">
           <Link href="https://wa.me/+8801970831822" target="_blank">
-            <FaWhatsapp size={25} className="hover:text-primary transition"/>
+          <div className="flex items-center space-x-1 md:mr-5">
+              <FaWhatsapp size={25} className="hover:text-primary transition"/> 
+            <span className="hidden md:inline"> +880 1970-831822</span>
+          </div>
           </Link>
           <Link href="tel:+8801970831822">
-            <FaPhoneAlt size={18} className="hover:text-primary transition" />
+             <div className="flex items-center space-x-1">
+              <FaPhoneAlt size={20} className="hover:text-primary transition"/> 
+            <span className="hidden md:inline"> +880 1970-831822</span>
+          </div>
           </Link>
         </div>
       </div>

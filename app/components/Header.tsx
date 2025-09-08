@@ -10,10 +10,10 @@ export default function MainNav() {
 
   return (
     <header className="w-full sticky top-0 z-50 shadow-sm bg-background">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="container mx-auto flex h-27 items-center justify-between px-4">
         <div className="flex-shrink-0">
           <Link href="/">
-            <Image src="/logo.png" alt="Aesthetic Pixel Logo" width={50} height={20} />
+            <Image src="/logo.png" alt="Aesthetic Pixel Logo" width={100} height={40} />
           </Link>
         </div>
 
