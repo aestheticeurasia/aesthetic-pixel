@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t bg-grey-50 dark:bg-">
+<footer className="w-full border-t bg-[#1e1e1e] text-white">
       {/* Main Footer Section */}
       <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
         
@@ -24,10 +24,10 @@ export default function Footer() {
 
         {/* Social & Links */}
         <div className="flex flex-col items-center md:items-end space-y-4 text-center md:text-right">
-          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+          <h3 className="text-lg font-semibold text-white">
             Connect With Us
           </h3>
-          <nav className="flex space-x-6 text-3xl">
+          <nav className="flex space-x-6 text-3xl text-white">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -51,7 +51,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="border-t border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-6 py-6 text-center">
-          <span className="text-md text-gray-600 dark:text-gray-400 leading-relaxed">
+          <span className="text-md dark:text-gray-400 leading-relaxed text-white">
             © 2025 Aesthetic Pixel Studio. All rights reserved by{" "}
             <a
               className="font-semibold hover:underline"
@@ -59,7 +59,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="text-gray-900 dark:text-gray-100 space-y-2 mt-2">
+              <div className=" dark:text-gray-100 space-y-2 mt-2 text-white">
                 <Image
                   src="/aelogo.png"
                   alt="Aesthetic Eurasia"
