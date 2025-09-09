@@ -72,17 +72,16 @@ export default function Banner() {
             {photos.map((src, i) => {
               const rotation = i === 0 ? -10 : i === 1 ? 0 : 10;
               const xOffset = i === 0 ? -20 : i === 1 ? 0 : 20;
-              const yOffset = i === 0 ? 0 : i === 1 ? 0 : 0;
+              const yOffset = 0;
 
-              // If hovered, this image moves forward (scale up + lift + slight x change)
-              const isHovered = hoveredIndex === i;
+              const isActive = hoveredIndex === i;
 
               return (
                 <motion.img
                   key={i}
                   src={src}
                   className="absolute w-full h-full object-cover rounded-xl shadow-lg cursor-pointer"
-                  style={{ zIndex: isHovered ? 20 : 10 - i }}
+                  style={{ zIndex: isActive ? 20 : 10 - i }}
                   initial={{
                     x: i % 2 === 0 ? -150 : 150,
                     y: 20,
@@ -96,9 +95,8 @@ export default function Banner() {
                     opacity: 1,
                   }}
                   whileHover={{
-                    scale: 1.1,
+                    scale: 1.08,
                     y: yOffset - 20,
-                    x: xOffset, // optional slight adjustment
                   }}
                   transition={{
                     type: "spring",
@@ -108,6 +106,9 @@ export default function Banner() {
                   }}
                   onHoverStart={() => setHoveredIndex(i)}
                   onHoverEnd={() => setHoveredIndex(null)}
+                  onClick={
+                    () => setHoveredIndex((prev) => (prev === i ? null : i)) // toggle on click
+                  }
                 />
               );
             })}
