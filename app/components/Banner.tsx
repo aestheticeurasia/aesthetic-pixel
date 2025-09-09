@@ -14,7 +14,7 @@ export default function Banner() {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 text-center md:text-left">
-        <div className="md:col-span-5 mt-10 mx-auto flex flex-col justify-center space-y-8">
+        <div className="md:col-span-5 mt-10 mx-auto flex flex-col justify-center space-y-8 ">
           <h1 className="text-4xl font-bold">Trusted by</h1>
           <h1 className="text-4xl font-bold text-red-800">500+</h1>
           <h1 className="text-4xl font-bold">Global Brands</h1>
@@ -33,14 +33,14 @@ export default function Banner() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-gradient-to-r from-gray-800 via-gray-300 to-black py-20">
         <div ref={ref} className="md:col-span-6 mx-auto md:flex md:flex-col justify-center space-y-8">
           <div className="md:flex md:space-x-10 space-y-10 md:space-y-0">
-            <div className="border border-gray-300 py-5 px-14 rounded-lg shadow-lg bg-red-600 text-amber-50 text-center">
+            <div className=" py-5 px-19 rounded-lg shadow-xl bg-red-800 text-amber-50 text-center">
               <h2 className="text-xl font-bold mb-3">Journey</h2>
               <h1 className="text-4xl font-bold">
                 {inView ? <CountUp start={0} end={7} duration={2} /> : 0}+
               </h1>
               <h2 className="text-xl font-bold mt-3">Years</h2>
             </div>
-            <div className="border border-gray-300 py-5 px-10 rounded-lg shadow-lg bg-gray-600 text-amber-50 text-center">
+            <div className=" py-5 px-10 rounded-lg shadow-xl bg-gray-600 text-amber-50 text-center">
               <h2 className="text-xl font-bold mb-3">Captured</h2>
               <h1 className="text-4xl font-bold">
                 {inView ? (
