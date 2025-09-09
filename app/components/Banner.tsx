@@ -31,7 +31,10 @@ export default function Banner() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-gradient-to-r from-gray-800 via-gray-300 to-black py-20">
-        <div ref={ref} className="md:col-span-6 mx-auto md:flex md:flex-col justify-center space-y-8">
+        <div
+          ref={ref}
+          className="md:col-span-6 mx-auto md:flex md:flex-col justify-center space-y-8"
+        >
           <div className="md:flex md:space-x-10 space-y-10 md:space-y-0">
             <div className=" py-5 px-11 rounded-lg shadow-xl bg-red-800 text-amber-50 text-center">
               <h2 className="text-xl font-bold mb-3">Global Presence</h2>
@@ -55,12 +58,11 @@ export default function Banner() {
           </div>
         </div>
         <div className="md:col-span-6">
-          <div className="relative w-64 md:w-80 lg:w-96 h-80 mx-auto">
+          <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 mx-auto overflow-visible">
             {photos.map((src, i) => {
-              const rotation = i === 0 ? -15 : i === 1 ? 0 : 15; // adjust angles for fan effect
-              const xOffset = i === 0 ? -30 : i === 1 ? 0 : 30; // horizontal spread
-              const mobileXOffset = i === 0 ? -20 : i === 1 ? 0 : 20; // less spread on mobile
-              const zIndex = 10 - i; // stack order
+              const rotation = i === 0 ? -10 : i === 1 ? 0 : 10;
+              const xOffset = i === 0 ? -20 : i === 1 ? 0 : 20;
+              const zIndex = 10 - i;
 
               return (
                 <motion.img
@@ -69,13 +71,13 @@ export default function Banner() {
                   className="absolute w-full h-full object-cover rounded-xl shadow-lg"
                   style={{ zIndex }}
                   initial={{
-                    x: i % 2 === 0 ? -200 : 200,
+                    x: i % 2 === 0 ? -150 : 150,
                     y: 20,
                     rotate: rotation,
                     opacity: 0,
                   }}
                   whileInView={{
-                    x: mobileXOffset,
+                    x: xOffset,
                     y: 0,
                     rotate: rotation,
                     opacity: 1,
