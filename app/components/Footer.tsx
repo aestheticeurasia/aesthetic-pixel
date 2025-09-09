@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-<footer className="w-full border-t bg-[#1e1e1e] text-white">
+<footer className="w-full bg-[#1e1e1e] text-white">
       {/* Main Footer Section */}
       <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
         
