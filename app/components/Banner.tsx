@@ -57,7 +57,7 @@ export default function Banner() {
             </div>
           </div>
         </div>
-        <div className="md:col-span-6">
+        <div className="md:col-span-6 mt-17 md:mt-0">
           <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 mx-auto overflow-visible">
             {photos.map((src, i) => {
               const rotation = i === 0 ? -10 : i === 1 ? 0 : 10;
