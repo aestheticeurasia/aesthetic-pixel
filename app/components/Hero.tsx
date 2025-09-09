@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="h-screen bg-[url('/home-sm.jpg')] md:bg-[url('/home.jpg')]  bg-cover bg-center flex flex-col items-center justify-center text-center px-4">
+     <section className="h-screen bg-[url('/home-sm.jpg')] md:bg-[url('/home.jpg')] bg-cover bg-center flex flex-col items-center justify-center text-center">
       {/* Headline */}
       <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white drop-shadow-lg mb-4">
         Welcome to Aesthetic Pixel Studio
@@ -17,5 +17,5 @@ export default function Hero() {
         Book a Shoot
       </a>
     </section>
-  )
+  );
 }

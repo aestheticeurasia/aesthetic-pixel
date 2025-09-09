@@ -59,6 +59,7 @@ export default function Banner() {
             {photos.map((src, i) => {
               const rotation = i === 0 ? -15 : i === 1 ? 0 : 15; // adjust angles for fan effect
               const xOffset = i === 0 ? -30 : i === 1 ? 0 : 30; // horizontal spread
+              const mobileXOffset = i === 0 ? -20 : i === 1 ? 0 : 20; // less spread on mobile
               const zIndex = 10 - i; // stack order
 
               return (
@@ -74,7 +75,7 @@ export default function Banner() {
                     opacity: 0,
                   }}
                   whileInView={{
-                    x: xOffset,
+                    x: mobileXOffset,
                     y: 0,
                     rotate: rotation,
                     opacity: 1,
