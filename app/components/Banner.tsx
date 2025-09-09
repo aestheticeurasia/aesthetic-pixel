@@ -13,7 +13,7 @@ export default function Banner() {
     threshold: 0.3,
   });
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div>
@@ -107,7 +107,7 @@ export default function Banner() {
                   onHoverStart={() => setHoveredIndex(i)}
                   onHoverEnd={() => setHoveredIndex(null)}
                   onClick={
-                    () => setHoveredIndex((prev) => (prev === i ? null : i)) // toggle on click
+                    () => setHoveredIndex((prev) => (prev === i ? null : i))
                   }
                 />
               );
