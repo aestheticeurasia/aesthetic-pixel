@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2Icon, Send } from "lucide-react";
 import { useState } from "react";
+import { PhoneInput } from "../components/Phone-Input";
 
 export default function Contact() {
   const [name, setName] = useState<string>("");
@@ -136,14 +137,14 @@ export default function Contact() {
                 <Label htmlFor="phone" className="mb-3">
                   Your Phone
                 </Label>
-                <Input
+               
+                <PhoneInput
                   required
                   className="bg-white"
                   id="phone"
-                  type="tel"
                   placeholder="Enter your phone number"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                   onChange={(value) => setPhone(value || "")}
                 />
               </div>
 
