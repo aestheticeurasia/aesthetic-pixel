@@ -1,36 +1,62 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import Image from "next/image"
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function MainNav() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const pathName = usePathname();
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/contact", label: "Contact" },
+  ];
+
+  const isActive = (path: string) => pathName === path;
 
   return (
     <header className="w-full sticky top-0 z-50 shadow-sm bg-background">
       <div className="container mx-auto flex h-27 items-center justify-between px-4">
         <div className="flex-shrink-0">
           <Link href="/">
-            <Image src="/logo.png" alt="Aesthetic Pixel Logo" width={100} height={40} />
+            <Image
+              src="/logo.png"
+              alt="Aesthetic Pixel Logo"
+              width={100}
+              height={40}
+            />
           </Link>
         </div>
 
         {/* Desktop Menu: centered */}
         <nav className="hidden md:flex flex-1 justify-center space-x-6 text-lg font-medium">
-          <Link href="/" className="text-primary py-1 px-2 rounded-lg hover:bg-gray-200 hover:text-xl transition-all duration-300 ease-in-out">Home</Link>
-          <Link href="/about" className="text-primary py-1 px-2 rounded-lg hover:bg-gray-200 hover:text-xl transition-all duration-300 ease-in-out">About</Link>
-          <Link href="/services" className="text-primary py-1 px-2 rounded-lg hover:bg-gray-200 hover:text-xl transition-all duration-300 ease-in-out">Services</Link>
-          <Link href="/portfolio" className="text-primary py-1 px-2 rounded-lg hover:bg-gray-200 hover:text-xl transition-all duration-300 ease-in-out">Portfolio</Link>
-          <Link href="/contact" className="text-primary py-1 px-2 rounded-lg hover:bg-gray-200 hover:text-xl transition-all duration-300 ease-in-out">Contact</Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`py-1 px-2 rounded-lg transition-all duration-300 ease-in-out ${
+                isActive(link.href)
+                  ? "bg-primary text-white font-bold"
+                  : "text-primary hover:bg-gray-200 hover:text-xl"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Menu Button: right aligned */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded hover:bg-muted" >
+            className="p-2 rounded hover:bg-muted"
+          >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -43,13 +69,22 @@ export default function MainNav() {
         }`}
       >
         <nav className="flex flex-col space-y-3 p-4 text-sm font-medium">
-          <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="/about" onClick={() => setIsOpen(false)}>About</Link>
-          <Link href="/services" onClick={() => setIsOpen(false)}>Services</Link>
-          <Link href="/portfolio" onClick={() => setIsOpen(false)}>Portfolio</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+         {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className={`py-1 px-2 rounded-lg transition-all duration-300 ease-in-out ${
+                isActive(link.href)
+                  ? "bg-primary text-white font-bold"
+                  : "text-primary hover:bg-gray-200 hover:text-xl"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </header>
-  )
+  );
 }
