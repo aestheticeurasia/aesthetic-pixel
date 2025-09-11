@@ -140,7 +140,7 @@ export default function Contact() {
                
                 <PhoneInput
                   required
-                  className="bg-white"
+                  className="bg-white rounded-md"
                   id="phone"
                   placeholder="Enter your phone number"
                   value={phone}
