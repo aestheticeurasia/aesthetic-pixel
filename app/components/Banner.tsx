@@ -10,7 +10,7 @@ const photos = ["/banner2.png", "/home.jpg", "/home-sm.jpg"];
 export default function Banner() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.3,
+    threshold: 0.5,
   });
 
 const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

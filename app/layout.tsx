@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Aesthetic Pixel Studio",
-  description: "A Studio for Best Photography for your commercial purpose"
+  description: "Professional Product Photography & Creative Visuals That Sell" ,
 };
 
 export default function RootLayout({
@@ -31,14 +31,14 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Custom pages */}
-        <TopBar/>
-        <Header/>
-   <main style={{ minHeight: "200vh" }}>
-                {children}
-            </main>
-        <Footer/>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* Layout Components: Topbar, Header & Footer */}
+        <TopBar />
+        <Header />
+        <main style={{ minHeight: "200vh" }}>{children}</main>
+        <Footer />
       </body>
     </html>
   );
