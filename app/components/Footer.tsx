@@ -3,30 +3,29 @@ import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-<footer className="w-full bg-[#1e1e1e] text-white">
+    <footer className="w-full bg-[#1e1e1e] text-white">
       {/* Main Footer Section */}
       <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
-        
         {/* Map Embed */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="overflow-hidden rounded-2xl shadow-lg w-full max-w-[320px] h-[200px] border border-gray-200 dark:border-gray-700">
             <iframe
+              className="my-2"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1878.6686024432474!2d90.36655142549787!3d23.805327058507654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1ae56136ed7%3A0x7e732822f8735331!2sAesthetic%20Eurasia%20Ltd!5e0!3m2!1sen!2sbd!4v1757136136842!5m2!1sen!2sbd"
               width="100%"
-              height="100%"
+              height="200"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map Location"
             />
           </div>
         </div>
 
         {/* Social & Links */}
         <div className="flex flex-col items-center md:items-end space-y-4 text-center md:text-right">
-          <h3 className="text-lg font-semibold text-white">
-            Connect With Us
-          </h3>
+          <h3 className="text-lg font-semibold text-white">Connect With Us</h3>
           <nav className="flex space-x-6 text-3xl text-white">
             <a
               href="https://www.facebook.com/aestheticpixelstudio"
