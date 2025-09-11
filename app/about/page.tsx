@@ -37,7 +37,7 @@ export default function AboutPage() {
             <h1 className="text-2xl font-bold">What we do</h1>
           </div>
         </div>
-        <h1 className="text-xl md:text-5xl font-bold leading-snug bg-gradient-to-tr from-primary to-secondary bg-clip-text text-transparent">
+        <h1 className="text-3xl md:text-5xl font-bold leading-snug bg-gradient-to-tr from-primary to-secondary bg-clip-text text-transparent">
           We are a photography studio
           <br />
           producing high-quality images that
