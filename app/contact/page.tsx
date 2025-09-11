@@ -9,18 +9,17 @@ import { Loader2Icon, Send } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [status, setStatus] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    // Create a new FormData object to send to Web3Forms API
     const form = new FormData();
     form.append("access_key", "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4");
     form.append("name", name);
@@ -29,7 +28,6 @@ export default function Contact() {
     form.append("message", message);
 
     try {
-      // Send form data to Web3Forms API
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: form,
@@ -39,7 +37,6 @@ export default function Contact() {
 
       if (response.ok) {
         setStatus("Message sent successfully!");
-        setLoading(false);
         // Clear form fields
         setName("");
         setEmail("");
@@ -47,23 +44,25 @@ export default function Contact() {
         setMessage("");
       } else {
         setStatus(result.message || "There was an error sending your message.");
-        setLoading(false);
       }
 
-      // Hide status message after 10 seconds
-      setTimeout(() => {
-        setStatus(null);
-      }, 5000); // 5 seconds
-    } catch (error) {
-      setStatus("An error occurred");
-      console.error("Error:", error);
       setLoading(false);
-      // Hide error message after 10 seconds
+
+      // Hide status after 5 seconds
       setTimeout(() => {
         setStatus(null);
-      }, 10000); // 10 seconds
+      }, 5000);
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("An error occurred");
+      setLoading(false);
+
+      setTimeout(() => {
+        setStatus(null);
+      }, 10000);
     }
   };
+
   return (
     <div className="container mx-auto p-4">
       <div>
@@ -91,7 +90,6 @@ export default function Contact() {
               Mobile: +880 1711-123456
               <br />
               Email: info@example.com
-            
             </p>
           </Card>
         </div>
@@ -168,12 +166,11 @@ export default function Contact() {
               <div className="mt-10 text-center">
                 <Button
                   type="submit"
-                  className="btn btn-primary cursor-pointer transition-transform duration-150 ease-in-out 
-               hover:scale-105 hover:shadow-lg active:scale-95"
+                  className="btn btn-primary cursor-pointer transition-transform duration-150 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95"
+                  disabled={loading}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
-                      {" "}
                       <Loader2Icon className="animate-spin" /> &nbsp; Sending...
                     </span>
                   ) : (
@@ -182,6 +179,7 @@ export default function Contact() {
                     </span>
                   )}
                 </Button>
+
                 {/* Status Message */}
                 <AnimatePresence>
                   {status && (
