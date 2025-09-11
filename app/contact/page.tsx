@@ -13,7 +13,7 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(" " || null);
+  const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
