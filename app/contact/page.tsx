@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Loader2Icon, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { PhoneInput } from "../components/Phone-Input";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [name, setName] = useState<string>("");
@@ -38,6 +39,7 @@ export default function Contact() {
 
       if (response.ok) {
         setStatus("Message sent successfully!");
+        toast.success("Message sent successfully!");
         // Clear form fields
         setName("");
         setEmail("");

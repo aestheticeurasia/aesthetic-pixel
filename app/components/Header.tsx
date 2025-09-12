@@ -1,14 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./dark-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 export default function MainNav() {
-  const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
 
   const navLinks = [
@@ -24,6 +30,7 @@ export default function MainNav() {
   return (
     <header className="w-full sticky top-0 z-50 shadow-sm bg-background">
       <div className="container mx-auto flex h-27 items-center justify-between px-4">
+        {/* Logo */}
         <div className="flex-shrink-0">
           <Link href="/">
             <Image
@@ -31,11 +38,19 @@ export default function MainNav() {
               alt="Aesthetic Pixel Logo"
               width={100}
               height={40}
+              className="block dark:hidden"
+            />
+            <Image
+              src="/logoDark.png"
+              alt="Aesthetic Pixel Logo Dark"
+              width={100}
+              height={40}
+              className="hidden dark:block"
             />
           </Link>
         </div>
 
-        {/* Desktop Menu: centered */}
+        {/* Desktop Menu */}
         <nav className="hidden md:flex flex-1 justify-center space-x-6 text-lg font-medium">
           {navLinks.map((link) => (
             <Link
@@ -52,43 +67,44 @@ export default function MainNav() {
           ))}
         </nav>
 
+        {/* Desktop Theme Toggle */}
         <span className="hidden md:inline-flex">
           <ModeToggle />
         </span>
-        {/* Mobile Menu Button: right aligned */}
-        <div className="md:hidden gap-5 flex items-center">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded hover:bg-muted"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-          <ModeToggle />
-        </div>
-      </div>
 
-      {/* Mobile Dropdown with smooth animation */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t bg-background ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <nav className="flex flex-col space-y-3 p-4 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className={`py-1 px-2 rounded-lg transition-all duration-300 ease-in-out ${
-                isActive(link.href)
-                  ? "bg-primary text-white font-bold"
-                  : "text-primary hover:bg-gray-200 hover:text-xl"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Mobile Menu (Sheet trigger) */}
+        <div className="md:hidden gap-5 flex items-center">
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="p-2 rounded hover:bg-muted">
+                <Menu size={24} />
+              </button>
+            </SheetTrigger>
+            <ModeToggle />
+
+            <SheetContent side="left" className="bg-background">
+              <SheetHeader>
+                <SheetTitle className="text-lg font-bold">Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 flex flex-col space-y-4 text-base font-medium">
+                {navLinks.map((link) => (
+                  <SheetClose asChild key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={`py-1 px-2 mx-6 rounded-lg transition-all duration-300 ease-in-out ${
+                        isActive(link.href)
+                          ? "bg-primary text-white dark:text-black font-bold"
+                          : "text-primary hover:bg-gray-200 hover:text-lg dark:hover:text-black"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
