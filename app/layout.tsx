@@ -4,6 +4,8 @@ import "./globals.css";
 import TopBar from "./components/TopBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/ui/theme-providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Aesthetic Pixel Studio",
-  description: "Professional Product Photography & Creative Visuals That Sell" ,
+  description: "Professional Product Photography & Creative Visuals That Sell",
 };
 
 export default function RootLayout({
@@ -26,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
@@ -34,11 +36,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
         {/* Layout Components: Topbar, Header & Footer */}
         <TopBar />
         <Header />
+        <Toaster theme="dark" position="top-center" offset={35}/>
         <main style={{ minHeight: "200vh" }}>{children}</main>
         <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

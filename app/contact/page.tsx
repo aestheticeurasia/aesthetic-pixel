@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2Icon, Send } from "lucide-react";
+import { Loader2Icon, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { PhoneInput } from "../components/Phone-Input";
 
@@ -73,29 +73,38 @@ export default function Contact() {
       </div>
       <div className="flex flex-col md:flex-row gap-8 mt-8">
         <div className="flex-1">
-          <Card className="bg-[#edeef0] p-6 rounded-lg shadow-md">
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-1">Our Location</h2>
-            <p>
-              115, Sheltech Rubynoor,
-              <br />
-              Level 3,
-              <br />
-              Senpara Parbata, Mirpur 10,
-              <br />
-              Dhaka, Bangladesh,
-            </p>
+            <div className="flex items-start gap-3">
+              <MapPin />
+              <p>
+                115, SHELTECH Rubynoor,
+                <br />
+                Level 3,
+                <br />
+                Senpara Parbata, Mirpur 10,
+                <br />
+                Dhaka, Bangladesh,
+              </p>
+            </div>
           </Card>
-          <Card className="bg-[#edeef0] p-6 rounded-lg shadow-md mt-5">
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md mt-5">
             <h2 className="text-xl font-semibold mb-1">Contact Information</h2>
             <p>
-              Mobile: +880 1711-123456
+              <span className="flex items-center gap-4">
+                <Phone /> Mobile: +880 1711-123456
+              </span>
               <br />
-              Email: info@example.com
+              <span className="flex items-center gap-4">
+                <Mail /> Email: info@example.com
+              </span>
             </p>
           </Card>
         </div>
+
+        {/* Form */}
         <div className="flex-1">
-          <Card className="bg-[#edeef0] p-6 rounded-lg shadow-md">
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-6 text-center">
               Get in Touch
             </h2>
@@ -137,14 +146,13 @@ export default function Contact() {
                 <Label htmlFor="phone" className="mb-3">
                   Your Phone
                 </Label>
-               
                 <PhoneInput
                   required
-                  className="bg-white rounded-md"
+                  className="bg-white dark:bg-card rounded-md"
                   id="phone"
                   placeholder="Enter your phone number"
                   value={phone}
-                   onChange={(value) => setPhone(value || "")}
+                  onChange={(value) => setPhone(value || "")}
                 />
               </div>
 
@@ -163,7 +171,7 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Submit */}
+              {/* Button */}
               <div className="mt-10 text-center">
                 <Button
                   type="submit"
@@ -172,10 +180,11 @@ export default function Contact() {
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
-                      <Loader2Icon className="animate-spin" /> &nbsp; Sending...
+                      <Loader2Icon className="animate-spin font-bold" /> &nbsp;
+                      Sending...
                     </span>
                   ) : (
-                    <span className="flex items-center justify-center">
+                    <span className="flex items-center justify-center font-bold">
                       <Send /> &nbsp; Send Message
                     </span>
                   )}

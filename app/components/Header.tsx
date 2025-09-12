@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ModeToggle } from "./dark-toggle";
 
 export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +43,8 @@ export default function MainNav() {
               href={link.href}
               className={`py-1 px-2 rounded-lg transition-all duration-300 ease-in-out ${
                 isActive(link.href)
-                  ? "bg-primary text-white font-bold"
-                  : "text-primary hover:bg-gray-200 hover:text-xl"
+                  ? "bg-primary text-white dark:text-black font-bold"
+                  : "text-primary hover:bg-gray-200 hover:text-xl dark:hover:text-black"
               }`}
             >
               {link.label}
@@ -51,14 +52,18 @@ export default function MainNav() {
           ))}
         </nav>
 
+        <span className="hidden md:inline-flex">
+          <ModeToggle />
+        </span>
         {/* Mobile Menu Button: right aligned */}
-        <div className="md:hidden">
+        <div className="md:hidden gap-5 flex items-center">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 rounded hover:bg-muted"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+          <ModeToggle />
         </div>
       </div>
 
@@ -69,7 +74,7 @@ export default function MainNav() {
         }`}
       >
         <nav className="flex flex-col space-y-3 p-4 text-sm font-medium">
-         {navLinks.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
