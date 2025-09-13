@@ -13,7 +13,7 @@ export default function Banner() {
     threshold: 0.5,
   });
 
-const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div>
@@ -37,7 +37,7 @@ const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
       </div>
 
       {/* Stats + Image Stack */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-gradient-to-r from-gray-800 via-gray-300 to-black py-20">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-gray-700 dark:to-black py-20">
         {/* Stats */}
         <div
           ref={ref}
@@ -106,8 +106,8 @@ const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
                   }}
                   onHoverStart={() => setHoveredIndex(i)}
                   onHoverEnd={() => setHoveredIndex(null)}
-                  onClick={
-                    () => setHoveredIndex((prev) => (prev === i ? null : i))
+                  onClick={() =>
+                    setHoveredIndex((prev) => (prev === i ? null : i))
                   }
                 />
               );
