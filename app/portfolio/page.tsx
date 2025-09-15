@@ -69,14 +69,14 @@ export default function Portfolio() {
         {activeImages.map((image) => (
           <div
             key={image}
-            className="relative w-full rounded-md overflow-hidden bg-gray-100 flex items-center justify-center p-2"
+            className="relative w-full rounded-md overflow-hidden flex items-center justify-center p-2"
           >
             <Dialog>
               <DialogTrigger asChild>
                 <Image
                   src={image}
                   alt={activeCategory}
-                  width={350} // bigger than before
+                  width={350} 
                   height={350}
                      className="cursor-pointer hover:scale-100 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
                 />
