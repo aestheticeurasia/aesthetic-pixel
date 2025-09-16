@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./dark-toggle";
 import {
@@ -14,21 +14,28 @@ import {
   SheetTitle,
   SheetClose,
 } from "@/components/ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export default function MainNav() {
   const pathName = usePathname();
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(
+    pathName?.startsWith("/services") || false
+  );
 
-  const services = [
-    { title: "Product Photography", href: "/services/product-photography" },
-    { title: "Jewelry Photography", href: "/services/jewelry-photography" },
-    { title: "Corporate Photography", href: "/services/corporate-photography" },
-    {
-      title: "E-commerce Photography",
-      href: "/services/e-commerce-photography",
-    },
-    { title: "Fashion Photography", href: "/services/fashion-photography" },
-  ];
+  useEffect(() => {
+    if (pathName?.startsWith("/services")) {
+      setMobileServicesOpen(true);
+    } else {
+      setMobileServicesOpen(false);
+    }
+  }, [pathName]);
 
   const isActive = (path: string) => pathName === path;
 
@@ -61,7 +68,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
             }`}
           >
             Home
@@ -73,32 +80,64 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/about")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
             }`}
           >
             About
           </Link>
 
-          {/* Services with dropdown */}
-          <div className="relative group">
-            <button className="py-2 px-3 rounded-lg text-primary hover:bg-gray-200 dark:hover:bg-gray-700">
-              Services
-            </button>
-            <div className="absolute left-0 mt-2 hidden group-hover:block bg-background shadow-lg rounded-lg p-3 w-64">
-              <ul className="space-y-1">
-                {services.map((service) => (
-                  <li key={service.href}>
-                    <Link
-                      href={service.href}
-                      className="block py-2 px-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+          {/* Services Dropdown */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  className={`py-2 px-3 rounded-lg font-bold text-xl ${
+                    pathName?.startsWith("/services")
+                      ? "bg-primary text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                  }`}
+                >
+                  Services
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px] p-4">
+                    <ListItem
+                      href="/services/product-photography"
+                      title="Product Photography"
                     >
-                      {service.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/jewelry-photography"
+                      title="Jewelry Photography"
+                    >
+                      Capture the sparkle and detail of your jewelry pieces.
+                    </ListItem>
+                    <ListItem
+                      href="/services/corporate-photography"
+                      title="Corporate Photography"
+                    >
+                      Build a professional brand image for your business.
+                    </ListItem>
+                    <ListItem
+                      href="/services/e-commerce-photography"
+                      title="E-commerce Photography"
+                    >
+                      Optimized photos designed to increase conversions.
+                    </ListItem>
+                    <ListItem
+                      href="/services/fashion-photography"
+                      title="Fashion Photography"
+                    >
+                      Stunning visuals for clothing lines, models, and
+                      magazines.
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Portfolio */}
           <Link
@@ -106,7 +145,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/portfolio")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
             }`}
           >
             Portfolio
@@ -118,7 +157,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/contact")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
             }`}
           >
             Contact
@@ -126,95 +165,143 @@ export default function MainNav() {
         </nav>
 
         {/* Desktop Theme Toggle */}
-        <span className="hidden md:inline-flex">
-          <ModeToggle />
+        <span className="hidden md:inline-flex text-foreground">
+          <ModeToggle className="text-foreground" />
         </span>
-
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-4">
           <Sheet>
             <SheetTrigger asChild>
-              <button className="p-2 rounded hover:bg-muted">
+              <button className="p-2 rounded hover:bg-muted text-foreground">
                 <Menu size={24} />
               </button>
             </SheetTrigger>
-            <ModeToggle />
             <SheetContent side="left" className="bg-background">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col space-y-2">
-                {/* Home & About */}
+                {/* Home */}
                 <SheetClose asChild>
                   <Link
                     href="/"
-                    className={`py-2 px-6 mx-4 font-bold rounded-lg block ${
+                    className={`py-2 px-6 font-bold rounded-lg block ${
                       isActive("/")
-                        ? "bg-primary text-white dark:text-black px-5"
-                        : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                     }`}
                   >
                     Home
                   </Link>
                 </SheetClose>
+
+                {/* About */}
                 <SheetClose asChild>
                   <Link
                     href="/about"
-                    className={`py-2 px-6 mx-4 font-bold rounded-lg block ${
+                    className={`py-2 px-6 font-bold rounded-lg block ${
                       isActive("/about")
-                        ? "bg-primary text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                     }`}
                   >
                     About
                   </Link>
                 </SheetClose>
 
-                {/* Services dropdown */}
-                <div>
+                {/* Services Parent */}
+                <div className="w-full overflow-hidden rounded-lg">
                   <button
                     onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                    className="flex justify-between items-center w-full py-2 px-6 mx-4 font-bold rounded-lg text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                    className={`w-full flex justify-between items-center py-2 px-6 mx-5 font-bold rounded-lg ${
+                      pathName?.startsWith("/services")
+                        ? "bg-primary text-white dark:text-black"
+                        : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
                   >
-                    Services
+                    <span>Services</span>
+                    {/* Arrow */}
+                    <svg
+                      className={`w-4 h-4 ml-2 transition-transform duration-200 ${
+                        mobileServicesOpen ? "rotate-90" : "rotate-0"
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
                   </button>
-                  {mobileServicesOpen &&
-                    services.map((service) => (
-                      <SheetClose asChild key={service.href}>
+                </div>
+
+                {/* Services Submenu */}
+                {mobileServicesOpen && (
+                  <div className="ml-4 mt-1 space-y-1">
+                    {[
+                      {
+                        href: "/services/product-photography",
+                        label: "Product Photography",
+                      },
+                      {
+                        href: "/services/jewelry-photography",
+                        label: "Jewelry Photography",
+                      },
+                      {
+                        href: "/services/corporate-photography",
+                        label: "Corporate Photography",
+                      },
+                      {
+                        href: "/services/e-commerce-photography",
+                        label: "E-commerce Photography",
+                      },
+                      {
+                        href: "/services/fashion-photography",
+                        label: "Fashion Photography",
+                      },
+                    ].map((item) => (
+                      <SheetClose asChild key={item.href}>
                         <Link
-                          href={service.href}
-                          className={`py-1 pl-9 mx-4 font-bold rounded block ${
-                            isActive(service.href)
+                          href={item.href}
+                          className={`block py-1 pl-4 rounded mx-7 ${
+                            isActive(item.href)
                               ? "bg-primary text-white dark:text-black"
                               : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
                           }`}
                         >
-                          {service.title}
+                          {item.label}
                         </Link>
                       </SheetClose>
                     ))}
-                </div>
+                  </div>
+                )}
 
-                {/* Portfolio & Contact */}
+                {/* Portfolio */}
                 <SheetClose asChild>
                   <Link
                     href="/portfolio"
-                    className={`py-2 px-6 mx-4 font-bold rounded-lg block ${
+                    className={`py-2 px-6 font-bold rounded-lg block ${
                       isActive("/portfolio")
-                        ? "bg-primary text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                     }`}
                   >
                     Portfolio
                   </Link>
                 </SheetClose>
+
+                {/* Contact */}
                 <SheetClose asChild>
                   <Link
                     href="/contact"
-                    className={`py-2 px-6 mx-4 font-bold rounded-lg block ${
+                    className={`py-2 px-6 font-bold rounded-lg block ${
                       isActive("/contact")
-                        ? "bg-primary text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                     }`}
                   >
                     Contact
@@ -223,8 +310,30 @@ export default function MainNav() {
               </nav>
             </SheetContent>
           </Sheet>
+               {/* Dark Mode Toggle beside menu icon */}
+          <ModeToggle className="text-foreground" />
         </div>
       </div>
     </header>
+  );
+}
+
+function ListItem({
+  title,
+  children,
+  href,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link href={href} className="block p-2 rounded-lg hover:bg-muted">
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
   );
 }
