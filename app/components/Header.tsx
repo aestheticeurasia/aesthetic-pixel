@@ -151,6 +151,18 @@ export default function MainNav() {
             Portfolio
           </Link>
 
+          {/* Pricing */}
+          <Link
+            href="/pricing"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/pricing")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+            }`}
+          >
+            Pricing
+          </Link>
+
           {/* Contact */}
           <Link
             href="/contact"
@@ -291,6 +303,20 @@ export default function MainNav() {
                     }`}
                   >
                     Portfolio
+                  </Link>
+                </SheetClose>
+
+                {/* Pricing */}
+                <SheetClose asChild>
+                  <Link
+                    href="/pricing"
+                    className={`py-2 px-6 font-bold rounded-lg block ${
+                      isActive("/pricing")
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    Pricing
                   </Link>
                 </SheetClose>
 
