@@ -1,0 +1,104 @@
+[
+  {
+    "title": "Why High-Quality Product Photography Increases Sales by 30%",
+    "slug": "high-quality-product-photography-increases-sales",
+    "description": "Discover how high-quality product photography can increase sales by up to 30%. Learn why visuals play a critical role in e-commerce conversions and branding.",
+    "content": "<p>In e-commerce, first impressions matter. High-quality product photography helps build trust, highlights details, and boosts conversions. Research shows that shoppers are more likely to purchase when visuals clearly communicate the product’s value...</p>",
+    "coverImage": "/blog1.jpg",
+    "tags": ["product photography", "ecommerce", "marketing", "conversion"],
+    "author": {
+      "id": "1",
+      "name": "Ashik",
+      "profileUrl": "/authors/ashik"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-20T10:00:00Z",
+    "createdAt": "2025-09-20T09:30:00Z",
+    "updatedAt": "2025-09-20T09:45:00Z"
+  },
+  {
+    "title": "Top 5 Mistakes to Avoid in E-commerce Product Photography",
+    "slug": "ecommerce-photography-mistakes",
+    "description": "Avoid these common mistakes in product photography that hurt conversions and brand credibility.",
+    "content": "<p>Many businesses lose sales due to poor product photography. Mistakes like inconsistent lighting, cluttered backgrounds, and lack of scale references can confuse buyers...</p>",
+    "coverImage": "/blog2.jpg",
+    "tags": ["ecommerce", "photography tips", "branding"],
+    "author": {
+      "id": "2",
+      "name": "ModeratorUser",
+      "profileUrl": "/authors/moderator"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-18T15:00:00Z",
+    "createdAt": "2025-09-18T14:30:00Z",
+    "updatedAt": "2025-09-18T14:45:00Z"
+  },
+  {
+    "title": "The Role of Lifestyle Images in Online Shopping",
+    "slug": "lifestyle-images-in-ecommerce",
+    "description": "Lifestyle photography gives context to products, helping customers imagine them in real life.",
+    "content": "<p>Lifestyle images show products in use, creating emotional connections with customers. Unlike plain studio shots, lifestyle photos allow customers to visualize how they will use the product in their daily lives...</p>",
+    "coverImage": "/blog1.jpg",
+    "tags": ["lifestyle photography", "visual marketing", "customer experience"],
+    "author": {
+      "id": "1",
+      "name": "Ashik",
+      "profileUrl": "/authors/ashik"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-15T12:00:00Z",
+    "createdAt": "2025-09-15T11:30:00Z",
+    "updatedAt": "2025-09-15T11:40:00Z"
+  },
+  {
+    "title": "How Consistent Product Images Build Brand Trust",
+    "slug": "consistent-product-images-build-trust",
+    "description": "Consistency in product images builds trust and strengthens brand identity across all platforms.",
+    "content": "<p>When customers see consistent imagery across your website, social media, and ads, it builds trust. Inconsistent product images, however, may confuse buyers or suggest poor professionalism...</p>",
+    "coverImage": "/blog2.jpg",
+    "tags": ["branding", "product photography", "trust"],
+    "author": {
+      "id": "2",
+      "name": "ModeratorUser",
+      "profileUrl": "/authors/moderator"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-10T09:00:00Z",
+    "createdAt": "2025-09-10T08:30:00Z",
+    "updatedAt": "2025-09-10T08:45:00Z"
+  },
+  {
+    "title": "Editing Tips for Stunning Product Photos",
+    "slug": "editing-tips-for-product-photos",
+    "description": "Learn the best editing practices to make your product photos pop and attract more customers.",
+    "content": "<p>Post-production editing is just as important as the photoshoot itself. Proper color correction, background cleanup, and retouching can make a huge difference in product appeal...</p>",
+    "coverImage": "/blog1.jpg",
+    "tags": ["photo editing", "ecommerce", "design"],
+    "author": {
+      "id": "1",
+      "name": "Ashik",
+      "profileUrl": "/authors/ashik"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-05T14:00:00Z",
+    "createdAt": "2025-09-05T13:30:00Z",
+    "updatedAt": "2025-09-05T13:45:00Z"
+  },
+  {
+    "title": "Why Mobile-Friendly Product Photography Matters",
+    "slug": "mobile-friendly-product-photography",
+    "description": "Over 70% of online shoppers use mobile. Mobile-optimized images are key for conversions.",
+    "content": "<p>Since most shoppers browse on mobile, your product images must load quickly and display correctly on smaller screens. Optimized file sizes and aspect ratios are essential for reducing bounce rates...</p>",
+    "coverImage": "/blog2.jpg",
+    "tags": ["mobile commerce", "product photography", "user experience"],
+    "author": {
+      "id": "2",
+      "name": "ModeratorUser",
+      "profileUrl": "/authors/moderator"
+    },
+    "isPublished": true,
+    "publishedAt": "2025-09-01T11:00:00Z",
+    "createdAt": "2025-09-01T10:30:00Z",
+    "updatedAt": "2025-09-01T10:45:00Z"
+  }
+]

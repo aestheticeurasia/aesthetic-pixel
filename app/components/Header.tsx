@@ -68,7 +68,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
             }`}
           >
             Home
@@ -80,7 +80,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/about")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
             }`}
           >
             About
@@ -94,7 +94,7 @@ export default function MainNav() {
                   className={`py-2 px-3 rounded-lg font-bold text-xl ${
                     pathName?.startsWith("/services")
                       ? "bg-primary text-white dark:text-black"
-                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
                   }`}
                 >
                   Services
@@ -145,7 +145,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/portfolio")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
             }`}
           >
             Portfolio
@@ -157,10 +157,22 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/pricing")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
             }`}
           >
             Pricing
+          </Link>
+          
+          {/* Blog */}
+          <Link
+            href="/blog"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/blog")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            Blogs
           </Link>
 
           {/* Contact */}
@@ -169,7 +181,7 @@ export default function MainNav() {
             className={`py-2 px-3 rounded-lg ${
               isActive("/contact")
                 ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
             }`}
           >
             Contact
@@ -320,6 +332,20 @@ export default function MainNav() {
                   </Link>
                 </SheetClose>
 
+                {/* Blog */}
+                <SheetClose asChild>
+                  <Link
+                    href="/blog"
+                    className={`py-2 px-6 font-bold rounded-lg block ${
+                      isActive("/blog")
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    Blogs
+                  </Link>
+                </SheetClose>
+
                 {/* Contact */}
                 <SheetClose asChild>
                   <Link
@@ -336,7 +362,7 @@ export default function MainNav() {
               </nav>
             </SheetContent>
           </Sheet>
-               {/* Dark Mode Toggle beside menu icon */}
+          {/* Dark Mode Toggle beside menu icon */}
           <ModeToggle className="text-foreground" />
         </div>
       </div>
