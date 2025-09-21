@@ -52,10 +52,7 @@ export default function Blog() {
             href={`/blog/${b.slug}`}
             className="cursor-pointer"
           >
-            <Card
-              key={b.slug}
-              className="flex flex-col overflow-hidden rounded-2xl shadow-md transition-transform transform hover:scale-105 hover:shadow-xl duration-300 p-0"
-            >
+            <Card className="flex flex-col h-full overflow-hidden rounded-2xl shadow-md transition-transform transform hover:scale-105 hover:shadow-xl duration-300 p-0">
               {/* Cover Image */}
               <div className="w-full h-48 relative">
                 <Image
@@ -68,10 +65,10 @@ export default function Blog() {
 
               {/* Content */}
               <div className="flex flex-col flex-1 p-4">
-                <h2 className="text-xl font-semibold mb-2 line-clamp-2">
+                <h2 className="text-xl font-semibold mb-2 line-clamp-2 min-h-[56px]">
                   {b.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 min-h-[60px]">
                   {b.description}
                 </p>
 
