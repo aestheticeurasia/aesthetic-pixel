@@ -29,7 +29,7 @@ interface Blog {
 export default function Blog() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  const handleBlog = async () => {
+  const getAllBlog = async () => {
     try {
       const { data } = await axios.get("/blogs.json");
       setBlogs(data);
@@ -39,7 +39,7 @@ export default function Blog() {
   };
 
   useEffect(() => {
-    handleBlog();
+    getAllBlog();
   }, []);
 
   return (
