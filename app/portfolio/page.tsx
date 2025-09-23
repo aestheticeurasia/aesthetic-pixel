@@ -74,11 +74,12 @@ export default function Portfolio() {
             <Dialog>
               <DialogTrigger asChild>
                 <Image
+                  priority
                   src={image}
                   alt={activeCategory}
-                  width={350} 
+                  width={350}
                   height={350}
-                     className="cursor-pointer hover:scale-100 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
+                  className="cursor-pointer hover:scale-100 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
                 />
               </DialogTrigger>
               <DialogContent className="flex justify-center p-4 max-w-[90vw] max-h-[90vh]">
