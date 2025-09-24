@@ -109,26 +109,61 @@ export default function MainNav() {
                       images.
                     </ListItem>
                     <ListItem
+                      href="/services/ecommerce-photography"
+                      title="E-Commerce Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/apparel-photography"
+                      title="Apparel Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/headshot-photography"
+                      title="Headshot Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
                       href="/services/jewelry-photography"
                       title="Jewelry Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/portrait-photography"
+                      title="Portrait Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/wedding-photography"
+                      title="Wedding Photography"
                     >
                       Capture the sparkle and detail of your jewelry pieces.
                     </ListItem>
                     <ListItem
-                      href="/services/corporate-photography"
-                      title="Corporate Photography"
+                      href="/services/event-photography"
+                      title="Event Photography"
                     >
                       Build a professional brand image for your business.
                     </ListItem>
                     <ListItem
-                      href="/services/e-commerce-photography"
-                      title="E-commerce Photography"
+                      href="/services/real-estate-photography"
+                      title="Real-Estate Photography"
                     >
                       Optimized photos designed to increase conversions.
                     </ListItem>
                     <ListItem
-                      href="/services/fashion-photography"
-                      title="Fashion Photography"
+                      href="/services/video-cinematography"
+                      title="Videography & Cinematography"
                     >
                       Stunning visuals for clothing lines, models, and
                       magazines.
@@ -162,7 +197,7 @@ export default function MainNav() {
           >
             Pricing
           </Link>
-          
+
           {/* Blog */}
           <Link
             href="/blog"
@@ -264,6 +299,7 @@ export default function MainNav() {
                 </div>
 
                 {/* Services Submenu */}
+                {/* Services Submenu */}
                 {mobileServicesOpen && (
                   <div className="ml-4 mt-1 space-y-1">
                     {[
@@ -272,20 +308,40 @@ export default function MainNav() {
                         label: "Product Photography",
                       },
                       {
+                        href: "/services/ecommerce-photography",
+                        label: "E-Commerce Photography",
+                      },
+                      {
+                        href: "/services/apparel-photography",
+                        label: "Apparel Photography",
+                      },
+                      {
+                        href: "/services/headshot-photography",
+                        label: "Headshot Photography",
+                      },
+                      {
                         href: "/services/jewelry-photography",
                         label: "Jewelry Photography",
                       },
                       {
-                        href: "/services/corporate-photography",
-                        label: "Corporate Photography",
+                        href: "/services/portrait-photography",
+                        label: "Portrait Photography",
                       },
                       {
-                        href: "/services/e-commerce-photography",
-                        label: "E-commerce Photography",
+                        href: "/services/wedding-photography",
+                        label: "Wedding Photography",
                       },
                       {
-                        href: "/services/fashion-photography",
-                        label: "Fashion Photography",
+                        href: "/services/event-photography",
+                        label: "Event Photography",
+                      },
+                      {
+                        href: "/services/real-estate-photography",
+                        label: "Real-Estate Photography",
+                      },
+                      {
+                        href: "/services/video-cinematography",
+                        label: "Videography & Cinematography",
                       },
                     ].map((item) => (
                       <SheetClose asChild key={item.href}>
