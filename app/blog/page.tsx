@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import dayjs from 'dayjs';
 
 // Define the Blog type
 interface Author {
@@ -74,7 +75,7 @@ export default function Blog() {
 
                 <div className="mt-auto flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
                   <span>By {b.author.name}</span>
-                  <span>{new Date(b.publishedAt).toLocaleDateString()}</span>
+                  <span>{dayjs().format('DD MMM YYYY')}</span>
                 </div>
               </div>
             </Card>

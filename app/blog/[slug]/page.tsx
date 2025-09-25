@@ -1,6 +1,7 @@
 "use client";
 import GoBackButton from "@/app/components/GoBackButton";
 import axios from "axios";
+import dayjs from "dayjs";
 import Image from "next/image";
 import { use, useEffect, useState } from "react";
 
@@ -52,7 +53,7 @@ export default function BlogDetail({ params }: Props) {
   return (
     <div className="container mx-auto p-10">
       <div className="lg:relative mt-3 mb-10">
-  <div className="absolute left-4 sm:left-5 md:left-0 lg:left-0">
+        <div className="absolute left-4 sm:left-5 md:left-0 lg:left-0">
           <GoBackButton />
         </div>
         <h1 className="text-3xl font-bold text-center">{blog?.title}</h1>
@@ -66,8 +67,8 @@ export default function BlogDetail({ params }: Props) {
       />
 
       <p className="text-gray-500 dark:text-gray-300 md:my-4 text-between flex flex-row justify-between  md:px-10">
-        <span>{blog?.author?.name}</span>{" "}
-        <span>{new Date(blog?.publishedAt).toLocaleDateString()}</span>
+        <span>Written by: {blog?.author?.name}</span>{" "}
+        <span>Published on: {dayjs().format("DD MMM YYYY")}</span>
       </p>
       <div
         className="prose dark:prose-invert md:mx-10 mt-8 text-xl text-justify text-space-y-4"
