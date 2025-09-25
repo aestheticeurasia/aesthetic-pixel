@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const photos = ["/banner2.png", "/home.jpg", "/home-sm.jpg"];
+const photos = ["/stack1.jpg", "/stack2.jpg", "/stack3.jpg"];
 
 export default function Banner() {
   const { ref, inView } = useInView({
