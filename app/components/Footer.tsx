@@ -1,6 +1,6 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
-import { FaFacebookSquare, FaYoutube } from "react-icons/fa";
+import { FaFacebookSquare, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -29,6 +29,14 @@ export default function Footer() {
             </span>
             {/* Social Icons */}
             <div className="flex space-x-6 mt-5 text-3xl text-white">
+                 <a
+                href="https://www.linkedin.com/company/aesthetic-pixel-studio-llc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
+              >
+                <FaLinkedin />
+              </a>
               <a
                 href="https://www.facebook.com/aestheticpixelstudio"
                 target="_blank"
