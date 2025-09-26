@@ -13,10 +13,10 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-5">Connect With Us</h3>
           <div className="flex flex-col items-center md:items-start text-sm text-gray-400 space-y-2">
             <span className="flex items-center space-x-2">
-              <Phone /> <span>+880 1711-123456</span>
+              <Phone /> <span>+880 1970-831822</span>
             </span>
             <span className="flex items-center space-x-2">
-              <Phone /> <span>+880 1711-123458</span>
+              <Phone /> <span>+880 1742-321304</span>
             </span>
             <span className="flex items-center space-x-2">
               <Mail /> <span>info@aestheticeurasia.com</span>

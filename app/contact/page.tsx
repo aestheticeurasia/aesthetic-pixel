@@ -94,11 +94,11 @@ export default function Contact() {
             <h2 className="text-xl font-semibold mb-1">Contact Information</h2>
             <p>
               <span className="flex items-center gap-4">
-                <Phone /> Mobile: +880 1711-123456
+                <Phone /> +880 1970-831822
               </span>
               <br />
               <span className="flex items-center gap-4">
-                <Mail /> Email: info@example.com
+                <Mail /> info@aestheticeurasia.com
               </span>
             </p>
           </Card>
