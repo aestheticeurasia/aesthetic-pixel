@@ -86,7 +86,7 @@ const BookASlot = () => {
   const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
-    setToday(dayjs().format("YYYY-MM-DD"));
+    setToday(dayjs().format("D MMM YYYY"));
   }, []);
 
   // Sync date picker value to formData
@@ -94,7 +94,7 @@ const BookASlot = () => {
     if (bookingDate) {
       setFormData((prev) => ({
         ...prev,
-        bookingDate: format(bookingDate, "yyyy-MM-dd"),
+        bookingDate: format(bookingDate, "d-MMM-yyyy"),
       }));
     }
   }, [bookingDate]);
@@ -115,7 +115,7 @@ const BookASlot = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4",
+          access_key: "f2a40982-3c74-465e-875c-1f699faf49b1",
           subject: "New Booking Inquiry",
           sender_name: formData.name,
           sender_email: formData.email,
@@ -160,7 +160,7 @@ const BookASlot = () => {
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out"
           style={{
             backgroundImage: "url('/quoteBg.jpeg')",
-            filter: "brightness(0.5)",
+            filter: "brightness(0.7)",
           }}
           aria-hidden="true"
         ></div>
@@ -168,10 +168,10 @@ const BookASlot = () => {
         <div className="relative z-10 container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div className="text-white p-6 rounded-xl md:p-0">
-            <Camera className="w-12 h-12 text-white mb-4 p-2 bg-indigo-600 rounded-full" />
+            <Camera className="w-12 h-12 text-white mb-4 p-2 bg-[#ed1c24] rounded-full" />
             <h1 className="text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tighter">
               The Imagery Your Brand{" "}
-              <span className="text-indigo-400">Deserves</span>
+              <span className="text-[#ed1c24]">Deserves</span>
             </h1>
             <p className="text-lg sm:text-xl text-indigo-100 mb-8">
               Specializing in high-impact commercial photography that captures
