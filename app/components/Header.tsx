@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { Clipboard, Menu } from "lucide-react";
 import { ModeToggle } from "./dark-toggle";
 import {
   Sheet,
@@ -22,6 +22,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
 export default function MainNav() {
   const pathName = usePathname();
@@ -212,9 +213,20 @@ export default function MainNav() {
         </nav>
 
         {/* Desktop Theme Toggle */}
+        <span className="hidden md:inline-flex text-foreground me-3">
+          <Link href="/quote" target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="outline"
+              className="text-foreground cursor-pointer"
+            >
+              Get a Quote
+            </Button>
+          </Link>
+        </span>
         <span className="hidden md:inline-flex text-foreground">
           <ModeToggle className="text-foreground" />
         </span>
+
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-4">
           <Sheet>
@@ -286,7 +298,6 @@ export default function MainNav() {
                   </button>
                 </div>
 
-                {/* Services Submenu */}
                 {/* Services Submenu */}
                 {mobileServicesOpen && (
                   <div className="ml-4 mt-1 space-y-1">
@@ -387,6 +398,24 @@ export default function MainNav() {
                     }`}
                   >
                     Contact
+                  </Link>
+                </SheetClose>
+
+                {/* Quote */}
+                <SheetClose asChild>
+                  <Link
+                    href="/quote"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full my-5 px-8 block"
+                  >
+                    <Button
+                      variant="outline"
+                      className="w-full bg-gray-900 text-white dark:bg-gray-800 dark:text-gray-100 hover:bg-gray-800 dark:hover:bg-gray-700 font-bold"
+                    >
+                      <Clipboard className="w-5 h-5" />
+                      Get a Quote
+                    </Button>
                   </Link>
                 </SheetClose>
               </nav>
