@@ -212,17 +212,20 @@ export default function MainNav() {
           </Link>
         </nav>
 
-        {/* Desktop Theme Toggle */}
+        {/* Desktop Book a Slot Button */}
         <span className="hidden md:inline-flex text-foreground me-3">
-          <Link href="/quote" target="_blank" rel="noopener noreferrer">
+          <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
             <Button
-              variant="outline"
-              className="text-foreground cursor-pointer"
+              variant="destructive"
+              className="cursor-pointer text-white font-bold"
             >
-              Get a Quote
+              Book a Slot
             </Button>
           </Link>
         </span>
+
+        {/* Desktop Theme Toggle */}
+
         <span className="hidden md:inline-flex text-foreground">
           <ModeToggle className="text-foreground" />
         </span>
@@ -404,17 +407,14 @@ export default function MainNav() {
                 {/* Quote */}
                 <SheetClose asChild>
                   <Link
-                    href="/quote"
+                    href="/book-a-slot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full my-5 px-8 block"
                   >
-                    <Button
-                      variant="outline"
-                      className="w-full bg-gray-900 text-white dark:bg-gray-800 dark:text-gray-100 hover:bg-gray-800 dark:hover:bg-gray-700 font-bold"
-                    >
+                    <Button variant="destructive" className="w-full font-bold">
                       <Clipboard className="w-5 h-5" />
-                      Get a Quote
+                      Book a Slot
                     </Button>
                   </Link>
                 </SheetClose>

@@ -72,7 +72,7 @@ const workflow = [
   },
 ];
 
-const LandingPageContent = () => {
+const BookASlot = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -406,4 +406,4 @@ const LandingPageContent = () => {
   );
 };
 
-export default LandingPageContent;
+export default BookASlot;
