@@ -8,13 +8,13 @@ export default function Hero() {
 
       {/* Subheadline */}
       <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl drop-shadow-md mb-6">
-      Professional Product Photography & Creative Visuals That Sell
+       From lens to final touch — high-quality photography, videography, and retouching that makes your brand shine
       </p>
       {/* CTA Button */}
       <a
         href="/portfolio"
         className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium text-sm sm:text-base hover:bg-primary/90 transition">
-        Book a Shoot
+        View our Portfolio
       </a>
     </section>
   );

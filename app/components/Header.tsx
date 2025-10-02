@@ -186,6 +186,17 @@ export default function MainNav() {
           >
             Portfolio
           </Link>
+          {/* Contact */}
+          <Link
+            href="/contact"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/contact")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            Contact
+          </Link>
 
           {/* Blog */}
           <Link
@@ -197,18 +208,6 @@ export default function MainNav() {
             }`}
           >
             Blogs
-          </Link>
-
-          {/* Contact */}
-          <Link
-            href="/contact"
-            className={`py-2 px-3 rounded-lg ${
-              isActive("/contact")
-                ? "bg-primary text-white dark:text-black"
-                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-            }`}
-          >
-            Contact
           </Link>
         </nav>
 
@@ -376,20 +375,6 @@ export default function MainNav() {
                   </Link>
                 </SheetClose>
 
-                {/* Blog */}
-                <SheetClose asChild>
-                  <Link
-                    href="/blog"
-                    className={`py-2 px-6 font-bold rounded-lg block ${
-                      isActive("/blog")
-                        ? "bg-primary mx-5 text-white dark:text-black"
-                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
-                    }`}
-                  >
-                    Blogs
-                  </Link>
-                </SheetClose>
-
                 {/* Contact */}
                 <SheetClose asChild>
                   <Link
@@ -401,6 +386,20 @@ export default function MainNav() {
                     }`}
                   >
                     Contact
+                  </Link>
+                </SheetClose>
+
+                  {/* Blog */}
+                <SheetClose asChild>
+                  <Link
+                    href="/blog"
+                    className={`py-2 px-6 font-bold rounded-lg block ${
+                      isActive("/blog")
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    Blogs
                   </Link>
                 </SheetClose>
 
