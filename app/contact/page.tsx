@@ -80,7 +80,7 @@ export default function Contact() {
             <div className="flex items-start gap-3">
               <MapPin />
               <p>
-                115, SHELTECH Rubynoor,
+                115, SHELTECH Rubynur,
                 <br />
                 Level 3,
                 <br />
