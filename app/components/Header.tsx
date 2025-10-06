@@ -62,16 +62,148 @@ export default function MainNav() {
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-lg font-bold relative">
-            {/* Home */}
-            <Link
-              href="/"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/")
-                  ? "bg-primary text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
+          {/* About */}
+          <Link
+            href="/about"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/about")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            About
+          </Link>
+
+          {/* Services Dropdown */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  className={`py-2 px-3 rounded-lg font-bold text-xl ${
+                    pathName?.startsWith("/services")
+                      ? "bg-primary text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                >
+                  Services
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px] p-4">
+                    <ListItem
+                      href="/services/product-photography"
+                      title="Product Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/ecommerce-photography"
+                      title="E-Commerce Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/apparel-photography"
+                      title="Apparel Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/headshot-photography"
+                      title="Headshot Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/jewelry-photography"
+                      title="Jewelry Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/portrait-photography"
+                      title="Portrait Photography"
+                    >
+                      Showcase your products with professional, high-quality
+                      images.
+                    </ListItem>
+                    <ListItem
+                      href="/services/wedding-photography"
+                      title="Wedding Photography"
+                    >
+                      Capture the sparkle and detail of your jewelry pieces.
+                    </ListItem>
+                    <ListItem
+                      href="/services/event-photography"
+                      title="Event Photography"
+                    >
+                      Build a professional brand image for your business.
+                    </ListItem>
+                    <ListItem
+                      href="/services/real-estate-photography"
+                      title="Real-Estate Photography"
+                    >
+                      Optimized photos designed to increase conversions.
+                    </ListItem>
+                    <ListItem
+                      href="/services/video-cinematography"
+                      title="Videography & Cinematography"
+                    >
+                      Stunning visuals for clothing lines, models, and
+                      magazines.
+                    </ListItem>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+
+          {/* Portfolio */}
+          <Link
+            href="/portfolio"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/portfolio")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            Portfolio
+          </Link>
+          {/* Contact */}
+          <Link
+            href="/contact"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/contact")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            Contact
+          </Link>
+
+          {/* Blog */}
+          <Link
+            href="/blog"
+            className={`py-2 px-3 rounded-lg ${
+              isActive("/blog")
+                ? "bg-primary text-white dark:text-black"
+                : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+            }`}
+          >
+            Blogs
+          </Link>
+        </nav>
+
+        {/* Desktop Book a Slot Button */}
+        <span className="hidden md:inline-flex text-foreground me-3">
+          <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="destructive"
+              className="cursor-pointer text-white font-bold"
             >
               Home
             </Link>
@@ -363,71 +495,53 @@ export default function MainNav() {
                     </div>
                   )}
 
-                  {/* Portfolio */}
-                  <SheetClose asChild>
-                    <Link
-                      href="/portfolio"
-                      className={`py-2 px-6 font-bold rounded-lg block ${
-                        isActive("/portfolio")
-                          ? "bg-primary mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
-                      }`}
-                    >
-                      Portfolio
-                    </Link>
-                  </SheetClose>
+                {/* Contact */}
+                <SheetClose asChild>
+                  <Link
+                    href="/contact"
+                    className={`py-2 px-6 font-bold rounded-lg block ${
+                      isActive("/contact")
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    Contact
+                  </Link>
+                </SheetClose>
 
                   {/* Blog */}
-                  <SheetClose asChild>
-                    <Link
-                      href="/blog"
-                      className={`py-2 px-6 font-bold rounded-lg block ${
-                        isActive("/blog")
-                          ? "bg-primary mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
-                      }`}
-                    >
-                      Blogs
-                    </Link>
-                  </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href="/blog"
+                    className={`py-2 px-6 font-bold rounded-lg block ${
+                      isActive("/blog")
+                        ? "bg-primary mx-5 text-white dark:text-black"
+                        : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    Blogs
+                  </Link>
+                </SheetClose>
 
-                  {/* Contact */}
-                  <SheetClose asChild>
-                    <Link
-                      href="/contact"
-                      className={`py-2 px-6 font-bold rounded-lg block ${
-                        isActive("/contact")
-                          ? "bg-primary mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
-                      }`}
-                    >
-                      Contact
-                    </Link>
-                  </SheetClose>
-
-                  {/* Quote */}
-                  <SheetClose asChild>
-                    <Link
-                      href="/book-a-slot"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full my-5 px-8 block"
-                    >
-                      <Button
-                        variant="destructive"
-                        className="w-full font-bold"
-                      >
-                        <Clipboard className="w-5 h-5" />
-                        Book a Slot
-                      </Button>
-                    </Link>
-                  </SheetClose>
-                </nav>
-              </SheetContent>
-            </Sheet>
-            {/* Dark Mode Toggle beside menu icon */}
-            <ModeToggle className="text-foreground" />
-          </div>
+                {/* Quote */}
+                <SheetClose asChild>
+                  <Link
+                    href="/book-a-slot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full my-5 px-8 block"
+                  >
+                    <Button variant="destructive" className="w-full font-bold">
+                      <Clipboard className="w-5 h-5" />
+                      Book a Slot
+                    </Button>
+                  </Link>
+                </SheetClose>
+              </nav>
+            </SheetContent>
+          </Sheet>
+          {/* Dark Mode Toggle beside menu icon */}
+          <ModeToggle className="text-foreground" />
         </div>
       </header>
     </HideOnRoutes>
