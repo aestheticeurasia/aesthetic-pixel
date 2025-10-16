@@ -338,45 +338,44 @@ const BookASlot = () => {
             creative direction and rapid delivery.
           </p>
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {features.map((item, idx) => (
-    <div
-      key={idx}
-      className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
-      onClick={() =>
-        setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
-      }
-    >
-      <Image
-        src={item.img}
-        alt={item.title}
-        width={600}
-        height={400}
-        className={`object-cover w-full h-72 transition-transform duration-700 ${
-          openFeatureIndex === idx ? "scale-110" : ""
-        }`}
-      />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((item, idx) => (
+              <div
+                key={idx}
+                className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
+                onClick={() =>
+                  setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
+                }
+              >
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={600}
+                  height={400}
+                  className={`object-cover w-full h-72 transition-transform duration-700 ${
+                    openFeatureIndex === idx ? "scale-110" : ""
+                  }`}
+                />
 
-      {/* Tag on bottom-left corner */}
-      <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-        {item.tag}
-      </span>
+                {/* Tag on bottom-left corner */}
+                <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                  {item.tag}
+                </span>
 
-      {/* Overlay */}
-      <div
-        className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
-          openFeatureIndex === idx
-            ? "translate-y-[5%]" // visible
-            : "translate-y-full" // hidden
-        } group-hover:translate-y-[5%]`}
-      >
-        <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-        <p className="text-sm text-gray-200">{item.desc}</p>
-      </div>
-    </div>
-  ))}
-</div>
-
+                {/* Overlay */}
+                <div
+                  className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
+                    openFeatureIndex === idx
+                      ? "translate-y-[5%]" // visible
+                      : "translate-y-full" // hidden
+                  } group-hover:translate-y-[5%]`}
+                >
+                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-200">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -587,7 +586,7 @@ const BookASlot = () => {
 
             {/* Right: FAQ Accordion */}
             <div className="flex flex-col h-full gap-4">
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-1">
                 Frequently Asked Questions
               </h2>
 
@@ -644,6 +643,69 @@ const BookASlot = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call Center */}
+      <section className="pb-20 bg-white">
+        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center py-10">
+          Call For {""}
+          <span className="text-red-600 landing-page-title-font">Inquiry</span>
+        </h1>
+        <div className="container mx-auto max-w-5xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-25 items-center">
+            <div className="flex justify-center lg:justify-end">
+              <Image
+                src="/call-center.jpg"
+                alt="Call Center"
+                width={500}
+                height={500}
+                className="rounded-xl object-cover shadow-lg"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-center">
+              <div className="flex flex-col items-center space-y-6">
+                {/* Ripple Phone Icon */}
+                <div className="relative w-24 h-24 flex items-center justify-center">
+                  {/* Smooth Ripple Effect */}
+                  <span className="absolute w-full h-full rounded-full bg-red-500/30 animate-ping"></span>
+                  <span className="absolute w-3/4 h-3/4 rounded-full bg-red-500/20 animate-ping delay-200"></span>
+                  <span className="absolute w-1/2 h-1/2 rounded-full bg-red-500/10 animate-ping delay-400"></span>
+
+                  {/* Phone Icon */}
+                  <a href="tel:+8801711205200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="relative h-10 w-10 text-red-600 z-10"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 
+          1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
+          01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
+          1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+
+                {/* Phone Number */}
+                <div className="flex flex-col items-center">
+                  <p className="text-gray-500 text-sm uppercase tracking-widest mb-1">
+                    Call Now
+                  </p>
+                  <a
+                    href="tel:+8801711205200"
+                    className="text-4xl sm:text-5xl font-extrabold text-red-600 hover:text-red-700 transition-colors duration-300 whitespace-nowrap"
+                  >
+                    +880&nbsp;1711&nbsp;205200
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
