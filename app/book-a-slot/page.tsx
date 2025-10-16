@@ -91,7 +91,7 @@ const testimonials = [
       "Incredible attention to detail. Delivered beautiful shots that lifted our conversion rate.",
   },
   {
-    img: "https://images.unsplash.com/photo-1545996124-1b1a1a8f6f90?w=400&q=80",
+    img: "https://images.unsplash.com/photo-1564564244660-5d73c057f2d2?w=400&q=80",
     name: "Rafi Ahmed",
     role: "E-commerce Manager",
     quote: "Professional, on-time, and the images looked better than imagined.",
@@ -128,6 +128,7 @@ const BookASlot = () => {
   const [submissionMessage, setSubmissionMessage] = useState("");
   const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
   const [today, setToday] = useState("");
+  const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setToday(dayjs().format("D MMM YYYY"));
@@ -322,32 +323,31 @@ const BookASlot = () => {
             creative direction and rapid delivery.
           </p>
 
-          {/* ---------- IMAGE GRID ---------- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((item, idx) => (
               <div
                 key={idx}
-                className="relative group overflow-hidden rounded-sm shadow-sm"
+                className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
+                onClick={() =>
+                  setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
+                } // toggle overlay on mobile
               >
-                {/* Image */}
                 <Image
                   src={item.img}
                   alt={item.title}
                   width={600}
                   height={400}
-                  className="object-cover w-full h-72 transition-transform duration-700 group-hover:scale-110"
+                  className={`object-cover w-full h-72 transition-transform duration-700 ${
+                    openFeatureIndex === idx ? "scale-110" : ""
+                  }`}
                 />
 
-                {/* Hover Overlay Banner */}
                 <div
-                  className="
-              absolute inset-x-0 bottom-0
-              translate-y-full group-hover:translate-y-[5%]
-              bg-black/70 text-white
-              px-5 py-5
-              transition-all duration-500 ease-out
-              flex flex-col justify-center
-            "
+                  className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
+                    openFeatureIndex === idx
+                      ? "translate-y-[5%]" // visible
+                      : "translate-y-full" // hidden
+                  } group-hover:translate-y-[5%]`} // still works on desktop hover
                 >
                   <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
                   <p className="text-sm text-gray-200">{item.desc}</p>
