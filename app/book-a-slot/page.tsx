@@ -91,24 +91,48 @@ const features = [
 const testimonials = [
   {
     img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80",
-    name: "Sarah Khan",
+    name: "Emily Johnson",
     role: "Head of Marketing",
     quote:
       "Incredible attention to detail. Delivered beautiful shots that lifted our conversion rate.",
   },
   {
-    img: "https://images.unsplash.com/photo-1564564244660-5d73c057f2d2?w=400&q=80",
-    name: "Rafi Ahmed",
+    img: "/testimonial-rafi.jpg",
+    name: "Akramul Hossen",
     role: "E-commerce Manager",
-    quote: "Professional, on-time, and the images looked better than imagined.",
+    quote:
+      "Professional, on-time, and the images looked better than imagined.",
   },
   {
     img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&q=80",
     name: "Maya Roy",
     role: "Founder",
-    quote: "Great creative direction — they understood our brand immediately.",
+    quote:
+      "Great creative direction — they understood our brand immediately.",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
+    name: "Michael Brown",
+    role: "Brand Strategist",
+    quote:
+      "Their photography gave our catalog a premium and cohesive feel. Highly recommended!",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
+    name: "Sophia Miller",
+    role: "Creative Director",
+    quote:
+      "The team was cooperative, creative, and fast. Our visuals now truly represent our brand.",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&q=80",
+    name: "Ethan Davis",
+    role: "Product Manager",
+    quote:
+      "Exceptional experience from start to finish. Their product shots exceeded expectations.",
   },
 ];
+
 
 const CarouselImg = [
   {
