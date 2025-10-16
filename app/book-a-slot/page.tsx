@@ -47,36 +47,42 @@ const features = [
   {
     icon: Package,
     title: "Product Photography",
+    tag: "Product",
     desc: "Optimized product photos sized and edited for online listings and ads.",
     img: "/product.jpg",
   },
   {
     icon: Layers3,
-    title: "Appearel and Garments Photography",
+    title: "Apparel and Garments Photography",
+    tag: "Apparel",
     desc: "Lifestyle shoots that connect your products with real-life moments.",
     img: "/garments.jpg",
   },
   {
     icon: Briefcase,
     title: "Fashion & Model Photography",
+    tag: "Fashion",
     desc: "Headshots, facility photography and editorial assets for comms.",
     img: "/carousel3.jpg",
   },
   {
     icon: Camera,
     title: "Furniture & Interior Photography",
+    tag: "Furniture",
     desc: "Controlled lighting and crisp detail for high-res deliverables.",
     img: "/furniture.jpg",
   },
   {
     icon: Lightbulb,
     title: "Lifestyle & Branding Photography",
+    tag: "Lifestyle",
     desc: "Concept, styling and art direction to fit your brand voice.",
     img: "/branding.jpg",
   },
   {
     icon: Zap,
     title: "Photo Editing & Retouching Services",
+    tag: "Retouching",
     desc: "Clear timelines and reliable delivery without compromising quality.",
     img: "/retouching.jpg",
   },
@@ -129,6 +135,7 @@ const BookASlot = () => {
   const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
   const [today, setToday] = useState("");
   const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
+  const [bookingDatePopoverOpen, setBookingDatePopoverOpen] = useState(false);
 
   useEffect(() => {
     setToday(dayjs().format("D MMM YYYY"));
@@ -218,7 +225,9 @@ const BookASlot = () => {
 
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
               The Imagery Your Brand{" "}
-              <span className="text-red-600">Deserves</span>
+              <span className="text-red-600 landing-page-title-font">
+                Deserves
+              </span>
             </h1>
 
             <p className="text-lg text-gray-300 max-w-xl mb-6">
@@ -315,55 +324,69 @@ const BookASlot = () => {
       {/* ---------- FEATURES ---------- */}
       <section id="features" className="py-20 bg-white">
         <div className="container mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-center mb-4 bg-gradient-to-tl from-red-700 via-pink-500 to-purple-900 bg-clip-text text-transparent">
+          {/* <h2 className="text-3xl font-bold text-center mb-4 bg-gradient-to-tl from-red-700 via-pink-500 to-purple-900 bg-clip-text text-transparent">
             STUNNING IMAGERY IS WHAT WE DO
-          </h2>
+          </h2> */}
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
+            Stunning Imagery Is {""}
+            <span className="text-red-600 landing-page-title-font">
+              What We Do
+            </span>
+          </h1>
           <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
             A full-suite offering for brands of every size — tailored shoots,
             creative direction and rapid delivery.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
-                onClick={() =>
-                  setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
-                } // toggle overlay on mobile
-              >
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width={600}
-                  height={400}
-                  className={`object-cover w-full h-72 transition-transform duration-700 ${
-                    openFeatureIndex === idx ? "scale-110" : ""
-                  }`}
-                />
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {features.map((item, idx) => (
+    <div
+      key={idx}
+      className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
+      onClick={() =>
+        setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
+      }
+    >
+      <Image
+        src={item.img}
+        alt={item.title}
+        width={600}
+        height={400}
+        className={`object-cover w-full h-72 transition-transform duration-700 ${
+          openFeatureIndex === idx ? "scale-110" : ""
+        }`}
+      />
 
-                <div
-                  className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
-                    openFeatureIndex === idx
-                      ? "translate-y-[5%]" // visible
-                      : "translate-y-full" // hidden
-                  } group-hover:translate-y-[5%]`} // still works on desktop hover
-                >
-                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-200">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Tag on bottom-left corner */}
+      <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+        {item.tag}
+      </span>
+
+      {/* Overlay */}
+      <div
+        className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
+          openFeatureIndex === idx
+            ? "translate-y-[5%]" // visible
+            : "translate-y-full" // hidden
+        } group-hover:translate-y-[5%]`}
+      >
+        <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+        <p className="text-sm text-gray-200">{item.desc}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
         </div>
       </section>
 
       {/* ---------- TESTIMONIALS ---------- */}
       <section className="py-20 bg-black text-white">
         <div className="container mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            What Clients Say
-          </h2>
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
+            What Clients {""}
+            <span className="text-red-600 landing-page-title-font">Say</span>
+          </h1>
           <p className="text-center text-gray-300 mb-10 max-w-2xl mx-auto">
             Real feedback from real projects — three highlights.
           </p>
@@ -408,11 +431,11 @@ const BookASlot = () => {
                 Fill in the details and we’ll get back to you within 24 hours.
               </p>
 
+              {/* ---------- FORM ---------- */}
               <form
                 onSubmit={handleSubmit}
                 className="space-y-4 flex flex-col flex-grow"
               >
-                {/* Name & Phone */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -448,7 +471,6 @@ const BookASlot = () => {
                   </div>
                 </div>
 
-                {/* Email & Date */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -462,18 +484,22 @@ const BookASlot = () => {
                       placeholder="email@domain.com"
                     />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Target Booking Date
                     </label>
-                    <Popover>
+
+                    <Popover
+                      open={!!bookingDatePopoverOpen}
+                      onOpenChange={(state) => setBookingDatePopoverOpen(state)}
+                    >
                       <PopoverTrigger asChild>
                         <Button
                           variant="outline"
                           className={cn(
-                            "w-full pl-3 text-left",
-                            !bookingDate && "text-gray-400"
+                            "w-full pl-3 text-left flex items-center",
+                            !bookingDate && "text-gray-400",
+                            "cursor-pointer"
                           )}
                         >
                           {bookingDate
@@ -482,21 +508,24 @@ const BookASlot = () => {
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
                       </PopoverTrigger>
+
                       <PopoverContent className="w-auto p-0" align="start">
                         <Calendar
                           mode="single"
                           selected={bookingDate}
-                          onSelect={setBookingDate}
+                          onSelect={(date) => {
+                            setBookingDate(date);
+                            setBookingDatePopoverOpen(false); // Close popover
+                          }}
                           disabled={(date) => date < new Date()}
-                          initialFocus
+                          className="cursor-pointer"
                         />
                       </PopoverContent>
                     </Popover>
                   </div>
                 </div>
 
-                {/* Project Details */}
-                <div>
+                <div className="flex-1 flex flex-col">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Project Details
                   </label>
@@ -506,10 +535,10 @@ const BookASlot = () => {
                     onChange={handleChange}
                     placeholder="Your Message..."
                     rows={4}
+                    className="flex-1"
                   />
                 </div>
 
-                {/* Submission Message */}
                 {submissionMessage && (
                   <div className="mt-4 p-4 text-sm font-medium text-green-700 bg-green-100 rounded-lg">
                     {submissionMessage}
@@ -520,7 +549,7 @@ const BookASlot = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center bg-red-600 hover:bg-red-700 text-white mt-auto"
+                  className="w-full flex items-center justify-center bg-red-600 hover:bg-red-700 text-white mt-auto cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
@@ -557,58 +586,69 @@ const BookASlot = () => {
             </div>
 
             {/* Right: FAQ Accordion */}
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full gap-4">
+              <h2 className="text-2xl font-bold mb-4">
+                Frequently Asked Questions
+              </h2>
+
               <Accordion
                 type="single"
                 collapsible
-                className="bg-white p-8 rounded-xl shadow-lg flex-1"
+                className="flex flex-col gap-3"
               >
-                <h2 className="text-2xl font-bold mb-4">
-                  Frequently Asked Questions
-                </h2>
-
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-lg font-semibold mb-2 cursor-pointer">
-                    How are you?
-                  </AccordionTrigger>
-                  <AccordionContent className="mt-2 text-sm text-gray-600">
-                    We are great — focused on delivering quality photography.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="text-lg font-semibold mb-2 cursor-pointer">
-                    How do you do?
-                  </AccordionTrigger>
-                  <AccordionContent className="mt-2 text-sm text-gray-600">
-                    We plan, shoot, and retouch using a collaborative process to
-                    fit your timeline and budget.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-3">
-                  <AccordionTrigger className="text-lg font-semibold mb-2 cursor-pointer">
-                    Turnaround time?
-                  </AccordionTrigger>
-                  <AccordionContent className="mt-2 text-sm text-gray-600">
-                    Typically 3–7 business days for proofs.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-4">
-                  <AccordionTrigger className="text-lg font-semibold mb-2 cursor-pointer">
-                    Delivery & Payment
-                  </AccordionTrigger>
-                  <AccordionContent className="mt-2 text-sm text-gray-600">
-                    High-res JPEGs + web-ready versions. Invoice after delivery
-                    / deposit options available.
-                  </AccordionContent>
-                </AccordionItem>
+                {[
+                  {
+                    question: "What types of products do you photograph?",
+                    answer:
+                      "We provide professional photography for all types of products, except for model photography. Our specialties include apparel, fashion accessories, footwear, furniture, home décor, electronics, cosmetics, and more.",
+                  },
+                  {
+                    question:
+                      "Do you offer image retouching and editing services?",
+                    answer:
+                      "Yes! Every image we deliver goes through a professional editing process — including color correction, background removal, shadow creation, and overall enhancement to ensure your visuals look premium and consistent.",
+                  },
+                  {
+                    question:
+                      "Can I ship my products to your studio for photography?",
+                    answer:
+                      "Yes, you can send your products directly to our studio address. Once the shoot is completed, we’ll safely return your items as per your instructions.",
+                  },
+                  {
+                    question:
+                      "Do you provide ghost mannequin or flat-lay photography?",
+                    answer:
+                      "Yes, we specialize in ghost mannequin, flat-lay, and hanging apparel photography — ideal for e-commerce and catalog presentation.",
+                  },
+                  {
+                    question:
+                      "Can I review and approve sample shots before the full shoot?",
+                    answer:
+                      "Of course! We always send sample images for your approval before completing the full project to ensure we’re aligned with your expectations.",
+                  },
+                ].map((item, idx) => (
+                  <AccordionItem
+                    key={idx}
+                    value={`item-${idx + 1}`}
+                    className="rounded-xl shadow-lg bg-gray-50"
+                  >
+                    <AccordionTrigger
+                      className="text-lg font-semibold mb-0 cursor-pointer hover:underline-none focus:underline-none p-4"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="mt-0 text-sm text-gray-700 p-4 pt-0">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
               </Accordion>
             </div>
           </div>
         </div>
       </section>
+
       {/* ---------- FOOTER ---------- */}
       <footer className="bg-black text-white py-6">
         <div className="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">

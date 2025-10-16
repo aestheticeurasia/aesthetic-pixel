@@ -154,3 +154,7 @@
   mask-composite: exclude;
   -webkit-mask-composite: destination-out;
 }
+
+.landing-page-title-font{
+  font-family: 'Dancing Script', cursive;
+}
