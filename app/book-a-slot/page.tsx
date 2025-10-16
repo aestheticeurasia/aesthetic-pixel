@@ -7,14 +7,16 @@ import {
   Briefcase,
   Lightbulb,
   Zap,
-  CheckCircle,
   Package,
   Phone,
   Send,
   Calendar as CalendarIcon,
   Users,
   Star,
-  Heart,
+  Award,
+  Cpu,
+  Edit3,
+  Smile,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,37 +36,49 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const features = [
   {
     icon: Package,
-    title: "E-commerce Ready",
+    title: "Product Photography",
     desc: "Optimized product photos sized and edited for online listings and ads.",
+    img: "/product.jpg",
   },
   {
     icon: Layers3,
-    title: "Brand Storytelling",
+    title: "Appearel and Garments Photography",
     desc: "Lifestyle shoots that connect your products with real-life moments.",
+    img: "/garments.jpg",
   },
   {
     icon: Briefcase,
-    title: "Corporate Imagery",
+    title: "Fashion & Model Photography",
     desc: "Headshots, facility photography and editorial assets for comms.",
+    img: "/carousel3.jpg",
   },
   {
     icon: Camera,
-    title: "Studio Excellence",
+    title: "Furniture & Interior Photography",
     desc: "Controlled lighting and crisp detail for high-res deliverables.",
+    img: "/furniture.jpg",
   },
   {
     icon: Lightbulb,
-    title: "Creative Direction",
+    title: "Lifestyle & Branding Photography",
     desc: "Concept, styling and art direction to fit your brand voice.",
+    img: "/branding.jpg",
   },
   {
     icon: Zap,
-    title: "Fast Turnaround",
+    title: "Photo Editing & Retouching Services",
     desc: "Clear timelines and reliable delivery without compromising quality.",
+    img: "/retouching.jpg",
   },
 ];
 
@@ -90,32 +104,19 @@ const testimonials = [
   },
 ];
 
-const workflow = [
+const CarouselImg = [
   {
-    step: 1,
-    icon: Lightbulb,
-    title: "Consultation & Concept",
-    description:
-      "We meet to understand your brand vision, target audience, and project goals.",
+    imgUrl: "/carousel1.jpg",
   },
   {
-    step: 2,
-    icon: Zap,
-    title: "Shoot & Production",
-    description:
-      "End-to-end production: location, styling, equipment and direction handled.",
+    imgUrl: "/carousel2.jpg",
   },
   {
-    step: 3,
-    icon: CheckCircle,
-    title: "Refinement & Delivery",
-    description:
-      "Careful retouching and delivery of optimized assets for your channels.",
+    imgUrl: "/carousel3.jpg",
   },
 ];
 
 const BookASlot = () => {
-  // FORM STATE (kept identical to your logic)
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -151,7 +152,6 @@ const BookASlot = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionMessage("");
-
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -166,9 +166,7 @@ const BookASlot = () => {
           message: formData.project,
         }),
       });
-
       const result = await response.json();
-
       if (result.success) {
         setSubmissionMessage(
           "Thank you! We received your inquiry and will be in touch within 24 hours."
@@ -190,7 +188,6 @@ const BookASlot = () => {
       console.error(err);
       setSubmissionMessage("Network error! Please try again later.");
     }
-
     setIsSubmitting(false);
   };
 
@@ -199,10 +196,8 @@ const BookASlot = () => {
     const el = document.getElementById("booking");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-
   return (
     <main className="min-h-screen bg-[#edeef0] text-black font-sans">
-
       {/* ---------- HERO ---------- */}
       <section className="relative bg-black text-white">
         <div className="container mx-auto max-w-7xl px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -260,15 +255,52 @@ const BookASlot = () => {
             </div>
           </div>
 
-          {/* YouTube*/}
-          <div className="w-full rounded-lg overflow-hidden ">
-            <iframe
-              title="APS"
-              className="w-full aspect-video"
-              src="https://www.youtube.com/embed/h8aFRD-jGbI?autoplay=1&mute=1"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
+          {/* Carousel*/}
+          <div className="w-full overflow-hidden rounded-lg">
+            <Carousel
+              plugins={[Autoplay({ delay: 2500, stopOnInteraction: false })]}
+              className="w-full"
+            >
+              <CarouselContent>
+                {CarouselImg.map((item, index) => (
+                  <CarouselItem key={index}>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      <Image
+                        src={item.imgUrl}
+                        alt={`carousel-${index}`}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- HIGHLIGHT STRIP ---------- */}
+      <section className="py-10 bg-[#f9f9f9] border-y border-gray-200">
+        <div className="container mx-auto max-w-6xl px-6">
+          <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-x-14 gap-y-4 text-center md:text-left">
+            {[
+              { icon: Award, text: "Award-Winning Photographer" },
+              { icon: Cpu, text: "Modern Technology" },
+              { icon: Edit3, text: "In-House Editing Team" },
+              { icon: Smile, text: "Satisfaction Guaranteed" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors duration-200"
+              >
+                <item.icon className="w-5 h-5 text-red-500 shrink-0" />
+                <span className="font-semibold tracking-wide text-base md:text-lg relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-red-500 after:transition-all hover:after:w-full">
+                  {item.text}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -276,25 +308,43 @@ const BookASlot = () => {
       {/* ---------- FEATURES ---------- */}
       <section id="features" className="py-20 bg-white">
         <div className="container mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-center mb-4">Our Services</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 bg-gradient-to-tl from-red-700 via-pink-500 to-purple-900 bg-clip-text text-transparent">
+            STUNNING IMAGERY IS WHAT WE DO
+          </h2>
           <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
             A full-suite offering for brands of every size — tailored shoots,
             creative direction and rapid delivery.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((f, idx) => (
+          {/* ---------- IMAGE GRID ---------- */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((item, idx) => (
               <div
                 key={idx}
-                className="group relative bg-black/5 dark:bg-white/2 p-6 rounded-2xl border border-black/5 hover:shadow-2xl transform hover:-translate-y-2 transition"
+                className="relative group overflow-hidden rounded-sm shadow-sm"
               >
-                <div className="w-12 h-12 flex items-center justify-center rounded-md bg-red-50 text-red-600 mb-4">
-                  <f.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-600">{f.desc}</p>
-                <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition">
-                  <Heart className="w-5 h-5 text-red-400" />
+                {/* Image */}
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-72 transition-transform duration-700 group-hover:scale-110"
+                />
+
+                {/* Hover Overlay Banner */}
+                <div
+                  className="
+              absolute inset-x-0 bottom-0
+              translate-y-full group-hover:translate-y-[5%]
+              bg-black/70 text-white
+              px-5 py-5
+              transition-all duration-500 ease-out
+              flex flex-col justify-center
+            "
+                >
+                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-200">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -334,34 +384,6 @@ const BookASlot = () => {
 
                 <p className="text-sm text-gray-700">“{t.quote}”</p>
               </aside>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- WORKFLOW ---------- */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto max-w-7xl px-6">
-          <h2 className="text-2xl font-bold text-center mb-8">Our Process</h2>
-
-          <div className="flex flex-col md:flex-row gap-6 items-stretch">
-            {workflow.map((w, i) => (
-              <div
-                key={i}
-                className="flex-1 bg-black text-white p-6 rounded-xl shadow-md"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                    <w.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold">STEP {w.step}</div>
-                    <div className="font-bold">{w.title}</div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-gray-200">{w.description}</p>
-              </div>
             ))}
           </div>
         </div>
@@ -535,7 +557,9 @@ const BookASlot = () => {
                 collapsible
                 className="bg-white p-8 rounded-xl shadow-lg flex-1"
               >
-                <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+                <h2 className="text-2xl font-bold mb-4">
+                  Frequently Asked Questions
+                </h2>
 
                 <AccordionItem value="item-1">
                   <AccordionTrigger className="text-lg font-semibold mb-2 cursor-pointer">
@@ -579,7 +603,6 @@ const BookASlot = () => {
           </div>
         </div>
       </section>
-
       {/* ---------- FOOTER ---------- */}
       <footer className="bg-black text-white py-6">
         <div className="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
