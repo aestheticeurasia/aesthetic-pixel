@@ -196,6 +196,12 @@ const BookASlot = () => {
     const el = document.getElementById("booking");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  // scroll to services
+  const scrollToServices = () => {
+    const el = document.getElementById("features");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <main className="min-h-screen bg-[#edeef0] text-black font-sans">
       {/* ---------- HERO ---------- */}
@@ -229,7 +235,7 @@ const BookASlot = () => {
               </Button>
 
               <a
-                href="#features"
+                onClick={scrollToServices}
                 className="inline-flex items-center gap-2 text-sm font-medium px-4 py-3 border border-white/10 rounded-md hover:bg-white/5"
               >
                 Explore Features
