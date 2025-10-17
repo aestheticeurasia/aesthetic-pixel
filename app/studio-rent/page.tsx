@@ -385,18 +385,17 @@ const StudioRent = () => {
       </section>
 
       {/* ----------  FAQ ---------- */}
-      <section id="booking" className="py-10 bg-gray-50">
-        <div className="container mx-auto max-w-5xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-10 items-stretch">
-            {/* Right: FAQ Accordion */}
-            <div className="flex flex-col h-full gap-4">
-              <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center py-10">
+      <section id="booking" className="pb-10 bg-gray-50">
+           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center pb-10">
                 Frequently Asked {""}
                 <span className="text-red-600 landing-page-title-font">
                   Questions
                 </span>
               </h1>
-
+        <div className="container mx-auto max-w-5xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+            {/* Right: FAQ Accordion */}
+            <div className="flex flex-col h-full gap-4">
               <Accordion
                 type="single"
                 collapsible
@@ -404,7 +403,7 @@ const StudioRent = () => {
               >
                 {[
                   {
-                    question: "What types of products do you photograph?",
+                    question: "What types of products do you typically photograph?",
                     answer:
                       "We provide professional photography for all types of products, except for model photography. Our specialties include apparel, fashion accessories, footwear, furniture, home décor, electronics, cosmetics, and more.",
                   },
@@ -414,6 +413,38 @@ const StudioRent = () => {
                     answer:
                       "Yes! Every image we deliver goes through a professional editing process — including color correction, background removal, shadow creation, and overall enhancement to ensure your visuals look premium and consistent.",
                   },
+                  {
+                    question:
+                      "Can I ship my products to your studio for photography?",
+                    answer:
+                      "Yes, you can send your products directly to our studio address. Once the shoot is completed, we’ll safely return your items as per your instructions.",
+                  },
+                ].map((item, idx) => (
+                  <AccordionItem
+                    key={idx}
+                    value={`item-${idx + 1}`}
+                    className="rounded-xl shadow-lg bg-gray-50"
+                  >
+                    <AccordionTrigger
+                      className="text-lg font-semibold mb-0 cursor-pointer hover:underline-none focus:underline-none p-4"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="mt-0 text-sm text-gray-700 p-4 pt-0">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+            <div className="flex flex-col h-full gap-4">
+              <Accordion
+                type="single"
+                collapsible
+                className="flex flex-col gap-3"
+              >
+                {[
                   {
                     question:
                       "Can I ship my products to your studio for photography?",

@@ -218,7 +218,7 @@ export default function MainNav() {
             <Link href="/studio-rent" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="secondary"
-                className="cursor-pointer text-white font-bold"
+                className="cursor-pointer text-black dark:text-white font-bold"
               >
                 Rent Studio
               </Button>
