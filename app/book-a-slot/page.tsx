@@ -98,7 +98,7 @@ const testimonials = [
   },
   {
     img: "/testimonial-rafi.jpg",
-    name: "Akramul Hossen",
+    name: "Rafi Ahmed",
     role: "E-commerce Manager",
     quote:
       "Professional, on-time, and the images looked better than imagined.",
