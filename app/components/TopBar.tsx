@@ -5,7 +5,7 @@ import HideOnRoutes from "./HideOnRoutes";
 
 export default function TopBar() {
   return (
-    <HideOnRoutes routes={["/book-a-slot", "/another-page"]}>
+    <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <div className="w-full bg-muted text-sm">
         <div className="container mx-auto flex items-center justify-between px-4 py-2">
           {/* Left side - Email */}

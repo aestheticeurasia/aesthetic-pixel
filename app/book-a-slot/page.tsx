@@ -376,7 +376,7 @@ const BookASlot = () => {
                   alt={item.title}
                   width={600}
                   height={400}
-                  className={`object-cover w-full h-72 transition-transform duration-700 ${
+                  className={`object-cover group-hover:scale-110 w-full h-72 transition-transform duration-700 ${
                     openFeatureIndex === idx ? "scale-110" : ""
                   }`}
                 />

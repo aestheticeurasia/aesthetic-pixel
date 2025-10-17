@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Clipboard, Menu } from "lucide-react";
+import { ArrowLeftRight, Clipboard, Menu } from "lucide-react";
 import { ModeToggle } from "./dark-toggle";
 import {
   Sheet,
@@ -41,7 +41,7 @@ export default function MainNav() {
   const isActive = (path: string) => pathName === path;
 
   return (
-    <HideOnRoutes routes={["/book-a-slot", "/another-page"]}>
+    <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <header className="w-full sticky top-0 z-50 shadow-sm bg-background">
         <div className="container mx-auto flex h-25 items-center justify-between px-4">
           {/* Logo */}
@@ -214,6 +214,16 @@ export default function MainNav() {
           </nav>
 
           {/* Desktop Book a Slot Button */}
+          <span className="hidden md:inline-flex text-foreground me-3">
+            <Link href="/studio-rent" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="secondary"
+                className="cursor-pointer text-white font-bold"
+              >
+                Rent Studio
+              </Button>
+            </Link>
+          </span>
           <span className="hidden md:inline-flex text-foreground me-3">
             <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
               <Button
@@ -408,10 +418,26 @@ export default function MainNav() {
                   {/* Quote */}
                   <SheetClose asChild>
                     <Link
+                      href="/studio-rent"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full mt-5 px-8 block"
+                    >
+                      <Button
+                        variant="secondary"
+                        className="w-full font-bold"
+                      >
+                        <ArrowLeftRight className="w-5 h-5" />
+                        Rent Studio
+                      </Button>
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
                       href="/book-a-slot"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full my-5 px-8 block"
+                      className="w-full mt-2 px-8 block"
                     >
                       <Button
                         variant="destructive"

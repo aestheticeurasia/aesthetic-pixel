@@ -6,7 +6,7 @@ import HideOnRoutes from "./HideOnRoutes";
 
 export default function Footer() {
   return (
-    <HideOnRoutes routes={["/book-a-slot", "/another-page"]}>
+    <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <footer className="w-full bg-[#1e1e1e] text-white">
         {/* Map */}
         <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
