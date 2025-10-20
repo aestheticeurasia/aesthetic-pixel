@@ -270,7 +270,7 @@ const BookASlot = () => {
 
               <a
                 onClick={scrollToServices}
-                className="inline-flex items-center gap-2 text-sm font-medium px-4 py-3 border border-white/10 rounded-md hover:bg-white/5"
+                className="inline-flex items-center gap-2 text-sm font-medium px-4 py-3 border border-white/10 rounded-md hover:bg-white/5 cursor-pointer"
               >
                 Explore Features
               </a>

@@ -1,21 +1,24 @@
+import { ArrowRight } from "lucide-react";
+
 export default function Hero() {
   return (
-     <section className="h-screen bg-[url('/apsHome.gif')] md:bg-[url('/apsHome.gif')] bg-cover bg-center flex flex-col items-center justify-center text-center">
-      {/* Headline */}
-      <h1 className="text-6xl sm:text-4xl md:text-6xl font-bold text-[#f0f0f0] drop-shadow-3xl mb-4">
-        Welcome to Aesthetic Pixel Studio
-      </h1>
-
-      {/* Subheadline */}
-      <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl drop-shadow-md mb-6">
-       From lens to final touch — high-quality photography, videography, and retouching that makes your brand shine
-      </p>
-      {/* CTA Button */}
-      <a
-        href="/portfolio"
-        className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium text-sm sm:text-base hover:bg-primary/90 transition">
-        View our Portfolio
-      </a>
+    <section className="h-screen bg-[url('/heroBg.png')] md:bg-[url('/heroBg.png')] bg-cover bg-center flex flex-col justify-center pl-8 md:pl-[138px]">
+      <div className="md:mt-[250]">
+        <span className="text-red-500">Ecommerce Photography</span>
+        <h1 className="text-white text-6xl justify-start font-bold">
+          Creative Imagery With
+          <br />
+          Flawless Photography
+        </h1>
+        <p className="text-white max-w-lg mt-6">
+          Our expert team blends precise product photography with innovative
+          retouching and exact color matching, delivering images that exceed
+          your expectations.
+        </p>
+        <button className="mt-8 bg-red-500 text-white py-4 px-6 font-bold hover:bg-red-600 transition-colors rounded-md cursor-pointer">
+          Get Started <ArrowRight className="inline-block ml-2" />
+        </button>
+      </div>
     </section>
   );
 }

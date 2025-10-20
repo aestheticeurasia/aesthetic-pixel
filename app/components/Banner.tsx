@@ -1,120 +1,93 @@
 "use client";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import CountUp from "react-countup";
-import { motion } from "framer-motion";
-import { useState } from "react";
 
-const photos = ["/stack1.jpg", "/stack2.jpg", "/stack3.jpg"];
+const brands = [
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+];
+
+const gridItemsData = [
+  {
+    id: 1,
+    type: "image",
+    src: "/stack1.jpg",
+    alt: "Cosmetic oil bottle on rocks",
+    className: "bg-amber-100/50", // Default size (1x1)
+  },
+  {
+    id: 2,
+    type: "content",
+    title: "HomeMade App And Web Development",
+    text: "HomeMade is website for culinary in Jakarta City. We use web for founding foodplace nearly. Made easy for immigrant Hawaiia...",
+    link: "#",
+    className: "bg-red-500 text-white md:row-span-2", // Spans 2 rows on medium screens and up
+  },
+  {
+    id: 3,
+    type: "image",
+    src: "/stack2.jpg",
+    alt: "Minimalist room with chair and monstera plant",
+    className: "bg-gray-100 row-span-2 hidden md:block", // Spans 2 rows, hidden on mobile
+  },
+  {
+    id: 4,
+    type: "image",
+    src: "/stack3.jpg",
+    alt: "Green cosmetic tube on a wooden swing with leaves",
+    className: "bg-green-700 row-span-2 hidden sm:block", // Spans 2 rows, hidden on small screens
+  },
+  {
+    id: 5,
+    type: "image",
+    src: "/images/earrings.jpg",
+    alt: "Silver earrings on a large green leaf",
+    className: "bg-amber-800/50", // Default size (1x1)
+  },
+  {
+    id: 6,
+    type: "image",
+    src: "/images/portrait.jpg",
+    alt: "Split portrait of a woman",
+    className: "bg-purple-200", // Default size (1x1)
+  },
+];
 
 export default function Banner() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <div>
-      {/* Top section */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 text-center md:text-left">
-        <div className="md:col-span-5 mt-10 mx-auto flex flex-col justify-center space-y-8">
-          <h1 className="text-4xl font-bold">Trusted by</h1>
-          <h1 className="text-4xl font-bold text-red-800">500+</h1>
-          <h1 className="text-4xl font-bold">Global Brands</h1>
-        </div>
-
-        <div className="md:col-span-7 mt-10">
-          <Image
-            src="/homeBanner.png"
-            alt="Trusted by 500 Brands"
-            width={800}
-            height={400}
-            className="items-end md:items-center mx-auto mb-10"
-          />
-        </div>
-      </div>
-
-      {/* Stats + Image Stack */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-gray-700 dark:to-black py-20">
-        {/* Stats */}
-        <div
-          ref={ref}
-          className="md:col-span-6 mx-auto md:flex md:flex-col justify-center space-y-8"
-        >
-          <div className="md:flex md:space-x-10 space-y-10 md:space-y-0">
-            <div className="py-5 px-11 rounded-lg shadow-xl bg-red-800 text-amber-50 text-center">
-              <h2 className="text-xl font-bold mb-3">Global Presence</h2>
-              <h1 className="text-4xl font-bold">
-                {inView ? <CountUp start={0} end={7} duration={2} /> : 0}+
-              </h1>
-              <h2 className="text-xl font-bold mt-3">Years</h2>
+      <section className="lg:py-[80px] lg:px-[140px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6 justify-items-center">
+          {brands.map((brand, index) => (
+            <div
+              key={index}
+              className="hover:scale-105 transition-transform duration-300 flex justify-center items-center bg-white px-[38px] py-[4.5px]"
+            >
+              <Image
+                src={brand}
+                alt={`Brand ${index + 1}`}
+                width={199}
+                height={133}
+                className="w-[199px] h-[133px] object-cover"
+              />
             </div>
-            <div className="py-5 px-10 rounded-lg shadow-xl bg-gray-600 text-amber-50 text-center">
-              <h2 className="text-xl font-bold mb-3">Captured</h2>
-              <h1 className="text-4xl font-bold">
-                {inView ? (
-                  <CountUp start={0} end={100000} duration={2} separator="," />
-                ) : (
-                  0
-                )}
-                +
-              </h1>
-              <h2 className="text-xl font-bold mt-3">Images</h2>
-            </div>
-          </div>
+          ))}
         </div>
-
-        {/* Image Stack */}
-        <div className="md:col-span-6 mt-17 md:mt-0">
-          <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 mx-auto overflow-visible">
-            {photos.map((src, i) => {
-              const rotation = i === 0 ? -10 : i === 1 ? 0 : 10;
-              const xOffset = i === 0 ? -20 : i === 1 ? 0 : 20;
-              const yOffset = 0;
-
-              const isActive = hoveredIndex === i;
-
-              return (
-                <motion.img
-                  key={i}
-                  src={src}
-                  className="absolute w-full h-full object-cover rounded-xl shadow-lg cursor-pointer"
-                  style={{ zIndex: isActive ? 20 : 10 - i }}
-                  initial={{
-                    x: i % 2 === 0 ? -150 : 150,
-                    y: 20,
-                    rotate: rotation,
-                    opacity: 0,
-                  }}
-                  whileInView={{
-                    x: xOffset,
-                    y: yOffset,
-                    rotate: rotation,
-                    opacity: 1,
-                  }}
-                  whileHover={{
-                    scale: 1.08,
-                    y: yOffset - 20,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 150,
-                    damping: 20,
-                    mass: 0.5,
-                  }}
-                  onHoverStart={() => setHoveredIndex(i)}
-                  onHoverEnd={() => setHoveredIndex(null)}
-                  onClick={() =>
-                    setHoveredIndex((prev) => (prev === i ? null : i))
-                  }
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      </section>
+      <section>
+        <h1 className="text-5xl font-bold text-center my-15">
+          Our Comprehensive Services
+        </h1>
+      </section>
     </div>
   );
 }

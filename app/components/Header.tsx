@@ -26,6 +26,7 @@ import HideOnRoutes from "./HideOnRoutes";
 
 export default function MainNav() {
   const pathName = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(
     pathName?.startsWith("/services") || false
   );
@@ -40,9 +41,22 @@ export default function MainNav() {
 
   const isActive = (path: string) => pathName === path;
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
-      <header className="w-full sticky top-0 z-50 shadow-sm bg-background">
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
+            : "bg-transparent"
+        }`}
+      >
+        {" "}
         <div className="container mx-auto flex h-25 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
@@ -423,10 +437,7 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-5 px-8 block"
                     >
-                      <Button
-                        variant="secondary"
-                        className="w-full font-bold"
-                      >
+                      <Button variant="secondary" className="w-full font-bold">
                         <ArrowLeftRight className="w-5 h-5" />
                         Rent Studio
                       </Button>
