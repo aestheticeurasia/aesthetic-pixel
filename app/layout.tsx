@@ -1,7 +1,6 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import TopBar from "./components/TopBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Toaster } from "sonner";
@@ -24,6 +23,8 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const hiddenHeaderRoutes = ["/book-a-slot", "/studio-rent"];
+  const isHeaderHidden = hiddenHeaderRoutes.includes(pathname);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -40,13 +41,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <Toaster theme="dark" position="top-center" offset={35} />
+          {!isHeaderHidden && <Header />}
 
-          {/* ✅ add top padding only for non-home pages */}
+          <Toaster theme="dark" position="top-center" offset={35} />
           <main
-            className={`${!isHome ? "pt-24" : ""}`}
-            style={{ minHeight: "200vh" }}
+            className={`${
+              !isHome && !isHeaderHidden ? "pt-24" : ""
+            } w-full min-h-[200vh]`}
           >
             {children}
           </main>

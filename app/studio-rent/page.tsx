@@ -506,9 +506,7 @@ const StudioRent = () => {
 
             <div className="flex flex-col justify-center items-center text-center">
               <div className="flex flex-col items-center space-y-6">
-                {/* Ripple Phone Icon */}
                 <div className="relative w-24 h-24 flex items-center justify-center">
-                  {/* Smooth Ripple Effect */}
                   <span className="absolute w-full h-full rounded-full bg-red-500/30 animate-ping"></span>
                   <span className="absolute w-3/4 h-3/4 rounded-full bg-red-500/20 animate-ping delay-200"></span>
                   <span className="absolute w-1/2 h-1/2 rounded-full bg-red-500/10 animate-ping delay-400"></span>
