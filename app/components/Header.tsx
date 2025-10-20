@@ -30,6 +30,7 @@ export default function MainNav() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(
     pathName?.startsWith("/services") || false
   );
+  const isHome = pathName === "/";
 
   useEffect(() => {
     if (pathName?.startsWith("/services")) {
@@ -42,18 +43,22 @@ export default function MainNav() {
   const isActive = (path: string) => pathName === path;
 
   useEffect(() => {
+    if (!isHome) return; 
+
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
+          isHome
+            ? scrolled
+              ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
+              : "bg-transparent"
+            : "bg-white dark:bg-black shadow-sm"
         }`}
       >
         {" "}
