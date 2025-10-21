@@ -2,15 +2,17 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="h-screen bg-[url('/heroBg.png')] md:bg-[url('/heroBg.png')] bg-cover bg-center flex flex-col justify-end md:justify-center pl-6 md:pl-[138px] pb-10 md:pb-0">
+    <section className="h-screen bg-[url('/heroBg.png')] md:bg-[url('/heroBg.png')] bg-cover bg-center flex flex-col items-center text-center justify-center pb-10 md:pb-0">
       <div className="lg:mt-[250px]">
-        <span className="text-red-500 text-sm md:text-base">Ecommerce Photography</span>
+        <span className="text-red-500 text-sm text-center">
+          Ecommerce Photography
+        </span>
         <h1 className="text-white text-4xl md:text-6xl font-bold mt-2">
           Creative Imagery With
           <br />
           Flawless Photography
         </h1>
-        <p className="text-white max-w-lg mt-4 text-sm md:text-base">
+        <p className="text-white max-w-md mt-4 text-md mx-auto text-center">
           Our expert team blends precise product photography with innovative
           retouching and exact color matching, delivering images that exceed
           your expectations.
