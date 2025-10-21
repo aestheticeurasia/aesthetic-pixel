@@ -272,13 +272,13 @@ export default function Banner() {
                   height={300}
                   src="/service2.png"
                   alt="Beauty product on a wooden swing surrounded by green heart-shaped leaves"
-                  className="w-full object-cover"
+                  className="w-full h-100 object-cover"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
-              <div className="bg-[#E84A5F] text-white rounded-2xl p-8 flex flex-col justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <div className="bg-[#E84A5F] text-white h-full rounded-2xl p-8 flex flex-col justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <h3 className="text-2xl font-bold mb-3">
                   HomeMade App And Web Development
                 </h3>
@@ -494,7 +494,7 @@ export default function Banner() {
                 alt="Man in Puma hoodie"
                 width={300}
                 height={300}
-                className="w-full h-auto object-cover rounded-lg shadow-md"
+                className="w-full h-full object-cover rounded-lg shadow-md"
               />
             </div>
 
@@ -514,7 +514,7 @@ export default function Banner() {
                 alt="Pink sofa in living room"
                 width={300}
                 height={300}
-                className="w-full h-auto object-cover rounded-lg shadow-md"
+                className="w-full h-full object-cover rounded-lg shadow-md"
               />
             </div>
 
