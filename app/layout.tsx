@@ -29,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <title>Aesthetic Pixel Studio LLC</title>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
         <Script
