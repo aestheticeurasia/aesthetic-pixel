@@ -170,18 +170,18 @@ export default function Banner() {
   const [loading, setLoading] = useState<boolean>(false);
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-    const getAllBlog = async () => {
-      try {
-        const { data } = await axios.get("/blogs.json");
-        setBlogs(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-    useEffect(() => {
-      getAllBlog();
-    }, []);
+  const getAllBlog = async () => {
+    try {
+      const { data } = await axios.get("/blogs.json");
+      setBlogs(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllBlog();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -654,7 +654,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-            <section className="bg-white py-16 md:py-24">
+      <section className="bg-white ">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Learn About Sustainable Marketing
@@ -718,8 +718,9 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-red-600 py-15 grid grid-cols-2 container mx-auto max-w-auto px-4 rounded-xl">
-        <div>
+<section className="bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto max-w-full md:max-w-7xl rounded-xl gap-8 my-10 px-4 md:px-9">
+        {/* Left Column */}
+        <div className="flex justify-center md:justify-start">
           <div className="flex flex-col items-center space-y-6">
             <div className="relative w-24 h-24 flex items-center justify-center">
               <span className="absolute w-full h-full rounded-full bg-white/70 animate-ping"></span>
@@ -736,9 +737,9 @@ export default function Banner() {
                 >
                   <path
                     d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 
-          1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
-          01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
-          1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
+              1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
+              01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
+              1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
                   />
                 </svg>
               </a>
@@ -746,33 +747,35 @@ export default function Banner() {
 
             {/* Phone Number */}
             <div className="flex flex-col items-center">
-              <p className="text-white text-sm uppercase tracking-widest mb-1">
+              <p className="text-white text-sm uppercase tracking-widest mb-1 text-center md:text-left">
                 Call Now
               </p>
               <a
                 href="tel:+8801711205200"
-                className="text-4xl sm:text-5xl font-extrabold text-white hover:text-gray-200 transition-colors duration-300 whitespace-nowrap"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white hover:text-gray-200 transition-colors duration-300 whitespace-nowrap text-center md:text-left"
               >
                 +880&nbsp;1711&nbsp;205200
               </a>
             </div>
           </div>
         </div>
-        <div className="text-center space-y-8 flex flex-col justify-center">
-          <h1 className="text-3xl text-white">
+
+        {/* Right Column */}
+        <div className="text-center md:text-left flex flex-col justify-center space-y-6 md:space-y-8">
+          <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-white font-bold leading-tight">
             Get One Stop Digital Solutions
             <br />
             Under One Roof
           </h1>
 
-          <p className="text-gray-300 max-w-md mx-auto">
+          <p className="text-gray-300 max-w-md mx-auto md:mx-0">
             Web Development, Creative Writing, Digital Marketing, Graphics &
             Video Editing, & so on..
           </p>
 
           <form
             action="#"
-            className="container mx-auto max-w-lg w-full space-y-4"
+            className="mx-auto md:mx-0 max-w-lg w-full space-y-4"
           >
             <div className="relative flex items-center">
               <input
@@ -781,12 +784,11 @@ export default function Banner() {
                 required
                 placeholder="Enter your email"
                 aria-label="Email address"
-                className="w-full py-4 pl-6 pr-40 text-gray-800 bg-white rounded-full border-2 border-transparent focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-200 transition-all duration-300"
+                className="w-full py-3 sm:py-4 pl-4 sm:pl-6 pr-32 sm:pr-40 text-gray-800 bg-white rounded-full border-2 border-transparent focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-200 transition-all duration-300"
               />
-
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-red-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-300"
+                className="absolute right-2 sm:right-2 top-1/2 -translate-y-1/2 bg-red-600 text-white font-semibold px-4 sm:px-6 py-2.5 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-300 text-sm sm:text-base"
               >
                 Start Free Trial
               </button>
@@ -794,7 +796,6 @@ export default function Banner() {
           </form>
         </div>
       </section>
-
     </div>
   );
 }
