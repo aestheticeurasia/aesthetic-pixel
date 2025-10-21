@@ -256,9 +256,9 @@ export default function MainNav() {
 
           {/* Desktop Theme Toggle */}
 
-          <span className="hidden md:inline-flex text-foreground">
+          {/* <span className="hidden md:inline-flex text-foreground">
             <ModeToggle className="text-foreground" />
-          </span>
+          </span> */}
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-4">
@@ -468,7 +468,7 @@ export default function MainNav() {
               </SheetContent>
             </Sheet>
             {/* Dark Mode Toggle beside menu icon */}
-            <ModeToggle className="text-foreground" />
+            {/* <ModeToggle className="text-foreground" /> */}
           </div>
         </div>
       </header>

@@ -250,6 +250,85 @@ export default function Banner() {
           ))}
         </div>
       </section>
+      <section className="bg-gray-50 font-sans py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+            Our Comprehensive Services
+          </h2>
+          <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
+            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <Image
+                  width={400}
+                  height={500}
+                  src="/service1.png"
+                  alt="Natural cosmetic product on a stone against a beige background"
+                  className="w-full object-cover"
+                />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <Image
+                  width={400}
+                  height={300}
+                  src="/service2.png"
+                  alt="Beauty product on a wooden swing surrounded by green heart-shaped leaves"
+                  className="w-full object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
+              <div className="bg-[#E84A5F] text-white rounded-2xl p-8 flex flex-col justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <h3 className="text-2xl font-bold mb-3">
+                  HomeMade App And Web Development
+                </h3>
+                <p className="text-white/90 text-sm leading-relaxed mb-6">
+                  HomeMade is a website for culinary in Jakarta City. We use web
+                  for founding food place nearly. Make easy for imigrant in
+                  Jakarta to explore food there. Keep exploring your favourite
+                  foods and enjoy!
+                </p>
+                <a
+                  href="#"
+                  className="font-semibold text-white group inline-flex items-center"
+                >
+                  Read More
+                  <ArrowRight />
+                </a>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <Image
+                  width={400}
+                  height={300}
+                  src="/service4.png"
+                  alt="Silver earrings resting on a large green leaf"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <Image
+                  width={400}
+                  height={500}
+                  src="/service5.png"
+                  alt="Comfortable armchair in a tastefully decorated room with plants"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <Image
+                  width={400}
+                  height={500}
+                  src="/service6.png"
+                  alt="Before and after comparison of a photo retouching on a woman's portrait"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="bg-[#f8f7fa] py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold mb-16 text-center text-gray-800">
@@ -718,7 +797,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-<section className="bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto max-w-full md:max-w-7xl rounded-xl gap-8 my-10 px-4 md:px-9">
+      <section className="bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto max-w-full md:max-w-7xl rounded-xl gap-8 my-10 px-4 md:px-9">
         {/* Left Column */}
         <div className="flex justify-center md:justify-start">
           <div className="flex flex-col items-center space-y-6">
