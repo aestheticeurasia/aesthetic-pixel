@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "@/components/ui/theme-providers";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
@@ -62,12 +61,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+   
           {!isHeaderHidden && <Header />}
 
           <Toaster theme="dark" position="top-center" offset={35} />
@@ -80,7 +74,6 @@ export default function RootLayout({
           </main>
 
           <Footer />
-        </ThemeProvider>
       </body>
     </html>
   );
