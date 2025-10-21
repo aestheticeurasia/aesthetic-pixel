@@ -4,10 +4,11 @@ import {
   Check,
   Loader2Icon,
   Mail,
+  MessageCircle,
   Phone,
   Send,
   Star,
-  UserIcon,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import {
@@ -16,10 +17,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import { toast } from "sonner";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaComment } from "react-icons/fa";
 import axios from "axios";
 
 const brands = [
@@ -140,7 +148,7 @@ const testimonials = [
     },
   },
 ];
-// Define the Blog type
+
 interface Author {
   id: string;
   name: string;
@@ -230,6 +238,9 @@ export default function Banner() {
       }, 10000);
     }
   };
+
+  //carousel play
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   return (
     <div>
       <section className="lg:py-[80px] lg:px-[140px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
@@ -738,66 +749,82 @@ export default function Banner() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Learn About Sustainable Marketing
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {blogs.map((blog) => (
-              <div
-                key={blog.slug}
-                className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                <div className="relative">
-                  <a href={`/blog/${blog.slug}`} className="block">
-                    <Image
-                      src={blog.coverImage}
-                      alt={blog.title}
-                      width={400}
-                      height={208}
-                      className="w-full h-52 object-cover"
-                      loading="lazy"
-                    />
-                  </a>
-                  {blog.tags && blog.tags.length > 0 && (
-                    <span className="absolute top-4 left-4 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm capitalize">
-                      {blog.tags[0]}
-                    </span>
-                  )}
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
-                    <div className="flex items-center gap-1.5">
-                      <UserIcon />
-                      <span>By {blog.author.name}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <FaComment />
-                      <span>1 Comment</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    <a
-                      href={`/blog/${blog.slug}`}
-                      className="hover:text-red-600 transition-colors"
-                    >
-                      {blog.title}
-                    </a>
-                  </h3>
-                  <p className="text-gray-700 text-sm leading-relaxed flex-grow">
-                    {blog.description}
-                  </p>
-                  <a
-                    href={`/blog/${blog.slug}`}
-                    className="inline-flex items-center text-red-600 font-semibold mt-6 hover:text-red-700 transition-colors"
+          <div className="relative max-w-6xl mx-auto">
+            <Carousel
+              plugins={[plugin.current]}
+              className="w-full"
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              onMouseEnter={plugin.current.stop}
+              onMouseLeave={plugin.current.reset}
+            >
+              <CarouselContent className="-ml-4">
+                {blogs.map((blog) => (
+                  <CarouselItem
+                    key={blog.slug}
+                    className="pl-4 md:basis-1/2 lg:basis-1/3"
                   >
-                    Learn More
-                    <ArrowRight />
-                  </a>
-                </div>
-              </div>
-            ))}
+                    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg h-full">
+                      <div className="relative">
+                        <a href={`/blog/${blog.slug}`} className="block">
+                          <Image
+                            src={blog.coverImage}
+                            alt={blog.title}
+                            width={400}
+                            height={208}
+                            className="w-full h-52 object-cover"
+                            loading="lazy"
+                          />
+                        </a>
+                        {blog.tags && blog.tags.length > 0 && (
+                          <span className="absolute top-4 left-4 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm capitalize">
+                            {blog.tags[0]}
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                          <div className="flex items-center gap-1.5">
+                            {/* Replaced UserIcon */}
+                            <User className="w-4 h-4" />
+                            <span>By {blog.author.name}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <MessageCircle className="w-4 h-4" />
+                            <span>1 Comment</span>
+                          </div>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                          <a
+                            href={`/blog/${blog.slug}`}
+                            className="hover:text-red-600 transition-colors"
+                          >
+                            {blog.title}
+                          </a>
+                        </h3>
+                        <p className="text-gray-700 text-sm leading-relaxed flex-grow">
+                          {blog.description}
+                        </p>
+                        <a
+                          href={`/blog/${blog.slug}`}
+                          className="inline-flex items-center text-red-600 font-semibold mt-6 hover:text-red-700 transition-colors"
+                        >
+                          Learn More
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </a>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10  sm:inline-flex" />
+              <CarouselNext className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10  sm:inline-flex" />
+            </Carousel>
           </div>
         </div>
       </section>
-   
     </div>
   );
 }
