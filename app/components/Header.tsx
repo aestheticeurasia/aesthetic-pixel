@@ -112,7 +112,7 @@ export default function MainNav() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
-                    className={`py-2 px-3 rounded-lg font-bold text-xl ${
+                    className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
                       pathName?.startsWith("/services")
                         ? "bg-primary text-white dark:text-black"
                         : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
