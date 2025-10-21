@@ -170,22 +170,18 @@ export default function Banner() {
   const [loading, setLoading] = useState<boolean>(false);
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  useEffect(() => {
-    // Fetch the blog data from the public folder using axios
-    axios
-      .get("/blogs.json")
-      .then((response) => {
-        // Filter for posts that are marked as published
-        const publishedBlogs = response.data.filter((blog) => blog.isPublished);
-        setBlogs(publishedBlogs);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch blogs:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+    const getAllBlog = async () => {
+      try {
+        const { data } = await axios.get("/blogs.json");
+        setBlogs(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    useEffect(() => {
+      getAllBlog();
+    }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
