@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import dayjs from "dayjs";
 import {
   Camera,
   Layers3,
@@ -32,14 +31,6 @@ import { format } from "date-fns";
 import Image from "next/image";
 
 const features = [
-  {
-    icon: Package,
-    title: "Product Photography",
-    type: "image",
-    tag: "Additional Colored-Backdrop",
-    desc: "Optimized product photos sized and edited for online listings and ads.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120010/Additional-Colored-Backdrop_wx2dgb.jpg",
-  },
   {
     icon: Layers3,
     title: "Backdrop",
@@ -73,6 +64,14 @@ const features = [
     img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120037/Mackup-Room_aocn8c.mp4",
   },
   {
+    icon: Package,
+    title: "Additional Colored-Backdrop",
+    type: "image",
+    tag: "Additional Colored-Backdrop",
+    desc: "Optimized product photos sized and edited for online listings and ads.",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120010/Additional-Colored-Backdrop_wx2dgb.jpg",
+  },
+  {
     icon: Zap,
     title: "Studio Propos",
     type: "image",
@@ -83,79 +82,158 @@ const features = [
 ];
 
 const StudioRent = () => {
-  const [formData, setFormData] = useState({
+  const [heroFormData, setHeroFormData] = useState({
     name: "",
     phone: "",
     rentingHour: "",
     bookingDate: "",
     project: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionMessage, setSubmissionMessage] = useState("");
-  const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
-  const [today, setToday] = useState("");
-  const [bookingDatePopoverOpen, setBookingDatePopoverOpen] = useState(false);
+  const [heroIsSubmitting, setHeroIsSubmitting] = useState(false);
+  const [heroSubmissionMessage, setHeroSubmissionMessage] = useState("");
+  const [heroBookingDate, setHeroBookingDate] = useState<Date | undefined>(
+    undefined
+  );
+  const [heroBookingDatePopoverOpen, setHeroBookingDatePopoverOpen] =
+    useState(false);
+
+  // bottom form
+  const [bottomFormData, setBottomFormData] = useState({
+    name: "",
+    phone: "",
+    rentingHour: "",
+    bookingDate: "",
+    project: "",
+  });
+  const [bottomIsSubmitting, setBottomIsSubmitting] = useState(false);
+  const [bottomSubmissionMessage, setBottomSubmissionMessage] = useState("");
+  const [bottomBookingDate, setBottomBookingDate] = useState<Date | undefined>(
+    undefined
+  );
+  const [bottomBookingDatePopoverOpen, setBottomBookingDatePopoverOpen] =
+    useState(false);
 
   useEffect(() => {
-    setToday(dayjs().format("D MMM YYYY"));
-  }, []);
-
-  useEffect(() => {
-    if (bookingDate) {
-      setFormData((prev) => ({
+    if (heroBookingDate) {
+      setHeroFormData((prev) => ({
         ...prev,
-        bookingDate: format(bookingDate, "d-MMM-yyyy"),
+        bookingDate: format(heroBookingDate, "d-MMM-yyyy"),
       }));
+    } else {
+      setHeroFormData((prev) => ({ ...prev, bookingDate: "" }));
     }
-  }, [bookingDate]);
+  }, [heroBookingDate]);
 
-  const handleChange = (
+  // Effect for BOTTOM form
+  useEffect(() => {
+    if (bottomBookingDate) {
+      setBottomFormData((prev) => ({
+        ...prev,
+        bookingDate: format(bottomBookingDate, "d-MMM-yyyy"),
+      }));
+    } else {
+      setBottomFormData((prev) => ({ ...prev, bookingDate: "" }));
+    }
+  }, [bottomBookingDate]);
+
+  // --- HANDLERS FOR HERO (TOP) FORM ---
+  const handleHeroChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setHeroFormData({ ...heroFormData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleHeroSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmissionMessage("");
+    setHeroIsSubmitting(true);
+    setHeroSubmissionMessage("");
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4",
-          subject: "Studio Rent",
-          sender_name: formData.name,
-          phone: formData.phone,
-          bookingDate: formData.bookingDate,
-          hour_needed: formData.rentingHour,
-          message: formData.project,
+          subject: "Studio Rent (From Hero)",
+          sender_name: heroFormData.name,
+          phone: heroFormData.phone,
+          bookingDate: heroFormData.bookingDate,
+          hour_needed: heroFormData.rentingHour,
+          message: heroFormData.project,
         }),
       });
       const result = await response.json();
       if (result.success) {
-        setSubmissionMessage(
+        setHeroSubmissionMessage(
           "Thank you! We received your inquiry and will be in touch within 24 hours."
         );
-        setFormData({
+        setHeroFormData({
           name: "",
           phone: "",
           rentingHour: "",
           bookingDate: "",
           project: "",
         });
-        setBookingDate(undefined);
+        setHeroBookingDate(undefined);
       } else {
-        setSubmissionMessage(
+        setHeroSubmissionMessage(
           "Oops! Something went wrong. Please try again later."
         );
       }
     } catch (err) {
       console.error(err);
-      setSubmissionMessage("Network error! Please try again later.");
+      setHeroSubmissionMessage("Network error! Please try again later.");
     }
-    setIsSubmitting(false);
+    setHeroIsSubmitting(false);
+  };
+
+  // --- HANDLERS FOR BOTTOM FORM ---
+  const handleBottomChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setBottomFormData({ ...bottomFormData, [e.target.name]: e.target.value });
+  };
+
+  const handleBottomSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBottomIsSubmitting(true);
+    setBottomSubmissionMessage("");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4",
+          subject: "Studio Rent (From Bottom)",
+          sender_name: bottomFormData.name,
+          phone: bottomFormData.phone,
+          bookingDate: bottomFormData.bookingDate,
+          hour_needed: bottomFormData.rentingHour,
+          message: bottomFormData.project,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setBottomSubmissionMessage(
+          "Thank you! We received your inquiry and will be in touch within 24 hours."
+        );
+        setBottomFormData({
+          name: "",
+          phone: "",
+          rentingHour: "",
+          bookingDate: "",
+          project: "",
+        });
+        setBottomBookingDate(undefined);
+      } else {
+        setBottomSubmissionMessage(
+          "Oops! Something went wrong. Please try again later."
+        );
+      }
+    } catch (err) {
+      console.error(err);
+      setBottomSubmissionMessage("Network error! Please try again later.");
+    }
+    setBottomIsSubmitting(false);
   };
 
   return (
@@ -173,10 +251,16 @@ const StudioRent = () => {
         <div className="relative z-10 container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-white p-6 rounded-xl md:p-0">
             <Camera className="w-12 h-12 text-white mb-4 p-2 bg-red-600 rounded-full" />
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-black">
-              The Space Your Creativity{" "}
+            <h1 className="text-5xl sm:text-5xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
+              Your Vision, Our{" "}
               <span className="text-red-600 landing-page-title-font">
-                Deserves
+                Space
+              </span>
+            </h1>
+            <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
+              Perfect Studio for{" "}
+              <span className="text-red-600 landing-page-title-font">
+                Perfect Shots
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-indigo-100 mb-8">
@@ -185,12 +269,13 @@ const StudioRent = () => {
             </p>
           </div>
 
+          {/* --- HERO (TOP) FORM --- */}
           <div className="bg-gray-800/80 p-8 md:p-10 rounded-xl shadow-2xl w-full max-w-lg lg:max-w-none mx-auto">
             <h2 className="text-2xl font-bold text-gray-100 mb-6 text-center">
               Studio Rent Inquiry
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleHeroSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -198,8 +283,8 @@ const StudioRent = () => {
                   </label>
                   <Input
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    value={heroFormData.name}
+                    onChange={handleHeroChange}
                     placeholder="John Doe"
                     className="text-gray-100"
                     required
@@ -217,8 +302,8 @@ const StudioRent = () => {
                     <Input
                       type="tel"
                       name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
+                      value={heroFormData.phone}
+                      onChange={handleHeroChange}
                       placeholder="+880 1XXXX XXXXX"
                       className="pl-10 text-gray-100"
                       required
@@ -236,8 +321,8 @@ const StudioRent = () => {
                     type="number"
                     name="rentingHour"
                     min={2}
-                    value={formData.rentingHour}
-                    onChange={handleChange}
+                    value={heroFormData.rentingHour}
+                    onChange={handleHeroChange}
                     placeholder="How many hour you need?"
                     className="text-gray-100"
                   />
@@ -249,20 +334,22 @@ const StudioRent = () => {
                   </label>
 
                   <Popover
-                    open={!!bookingDatePopoverOpen}
-                    onOpenChange={(state) => setBookingDatePopoverOpen(state)}
+                    open={!!heroBookingDatePopoverOpen}
+                    onOpenChange={(state) =>
+                      setHeroBookingDatePopoverOpen(state)
+                    }
                   >
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         className={cn(
                           "w-full pl-3 text-left flex items-center bg-transparent text-gray-300",
-                          !bookingDate && "text-gray-400",
+                          !heroBookingDate && "text-gray-400",
                           "cursor-pointer"
                         )}
                       >
-                        {bookingDate
-                          ? format(bookingDate, "PPP")
+                        {heroBookingDate
+                          ? format(heroBookingDate, "PPP")
                           : "Pick a date"}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
@@ -271,10 +358,10 @@ const StudioRent = () => {
                     <PopoverContent className="w-auto p-0" align="start">
                       <Calendar
                         mode="single"
-                        selected={bookingDate}
+                        selected={heroBookingDate}
                         onSelect={(date) => {
-                          setBookingDate(date);
-                          setBookingDatePopoverOpen(false); // Close popover
+                          setHeroBookingDate(date);
+                          setHeroBookingDatePopoverOpen(false); // Close popover
                         }}
                         disabled={(date) => date < new Date()}
                         className="cursor-pointer bg-transparent"
@@ -290,26 +377,26 @@ const StudioRent = () => {
                 </label>
                 <Textarea
                   name="project"
-                  value={formData.project}
-                  onChange={handleChange}
+                  value={heroFormData.project}
+                  onChange={handleHeroChange}
                   placeholder="Your Message..."
                   rows={4}
                   className=" text-gray-100"
                 />
               </div>
 
-              {submissionMessage && (
+              {heroSubmissionMessage && (
                 <div className="mt-4 p-4 text-sm font-medium text-green-700 bg-green-100 dark:text-green-300 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded-lg">
-                  {submissionMessage}
+                  {heroSubmissionMessage}
                 </div>
               )}
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full flex items-center justify-center cursor-pointer"
+                disabled={heroIsSubmitting}
+                className="w-full flex items-center justify-center cursor-pointer bg-red-700 hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300"
               >
-                {isSubmitting ? (
+                {heroIsSubmitting ? (
                   <>
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5"
@@ -346,10 +433,12 @@ const StudioRent = () => {
       </section>
 
       <section id="features" className="py-20 bg-white">
+        {/* ... (features section remains the same) ... */}
         <div className="container mx-auto max-w-7xl px-6">
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-black text-center landing-page-title-font">
+            Studio{" "}
             <span className="text-red-600 landing-page-title-font">
-              What We Serve
+              Features
             </span>
           </h1>
           <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -369,14 +458,14 @@ const StudioRent = () => {
                     autoPlay
                     loop
                     muted
-                    playsInline 
+                    playsInline
                     className="object-cover h-72 w-full transition-transform duration-700 group-hover:scale-110"
                   >
                     Your browser does not support the video tag.
                   </video>
                 ) : (
                   <Image
-                    src={item.img} 
+                    src={item.img}
                     alt={item.title}
                     width={600}
                     height={400}
@@ -394,7 +483,8 @@ const StudioRent = () => {
 
       {/* ----------  FAQ ---------- */}
       <section id="booking" className="pb-10 bg-gray-50">
-        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center pb-10">
+        {/* ... (FAQ section remains the same) ... */}
+        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center pb-10 landing-page-title-font">
           Frequently Asked {""}
           <span className="text-red-600 landing-page-title-font">
             Questions
@@ -411,21 +501,21 @@ const StudioRent = () => {
                 {[
                   {
                     question:
-                      "What types of products do you typically photograph?",
+                      "What types of shoots can I book Aesthetic Pixel Studio for?",
                     answer:
-                      "We provide professional photography for all types of products, except for model photography. Our specialties include apparel, fashion accessories, footwear, furniture, home décor, electronics, cosmetics, and more.",
+                      "Our studio is ideal for product photography, e-commerce shoots, apparel & fashion photography, creative content, and video production. We do not provide model photography services, but you are welcome to bring your own models or team.",
                   },
                   {
                     question:
-                      "Do you offer image retouching and editing services?",
+                      "What equipment and props are included with the studio rental?",
                     answer:
-                      "Yes! Every image we deliver goes through a professional editing process — including color correction, background removal, shadow creation, and overall enhancement to ensure your visuals look premium and consistent.",
+                      "We provide professional lighting setups, multiple backdrops, reflectors, tripods, and styled props. You can also use our stools, platforms, and stair props to create diverse compositions. Additional gear may be available upon request.",
                   },
                   {
                     question:
-                      "Can I ship my products to your studio for photography?",
+                      "How can I book the studio and what is the payment process?",
                     answer:
-                      "Yes, you can send your products directly to our studio address. Once the shoot is completed, we’ll safely return your items as per your instructions.",
+                      "You can book directly through our website or contact us via WhatsApp or phone. Once your date and time are confirmed, a 50% advance payment is required to secure your slot. The remaining balance is payable on the day of the shoot.",
                   },
                 ].map((item, idx) => (
                   <AccordionItem
@@ -455,21 +545,21 @@ const StudioRent = () => {
                 {[
                   {
                     question:
-                      "Can I ship my products to your studio for photography?",
+                      "What are your studio rental rates and available pricing packages?",
                     answer:
-                      "Yes, you can send your products directly to our studio address. Once the shoot is completed, we’ll safely return your items as per your instructions.",
+                      "Our rental rates depend on the duration and setup requirements. We offer both hourly and full-day packages to fit your needs. Please contact us for a custom quote based on your shoot type.",
                   },
                   {
                     question:
-                      "Do you provide ghost mannequin or flat-lay photography?",
+                      "Can I bring my own team, camera, and lighting setup?",
                     answer:
-                      "Yes, we specialize in ghost mannequin, flat-lay, and hanging apparel photography — ideal for e-commerce and catalog presentation.",
+                      "Absolutely! You are welcome to bring your own crew, cameras, and lights. Our team will assist you with setup support and power connections to make your shoot smooth and professional.",
                   },
                   {
                     question:
-                      "Can I review and approve sample shots before the full shoot?",
+                      "Where is Aesthetic Pixel Studio located and what are the operating hours?",
                     answer:
-                      "Of course! We always send sample images for your approval before completing the full project to ensure we’re aligned with your expectations.",
+                      "We are conveniently located in 115 Senpara Parbata (3rd floor of Sheltech Rubynur), Begum Rokeya Avenue, Mirpur, Dhaka 1216, with ample parking and easy access. Our studio operates 7 days a week from 10:00 AM to 8:00 PM, and extended hours can be arranged upon request.",
                   },
                 ].map((item, idx) => (
                   <AccordionItem
@@ -494,25 +584,174 @@ const StudioRent = () => {
         </div>
       </section>
 
-      {/* Call Center */}
+      {/* --- BOTTOM FORM SECTION --- */}
       <section className="pb-20 bg-white">
-        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center py-10">
+        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center py-10 landing-page-title-font">
           Call For {""}
           <span className="text-red-600 landing-page-title-font">Inquiry</span>
         </h1>
         <div className="container mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-25 items-center">
             <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/call-center.jpg"
-                alt="Call Center"
-                width={500}
-                height={500}
-                className="rounded-xl object-cover shadow-lg"
-              />
+              <div className=" p-8 md:p-10 rounded-xl shadow-2xl w-full max-w-lg lg:max-w-none mx-auto">
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  Studio Rent Inquiry
+                </h2>
+                <form onSubmit={handleBottomSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        Your Name *
+                      </label>
+                      <Input
+                        name="name"
+                        value={bottomFormData.name}
+                        onChange={handleBottomChange}
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+
+                    <div className="relative">
+                      <label className="block text-sm font-medium mb-1">
+                        Phone Number *
+                      </label>
+                      <div className="relative">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                          <Phone className="h-5 w-5" />
+                        </div>
+                        <Input
+                          type="tel"
+                          name="phone"
+                          value={bottomFormData.phone}
+                          onChange={handleBottomChange}
+                          placeholder="+880 1XXXX XXXXX"
+                          className="pl-10"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        Renting Hour
+                      </label>
+                      <Input
+                        type="number"
+                        name="rentingHour"
+                        min={2}
+                        value={bottomFormData.rentingHour}
+                        onChange={handleBottomChange}
+                        placeholder="How many hour you need?"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-1">
+                        Target Booking Date
+                      </label>
+
+                      <Popover
+                        open={!!bottomBookingDatePopoverOpen}
+                        onOpenChange={(state) =>
+                          setBottomBookingDatePopoverOpen(state)
+                        }
+                      >
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full pl-3 text-left flex items-center bg-transparen",
+                              !bottomBookingDate && "text-gray-400",
+                              "cursor-pointer"
+                            )}
+                          >
+                            {bottomBookingDate
+                              ? format(bottomBookingDate, "PPP")
+                              : "Pick a date"}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={bottomBookingDate}
+                            onSelect={(date) => {
+                              setBottomBookingDate(date);
+                              setBottomBookingDatePopoverOpen(false); // Close popover
+                            }}
+                            disabled={(date) => date < new Date()}
+                            className="cursor-pointer bg-transparent"
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Project Details
+                    </label>
+                    <Textarea
+                      name="project"
+                      value={bottomFormData.project}
+                      onChange={handleBottomChange}
+                      placeholder="Your Message..."
+                      rows={4}
+                    />
+                  </div>
+
+                  {bottomSubmissionMessage && (
+                    <div className="mt-4 p-4 text-sm font-medium text-green-700 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded-lg">
+                      {bottomSubmissionMessage}
+                    </div>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={bottomIsSubmitting}
+                    className="w-full flex items-center justify-center cursor-pointer bg-red-700 hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300"
+                  >
+                    {bottomIsSubmitting ? (
+                      <>
+                        <svg
+                          className="animate-spin -ml-1 mr-3 h-5 w-5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Submit Inquiry
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </div>
             </div>
 
             <div className="flex flex-col justify-center items-center text-center">
+              {/* ... (Call Now section remains the same) ... */}
               <div className="flex flex-col items-center space-y-6">
                 <div className="relative w-24 h-24 flex items-center justify-center">
                   <span className="absolute w-full h-full rounded-full bg-red-500/30 animate-ping"></span>
@@ -529,9 +768,9 @@ const StudioRent = () => {
                     >
                       <path
                         d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 
-          1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
-          01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
-          1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
+     1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
+     01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
+     1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
                       />
                     </svg>
                   </a>
@@ -557,6 +796,7 @@ const StudioRent = () => {
 
       {/* ---------- FOOTER ---------- */}
       <footer className="bg-black text-white py-6">
+        {/* ... (Footer section remains the same) ... */}
         <div className="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm">
             © {new Date().getFullYear()} Aesthetic Pixels Studio — All rights
