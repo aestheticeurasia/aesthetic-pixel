@@ -264,8 +264,8 @@ const StudioRent = () => {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-indigo-100 mb-8">
-              Specializing in high-impact commercial photography that captures
-              defining moments and drives audience engagement.
+              Rent the well-equipped, flexible studio designed for swift product
+              shots and high-end photographic projects. Book your session today.
             </p>
           </div>
 
