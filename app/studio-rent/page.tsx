@@ -35,44 +35,50 @@ const features = [
   {
     icon: Package,
     title: "Product Photography",
-    tag: "Product",
+    type: "image",
+    tag: "Additional Colored-Backdrop",
     desc: "Optimized product photos sized and edited for online listings and ads.",
-    img: "/product.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120010/Additional-Colored-Backdrop_wx2dgb.jpg",
   },
   {
     icon: Layers3,
-    title: "Apparel and Garments Photography",
-    tag: "Apparel",
+    title: "Backdrop",
+    type: "video",
+    tag: "Backdrop",
     desc: "Lifestyle shoots that connect your products with real-life moments.",
-    img: "/garments.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120025/Backdrop_wzq4fv.mp4",
   },
   {
     icon: Briefcase,
-    title: "Fashion & Model Photography",
-    tag: "Fashion",
+    title: "Changing-Room",
+    type: "video",
+    tag: "Changing Room",
     desc: "Headshots, facility photography and editorial assets for comms.",
-    img: "/carousel3.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120019/Changing-Room_jpuh9n.mp4",
   },
   {
     icon: Camera,
-    title: "Furniture & Interior Photography",
-    tag: "Furniture",
+    title: "Lighting Setup",
+    type: "video",
+    tag: "Lighting Setup",
     desc: "Controlled lighting and crisp detail for high-res deliverables.",
-    img: "/furniture.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120027/Lighting-Setup_r6kgt8.mp4",
   },
   {
     icon: Lightbulb,
-    title: "Lifestyle & Branding Photography",
-    tag: "Lifestyle",
+    title: "Mackup Room",
+    type: "video",
+    tag: "Mackup Room",
     desc: "Concept, styling and art direction to fit your brand voice.",
-    img: "/branding.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120037/Mackup-Room_aocn8c.mp4",
   },
   {
     icon: Zap,
-    title: "Photo Editing & Retouching Services",
-    tag: "Retouching",
+    title: "Studio Propos",
+    type: "image",
+    tag: "Studio Propos",
     desc: "Clear timelines and reliable delivery without compromising quality.",
-    img: "/retouching.jpg",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120038/Studio-Propos_mt6v4d.jpg",
   },
 ];
 
@@ -154,7 +160,6 @@ const StudioRent = () => {
 
   return (
     <main className="min-h-screen bg-[#edeef0] text-black font-sans">
-      {/* ---------- HERO ---------- */}
       <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden py-16 md:py-0">
         <div
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out"
@@ -166,7 +171,6 @@ const StudioRent = () => {
         ></div>
 
         <div className="relative z-10 container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text */}
           <div className="text-white p-6 rounded-xl md:p-0">
             <Camera className="w-12 h-12 text-white mb-4 p-2 bg-red-600 rounded-full" />
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-black">
@@ -181,7 +185,6 @@ const StudioRent = () => {
             </p>
           </div>
 
-          {/* Booking Form */}
           <div className="bg-gray-800/80 p-8 md:p-10 rounded-xl shadow-2xl w-full max-w-lg lg:max-w-none mx-auto">
             <h2 className="text-2xl font-bold text-gray-100 mb-6 text-center">
               Studio Rent Inquiry
@@ -189,7 +192,6 @@ const StudioRent = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">
                     Your Name *
@@ -204,7 +206,6 @@ const StudioRent = () => {
                   />
                 </div>
 
-                {/* Phone */}
                 <div className="relative">
                   <label className="block text-sm font-medium text-gray-300 mb-1">
                     Phone Number *
@@ -227,7 +228,6 @@ const StudioRent = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Hour */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">
                     Renting Hour
@@ -243,7 +243,6 @@ const StudioRent = () => {
                   />
                 </div>
 
-                {/* Booking Date */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">
                     Target Booking Date
@@ -285,7 +284,6 @@ const StudioRent = () => {
                 </div>
               </div>
 
-              {/* Project Details */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Project Details
@@ -347,7 +345,6 @@ const StudioRent = () => {
         </div>
       </section>
 
-      {/* ---------- FEATURES ---------- */}
       <section id="features" className="py-20 bg-white">
         <div className="container mx-auto max-w-7xl px-6">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
@@ -366,15 +363,26 @@ const StudioRent = () => {
                 key={idx}
                 className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
               >
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width={600}
-                  height={400}
-                  className="object-cover h-72 w-full transition-transform duration-700 group-hover:scale-110"
-                />
-
-                {/* Tag */}
+                {item.type === "video" ? (
+                  <video
+                    src={item.img}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline 
+                    className="object-cover h-72 w-full transition-transform duration-700 group-hover:scale-110"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <Image
+                    src={item.img} 
+                    alt={item.title}
+                    width={600}
+                    height={400}
+                    className="object-cover h-72 w-full transition-transform duration-700 group-hover:scale-110"
+                  />
+                )}
                 <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xl font-bold px-2 py-1 rounded">
                   {item.tag}
                 </span>
@@ -386,15 +394,14 @@ const StudioRent = () => {
 
       {/* ----------  FAQ ---------- */}
       <section id="booking" className="pb-10 bg-gray-50">
-           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center pb-10">
-                Frequently Asked {""}
-                <span className="text-red-600 landing-page-title-font">
-                  Questions
-                </span>
-              </h1>
+        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center pb-10">
+          Frequently Asked {""}
+          <span className="text-red-600 landing-page-title-font">
+            Questions
+          </span>
+        </h1>
         <div className="container mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-            {/* Right: FAQ Accordion */}
             <div className="flex flex-col h-full gap-4">
               <Accordion
                 type="single"
@@ -403,7 +410,8 @@ const StudioRent = () => {
               >
                 {[
                   {
-                    question: "What types of products do you typically photograph?",
+                    question:
+                      "What types of products do you typically photograph?",
                     answer:
                       "We provide professional photography for all types of products, except for model photography. Our specialties include apparel, fashion accessories, footwear, furniture, home décor, electronics, cosmetics, and more.",
                   },

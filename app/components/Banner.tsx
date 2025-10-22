@@ -400,6 +400,7 @@ export default function Banner() {
             src="https://www.youtube.com/embed/LgeiCnirTzs?si=8uN7AVfWyRxOmjvW"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
           ></iframe>
         </div>
       </section>
@@ -551,7 +552,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-white ">
+      <section className="bg-white">
         <div className="container mx-auto max-w-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions

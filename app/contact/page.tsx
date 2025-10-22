@@ -40,7 +40,6 @@ export default function Contact() {
       if (response.ok) {
         setStatus("Message sent successfully!");
         toast.success("Message sent successfully!");
-        // Clear form fields
         setName("");
         setEmail("");
         setPhone("");
@@ -50,32 +49,23 @@ export default function Contact() {
       }
 
       setLoading(false);
-
-      // Hide status after 5 seconds
-      setTimeout(() => {
-        setStatus(null);
-      }, 5000);
+      setTimeout(() => setStatus(null), 5000);
     } catch (error) {
       console.error("Error:", error);
       setStatus("An error occurred");
       setLoading(false);
-
-      setTimeout(() => {
-        setStatus(null);
-      }, 10000);
+      setTimeout(() => setStatus(null), 10000);
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div>
-        <Card className="bg-gradient-to-r from-gray-500 to-gray-700 text-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold text-center">Contact Us</h1>
-        </Card>
-      </div>
-      <div className="flex flex-col md:flex-row gap-8 mt-8">
-        <div className="flex-1">
-          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md">
+    <div className="container mx-auto p-4 lg:mt-15 mt-10">
+      <Card className="bg-gradient-to-r from-gray-500 to-gray-700 text-white p-8 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center">Contact Us</h1>
+      </Card>
+      <div className="flex flex-col md:flex-row gap-8 mt-8 md:h-[600px]">
+        <div className="flex-1 flex flex-col gap-5">
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md h-1/2">
             <h2 className="text-xl font-semibold mb-1">Our Location</h2>
             <div className="flex items-start gap-3">
               <MapPin />
@@ -86,11 +76,12 @@ export default function Contact() {
                 <br />
                 Senpara Parbata, Mirpur 10,
                 <br />
-                Dhaka, Bangladesh,
+                Dhaka, Bangladesh.
               </p>
             </div>
           </Card>
-          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md mt-5">
+
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md h-1/2">
             <h2 className="text-xl font-semibold mb-1">Contact Information</h2>
             <p>
               <span className="flex items-center gap-4">
@@ -104,15 +95,13 @@ export default function Contact() {
           </Card>
         </div>
 
-        {/* Form */}
-        <div className="flex-1">
-          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md">
+        <div className="flex-1 flex">
+          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md w-full h-full flex flex-col justify-between">
             <h2 className="text-2xl font-bold mb-6 text-center">
               Get in Touch
             </h2>
 
-            <form onSubmit={handleSubmit}>
-              {/* Name */}
+            <form onSubmit={handleSubmit} className="flex flex-col justify-between h-full">
               <div className="mb-4">
                 <Label htmlFor="name" className="mb-3">
                   Your Name
@@ -127,7 +116,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Email */}
               <div className="mb-4">
                 <Label htmlFor="email" className="mb-3">
                   Your Email
@@ -143,7 +131,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Phone */}
               <div className="mb-4">
                 <Label htmlFor="phone" className="mb-3">
                   Your Phone
@@ -158,14 +145,13 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Message */}
-              <div className="mb-4">
+              <div className="mb-4 flex-1">
                 <Label htmlFor="message" className="mb-3">
                   Your Message
                 </Label>
                 <Textarea
                   required
-                  className="bg-white"
+                  className="bg-white h-32"
                   id="message"
                   placeholder="Enter your message"
                   value={message}
@@ -173,8 +159,7 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Button */}
-              <div className="mt-10 text-center">
+              <div className="mt-6 text-center">
                 <Button
                   type="submit"
                   className="btn btn-primary cursor-pointer transition-transform duration-150 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95"
@@ -192,7 +177,6 @@ export default function Contact() {
                   )}
                 </Button>
 
-                {/* Status Message */}
                 <AnimatePresence>
                   {status && (
                     <motion.div
