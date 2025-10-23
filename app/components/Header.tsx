@@ -27,18 +27,18 @@ import HideOnRoutes from "./HideOnRoutes";
 export default function MainNav() {
   const pathName = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(
-    pathName?.startsWith("/services") || false
-  );
+  // const [mobileServicesOpen, setMobileServicesOpen] = useState(
+  //   pathName?.startsWith("/services") || false
+  // );
   const isHome = pathName === "/";
 
-  useEffect(() => {
-    if (pathName?.startsWith("/services")) {
-      setMobileServicesOpen(true);
-    } else {
-      setMobileServicesOpen(false);
-    }
-  }, [pathName]);
+  // useEffect(() => {
+  //   if (pathName?.startsWith("/services")) {
+  //     setMobileServicesOpen(true);
+  //   } else {
+  //     setMobileServicesOpen(false);
+  //   }
+  // }, [pathName]);
 
   const isActive = (path: string) => pathName === path;
 
@@ -63,7 +63,6 @@ export default function MainNav() {
       >
         {" "}
         <div className="container mx-auto flex h-25 items-center justify-between px-4">
-          {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/logo.png"
@@ -500,22 +499,22 @@ export default function MainNav() {
   );
 }
 
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href} className="block p-2 rounded-lg hover:bg-muted">
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-}
+// function ListItem({
+//   title,
+//   children,
+//   href,
+//   ...props
+// }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+//   return (
+//     <li {...props}>
+//       <NavigationMenuLink asChild>
+//         <Link href={href} className="block p-2 rounded-lg hover:bg-muted">
+//           <div className="text-sm leading-none font-medium">{title}</div>
+//           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+//             {children}
+//           </p>
+//         </Link>
+//       </NavigationMenuLink>
+//     </li>
+//   );
+// }
