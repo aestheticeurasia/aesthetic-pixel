@@ -29,6 +29,7 @@ import { toast } from "sonner";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import Marquee from "react-fast-marquee";
 
 const brands = [
   "/aestheticIT.jpg",
@@ -243,23 +244,19 @@ export default function Banner() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   return (
     <div>
-      <section className="lg:py-[80px] lg:px-[140px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6 justify-items-center">
+      <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
+        <Marquee pauseOnHover={true} speed={90} direction="left">
           {brands.map((brand, index) => (
-            <div
-              key={index}
-              className="hover:scale-105 transition-transform duration-300 flex justify-center items-center bg-white px-[38px] py-[4.5px]"
-            >
-              <Image
+          <Image
                 src={brand}
                 alt={`Brand ${index + 1}`}
+                key={index}
                 width={199}
                 height={133}
-                className="w-[199px] h-[133px] object-cover"
+                className="w-[199px] h-[133px] object-contain"
               />
-            </div>
           ))}
-        </div>
+        </Marquee>
       </section>
       <section className="bg-gray-50 font-sans py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">

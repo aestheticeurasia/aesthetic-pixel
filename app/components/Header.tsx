@@ -107,8 +107,20 @@ export default function MainNav() {
               About
             </Link>
 
+            {/* Services */}
+            <Link
+              href="/services"
+              className={`py-2 px-3 rounded-lg ${
+                isActive("/services")
+                  ? "bg-primary text-white dark:text-black"
+                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+              }`}
+            >
+              Services
+            </Link>
+
             {/* Services Dropdown */}
-            <NavigationMenu>
+            {/* <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
@@ -193,7 +205,7 @@ export default function MainNav() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
-            </NavigationMenu>
+            </NavigationMenu> */}
 
             {/* Portfolio */}
             <Link
@@ -302,7 +314,7 @@ export default function MainNav() {
                   </SheetClose>
 
                   {/* Services Parent */}
-                  <div className="w-full overflow-hidden rounded-lg">
+                  {/* <div className="w-full overflow-hidden rounded-lg">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                       className={`w-full flex justify-between items-center py-2 px-6 mx-5 font-bold rounded-lg ${
@@ -312,7 +324,6 @@ export default function MainNav() {
                       }`}
                     >
                       <span>Services</span>
-                      {/* Arrow */}
                       <svg
                         className={`w-4 h-4 ml-2 transition-transform duration-200 ${
                           mobileServicesOpen ? "rotate-90" : "rotate-0"
@@ -331,7 +342,6 @@ export default function MainNav() {
                     </button>
                   </div>
 
-                  {/* Services Submenu */}
                   {mobileServicesOpen && (
                     <div className="ml-4 mt-1 space-y-1">
                       {[
@@ -390,7 +400,21 @@ export default function MainNav() {
                         </SheetClose>
                       ))}
                     </div>
-                  )}
+                  )} */}
+
+                  {/* Services */}
+                  <SheetClose asChild>
+                    <Link
+                      href="/services"
+                      className={`py-2 px-6 font-bold rounded-lg block ${
+                        isActive("/services")
+                          ? "bg-primary mx-5 text-white dark:text-black"
+                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                      }`}
+                    >
+                      Services
+                    </Link>
+                  </SheetClose>
 
                   {/* Portfolio */}
                   <SheetClose asChild>

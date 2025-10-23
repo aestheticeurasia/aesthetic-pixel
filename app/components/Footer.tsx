@@ -8,16 +8,13 @@ export default function Footer() {
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <div className="relative">
-        <section className="relative z-10 bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto max-w-full md:max-w-7xl rounded-xl gap-8 px-4 md:px-9">
-          {/* Left Column */}
+        <section className="relative z-10 bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl rounded-xl gap-8 px-4 md:px-9">
           <div className="flex justify-center md:justify-start">
             <div className="flex flex-col items-center space-y-6">
               <div className="relative w-24 h-24 flex items-center justify-center">
                 <span className="absolute w-full h-full rounded-full bg-white/70 animate-ping"></span>
                 <span className="absolute w-3/4 h-3/4 rounded-full bg-white/50 animate-ping delay-200"></span>
                 <span className="absolute w-1/2 h-1/2 rounded-full bg-white/30 animate-ping delay-400"></span>
-
-                {/* Phone Icon */}
                 <a href="tel:+8801711205200">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +31,6 @@ export default function Footer() {
                   </svg>
                 </a>
               </div>
-
-              {/* Phone Number */}
               <div className="flex flex-col items-center">
                 <p className="text-white text-sm uppercase tracking-widest mb-1 text-center md:text-left">
                   Call Now
@@ -50,7 +45,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="text-center md:text-left flex flex-col justify-center space-y-6 md:space-y-8">
             <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-white font-bold leading-tight">
               Get One Stop Digital Solutions
@@ -88,7 +82,6 @@ export default function Footer() {
         </section>
         <footer className="w-full bg-[#1e1e1e] text-white -mt-40 pt-50">
           <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">
-            {/* Logo & Social */}
             <div className="w-full md:w-auto flex justify-center md:justify-start">
               <div className="rounded-2xl shadow-lg w-full max-w-[320px] px-4 flex flex-col items-center md:items-start text-center md:text-left">
                 <Image
@@ -131,7 +124,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold pb-5">Quick Links</h3>
               <div className="flex flex-col space-y-2 text-gray-300">
@@ -144,7 +136,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Services */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold pb-5">Services</h3>
               <div className="flex flex-col space-y-2 text-gray-300">
@@ -156,7 +147,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Contact Details */}
             <div className="w-full md:w-auto flex justify-center md:justify-start">
               <div className="flex flex-col items-center md:items-start text-center md:text-left">
                 <h3 className="text-xl font-bold pb-5">Contact Details</h3>
@@ -192,7 +182,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Bottom Footer */}
           <div className="border-t border-gray-700">
             <div className="container mx-auto px-6 py-6 text-center">
               <span className="text-md text-gray-400 leading-relaxed">

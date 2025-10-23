@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -17,9 +18,11 @@ export default function Hero() {
           retouching and exact color matching, delivering images that exceed
           your expectations.
         </p>
-        <button className="mt-6 md:mt-8 bg-red-500 text-white py-3 px-5 md:py-4 md:px-6 font-bold hover:bg-red-600 transition-colors rounded-md cursor-pointer text-sm md:text-base">
-          Get Started <ArrowRight className="inline-block ml-2" size={18} />
-        </button>
+        <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
+          <button className="mt-6 md:mt-8 bg-red-500 text-white py-3 px-5 md:py-4 md:px-6 font-bold hover:bg-red-600 transition-colors rounded-md cursor-pointer text-sm md:text-base">
+            Get Started <ArrowRight className="inline-block ml-2" size={18} />
+          </button>
+        </Link>
       </div>
     </section>
   );
