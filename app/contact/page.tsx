@@ -23,7 +23,7 @@ export default function Contact() {
     setLoading(true);
 
     const form = new FormData();
-    form.append("access_key", "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4");
+    form.append("access_key", "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd");
     form.append("name", name);
     form.append("email", email);
     form.append("phone", phone);

@@ -100,15 +100,13 @@ const testimonials = [
     img: "/testimonial-rafi.jpg",
     name: "Rafi Ahmed",
     role: "E-commerce Manager",
-    quote:
-      "Professional, on-time, and the images looked better than imagined.",
+    quote: "Professional, on-time, and the images looked better than imagined.",
   },
   {
     img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&q=80",
     name: "Maya Roy",
     role: "Founder",
-    quote:
-      "Great creative direction — they understood our brand immediately.",
+    quote: "Great creative direction — they understood our brand immediately.",
   },
   {
     img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
@@ -132,7 +130,6 @@ const testimonials = [
       "Exceptional experience from start to finish. Their product shots exceeded expectations.",
   },
 ];
-
 
 const CarouselImg = [
   {
@@ -189,7 +186,7 @@ const BookASlot = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "f2a40982-3c74-465e-875c-1f699faf49b1",
+          access_key: "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd",
           subject: "New Booking Inquiry",
           sender_name: formData.name,
           sender_email: formData.email,

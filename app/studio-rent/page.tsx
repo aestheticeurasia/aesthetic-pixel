@@ -45,7 +45,7 @@ const features = [
     type: "video",
     tag: "Changing Room",
     desc: "Headshots, facility photography and editorial assets for comms.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120019/Changing-Room_jpuh9n.mp4",
+    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761213010/Studio_changing_room_vxdimj.mp4",
   },
   {
     icon: Camera,
@@ -152,7 +152,7 @@ const StudioRent = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4",
+          access_key: "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd",
           subject: "Studio Rent (From Hero)",
           sender_name: heroFormData.name,
           phone: heroFormData.phone,
@@ -202,7 +202,7 @@ const StudioRent = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "cf7ea563-c1a8-473a-b2fb-554b4d2dc8d4",
+          access_key: "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd",
           subject: "Studio Rent (From Bottom)",
           sender_name: bottomFormData.name,
           phone: bottomFormData.phone,
@@ -249,18 +249,26 @@ const StudioRent = () => {
         ></div>
 
         <div className="relative z-10 container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-white p-6 rounded-xl md:p-0">
-            <Camera className="w-12 h-12 text-white mb-4 p-2 bg-red-600 rounded-full" />
-            <h1 className="text-5xl sm:text-5xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
-              Your Vision, Our{" "}
+          <div className="text-center md:text-left text-white p-6 rounded-xl md:p-0">
+            <div className="flex justify-center md:justify-start">
+              <Camera className="w-12 h-12 text-white mb-4 p-2 bg-red-600 rounded-full" />
+            </div>
+            <h1 className="text-7xl sm:text-7xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
+              Your Vision
+              <span className="block sm:hidden"></span>
+              <span className="hidden sm:inline"> </span>
+              Our{" "}
               <span className="text-red-600 landing-page-title-font">
                 Space
               </span>
             </h1>
-            <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
-              Perfect Studio for{" "}
+            <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-white landing-page-title-font">
+              Perfect Studio for
+              <span className="block sm:hidden"></span>
+              <span className="hidden sm:inline"> </span>
+              Perfect{" "}
               <span className="text-red-600 landing-page-title-font">
-                Perfect Shots
+                Shots
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-indigo-100 mb-8">

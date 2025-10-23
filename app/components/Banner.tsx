@@ -410,7 +410,7 @@ export default function Banner() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Image
-                  src="/bannerThird.png"
+                  src="/quoteBg.jpeg"
                   alt="Studio photoshoot setup"
                   width={300}
                   height={500}
@@ -421,7 +421,7 @@ export default function Banner() {
               <div className="flex flex-col gap-4">
                 <div>
                   <Image
-                    src="/bannerThird2.png"
+                    src="/carousel1.jpg"
                     alt="Product photo editing"
                     width={300}
                     height={250}
