@@ -49,28 +49,23 @@ const brands = [
 const workSteps = [
   {
     number: "01",
-    title: "Photoshoot",
-    description: "Trusted by international brands, we specialize in retouching",
+    title: "YOUR ORDER",
+    description: "Place an order online and box up your items ready for collection",
   },
   {
     number: "02",
-    title: "Edit",
-    description: "Trusted by international brands, we specialize in retouching",
+    title: "WE COLLECT",
+    description: "Collection and delivery is free, just let us know where you are and what date you want your items collecting.",
   },
   {
     number: "03",
-    title: "Handoff Developer",
-    description: "Trusted by international brands, we specialize in retouching",
+    title: "WE SHOOT",
+    description: "Our specialist team works their magic to make your products look amazing, with a quality guarantee on all your images.",
   },
   {
     number: "04",
-    title: "Post On Ecommerce Site",
-    description: "Trusted by international brands, we specialize in retouching",
-  },
-  {
-    number: "05",
-    title: "Social Marketing",
-    description: "Trusted by international brands, we specialize in retouching",
+    title: "WE DELIVER",
+    description: "We'll deliver your amazing new product photos and return your items back to you.",
   },
 ];
 
@@ -244,6 +239,7 @@ export default function Banner() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   return (
     <div>
+      {/* Slider */}
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
         <Marquee pauseOnHover={true} speed={90} direction="left">
           {brands.map((brand, index) => (
@@ -258,6 +254,7 @@ export default function Banner() {
           ))}
         </Marquee>
       </section>
+      {/* Services Section Pinterest Grid */}
       <section className="bg-gray-50 font-sans py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
@@ -337,6 +334,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
+      {/* Works Steps Section */}
       <section className="bg-[#f8f7fa] py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold mb-16 text-center text-gray-800">
