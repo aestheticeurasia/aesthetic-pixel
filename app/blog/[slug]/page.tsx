@@ -30,9 +30,7 @@ interface Props {
 }
 
 export default function BlogDetail({ params }: Props) {
-  // unwrap params
   const { slug } = use(params);
-
   const [blog, setBlog] = useState<Blog | null>(null);
 
   useEffect(() => {

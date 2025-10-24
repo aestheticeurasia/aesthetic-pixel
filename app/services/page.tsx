@@ -1,81 +1,38 @@
 "use client";
+import axios from "axios";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
-const features = [
-  {
-    title: "Product Photography",
-    tag: "Product",
-    desc: "Optimized product photos sized and edited for online listings and ads.",
-    img: "/product.jpg",
-  },
-  {
-    title: "Apparel and Garments Photography",
-    tag: "Apparel",
-    desc: "Lifestyle shoots that connect your products with real-life moments.",
-    img: "/garments.jpg",
-  },
-  {
-    title: "Fashion & Model Photography",
-    tag: "Fashion",
-    desc: "Headshots, facility photography and editorial assets for comms.",
-    img: "/carousel3.jpg",
-  },
-  {
-    title: "Furniture & Interior Photography",
-    tag: "Furniture",
-    desc: "Controlled lighting and crisp detail for high-res deliverables.",
-    img: "/furniture.jpg",
-  },
-  {
-    title: "Lifestyle & Branding Photography",
-    tag: "Lifestyle",
-    desc: "Concept, styling and art direction to fit your brand voice.",
-    img: "/branding.jpg",
-  },
-  {
-    title: "Photo Editing & Retouching Services",
-    tag: "Retouching",
-    desc: "Clear timelines and reliable delivery without compromising quality.",
-    img: "/retouching.jpg",
-  },
-  {
-    title: "Furniture & Interior Photography",
-    tag: "Furniture2",
-    desc: "Controlled lighting and crisp detail for high-res deliverables.",
-    img: "/furniture.jpg",
-  },
-  {
-    title: "Lifestyle & Branding Photography",
-    tag: "Lifestyle2",
-    desc: "Concept, styling and art direction to fit your brand voice.",
-    img: "/branding.jpg",
-  },
-  {
-    title: "Photo Editing & Retouching Services",
-    tag: "Retouching2",
-    desc: "Clear timelines and reliable delivery without compromising quality.",
-    img: "/retouching.jpg",
-  },
-];
-
+import { useEffect, useState } from "react";
 export default function Services() {
   const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
+  const [services, setServices] = useState<any[]>([]);
 
+
+  const getAllServices = async () => {
+    try {
+      const { data } = await axios.get("/services.json");
+      setServices(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllServices();
+  }, []);
   return (
     <div className="container mx-auto p-6 mt-7">
       <section id="features" className="bg-white">
         <div className="container mx-auto max-w-7xl px-6">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-6 text-center">
             Our{" "}
-            <span className="text-red-600 landing-page-title-font">Services</span>
+            <span className="text-red-600 landing-page-title-font tracking-[0.15em]">Services</span>
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((item, idx) => (
-              <Link key={item.tag} href={`/services/${item.tag}`}>
+            {services.map((item, idx) => (
+              <Link key={item.slug} href={`/services/${item.slug}`}>
                 <div
                   className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
                   onClick={() =>

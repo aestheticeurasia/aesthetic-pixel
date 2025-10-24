@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import CountUp from 'react-countup';
 
 export default function AboutPage() {
   const pathData = "M2 2 H238 V78 H2 Z";
@@ -64,10 +65,7 @@ export default function AboutPage() {
             >
               <Card className="p-10 bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl rounded-2xl hover:scale-105 hover:shadow-2xl transition-transform duration-300">
                 <h1 className="text-6xl font-extrabold text-gray-100">
-                  {stat.value.replace(/\D/g, "")}
-                  <span className="text-white">
-                    {stat.value.replace(/\d+/g, "")}
-                  </span>
+                  <CountUp end={parseInt(stat.value)} duration={6.75} />{stat.value.includes('+') ? '+' : ''}
                 </h1>
                 <h3 className="mt-3 text-xl font-semibold text-gray-200">
                   {stat.label}

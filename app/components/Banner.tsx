@@ -547,7 +547,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-white">
+      <section className="bg-white mb-20">
         <div className="container mx-auto max-w-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions
