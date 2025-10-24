@@ -1,8 +1,11 @@
 "use client";
+import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { ChartNoAxesCombined, Clock2, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import { use, useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
 
 interface Services {
   title: string;
@@ -15,6 +18,44 @@ interface Services {
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+const brands = [
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+  "/aestheticIT.jpg",
+  "/aestheticFashion.jpg",
+];
+
+const featuredServices = [
+  {
+    title: "Free Collection & Delivery Across Bangladesh",
+    desc: "Convenient, secure, and cost-effective transport",
+    icon: Truck,
+  },
+  {
+    title: "Quick Turnaround",
+    desc: "Meeting tight deadlines without compromising on quality.",
+    icon: Clock2,
+  },
+  {
+    title: "100% Satisfaction Guaranteed",
+    desc: "We’re not satisfied until you are",
+    icon: ChartNoAxesCombined,
+  },
+  {
+    title: "Free Retouching",
+    desc: "High-end retouching for flawless results",
+    icon: Star,
+  },
+];
 
 export default function ServiceDetails({ params }: Props) {
   const { slug } = use(params);
@@ -36,7 +77,7 @@ export default function ServiceDetails({ params }: Props) {
   if (!service) return <p className="text-center mt-10">Services not found.</p>;
 
   return (
-    <div className="container max-w-full min-h-screen">
+    <div className="container max-w-full">
       <section className="bg-[#f2f2f2] flex flex-col md:flex-row justify-between items-center md:py-20 px-4 md:px-15">
         <motion.div
           key={1}
@@ -64,9 +105,40 @@ export default function ServiceDetails({ params }: Props) {
             alt={service?.title}
             width={500}
             height={500}
-            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0" 
+            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0"
           />
         </motion.div>
+      </section>
+      <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
+        <Marquee pauseOnHover={true} speed={90} direction="left">
+          {brands.map((brand, index) => (
+            <Image
+              src={brand}
+              alt={`Brand ${index + 1}`}
+              key={index}
+              width={199}
+              height={133}
+              className="w-[199px] h-[133px] object-contain"
+            />
+          ))}
+        </Marquee>
+      </section>
+      <section className="lg:py-[80px] py-10 px-6">
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredServices.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <Card
+                key={index}
+                className="p-6 flex flex-col items-center text-center bg-[#eaeef4] rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <Icon className="w-10 h-10 mb-4 text-gray-800" />
+                <h1 className="text-xl font-semibold">{feature?.title}</h1>
+                <p className="text-gray-500 mt-2">{feature?.desc}</p>
+              </Card>
+            );
+          })}
+        </div>
       </section>
     </div>
   );
