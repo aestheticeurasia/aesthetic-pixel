@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { use, useEffect, useState } from "react";
 
-interface Services {
+interface Service {
   title: string;
   slug: string;
   desc: string;
@@ -17,16 +17,16 @@ interface Props {
 
 export default function ServiceDetails({ params }: Props) {
   const { slug } = use(params);
-  const [service, setService] = useState<Services | null>(null);
+  const [service, setService] = useState<Service | null>(null);
 
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const { data } = await axios.get<Services[]>("/services.json");
+        const { data } = await axios.get<Service[]>("/services.json");
         const found = data.find((b) => b.slug === slug) || null;
         setService(found);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     fetchService();
@@ -38,10 +38,9 @@ export default function ServiceDetails({ params }: Props) {
     <div className="container max-w-full min-h-screen">
       <section className="bg-[#f2f2f2] flex flex-col md:flex-row justify-between items-center md:py-20 px-4 md:px-15">
         <motion.div
-          key={1}
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 1 * 0.2, type: "spring" }}
+          transition={{ duration: 1.5, delay: 0.2, type: "spring" }}
           className="w-full md:max-w-1/2 px-4 md:px-10 mt-10 md:mt-0"
         >
           <h1 className="text-4xl md:text-7xl font-bold text-center md:text-start leading-snug bg-gradient-to-tr from-gray-900 to-gray-400 bg-clip-text text-transparent">
@@ -52,10 +51,9 @@ export default function ServiceDetails({ params }: Props) {
           </p>
         </motion.div>
         <motion.div
-          key={2}
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 1 * 0.2, type: "spring" }}
+          transition={{ duration: 1.5, delay: 0.2, type: "spring" }}
           className="w-full md:max-w-1/2 px-4 md:px-10 flex justify-center"
         >
           <Image
@@ -63,7 +61,7 @@ export default function ServiceDetails({ params }: Props) {
             alt={service.title}
             width={500}
             height={500}
-            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0" 
+            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0"
           />
         </motion.div>
       </section>
