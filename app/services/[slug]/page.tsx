@@ -6,6 +6,7 @@ import { use, useEffect, useState } from "react";
 
 interface Services {
   title: string;
+  tag: string;
   slug: string;
   desc: string;
   img: string;
