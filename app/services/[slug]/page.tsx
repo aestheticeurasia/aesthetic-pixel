@@ -1,4 +1,5 @@
 "use client";
+
 import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -25,8 +26,12 @@ export default function ServiceDetails({ params }: Props) {
         const { data } = await axios.get<Services[]>("/services.json");
         const found = data.find((b) => b.slug === slug) || null;
         setService(found);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.error("Error fetching service:", error.message);
+        } else {
+          console.error("Unexpected error:", error);
+        }
       }
     };
     fetchService();
@@ -63,7 +68,7 @@ export default function ServiceDetails({ params }: Props) {
             alt={service.title}
             width={500}
             height={500}
-            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0" 
+            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0"
           />
         </motion.div>
       </section>
