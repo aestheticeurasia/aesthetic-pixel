@@ -1,5 +1,4 @@
 "use client";
-
 import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -24,14 +23,10 @@ export default function ServiceDetails({ params }: Props) {
     const fetchService = async () => {
       try {
         const { data } = await axios.get<Services[]>("/services.json");
-        const found = data.find((b) => b.slug === slug) || null;
+        const found = data.find((s) => s.slug === slug) || null;
         setService(found);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching service:", error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchService();
@@ -50,10 +45,10 @@ export default function ServiceDetails({ params }: Props) {
           className="w-full md:max-w-1/2 px-4 md:px-10 mt-10 md:mt-0"
         >
           <h1 className="text-4xl md:text-7xl font-bold text-center md:text-start leading-snug bg-gradient-to-tr from-gray-900 to-gray-400 bg-clip-text text-transparent">
-            {service.title}
+            {service?.title}
           </h1>
           <p className="text-lg mt-6 md:mt-10 text-center md:text-start w-full md:max-w-3/4 mx-auto md:mx-0 text-gray-500">
-            {service.desc}
+            {service?.desc}
           </p>
         </motion.div>
         <motion.div
@@ -64,11 +59,11 @@ export default function ServiceDetails({ params }: Props) {
           className="w-full md:max-w-1/2 px-4 md:px-10 flex justify-center"
         >
           <Image
-            src={service.img}
-            alt={service.title}
+            src={service?.img}
+            alt={service?.title}
             width={500}
             height={500}
-            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0"
+            className="object-cover rounded-md shadow-lg w-full max-w-md md:max-w-full mt-10 md:mt-0" 
           />
         </motion.div>
       </section>

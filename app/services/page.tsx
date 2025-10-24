@@ -4,10 +4,16 @@ import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+interface Services {
+  title: string;
+  slug: string;
+  desc: string;
+  img: string;
+}
 export default function Services() {
   const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
-  const [services, setServices] = useState<any[]>([]);
-
+  const [services, setServices] = useState<Services[]>([]);
 
   const getAllServices = async () => {
     try {
