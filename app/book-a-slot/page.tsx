@@ -216,7 +216,12 @@ const BookASlot = () => {
           phone: "",
           email: "",
           bookingDate: "",
-          project: "",
+          company: "",
+          website: "",
+          angle: [],
+          retouching: "",
+          totalProjects: "",
+          remarks: "",
         });
         setBookingDate(undefined);
       } else {
