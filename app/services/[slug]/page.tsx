@@ -124,21 +124,37 @@ export default function ServiceDetails({ params }: Props) {
         </Marquee>
       </section>
       <section className="lg:py-[80px] py-10 px-6">
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredServices.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <Card
-                key={index}
-                className="p-6 flex flex-col items-center text-center bg-[#eaeef4] rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
-              >
-                <Icon className="w-10 h-10 mb-4 text-gray-800" />
-                <h1 className="text-xl font-semibold">{feature?.title}</h1>
-                <p className="text-gray-500 mt-2">{feature?.desc}</p>
-              </Card>
-            );
-          })}
-        </div>
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, type: "tween" }}
+        >
+          <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredServices.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 100,
+                  }}
+                  className="p-6 flex flex-col items-center text-center bg-[#eaeef4] rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
+                >
+                  <Icon className="w-10 h-10 mb-4 text-gray-800" />
+                  <h1 className="text-xl font-semibold">{feature?.title}</h1>
+                  <p className="text-gray-500 mt-2">{feature?.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </section>
     </div>
   );

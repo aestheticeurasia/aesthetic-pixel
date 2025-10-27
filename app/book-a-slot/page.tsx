@@ -17,6 +17,7 @@ import {
   Cpu,
   Edit3,
   Smile,
+  EarthIcon,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -149,7 +150,12 @@ const BookASlot = () => {
     phone: "",
     email: "",
     bookingDate: "",
-    project: "",
+    company: "",
+    website: "",
+    angle: [] as string[],
+    retouching: "",
+    totalProjects: "",
+    remarks: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionMessage, setSubmissionMessage] = useState("");
@@ -192,7 +198,12 @@ const BookASlot = () => {
           sender_email: formData.email,
           phone: formData.phone,
           bookingDate: formData.bookingDate,
-          message: formData.project,
+          company: formData.company,
+          website: formData.website,
+          angle: formData.angle,
+          retouching: formData.retouching,
+          totalProjects: formData.totalProjects,
+          remarks: formData.remarks,
         }),
       });
       const result = await response.json();
@@ -440,18 +451,17 @@ const BookASlot = () => {
 
       {/* ---------- BOOKING FORM + FAQ ---------- */}
       <section id="booking" className="py-20 bg-gray-50">
-        <div className="container mx-auto max-w-5xl px-6">
+        <div className="container mx-auto max-w-8xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-            {/* Left: Form */}
+            {/* Form */}
             <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col h-full">
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-center">
                 Fast-Track Booking Inquiry
               </h3>
-              <p className="text-sm text-gray-600 mb-6">
+              <p className="text-sm text-gray-600 mb-6 text-center">
                 Fill in the details and we’ll get back to you within 24 hours.
               </p>
 
-              {/* ---------- FORM ---------- */}
               <form
                 onSubmit={handleSubmit}
                 className="space-y-4 flex flex-col flex-grow"
@@ -545,15 +555,130 @@ const BookASlot = () => {
                   </div>
                 </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Company Name
+                    </label>
+                    <Input
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Your Company"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Website URL
+                    </label>
+                    <div className="relative">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <EarthIcon className="h-5 w-5 text-gray-400" />
+                      </div>
+                      <Input
+                        type="string"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        placeholder="https://yourcompany.com"
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Preferred Angle
+                    </label>
+                    <div className="flex flex-wrap gap-4">
+                      {["Front", "Back", "Side", "Details"].map((angle) => (
+                        <label key={angle} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            name="angle"
+                            value={angle.toLowerCase()}
+                            checked={formData.angle?.includes(
+                              angle.toLowerCase()
+                            )}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const currentAngles = formData.angle || [];
+                              const updatedAngles = e.target.checked
+                                ? [...currentAngles, value]
+                                : currentAngles.filter((a) => a !== value);
+                              handleChange({
+                                target: { name: "angle", value: updatedAngles },
+                              });
+                            }}
+                            className="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                          />
+                          <span className="ml-2 text-sm text-gray-700">
+                            {angle}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Retouching Requirements
+                    </label>
+                    <div className="flex gap-4">
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name="retouching"
+                          value="yes"
+                          checked={formData.retouching === "yes"}
+                          onChange={handleChange}
+                          className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">Yes</span>
+                      </label>
+                      <label className="flex items-center">
+                        <input
+                          type="radio"
+                          name="retouching"
+                          value="no"
+                          checked={formData.retouching === "no"}
+                          onChange={handleChange}
+                          className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">No</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Total Projects
+                  </label>
+                  <div className="relative">
+                    <Input
+                      type="string"
+                      name="totalProjects"
+                      value={formData.totalProjects}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
                 <div className="flex-1 flex flex-col">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Project Details
+                    Remarks
                   </label>
                   <Textarea
-                    name="project"
-                    value={formData.project}
+                    name="remarks"
+                    value={formData.remarks}
                     onChange={handleChange}
-                    placeholder="Your Message..."
+                    placeholder="Remarks..."
                     rows={4}
                     className="flex-1"
                   />
@@ -605,8 +730,8 @@ const BookASlot = () => {
               </form>
             </div>
 
-            {/* Right: FAQ Accordion */}
-            <div className="flex flex-col h-full gap-4">
+            {/* Faq*/}
+            <div className="flex flex-col h-full gap-4 items-center justify-center">
               <h2 className="text-2xl font-bold mb-1">
                 Frequently Asked Questions
               </h2>
