@@ -30,6 +30,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import Marquee from "react-fast-marquee";
+import ServicesComponents from "./services";
 
 const brands = [
   "/aestheticIT.jpg",
@@ -261,76 +262,7 @@ export default function Banner() {
             Our Comprehensive Services
           </h2>
           <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
-            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <Image
-                  width={400}
-                  height={500}
-                  src="/service1.png"
-                  alt="Natural cosmetic product on a stone against a beige background"
-                  className="w-full object-cover"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <Image
-                  width={400}
-                  height={300}
-                  src="/service2.png"
-                  alt="Beauty product on a wooden swing surrounded by green heart-shaped leaves"
-                  className="w-full h-100 object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
-              <div className="bg-[#E84A5F] text-white h-full rounded-2xl p-8 flex flex-col justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <h3 className="text-2xl font-bold mb-3">
-                  HomeMade App And Web Development
-                </h3>
-                <p className="text-white/90 text-sm leading-relaxed mb-6">
-                  HomeMade is a website for culinary in Jakarta City. We use web
-                  for founding food place nearly. Make easy for imigrant in
-                  Jakarta to explore food there. Keep exploring your favourite
-                  foods and enjoy!
-                </p>
-                <a
-                  href="#"
-                  className="font-semibold text-white group inline-flex items-center"
-                >
-                  Read More
-                  <ArrowRight />
-                </a>
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <Image
-                  width={400}
-                  height={300}
-                  src="/service4.png"
-                  alt="Silver earrings resting on a large green leaf"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col gap-6 lg:gap-8 w-full md:w-1/3">
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <Image
-                  width={400}
-                  height={500}
-                  src="/service5.png"
-                  alt="Comfortable armchair in a tastefully decorated room with plants"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <Image
-                  width={400}
-                  height={500}
-                  src="/service6.png"
-                  alt="Before and after comparison of a photo retouching on a woman's portrait"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            <ServicesComponents />
           </div>
         </div>
       </section>
