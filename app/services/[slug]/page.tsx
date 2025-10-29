@@ -1,5 +1,4 @@
 "use client";
-import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { ChartNoAxesCombined, Clock2, Star, Truck } from "lucide-react";
@@ -13,6 +12,7 @@ interface Services {
   slug: string;
   desc: string;
   img: string;
+  sampleImg?: string[];
 }
 
 interface Props {
@@ -109,6 +109,23 @@ export default function ServiceDetails({ params }: Props) {
           />
         </motion.div>
       </section>
+      <section className="lg:py-[80px] px-6">
+        <h2 className="text-4xl font-bold text-center pb-20">More from this Service</h2>
+        <div className="flex flex-wrap justify-center gap-8">
+          {service?.sampleImg?.map((imgUrl, index) => (
+            <div key={index}>
+              <Image
+                src={imgUrl}
+                alt={`${service?.title || "Service image"} ${index + 1}`}
+                width={300}
+                height={200}
+                className="object-cover w-auto h-auto hover:scale-105 transition-transform duration-500 rounded-lg shadow-md"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
         <Marquee pauseOnHover={true} speed={90} direction="left">
           {brands.map((brand, index) => (

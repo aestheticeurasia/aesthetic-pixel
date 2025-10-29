@@ -51,22 +51,26 @@ const workSteps = [
   {
     number: "01",
     title: "YOUR ORDER",
-    description: "Place an order online and box up your items ready for collection",
+    description:
+      "Place an order online and box up your items ready for collection",
   },
   {
     number: "02",
     title: "WE COLLECT",
-    description: "Collection and delivery is free, just let us know where you are and what date you want your items collecting.",
+    description:
+      "Collection and delivery is free, just let us know where you are and what date you want your items collecting.",
   },
   {
     number: "03",
     title: "WE SHOOT",
-    description: "Our specialist team works their magic to make your products look amazing, with a quality guarantee on all your images.",
+    description:
+      "Our specialist team works their magic to make your products look amazing, with a quality guarantee on all your images.",
   },
   {
     number: "04",
     title: "WE DELIVER",
-    description: "We'll deliver your amazing new product photos and return your items back to you.",
+    description:
+      "We'll deliver your amazing new product photos and return your items back to you.",
   },
 ];
 
@@ -244,24 +248,24 @@ export default function Banner() {
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
         <Marquee pauseOnHover={true} speed={90} direction="left">
           {brands.map((brand, index) => (
-          <Image
-                src={brand}
-                alt={`Brand ${index + 1}`}
-                key={index}
-                width={199}
-                height={133}
-                className="w-[199px] h-[133px] object-contain"
-              />
+            <Image
+              src={brand}
+              alt={`Brand ${index + 1}`}
+              key={index}
+              width={199}
+              height={133}
+              className="w-[199px] h-[133px] object-contain"
+            />
           ))}
         </Marquee>
       </section>
-      {/* Services Section Pinterest Grid */}
-      <section className="bg-gray-50 font-sans py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+      {/* Services Section */}
+      <section className="bg-gray-50 font-sans py-16">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
             Our Comprehensive Services
           </h2>
-          <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
+          <div>
             <ServicesComponents />
           </div>
         </div>
