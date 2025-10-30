@@ -1,63 +1,9 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { motion, AnimatePresence } from "framer-motion";
-import { Loader2Icon, Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
-import { PhoneInput } from "../components/Phone-Input";
-import { toast } from "sonner";
+import { Mail, MapPin, Phone } from "lucide-react";
+import MainForm from "../components/MainForm";
 
 export default function Contact() {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
-  const [status, setStatus] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const form = new FormData();
-    form.append("access_key", "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd");
-    form.append("name", name);
-    form.append("email", email);
-    form.append("phone", phone);
-    form.append("message", message);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: form,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        toast.success("Message sent successfully!");
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
-      } else {
-        setStatus(result.message || "There was an error sending your message.");
-      }
-
-      setLoading(false);
-      setTimeout(() => setStatus(null), 5000);
-    } catch (error) {
-      console.error("Error:", error);
-      setStatus("An error occurred");
-      setLoading(false);
-      setTimeout(() => setStatus(null), 10000);
-    }
-  };
-
   return (
     <div className="container mx-auto p-4 lg:mt-15 mt-10">
       <Card className="bg-gradient-to-r from-gray-500 to-gray-700 text-white p-8 rounded-lg shadow-lg">
@@ -97,102 +43,12 @@ export default function Contact() {
 
         <div className="flex-1 flex">
           <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md w-full h-full flex flex-col justify-between">
-            <h2 className="text-2xl font-bold mb-6 text-center">
+            <h2 className="text-2xl font-bold text-center mt-5">
               Get in Touch
             </h2>
-
-            <form onSubmit={handleSubmit} className="flex flex-col justify-between h-full">
-              <div className="mb-4">
-                <Label htmlFor="name" className="mb-3">
-                  Your Name
-                </Label>
-                <Input
-                  required
-                  className="bg-white"
-                  id="name"
-                  placeholder="Enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-4">
-                <Label htmlFor="email" className="mb-3">
-                  Your Email
-                </Label>
-                <Input
-                  required
-                  className="bg-white"
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-4">
-                <Label htmlFor="phone" className="mb-3">
-                  Your Phone
-                </Label>
-                <PhoneInput
-                  required
-                  className="bg-white dark:bg-card rounded-md"
-                  id="phone"
-                  placeholder="Enter your phone number"
-                  value={phone}
-                  onChange={(value) => setPhone(value || "")}
-                />
-              </div>
-
-              <div className="mb-4 flex-1">
-                <Label htmlFor="message" className="mb-3">
-                  Your Message
-                </Label>
-                <Textarea
-                  required
-                  className="bg-white h-32"
-                  id="message"
-                  placeholder="Enter your message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-              </div>
-
-              <div className="mt-6 text-center">
-                <Button
-                  type="submit"
-                  className="btn btn-primary cursor-pointer transition-transform duration-150 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <span className="flex items-center justify-center">
-                      <Loader2Icon className="animate-spin font-bold" /> &nbsp;
-                      Sending...
-                    </span>
-                  ) : (
-                    <span className="flex items-center justify-center font-bold">
-                      <Send /> &nbsp; Send Message
-                    </span>
-                  )}
-                </Button>
-
-                <AnimatePresence>
-                  {status && (
-                    <motion.div
-                      key={status}
-                      className="text-center mt-5 overflow-hidden"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      <p className="font-bold">{status}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </form>
+            <div>
+              <MainForm />
+            </div>
           </Card>
         </div>
       </div>
