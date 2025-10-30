@@ -119,7 +119,7 @@ export default function ServiceDetails({ params }: Props) {
                 alt={`${service?.title || "Service image"} ${index + 1}`}
                 width={300}
                 height={200}
-                className="object-cover w-auto h-auto hover:scale-105 transition-transform duration-500 rounded-lg shadow-md"
+                className="object-cover w-auto h-auto hover:scale-150 transition-transform duration-900 rounded-lg shadow-md"
               />
             </div>
           ))}
@@ -135,7 +135,7 @@ export default function ServiceDetails({ params }: Props) {
               key={index}
               width={199}
               height={133}
-              className="w-[199px] h-[133px] object-contain"
+              className="w-[199px] h-[133px] object-contain hover:scale-150 transition-transform duration-900"
             />
           ))}
         </Marquee>

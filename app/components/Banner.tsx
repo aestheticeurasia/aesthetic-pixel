@@ -254,7 +254,7 @@ export default function Banner() {
               key={index}
               width={199}
               height={133}
-              className="w-[199px] h-[133px] object-contain"
+              className="w-[199px] h-[133px] object-contain hover:scale-150 transition-transform duration-900"
             />
           ))}
         </Marquee>
