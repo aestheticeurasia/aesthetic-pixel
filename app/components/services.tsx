@@ -41,9 +41,9 @@ export default function ServicesComponents() {
             <Image
               src={item.img}
               alt={item.title}
-              width={600}
+              width={400}
               height={400}
-              className={`object-cover group-hover:scale-110 w-full h-70 transition-transform duration-700 ${
+              className={`object-cover group-hover:scale-110  transition-transform duration-700 ${
                 openFeatureIndex === idx ? "scale-110" : ""
               }`}
             />
