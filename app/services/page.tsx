@@ -1,4 +1,4 @@
-import ServicesComponents from "../components/services";
+import ServicesComponents from "../components/ServiceCard";
 export default function Services() {
   return (
     <div className="container mx-auto p-6 mt-7">

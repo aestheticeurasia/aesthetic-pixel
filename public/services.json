@@ -1,4 +1,20 @@
 [
+   {
+    "title": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
+    "tag": "Product Photography",
+    "slug": "product-photography",
+    "desc": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
+    "img": "/servicesImg/Product-Photography/7-F.jpg",
+    "sampleImg": [
+      "/servicesImg/Product-Photography/1.jpg",
+      "/servicesImg/Product-Photography/2.jpg",
+      "/servicesImg/Product-Photography/3.jpg",
+      "/servicesImg/Product-Photography/4.jpg",
+      "/servicesImg/Product-Photography/5.jpg",
+      "/servicesImg/Product-Photography/6.jpg",
+      "/servicesImg/Product-Photography/7-F.jpg"
+    ]
+  },
   {
     "title": "Apparel & Garment Photography",
     "tag": "Apparel",
@@ -55,22 +71,6 @@
     "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
     "sampleImg": [
       "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
-    ]
-  },
-  {
-    "title": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
-    "tag": "Product-Photography",
-    "slug": "product-photography",
-    "desc": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
-    "img": "/servicesImg/Product-Photography/7-F.jpg",
-    "sampleImg": [
-      "/servicesImg/Product-Photography/1.jpg",
-      "/servicesImg/Product-Photography/2.jpg",
-      "/servicesImg/Product-Photography/3.jpg",
-      "/servicesImg/Product-Photography/4.jpg",
-      "/servicesImg/Product-Photography/5.jpg",
-      "/servicesImg/Product-Photography/6.jpg",
-      "/servicesImg/Product-Photography/7-F.jpg"
     ]
   }
 ]

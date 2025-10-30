@@ -1,10 +1,10 @@
 "use client";
+import BrandSlider from "@/app/components/BrandSlider";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { ChartNoAxesCombined, Clock2, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import { use, useEffect, useState } from "react";
-import Marquee from "react-fast-marquee";
 
 interface Services {
   title: string;
@@ -18,21 +18,6 @@ interface Services {
 interface Props {
   params: Promise<{ slug: string }>;
 }
-
-const brands = [
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-];
 
 const featuredServices = [
   {
@@ -110,7 +95,9 @@ export default function ServiceDetails({ params }: Props) {
         </motion.div>
       </section>
       <section className="lg:py-[80px] px-6">
-        <h2 className="text-4xl font-bold text-center pb-20">More from this Service</h2>
+        <h2 className="text-4xl font-bold text-center pb-20">
+          More from this Service
+        </h2>
         <div className="flex flex-wrap justify-center gap-8">
           {service?.sampleImg?.map((imgUrl, index) => (
             <div key={index}>
@@ -127,18 +114,7 @@ export default function ServiceDetails({ params }: Props) {
       </section>
 
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
-        <Marquee pauseOnHover={true} speed={90} direction="left">
-          {brands.map((brand, index) => (
-            <Image
-              src={brand}
-              alt={`Brand ${index + 1}`}
-              key={index}
-              width={199}
-              height={133}
-              className="w-[199px] h-[133px] object-contain hover:scale-150 transition-transform duration-900"
-            />
-          ))}
-        </Marquee>
+        <BrandSlider />
       </section>
       <section className="lg:py-[80px] py-10 px-6">
         <motion.div

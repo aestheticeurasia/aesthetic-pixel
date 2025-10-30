@@ -48,7 +48,7 @@ export default function ServicesComponents() {
               }`}
             />
 
-            <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+            <span className="absolute font-bold left-2 bottom-2 bg-black/70 text-white text-xl px-2 py-1 rounded">
               {item.tag}
             </span>
 

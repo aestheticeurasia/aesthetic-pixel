@@ -23,27 +23,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { toast } from "sonner";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import Marquee from "react-fast-marquee";
-import ServicesComponents from "./services";
+import ServicesComponents from "./ServiceCard";
 import MainForm from "./MainForm";
-
-const brands = [
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-  "/aestheticIT.jpg",
-  "/aestheticFashion.jpg",
-];
+import BrandSlider from "./BrandSlider";
 
 const workSteps = [
   {
@@ -188,20 +172,8 @@ export default function Banner() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   return (
     <div>
-      {/* Slider */}
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
-        <Marquee pauseOnHover={true} speed={90} direction="left">
-          {brands.map((brand, index) => (
-            <Image
-              src={brand}
-              alt={`Brand ${index + 1}`}
-              key={index}
-              width={199}
-              height={133}
-              className="w-[199px] h-[133px] object-contain hover:scale-150 transition-transform duration-900"
-            />
-          ))}
-        </Marquee>
+      <BrandSlider />
       </section>
       {/* Services Section */}
       <section className="bg-gray-50 font-sans py-16">
@@ -209,7 +181,7 @@ export default function Banner() {
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
             Our Comprehensive Services
           </h2>
-          <div>
+          <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
           </div>
         </div>
@@ -222,21 +194,13 @@ export default function Banner() {
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div className="relative flex items-center justify-center min-h-[450px]">
-              <Image
-                src="/gridBanner.png"
-                alt="Garments on chair"
-                width={350}
-                height={450}
-                className="absolute top-0 left-0 w-3/4 max-w-xs z-10"
-              />
-
+            <div className=" flex items-center justify-center">
               <Image
                 src="/gridBanner2.png"
                 alt="Photo studio"
-                width={400}
-                height={270}
-                className="absolute bottom-0 right-0 w-4/5 max-w-md rounded-lg shadow-xl border-4 md:border-8 border-white"
+                width={600}
+                height={370}
+                className="rounded-lg shadow-xl border-4 md:border-8 border-white"
               />
             </div>
 
