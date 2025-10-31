@@ -11,7 +11,7 @@ export default function GoBackButton() {
     <Button
       variant="ghost"
       onClick={() => router.back()}
-      className="flex items-center gap-2 font-bold cursor-pointer"
+      className="cursor-pointer"
     >
       <ArrowLeft size={16} />
     </Button>
