@@ -87,6 +87,12 @@ const faqItems = [
     answer:
       "We accept all standard image formats, including JPEG, PNG, TIFF, PSD, and various RAW formats from different cameras. We can deliver the final images in any format you require.",
   },
+  {
+    id: "item-6",
+    question: "What Kind Of Image Formats Do You Work With?",
+    answer:
+      "We accept all standard image formats, including JPEG, PNG, TIFF, PSD, and various RAW formats from different cameras. We can deliver the final images in any format you require.",
+  },
 ];
 
 const CogIcon = () => (
@@ -173,7 +179,7 @@ export default function Banner() {
   return (
     <div>
       <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
-      <BrandSlider />
+        <BrandSlider />
       </section>
       {/* Services Section */}
       <section className="bg-gray-50 font-sans py-16">
@@ -196,7 +202,7 @@ export default function Banner() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div className=" flex items-center justify-center">
               <Image
-                src="/gridBanner2.png"
+                src="/gridBanner.png"
                 alt="Photo studio"
                 width={600}
                 height={370}
@@ -396,27 +402,56 @@ export default function Banner() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions
           </h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full space-y-4 "
-            defaultValue="item-1"
-          >
-            {faqItems.map((item) => (
-              <AccordionItem
-                key={item.id}
-                value={item.id}
-                className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
+          <div className="grid grid-cols-1 gap-x-12 md:grid-cols-2">
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full space-y-4 col-span-1"
+              defaultValue="item-1"
+            >
+              {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map((item) => (
+                <AccordionItem
+                  key={item.id}
+                  value={item.id}
+                  className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
+                >
+                  <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="p-6 pt-0 text-gray-300">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            {faqItems.length > 1 && (
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full space-y-4 col-span-1"
               >
-                <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="p-6 pt-0 text-gray-300">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                {faqItems.slice(Math.ceil(faqItems.length / 2)).map(
+                  (
+                    item // Render the second half of items
+                  ) => (
+                    <AccordionItem
+                      key={item.id}
+                      value={item.id}
+                      className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
+                    >
+                      <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="p-6 pt-0 text-gray-300">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  )
+                )}
+              </Accordion>
+            )}
+          </div>
         </div>
       </section>
       <section className="bg-[#f8f7fa] py-16 md:py-24 relative overflow-hidden">

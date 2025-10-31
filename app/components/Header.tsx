@@ -40,10 +40,15 @@ export default function MainNav() {
   //   }
   // }, [pathName]);
 
-  const isActive = (path: string) => pathName === path;
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return pathName === "/"; 
+    }
+    return pathName.startsWith(path); 
+  };
 
   useEffect(() => {
-    if (!isHome) return; 
+    if (!isHome) return;
 
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
