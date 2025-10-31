@@ -5,6 +5,7 @@ import {
   Mail,
   MessageCircle,
   Phone,
+  Settings,
   Star,
   User,
 } from "lucide-react";
@@ -274,9 +275,9 @@ export default function Banner() {
                   />
                 </div>
 
-                <div className="bg-red-600 rounded-br-lg flex items-center justify-center p-4 space-x-3 shadow-lg">
-                  <div className="flex-shrink-0">
-                    <CogIcon />
+                <div className="bg-red-600 rounded-br-lg flex items-center justify-center p-4 space-x-6 shadow-lg">
+                  <div className="text-white">
+                    <Settings size={50} />
                   </div>
                   <div className="text-white">
                     <p className="text-3xl lg:text-4xl font-bold">25+</p>
