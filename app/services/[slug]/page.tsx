@@ -1,5 +1,6 @@
 "use client";
 import BrandSlider from "@/app/components/BrandSlider";
+import GoBackButton from "@/app/components/GoBackButton";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { ChartNoAxesCombined, Clock2, Star, Truck } from "lucide-react";
@@ -58,8 +59,24 @@ export default function ServiceDetails({ params }: Props) {
     };
     fetchService();
   }, [slug]);
-
-  if (!service) return <p className="text-center mt-10">Services not found.</p>;
+  if (!service) {
+    return (
+      <div className="container mx-auto">
+        <div className="mt-10">
+          <GoBackButton />
+        </div>
+        <div className="flex flex-col text-center">
+          <h1 className="text-3xl font-semibold mt-6 text-gray-700 dark:text-gray-200">
+            Service Not Found
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 px-3">
+            The service you’re looking for doesn’t exist or may have been
+            removed.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container max-w-full">
@@ -94,10 +111,11 @@ export default function ServiceDetails({ params }: Props) {
           />
         </motion.div>
       </section>
-      <section className="lg:py-[80px] px-6">
-        <h2 className="text-4xl font-bold text-center pb-20">
-          More from this Service
-        </h2>
+      <section className="lg:py-[80px] px-6 pt-20">
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-10 text-black text-center landing-page-title-font transition-all duration-300 hover:tracking-widest">
+          Work{" "}
+          <span className="text-red-600 landing-page-title-font">Samples</span>
+        </h1>
         <div className="flex flex-wrap justify-center gap-8">
           {service?.sampleImg?.map((imgUrl, index) => (
             <div key={index}>
@@ -138,7 +156,7 @@ export default function ServiceDetails({ params }: Props) {
                     type: "spring",
                     stiffness: 100,
                   }}
-                  className="p-6 flex flex-col items-center text-center bg-[#eaeef4] rounded-sm shadow-md hover:shadow-xl transition-shadow duration-300"
+                  className="p-6 flex flex-col items-center text-center bg-[#eaeef4] rounded-sm shadow-md hover:shadow-xl hover:text-red-700 transition-shadow duration-300"
                 >
                   <Icon className="w-10 h-10 mb-4 text-gray-800" />
                   <h1 className="text-xl font-semibold">{feature?.title}</h1>

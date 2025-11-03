@@ -1,11 +1,10 @@
 "use client";
-import { Card } from "@/components/ui/card";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { ArrowRight, Clock, MessageCircle, User } from "lucide-react";
+import { ArrowRight, Clock, User } from "lucide-react";
 
 // Define the Blog type
 interface Author {

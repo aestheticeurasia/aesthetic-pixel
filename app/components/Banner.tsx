@@ -4,7 +4,6 @@ import {
   Check,
   Clock,
   Mail,
-  MessageCircle,
   Phone,
   Settings,
   Star,
