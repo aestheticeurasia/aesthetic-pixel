@@ -1,6 +1,7 @@
 "use client";
 import BrandSlider from "@/app/components/BrandSlider";
 import GoBackButton from "@/app/components/GoBackButton";
+import { Spinner } from "@/components/ui/spinner";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { ChartNoAxesCombined, Clock2, Star, Truck } from "lucide-react";
@@ -46,19 +47,31 @@ const featuredServices = [
 export default function ServiceDetails({ params }: Props) {
   const { slug } = use(params);
   const [service, setService] = useState<Services | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchService = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get<Services[]>("/services.json");
         const found = data.find((s) => s.slug === slug) || null;
         setService(found);
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
     fetchService();
   }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner className="size-8" />
+      </div>
+    );
+  }
   if (!service) {
     return (
       <div className="container mx-auto">
