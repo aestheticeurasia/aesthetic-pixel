@@ -2,6 +2,7 @@
 import {
   ArrowRight,
   Check,
+  Clock,
   Mail,
   MessageCircle,
   Phone,
@@ -29,6 +30,7 @@ import axios from "axios";
 import ServicesComponents from "./ServiceCard";
 import MainForm from "./MainForm";
 import BrandSlider from "./BrandSlider";
+import dayjs from "dayjs";
 
 const workSteps = [
   {
@@ -96,23 +98,6 @@ const faqItems = [
   },
 ];
 
-const CogIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-10 h-10 text-white"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m0 0V3m0 0V2.25m0 0C10.995 2.25 10.125 3.124 10.125 4.125v6.75C10.125 11.875 10.995 12.75 12 12.75m0 0v6.75m0 0c1.005 0 1.875.874 1.875 1.875V21.75m0 0c0 .93-.87 1.687-1.875 1.687m-1.875-1.688V19.5m-1.875 1.688c-.93 0-1.687-.87-1.687-1.875m0 0v-6.75m0 0c-.93 0-1.687-.87-1.687-1.875V3.75m0 0c0-1.005.87-1.875 1.875-1.875M12 2.25v1.5m0 16.5v1.5m0 0c1.005 0 1.875.874 1.875 1.875V21.75m0 0c0 .93-.87 1.687-1.875 1.687m-1.875-1.688V19.5m-1.875 1.688c-.93 0-1.687-.87-1.687-1.875m0 0v-6.75m0 0c-.93 0-1.687-.87-1.687-1.875V3.75m0 0c0-1.005.87-1.875 1.875-1.875"
-    />
-  </svg>
-);
-
 const features = [
   "Turn Your Ordinary Product Into Extraordinary Photos",
   "Stronger Customer Connection Through Impactful Visuals.",
@@ -123,7 +108,7 @@ const testimonials = [
     rating: 5,
     text: "I have been taking gym and fitness training here since a long time and I found here so much easy, comfort and flexibility. The mentors are so good and they train me very well.",
     author: {
-      name: "Jhon Stokes",
+      name: "Maria Clayer",
       title: "Founder",
       imageSrc: "/client1.svg",
     },
@@ -132,7 +117,7 @@ const testimonials = [
     rating: 5,
     text: "I have been taking gym and fitness training here since a long time and I found here so much easy, comfort and flexibility. The mentors are so good and they train me very well.",
     author: {
-      name: "Jhon Stokes",
+      name: "Leonard Cooper",
       title: "Founder",
       imageSrc: "/client2.svg",
     },
@@ -296,12 +281,11 @@ export default function Banner() {
                 With APS
               </h2>
 
-              <p className="mt-4 text-gray-700">
+              <p className="mt-4 text-gray-700 text-justify">
                 We are just a step away from you. Our photography services are
                 designed to bring out the best in your product photos. Along
                 with the latest
-              </p>
-              <p className="mt-4 text-sm text-gray-600">
+             
                 technology and techniques, our experienced photographer and
                 in-house expert retouching team ensure your product photo looks
                 its best, delivering exceptional results for your business.
@@ -580,15 +564,16 @@ export default function Banner() {
                         )}
                       </div>
                       <div className="p-6 flex flex-col flex-grow">
-                        <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                        <div className="flex items-center justify-between space-x-4 text-sm text-gray-600 mb-4">
                           <div className="flex items-center gap-1.5">
-                            {/* Replaced UserIcon */}
                             <User className="w-4 h-4" />
                             <span>By {blog.author.name}</span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <MessageCircle className="w-4 h-4" />
-                            <span>1 Comment</span>
+                            <Clock className="w-4 h-4" />
+                            <span>
+                              {dayjs(blog.publishedAt).format("MMM D, YYYY")}
+                            </span>
                           </div>
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -606,7 +591,7 @@ export default function Banner() {
                           href={`/blog/${blog.slug}`}
                           className="inline-flex items-center text-red-600 font-semibold mt-6 hover:text-red-700 transition-colors"
                         >
-                          Learn More
+                          Read More
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </a>
                       </div>
