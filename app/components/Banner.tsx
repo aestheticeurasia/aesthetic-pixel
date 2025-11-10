@@ -30,6 +30,7 @@ import ServicesComponents from "./ServiceCard";
 import MainForm from "./MainForm";
 import BrandSlider from "./BrandSlider";
 import dayjs from "dayjs";
+import Link from "next/link";
 
 const workSteps = [
   {
@@ -283,11 +284,10 @@ export default function Banner() {
               <p className="mt-4 text-gray-700 text-justify">
                 We are just a step away from you. Our photography services are
                 designed to bring out the best in your product photos. Along
-                with the latest
-             
-                technology and techniques, our experienced photographer and
-                in-house expert retouching team ensure your product photo looks
-                its best, delivering exceptional results for your business.
+                with the latest technology and techniques, our experienced
+                photographer and in-house expert retouching team ensure your
+                product photo looks its best, delivering exceptional results for
+                your business.
               </p>
 
               <ul className="mt-6 space-y-3">
@@ -303,13 +303,13 @@ export default function Banner() {
                 ))}
               </ul>
 
-              <a
-                href="#"
+              <Link
+                href="/services"
                 className="mt-8 inline-flex items-center bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
               >
                 Discover More
                 <ArrowRight />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -371,13 +371,13 @@ export default function Banner() {
           </div>
 
           <div className="text-center mt-12">
-            <a
-              href="#"
+            <Link
+              href="/portfolio"
               className="inline-flex items-center bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
             >
               Discover More
               <ArrowRight />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
