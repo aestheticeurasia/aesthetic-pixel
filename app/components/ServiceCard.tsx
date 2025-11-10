@@ -1,4 +1,5 @@
 "use client";
+import { Spinner } from "@/components/ui/spinner";
 import axios from "axios";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -15,13 +16,18 @@ interface Services {
 export default function ServicesComponents() {
   const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
   const [services, setServices] = useState<Services[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getAllServices = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get("/services.json");
       setServices(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,7 +35,12 @@ export default function ServicesComponents() {
     getAllServices();
   }, []);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div>
+    {
+      loading ? (
+        <Spinner className="size-8 mx-auto" />
+      ):(
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((item, idx) => (
         <Link key={item.slug} href={`/services/${item.slug}`}>
           <div
@@ -72,5 +83,8 @@ export default function ServicesComponents() {
         </Link>
       ))}
     </div>
+      )
+    }
+  </div>
   );
 }

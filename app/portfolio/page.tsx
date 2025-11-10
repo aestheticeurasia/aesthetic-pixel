@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/styles.min.css";
+import { Spinner } from "@/components/ui/spinner";
 
 // TypeScript type for portfolio items
 interface PortfolioItem {
@@ -21,24 +22,26 @@ interface PortfolioItem {
 export default function Portfolio() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Fetch portfolio JSON from public folder
   const getPortfolioItems = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get<PortfolioItem[]>("/portfolioItems.json");
       setPortfolioItems(data);
+      setLoading(false);
       if (data.length > 0) setActiveCategory(data[0].category);
     } catch (error) {
       console.error("Error fetching portfolio items:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getPortfolioItems();
   }, []);
-
-  if (!portfolioItems.length)
-    return <p className="text-center mt-10">Loading...</p>;
 
   const activeImages =
     portfolioItems.find((item) => item.category === activeCategory)?.images ||
@@ -47,8 +50,11 @@ export default function Portfolio() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-center my-10">Our Portfolio</h1>
-      {/* Category Buttons */}
-      <div className="flex flex-wrap justify-center gap-3 mb-6">
+     {
+      loading? (
+        <Spinner className="size-8 m-auto" />
+      ):(<>
+         <div className="flex flex-wrap justify-center gap-3 mb-6">
         {portfolioItems.map((item) => (
           <button
             key={item.category}
@@ -64,7 +70,6 @@ export default function Portfolio() {
           </button>
         ))}
       </div>
-      {/* Images Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {activeImages.map((image) => (
           <div
@@ -98,7 +103,8 @@ export default function Portfolio() {
             </Dialog>
           </div>
         ))}
-      </div>
+      </div></>)
+     }
     </div>
   );
 }
