@@ -69,7 +69,7 @@ export default function RootLayout({
           <main
             className={`${
               !isHome && !isHeaderHidden ? "pt-24" : ""
-            } w-full min-h-[200vh]`}
+            } w-full min-h-[100vh]`}
           >
             {children}
           </main>

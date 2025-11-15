@@ -101,7 +101,7 @@ export default function ServiceDetails({ params }: Props) {
           transition={{ duration: 1.5, delay: 1 * 0.2, type: "spring" }}
           className="w-full md:max-w-1/2 px-4 md:px-10 mt-10 md:mt-0"
         >
-          <h1 className="text-4xl md:text-7xl font-bold text-center md:text-start leading-snug bg-gradient-to-tr from-gray-900 to-gray-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl font-bold text-center md:text-start leading-snug ">
             {service?.title}
           </h1>
           <p className="text-lg mt-6 md:mt-10 text-center md:text-start w-full md:max-w-3/4 mx-auto md:mx-0 text-gray-500">

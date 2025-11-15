@@ -6,9 +6,6 @@ import MainForm from "../components/MainForm";
 export default function Contact() {
   return (
     <div className="container mx-auto p-4 lg:mt-15 mt-10">
-      <Card className="bg-gradient-to-r from-gray-500 to-gray-700 text-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-center">Contact Us</h1>
-      </Card>
       <div className="flex flex-col md:flex-row gap-8 mt-8 md:h-[600px]">
         <div className="flex-1 flex flex-col gap-5">
           <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md h-1/2">

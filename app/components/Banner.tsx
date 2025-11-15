@@ -6,7 +6,6 @@ import {
   Mail,
   Phone,
   Settings,
-  Star,
   User,
 } from "lucide-react";
 import Image from "next/image";
@@ -27,10 +26,31 @@ import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ServicesComponents from "./ServiceCard";
-import MainForm from "./MainForm";
 import BrandSlider from "./BrandSlider";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { FaStar } from "react-icons/fa";
+import BookASlotForm from "./BookASlotForm";
+
+interface Author {
+  id: string;
+  name: string;
+  profileUrl: string;
+}
+
+interface Blog {
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  coverImage: string;
+  tags: string[];
+  author: Author;
+  isPublished: boolean;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 const workSteps = [
   {
@@ -103,10 +123,11 @@ const features = [
   "Stronger Customer Connection Through Impactful Visuals.",
   "Our Photography Style Drives Your Business Sales",
 ];
+
 const testimonials = [
   {
     rating: 5,
-    text: "I have been taking gym and fitness training here since a long time and I found here so much easy, comfort and flexibility. The mentors are so good and they train me very well.",
+    text: "Amazing experience! The team was professional and the photos turned out fantastic. Highly recommend their services for anyone looking to enhance their product images.",
     author: {
       name: "Maria Clayer",
       title: "Founder",
@@ -115,7 +136,7 @@ const testimonials = [
   },
   {
     rating: 5,
-    text: "I have been taking gym and fitness training here since a long time and I found here so much easy, comfort and flexibility. The mentors are so good and they train me very well.",
+    text: "Amazing experience! The team was professional and the photos turned out fantastic. Highly recommend their services for anyone looking to enhance their product images.",
     author: {
       name: "Leonard Cooper",
       title: "Founder",
@@ -124,25 +145,7 @@ const testimonials = [
   },
 ];
 
-interface Author {
-  id: string;
-  name: string;
-  profileUrl: string;
-}
-
-interface Blog {
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  coverImage: string;
-  tags: string[];
-  author: Author;
-  isPublished: boolean;
-  publishedAt: string;
-  createdAt: string;
-  updatedAt: string;
-}
+const carouselImages = ["/heroBg.png", "/gridBanner.png", "/product.jpg"];
 
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -162,17 +165,65 @@ export default function Banner() {
 
   //carousel play
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+
+  const heroPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
+
+  // scroll to booking form
+  const scrollToBooking = () => {
+    const el = document.getElementById("booking");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div>
-      <section className="lg:py-[80px] py-10 px-6 bg-[#f8f7fa] dark:bg-black">
-        <BrandSlider />
+      {/* Hero */}
+      <section className="h-screen bg-transparent md:bg-transparent flex flex-col items-center text-center justify-center pb-10 md:pb-0 relative">
+        
+        <Carousel
+          plugins={[heroPlugin.current]}
+          className="absolute inset-0 w-full h-full z-0"
+        >
+          <CarouselContent className="h-full">
+            {carouselImages.map((src, index) => (
+              <CarouselItem key={index} className="h-screen relative">
+                <Image
+                  fill
+                  alt="hero bg"
+                  src={src}
+                  className="object-cover" 
+                  priority={index === 0}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        <div className="absolute inset-0 w-full h-full bg-black/40 z-5" />
+        <div className="lg:mt-[250px] relative z-10">
+          <h1 className="text-white text-4xl md:text-6xl font-bold mt-2">
+            Creative Imagery With
+            <br />
+            Flawless Photography
+          </h1>
+          <p className="text-white max-w-md mt-4 text-md mx-auto text-center">
+            Our expert team blends precise product photography with innovative
+            retouching and exact color matching, delivering images that exceed
+            your expectations.
+          </p>
+          <button
+            onClick={scrollToBooking}
+            className="mt-6 md:mt-8 bg-red-500 text-white py-3 px-5 md:py-4 md:px-6 font-bold hover:bg-red-600 transition-colors rounded-md cursor-pointer text-sm md:text-base"
+          >
+            Get Started <ArrowRight className="inline-block ml-2" size={18} />
+          </button>
+        </div>
       </section>
+
       {/* Services Section */}
       <section className="bg-gray-50 font-sans py-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-            Our Comprehensive Services
-          </h2>
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
           </div>
@@ -181,10 +232,12 @@ export default function Banner() {
       {/* Works Steps Section */}
       <section className="bg-[#f8f7fa] py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-16 text-center text-gray-800">
-            Simple Steps of Work
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
+            Simple Steps of{" "}
+            <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
+              Work
+            </span>
           </h1>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div className=" flex items-center justify-center">
               <Image
@@ -265,7 +318,7 @@ export default function Banner() {
                     <Settings size={50} />
                   </div>
                   <div className="text-white">
-                    <p className="text-3xl lg:text-4xl font-bold">25+</p>
+                    <p className="text-3xl lg:text-4xl font-bold">5+</p>
                     <p className="text-xs lg:text-sm font-medium">
                       Years Experience
                     </p>
@@ -316,14 +369,17 @@ export default function Banner() {
       </section>
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            See Our Portfolios
-          </h2>
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
+            See Our{" "}
+            <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
+              Portfolios
+            </span>
+          </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            <div className="md:col-span-1 md:row-span-2">
+            <div className="md:col-span-1 md:row-span-3">
               <Image
-                src="/portfolioB1.png"
-                alt="Woman with headset working"
+                src="/homePortfolio/singleModel.jpg"
+                alt="Single Model"
                 width={400}
                 height={600}
                 className="w-full h-full object-cover rounded-lg shadow-md"
@@ -331,8 +387,8 @@ export default function Banner() {
             </div>
             <div>
               <Image
-                src="/portfolioB2.png"
-                alt="Man in Puma hoodie"
+                src="/homePortfolio/coupleModel.jpg"
+                alt="Couple Model"
                 width={300}
                 height={300}
                 className="w-full h-full object-cover rounded-lg shadow-md"
@@ -341,8 +397,8 @@ export default function Banner() {
 
             <div>
               <Image
-                src="/portfolioB3.png"
-                alt="Product on orange background"
+                src="/homePortfolio/Sweetshirt.jpg"
+                alt="Sweetshirt"
                 width={300}
                 height={300}
                 className="w-full h-auto object-cover rounded-lg shadow-md"
@@ -351,8 +407,8 @@ export default function Banner() {
 
             <div>
               <Image
-                src="/portfolioB4.png"
-                alt="Pink sofa in living room"
+                src="/homePortfolio/Bags.jpg"
+                alt="Bags"
                 width={300}
                 height={300}
                 className="w-full h-full object-cover rounded-lg shadow-md"
@@ -361,8 +417,26 @@ export default function Banner() {
 
             <div>
               <Image
-                src="/portfolioB5.png"
-                alt="Cocktail glass with lemons in blue room"
+                src="/homePortfolio/Shoe.jpg"
+                alt="Shoe"
+                width={300}
+                height={300}
+                className="w-full h-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div>
+              <Image
+                src="/homePortfolio/Headphone.jpg"
+                alt="Headphone"
+                width={300}
+                height={300}
+                className="w-full h-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div>
+              <Image
+                src="/homePortfolio/Watch.jpg"
+                alt="Watch"
                 width={300}
                 height={300}
                 className="w-full h-auto object-cover rounded-lg shadow-md"
@@ -449,7 +523,7 @@ export default function Banner() {
                 <div className="w-full bg-white rounded-lg p-8 shadow-sm relative">
                   <div className="flex space-x-1 text-red-400">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} />
+                      <FaStar key={i} />
                     ))}
                   </div>
                   <p className="mt-4 text-gray-600 leading-relaxed">
@@ -516,8 +590,8 @@ export default function Banner() {
             </div>
 
             {/* --- Contact Form --- */}
-            <div>
-              <MainForm />
+            <div id="booking">
+              <BookASlotForm />
             </div>
           </div>
         </div>

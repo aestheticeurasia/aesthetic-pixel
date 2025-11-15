@@ -92,7 +92,7 @@ export default function MainNav() {
               href="/"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -104,7 +104,7 @@ export default function MainNav() {
               href="/about"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/about")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -116,7 +116,7 @@ export default function MainNav() {
               href="/services"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/services")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -216,7 +216,7 @@ export default function MainNav() {
               href="/portfolio"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/portfolio")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -228,7 +228,7 @@ export default function MainNav() {
               href="/contact"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/contact")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -240,7 +240,7 @@ export default function MainNav() {
               href="/blog"
               className={`py-2 px-3 rounded-lg ${
                 isActive("/blog")
-                  ? "bg-primary text-white dark:text-black"
+                  ? "bg-destructive text-white dark:text-black"
                   : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
             >
@@ -253,7 +253,7 @@ export default function MainNav() {
             <Link href="/studio-rent" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="secondary"
-                className="cursor-pointer text-black dark:text-white font-bold"
+                className="cursor-pointer text-black dark:text-white font-bold text-lg"
               >
                 Rent Studio
               </Button>
@@ -263,7 +263,7 @@ export default function MainNav() {
             <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="destructive"
-                className="cursor-pointer text-white font-bold"
+                className="cursor-pointer text-white font-bold text-lg"
               >
                 Book a Slot
               </Button>
@@ -295,7 +295,7 @@ export default function MainNav() {
                       href="/"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -309,7 +309,7 @@ export default function MainNav() {
                       href="/about"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/about")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -412,7 +412,7 @@ export default function MainNav() {
                       href="/services"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/services")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -426,7 +426,7 @@ export default function MainNav() {
                       href="/portfolio"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/portfolio")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -440,7 +440,7 @@ export default function MainNav() {
                       href="/contact"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/contact")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -454,7 +454,7 @@ export default function MainNav() {
                       href="/blog"
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/blog")
-                          ? "bg-primary mx-5 text-white dark:text-black"
+                          ? "bg-destructive mx-5 text-white dark:text-black"
                           : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >

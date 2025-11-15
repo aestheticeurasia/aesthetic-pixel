@@ -1,7 +1,31 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import CountUp from 'react-countup';
+import Image from "next/image";
+import CountUp from "react-countup";
+
+const apsTeam = [
+  {
+    name: "Abid Hasan Neil",
+    role: "CEO",
+    imageUrl: "/apsTeam/abidHasan.jpg",
+  },
+  {
+    name: "Jamirul Islam",
+    role: "COO",
+    imageUrl: "/apsTeam/jamirulIslam.jpg",
+  },
+  {
+    name: "MD Ashaduzzaman",
+    role: "Director",
+    imageUrl: "/apsTeam/mdAshaduzzaman.jpg",
+  },
+  {
+    name: "Nazmus Sakib",
+    role: "Lead Photographer",
+    imageUrl: "/apsTeam/nazmusSakib.jpg",
+  },
+];
 
 export default function AboutPage() {
   const pathData = "M2 2 H238 V78 H2 Z";
@@ -15,7 +39,7 @@ export default function AboutPage() {
 
   return (
     <div className="container mx-auto p-6 mt-7">
-      <div className=" text-center items-center justify-center flex flex-col">
+      <section className=" text-center items-center justify-center flex flex-col">
         <div className="relative mb-10 w-60 h-20 rounded-xl overflow-hidden shadow-md">
           <div className="absolute inset-0 bg-muted rounded-xl z-0"></div>
 
@@ -47,7 +71,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-snug bg-gradient-to-tr from-primary to-secondary bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-5xl font-bold leading-snug">
             We are a photography studio
             <br />
             producing high-quality images that
@@ -65,7 +89,8 @@ export default function AboutPage() {
             >
               <Card className="p-10 bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl rounded-2xl hover:scale-105 hover:shadow-2xl transition-transform duration-300">
                 <h1 className="text-6xl font-extrabold text-gray-100">
-                  <CountUp end={parseInt(stat.value)} duration={6.75} />{stat.value.includes('+') ? '+' : ''}
+                  <CountUp end={parseInt(stat.value)} duration={6.75} />
+                  {stat.value.includes("+") ? "+" : ""}
                 </h1>
                 <h3 className="mt-3 text-xl font-semibold text-gray-200">
                   {stat.label}
@@ -74,7 +99,38 @@ export default function AboutPage() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </section>
+      <section className="mt-30">
+        <h1 className="text-3xl md:text-5xl font-bold leading-snug text-center">
+          Our Team
+        </h1>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {apsTeam.map((member, index) => (
+            <div key={index} className="flex flex-col items-center p-4">
+              <Image
+                src={member?.imageUrl}
+                alt={member?.name}
+                width={250}
+                height={250}
+                className="rounded-lg object-cover"
+              />
+              <h2 className="mt-4 text-xl font-semibold">{member?.name}</h2>
+              <p className="text-gray-500">{member?.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+       <section className="w-full container mx-auto px-4 mt-10">
+        <div className="relative w-full pb-[56.25%]">
+          <iframe
+            className="absolute top-0 left-0 h-full w-full rounded-lg"
+            src="https://drive.google.com/file/d/1X4bFfzbGZR2k2f9vAs77zBpJoiPP0PEO/preview"
+            title="Drive video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </section>
     </div>
   );
 }

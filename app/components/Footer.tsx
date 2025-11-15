@@ -113,7 +113,7 @@ export default function Footer() {
                     <FaFacebookSquare />
                   </a>
                   <a
-                    href="https://youtube.com"
+                    href="https://www.youtube.com/@AestheticPixelStudioLLC"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-red-600 transition-colors duration-300"

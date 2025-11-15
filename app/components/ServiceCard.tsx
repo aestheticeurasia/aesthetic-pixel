@@ -35,56 +35,60 @@ export default function ServicesComponents() {
     getAllServices();
   }, []);
   return (
-  <div>
-    {
-      loading ? (
+    <div>
+      <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
+        Our{" "}
+        <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
+          Services
+        </span>
+      </h1>
+      {loading ? (
         <Spinner className="size-8 mx-auto" />
-      ):(
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map((item, idx) => (
-        <Link key={item.slug} href={`/services/${item.slug}`}>
-          <div
-            className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
-            onClick={() =>
-              setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
-            }
-          >
-            <Image
-              src={item.img}
-              alt={item.title}
-              width={400}
-              height={400}
-              className={`object-cover group-hover:scale-110  transition-transform duration-700 ${
-                openFeatureIndex === idx ? "scale-110" : ""
-              }`}
-            />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((item, idx) => (
+            <Link key={item.slug} href={`/services/${item.slug}`}>
+              <div
+                className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
+                onClick={() =>
+                  setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
+                }
+              >
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={400}
+                  height={400}
+                  className={`object-cover group-hover:scale-110  transition-transform duration-700 ${
+                    openFeatureIndex === idx ? "scale-110" : ""
+                  }`}
+                />
 
-            <span className="absolute font-bold left-2 bottom-2 bg-black/70 text-white text-xl px-2 py-1 rounded">
-              {item.tag}
-            </span>
+                <span className="absolute font-bold left-2 bottom-2 bg-black/70 text-white text-xl px-2 py-1 rounded group-hover:hidden">
+                  {item.tag}
+                </span>
 
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
-              <span className="text-white text-lg font-bold tracking-wide flex items-center hover:text-gray-300">
-                View More <ArrowRightIcon className="inline-block" />
-              </span>
-            </div>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
+                  <span className="text-white text-lg font-bold tracking-wide flex items-center hover:text-gray-300">
+                    View More <ArrowRightIcon className="inline-block" />
+                  </span>
+                </div>
 
-            <div
-              className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
-                openFeatureIndex === idx
-                  ? "translate-y-[5%]"
-                  : "translate-y-full"
-              } group-hover:translate-y-[5%]`}
-            >
-              <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-              <p className="text-sm text-gray-200">{item.desc}</p>
-            </div>
-          </div>
-        </Link>
-      ))}
+                <div
+                  className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
+                    openFeatureIndex === idx
+                      ? "translate-y-[5%]"
+                      : "translate-y-full"
+                  } group-hover:translate-y-[5%]`}
+                >
+                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-200">{item.desc}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
-      )
-    }
-  </div>
   );
 }
