@@ -137,7 +137,7 @@ export default function ServiceDetails({ params }: Props) {
                 alt={`${service?.title || "Service image"} ${index + 1}`}
                 width={300}
                 height={200}
-                className="object-cover w-auto h-auto hover:scale-150 transition-transform duration-900 rounded-lg shadow-md"
+                className="object-cover  hover:scale-150 transition-transform duration-900 rounded-lg shadow-md"
               />
             </div>
           ))}
