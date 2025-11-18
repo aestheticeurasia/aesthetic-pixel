@@ -124,8 +124,8 @@ export default function AboutPage() {
         <div className="relative w-full pb-[56.25%]">
           <iframe
             className="absolute top-0 left-0 h-full w-full rounded-lg"
-            src="https://drive.google.com/file/d/1X4bFfzbGZR2k2f9vAs77zBpJoiPP0PEO/preview"
-            title="Drive video player"
+            src="https://www.youtube.com/embed/3fQPBoDUpik?si=7nR6MSC1lSLfwXRg" 
+            title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>

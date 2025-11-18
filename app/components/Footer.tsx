@@ -7,7 +7,7 @@ import HideOnRoutes from "./HideOnRoutes";
 export default function Footer() {
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
-      <div className="relative">
+      <div className="relative mt-10">
         <section className="relative z-10 bg-red-600 py-15 grid grid-cols-1 md:grid-cols-2 mx-4 md:mx-auto md:max-w-screen-md lg:max-w-screen-lg xl:max-w-7xl rounded-xl gap-8 px-4 md:px-9">
           <div className="flex justify-center md:justify-start">
             <div className="flex flex-col items-center space-y-6">
