@@ -319,7 +319,7 @@ export default function Banner() {
       </section>
 
       {/* Services Section */}
-      <section className="font-sans py-16">
+      <section className="font-sans">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
