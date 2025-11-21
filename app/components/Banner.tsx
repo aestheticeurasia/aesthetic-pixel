@@ -448,7 +448,7 @@ export default function Banner() {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg leading-tight">
-                    We're In This Business Since 2020 & We Provide Best
+                    We&apos;re In This Business Since 2020 & We Provide Best
                     Services.
                   </h4>
                 </div>
@@ -677,7 +677,7 @@ export default function Banner() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Our Client's <span className="text-red-500">Testimonial</span>
+              Our Client&apos;s <span className="text-red-500">Testimonial</span>
             </h2>
 
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
