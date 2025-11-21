@@ -63,14 +63,34 @@
       "/servicesImg/Furniture-Photography/2-F.jpg"
     ]
   },
-  {
-    "title": "Photo Retouching",
-    "tag": "Retouching",
-    "slug": "photo-retouching",
-    "desc": "Concept, styling and art direction to fit your brand voice.",
-    "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
-    "sampleImg": [
-      "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
-    ]
-  }
+    {
+      "title": "Photo Retouching",
+      "tag": "Retouching",
+      "slug": "photo-retouching",
+      "desc": "Concept, styling and art direction to fit your brand voice.",
+      "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
+      "sampleImg": [
+        "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
+      ]
+    },
+    {
+      "title": "Photo Retouching",
+      "tag": "Retouching",
+      "slug": "photo-retouching",
+      "desc": "Concept, styling and art direction to fit your brand voice.",
+      "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
+      "sampleImg": [
+        "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
+      ]
+    },
+    {
+      "title": "Photo Retouching",
+      "tag": "Retouching",
+      "slug": "photo-retouching",
+      "desc": "Concept, styling and art direction to fit your brand voice.",
+      "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
+      "sampleImg": [
+        "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
+      ]
+    }
 ]

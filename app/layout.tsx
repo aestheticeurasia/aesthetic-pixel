@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { Toaster } from "sonner";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { Bebas_Neue } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400", // Bebas Neue has only one weight
+  variable: "--font-bebas",
 });
 
 export default function RootLayout({
@@ -27,7 +33,7 @@ export default function RootLayout({
   const isHeaderHidden = hiddenHeaderRoutes.includes(pathname);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={bebas.variable}>
       <head>
         <title>Aesthetic Pixel Studio LLC</title>
         <link rel="manifest" href="/manifest.json" />

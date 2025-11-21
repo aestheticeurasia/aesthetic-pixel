@@ -4,7 +4,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ArrowLeftRight, Clipboard, Menu } from "lucide-react";
-import { ModeToggle } from "./dark-toggle";
 import {
   Sheet,
   SheetContent,
@@ -27,24 +26,24 @@ import HideOnRoutes from "./HideOnRoutes";
 export default function MainNav() {
   const pathName = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  // const [mobileServicesOpen, setMobileServicesOpen] = useState(
-  //   pathName?.startsWith("/services") || false
-  // );
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(
+    pathName?.startsWith("/services") || false
+  );
   const isHome = pathName === "/";
 
-  // useEffect(() => {
-  //   if (pathName?.startsWith("/services")) {
-  //     setMobileServicesOpen(true);
-  //   } else {
-  //     setMobileServicesOpen(false);
-  //   }
-  // }, [pathName]);
+  useEffect(() => {
+    if (pathName?.startsWith("/services")) {
+      setMobileServicesOpen(true);
+    } else {
+      setMobileServicesOpen(false);
+    }
+  }, [pathName]);
 
   const isActive = (path: string) => {
     if (path === "/") {
-      return pathName === "/"; 
+      return pathName === "/";
     }
-    return pathName.startsWith(path); 
+    return pathName.startsWith(path);
   };
 
   useEffect(() => {
@@ -66,215 +65,236 @@ export default function MainNav() {
             : "bg-white dark:bg-black shadow-sm"
         }`}
       >
-        {" "}
-        <div className="container mx-auto flex h-25 items-center justify-between px-4">
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="Aesthetic Pixel Logo"
-              width={100}
-              height={40}
-              className="block dark:hidden"
-            />
-            <Image
-              src="/logoDark.png"
-              alt="Aesthetic Pixel Logo Dark"
-              width={100}
-              height={40}
-              className="hidden dark:block"
-            />
-          </Link>
+        <div className="px-10 flex h-30 items-center">
+          <div className="flex justify-between items-center w-full py-4">
+            <div>
+              <div className="flex">
+                <div>
+                  <Link href="/" className="flex-shrink-0">
+                    <Image
+                      src="/logo.png"
+                      alt="Aesthetic Pixel Logo"
+                      width={100}
+                      height={40}
+                      className="block dark:hidden"
+                    />
+                    <Image
+                      src="/logoDark.png"
+                      alt="Aesthetic Pixel Logo Dark"
+                      width={100}
+                      height={40}
+                      className="hidden dark:block"
+                    />
+                  </Link>
+                </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center items-center space-x-6 text-lg font-bold relative">
-            {/* Home */}
-            <Link
-              href="/"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              Home
-            </Link>
-
-            {/* About */}
-            <Link
-              href="/about"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/about")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              About
-            </Link>
-
-            {/* Services */}
-            <Link
-              href="/services"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/services")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              Services
-            </Link>
-
-            {/* Services Dropdown */}
-            {/* <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger
-                    className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
-                      pathName?.startsWith("/services")
-                        ? "bg-primary text-white dark:text-black"
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex justify-start items-center space-x-1 text-lg font-bold relative ms-4">
+                  {/* Home */}
+                  <Link
+                    href="/"
+                    className={`py-2 px-3 rounded-lg ${
+                      isActive("/")
+                        ? "bg-destructive text-white dark:text-black"
                         : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
                     }`}
                   >
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px] p-4">
-                      <ListItem
-                        href="/services/product-photography"
-                        title="Product Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/ecommerce-photography"
-                        title="E-Commerce Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/apparel-photography"
-                        title="Apparel Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/headshot-photography"
-                        title="Headshot Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/jewelry-photography"
-                        title="Jewelry Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/portrait-photography"
-                        title="Portrait Photography"
-                      >
-                        Showcase your products with professional, high-quality
-                        images.
-                      </ListItem>
-                      <ListItem
-                        href="/services/wedding-photography"
-                        title="Wedding Photography"
-                      >
-                        Capture the sparkle and detail of your jewelry pieces.
-                      </ListItem>
-                      <ListItem
-                        href="/services/event-photography"
-                        title="Event Photography"
-                      >
-                        Build a professional brand image for your business.
-                      </ListItem>
-                      <ListItem
-                        href="/services/real-estate-photography"
-                        title="Real-Estate Photography"
-                      >
-                        Optimized photos designed to increase conversions.
-                      </ListItem>
-                      <ListItem
-                        href="/services/video-cinematography"
-                        title="Videography & Cinematography"
-                      >
-                        Stunning visuals for clothing lines, models, and
-                        magazines.
-                      </ListItem>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu> */}
+                    Home
+                  </Link>
 
-            {/* Portfolio */}
-            <Link
-              href="/portfolio"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/portfolio")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              Portfolio
-            </Link>
+                  {/* About */}
+                  <Link
+                    href="/about"
+                    className={`py-2 px-3 rounded-lg ${
+                      isActive("/about")
+                        ? "bg-destructive text-white dark:text-black"
+                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                    }`}
+                  >
+                    About
+                  </Link>
 
-            {/* Contact */}
-            <Link
-              href="/contact"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/contact")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              Contact
-            </Link>
+                  {/* Services */}
+                  {/* <Link
+                  href="/services"
+                  className={`py-2 px-3 rounded-lg ${
+                    isActive("/services")
+                      ? "bg-destructive text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                >
+                  Services
+                </Link> */}
 
-            {/* Blog */}
-            <Link
-              href="/blog"
-              className={`py-2 px-3 rounded-lg ${
-                isActive("/blog")
-                  ? "bg-destructive text-white dark:text-black"
-                  : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-            >
-              Blogs
-            </Link>
-          </nav>
+                  {/* Services Dropdown */}
+                  <NavigationMenu>
+                    <NavigationMenuList>
+                      <NavigationMenuItem>
+                        <NavigationMenuTrigger
+                          className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
+                            pathName?.startsWith("/services")
+                              ? "bg-primary text-white dark:text-black"
+                              : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                          }`}
+                        >
+                          Services
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent className="bg-red-500">
+                          <div className="flex flex-col md:flex-row gap-4  min-h-[300px]">
+                            {/* Column 1 */}
+                            <div className="flex-1 flex flex-col">
+                              <h1 className="text-center  text-white">
+                                Studio
+                              </h1>
 
-          {/* Desktop Book a Slot Button */}
-          <span className="hidden md:inline-flex text-foreground me-3">
-            <Link href="/studio-rent" target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="secondary"
-                className="cursor-pointer text-black dark:text-white font-bold text-lg"
-              >
-                Rent Studio
-              </Button>
-            </Link>
-          </span>
-          <span className="hidden md:inline-flex text-foreground me-3">
-            <Link href="/book-a-slot" target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="destructive"
-                className="cursor-pointer text-white font-bold text-lg"
-              >
-                Book a Slot
-              </Button>
-            </Link>
-          </span>
+                              <div className="bg-white rounded-lg flex-1 w-70">
+                                <ul className="p-2 space-y-3">
+                                  <ListItem
+                                    href="/services/product-photography"
+                                    title="Product Photography"
+                                  >
+                                    Product Photography (Bags, Shoes, Jewelry,
+                                    Watches, etc.)
+                                  </ListItem>
 
-          {/* Desktop Theme Toggle */}
+                                  <ListItem
+                                    href="/services/apparel-and-garment-photography"
+                                    title="Apparel and Garment Photography"
+                                  >
+                                    Optimized product photos sized and edited
+                                    for online listings and ads.
+                                  </ListItem>
 
-          {/* <span className="hidden md:inline-flex text-foreground">
-            <ModeToggle className="text-foreground" />
-          </span> */}
+                                  <ListItem
+                                    href="/services/corporate-head-shots"
+                                    title="Corporate Headshots"
+                                  >
+                                    Professional headshots for corporate
+                                    branding and personal use.
+                                  </ListItem>
+
+                                  <ListItem
+                                    href="/services/fashion-and-model-photography"
+                                    title="Fashion and Model Photography"
+                                  >
+                                    Headshots, facility photography and
+                                    editorial assets for comms.
+                                  </ListItem>
+                                </ul>
+                              </div>
+                            </div>
+
+                            {/* Column 2 */}
+                            <div className="flex-1 flex flex-col">
+                              <h1 className="text-center text-white">
+                                Platform
+                              </h1>
+
+                              <div className="bg-white rounded-lg flex-1 w-70">
+                                <ul className="p-2 space-y-3">
+                                  <ListItem
+                                    href="/services/furniture-photography"
+                                    title="Furniture Photography"
+                                  >
+                                    Controlled lighting and crisp detail for
+                                    high-res deliverables.
+                                  </ListItem>
+
+                                  <ListItem
+                                    href="/services/photo-retouching"
+                                    title="Photo Retouching"
+                                  >
+                                    Concept, styling and art direction to fit
+                                    your brand voice.
+                                  </ListItem>
+
+                                  <ListItem
+                                    href="/services/product-photography"
+                                    title="Product Photography"
+                                  >
+                                    Showcase your products with professional,
+                                    high-quality images.
+                                  </ListItem>
+
+                                  <ListItem
+                                    href="/services/product-photography"
+                                    title="Product Photography"
+                                  >
+                                    Showcase your products with professional,
+                                    high-quality images.
+                                  </ListItem>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+
+                  {/* Portfolio */}
+                  <Link
+                    href="/portfolio"
+                    className={`py-2 px-3 rounded-lg ${
+                      isActive("/portfolio")
+                        ? "bg-destructive text-white dark:text-black"
+                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                    }`}
+                  >
+                    Portfolio
+                  </Link>
+
+                  {/* Contact */}
+                  <Link
+                    href="/contact"
+                    className={`py-2 px-3 rounded-lg ${
+                      isActive("/contact")
+                        ? "bg-destructive text-white dark:text-black"
+                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                    }`}
+                  >
+                    Contact
+                  </Link>
+
+                  {/* Blog */}
+                  <Link
+                    href="/blog"
+                    className={`py-2 px-3 rounded-lg ${
+                      isActive("/blog")
+                        ? "bg-destructive text-white dark:text-black"
+                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                    }`}
+                  >
+                    Blogs
+                  </Link>
+                </nav>
+              </div>
+            </div>
+            <div className="">
+              <span className="hidden md:inline-flex text-foreground me-3">
+                <Link
+                  href="/studio-rent"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                    Rent Studio
+                  </button>
+                </Link>
+              </span>
+              <span className="hidden md:inline-flex text-foreground me-3">
+                <Link
+                  href="/book-a-slot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                    Book a Slot
+                  </button>
+                </Link>
+              </span>
+            </div>
+          </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-4">
@@ -495,8 +515,6 @@ export default function MainNav() {
                 </nav>
               </SheetContent>
             </Sheet>
-            {/* Dark Mode Toggle beside menu icon */}
-            {/* <ModeToggle className="text-foreground" /> */}
           </div>
         </div>
       </header>
@@ -504,22 +522,22 @@ export default function MainNav() {
   );
 }
 
-// function ListItem({
-//   title,
-//   children,
-//   href,
-//   ...props
-// }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-//   return (
-//     <li {...props}>
-//       <NavigationMenuLink asChild>
-//         <Link href={href} className="block p-2 rounded-lg hover:bg-muted">
-//           <div className="text-sm leading-none font-medium">{title}</div>
-//           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-//             {children}
-//           </p>
-//         </Link>
-//       </NavigationMenuLink>
-//     </li>
-//   );
-// }
+function ListItem({
+  title,
+  children,
+  href,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link href={href} className="block py-3 rounded-lg hover:bg-muted">
+          <div className="text-lg leading-none">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+}

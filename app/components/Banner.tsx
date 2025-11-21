@@ -52,33 +52,6 @@ interface Blog {
   updatedAt: string;
 }
 
-const workSteps = [
-  {
-    number: "01",
-    title: "YOUR ORDER",
-    description:
-      "Place an order online and box up your items ready for collection",
-  },
-  {
-    number: "02",
-    title: "WE COLLECT",
-    description:
-      "Collection and delivery is free, just let us know where you are and what date you want your items collecting.",
-  },
-  {
-    number: "03",
-    title: "WE SHOOT",
-    description:
-      "Our specialist team works their magic to make your products look amazing, with a quality guarantee on all your images.",
-  },
-  {
-    number: "04",
-    title: "WE DELIVER",
-    description:
-      "We'll deliver your amazing new product photos and return your items back to you.",
-  },
-];
-
 const faqItems = [
   {
     id: "item-1",
@@ -145,6 +118,45 @@ const testimonials = [
   },
 ];
 
+const workSteps = [
+  {
+    number: "1",
+    title: "Your Order",
+    description: "Firstly place your requirement",
+  },
+  {
+    number: "2",
+    title: "We Collect",
+    description: "Collect all the material or Model",
+  },
+  {
+    number: "3",
+    title: "We Shoot",
+    description: "We Shoot it in house Studio",
+  },
+  {
+    number: "4",
+    title: "We Deliver",
+    description: "Finally Deliver all the Files",
+  },
+];
+
+const LongArrowRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    // 1. Changed viewBox width from 24 to 100 to create a wide aspect ratio
+    viewBox="0 0 200 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="w-64 h-6 text-black"
+  >
+    <path d="M0 12h179" />
+    <path d="M173 6.5l6 5.5-6 5.5" />
+  </svg>
+);
 const carouselImages = ["/heroBg.png", "/gridBanner.png", "/product.jpg"];
 
 export default function Banner() {
@@ -179,9 +191,44 @@ export default function Banner() {
   return (
     <div>
       {/* Hero */}
-      <section className="h-screen bg-transparent md:bg-transparent flex flex-col items-center text-center justify-center pb-10 md:pb-0 relative">
-        
-        <Carousel
+      <section className="bg-transparent md:bg-transparent flex flex-col items-center text-center mt-40 relative">
+        <h1
+          className="
+    text-8xl sm:text-5xl md:text-8xl
+    font-extrabold
+    leading-[1.15]      
+    tracking-[0.02em]    
+    max-w-7xl
+    text-gray-900 dark:text-white
+    font-bebas
+  "
+        >
+          PRODUCT PHOTOGRAPHY THAT
+          <br />
+          SCALES WITH YOUR BRAND
+        </h1>
+
+        <p className="text-base sm:text-lg text-center max-w-xl text-gray-600 dark:text-gray-300 mb-10">
+          APS delivers high-converting product photography for product display
+          pages, landing pages and retail partners. Plus: all the creative
+          direction, styling and merchandising expertise to ensure your creative
+          converts.
+        </p>
+        <div className="flex gap-4">
+          <button
+            onClick={scrollToBooking}
+            className="border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg"
+          >
+            Talk to an Expert
+          </button>
+          <button
+            onClick={scrollToBooking}
+            className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg"
+          >
+            Get Started
+          </button>
+        </div>
+        {/* <Carousel
           plugins={[heroPlugin.current]}
           className="absolute inset-0 w-full h-full z-0"
         >
@@ -218,7 +265,7 @@ export default function Banner() {
           >
             Get Started <ArrowRight className="inline-block ml-2" size={18} />
           </button>
-        </div>
+        </div> */}
       </section>
 
       {/* Services Section */}
@@ -229,51 +276,41 @@ export default function Banner() {
           </div>
         </div>
       </section>
+
       {/* Works Steps Section */}
       <section className="bg-[#f8f7fa] py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
+        <div className="container mx-auto px-14">
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
             <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
               Work
             </span>
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div className=" flex items-center justify-center">
-              <Image
-                src="/gridBanner.png"
-                alt="Photo studio"
-                width={600}
-                height={370}
-                className="rounded-lg shadow-xl border-4 md:border-8 border-white"
-              />
-            </div>
 
-            <div className="relative">
-              <div className="absolute left-6 top-0 h-full w-0.5  z-0" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workSteps.map((step) => (
+              <div
+                key={step.number}
+                className="relative bg-gradient-to-br from-white to-red-100 rounded-r-2xl p-8 h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="absolute left-0 top-0 bottom-0 w-2 bg-red-600" />
 
-              <div className="space-y-8">
-                {workSteps.map((step) => (
-                  <div
-                    key={step.number}
-                    className="flex items-start relative z-10"
-                  >
-                    <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center font-bold text-gray-700 shadow-md">
-                      {step.number}
-                    </div>
-
-                    <div className="ml-6 pt-1.5">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm">
-                        {step.description}
-                      </p>
-                    </div>
+                <div className="px-8">
+                  <div className="text-7xl font-bold text-red-600 mb-3 leading-none">
+                    {step.number}
                   </div>
-                ))}
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-900 text-sm  leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+                <div className="">
+                  <LongArrowRight />
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

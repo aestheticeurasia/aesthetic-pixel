@@ -157,3 +157,7 @@
 .landing-page-title-font {
   font-family: 'Bebas Neue', sans-serif;
 }
+
+.font-bebas {
+  font-family: var(--font-bebas);
+}

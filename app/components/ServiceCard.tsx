@@ -36,16 +36,10 @@ export default function ServicesComponents() {
   }, []);
   return (
     <div>
-      <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
-        Our{" "}
-        <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
-          Services
-        </span>
-      </h1>
       {loading ? (
         <Spinner className="size-8 mx-auto" />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((item, idx) => (
             <Link key={item.slug} href={`/services/${item.slug}`}>
               <div
