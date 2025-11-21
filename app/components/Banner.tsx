@@ -155,7 +155,7 @@ const testimonials = [
   },
 ];
 
-const StarRating = ({ rating }) => {
+const StarRating = ({ rating }: { rating: number }) => {
   return (
     <div className="flex gap-1 justify-center my-6">
       {[...Array(5)].map((_, index) => (
@@ -172,7 +172,8 @@ const StarRating = ({ rating }) => {
     </div>
   );
 };
-const TestimonialCard = ({ data }) => {
+
+const TestimonialCard = ({ data }: { data: typeof testimonials[0] }) => {
   return (
     <div className="flex flex-col items-center w-full max-w-lg mx-auto group">
       {/* Card Content Box */}
