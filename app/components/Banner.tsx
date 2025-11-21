@@ -144,7 +144,6 @@ const workSteps = [
 const LongArrowRight = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    // 1. Changed viewBox width from 24 to 100 to create a wide aspect ratio
     viewBox="0 0 200 24"
     fill="none"
     stroke="currentColor"
@@ -193,15 +192,7 @@ export default function Banner() {
       {/* Hero */}
       <section className="bg-transparent md:bg-transparent flex flex-col items-center text-center mt-40 relative">
         <h1
-          className="
-    text-8xl sm:text-5xl md:text-8xl
-    font-extrabold
-    leading-[1.15]      
-    tracking-[0.02em]    
-    max-w-7xl
-    text-gray-900 dark:text-white
-    font-bebas
-  "
+          className="text-4xl sm:text-5xl md:text-8xl font-extrabold leading-[1.15] tracking-[0.02em] max-w-7xl text-gray-900 dark:text-white font-bebas"
         >
           PRODUCT PHOTOGRAPHY THAT
           <br />

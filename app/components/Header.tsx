@@ -23,6 +23,49 @@ import {
 import { Button } from "@/components/ui/button";
 import HideOnRoutes from "./HideOnRoutes";
 
+const serviceSubMenu = [
+  {
+    href: "/services/product-photography",
+    label: "Product Photography",
+    desc: "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
+  },
+  {
+    href: "/services/apparel-and-garment-photography",
+    label: "Apparel & Garment Photography",
+    desc: "Optimized product photos sized and edited for online listings and ads.",
+  },
+  {
+    href: "/services/corporate-head-shots",
+    label: "Corporate Head Shots",
+    desc: "Professional headshots for corporate branding and personal use.",
+  },
+  {
+    href: "/services/fashion-and-model-photography",
+    label: "Fashion & Model Photography",
+    desc: "Headshots, facility photography and editorial assets for comms.",
+  },
+  {
+    href: "/services/furniture-photography",
+    label: "Furniture Photography",
+    desc: "Controlled lighting and crisp detail for high-res deliverables.",
+  },
+  {
+    href: "/services/photo-retouching",
+    label: "Photo Retouching",
+    desc: "Concept, styling and art direction to fit your brand voice.",
+  },
+  {
+    href: "/services/product-photography",
+    label: "Product Photography",
+    desc: "Showcase your products with professional, high-quality images.",
+  },
+  {
+    href: "/services/product-photography",
+    label: "Product Photography",
+    desc: "Showcase your products with professional, high-quality images.",
+  },
+];
+
 export default function MainNav() {
   const pathName = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -114,18 +157,6 @@ export default function MainNav() {
                     About
                   </Link>
 
-                  {/* Services */}
-                  {/* <Link
-                  href="/services"
-                  className={`py-2 px-3 rounded-lg ${
-                    isActive("/services")
-                      ? "bg-destructive text-white dark:text-black"
-                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                  }`}
-                >
-                  Services
-                </Link> */}
-
                   {/* Services Dropdown */}
                   <NavigationMenu>
                     <NavigationMenuList>
@@ -141,50 +172,28 @@ export default function MainNav() {
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="bg-red-500">
                           <div className="flex flex-col md:flex-row gap-4  min-h-[300px]">
-                            {/* Column 1 */}
+                            {/* Column 1: Studio (Items 0-3 from array) */}
                             <div className="flex-1 flex flex-col">
-                              <h1 className="text-center  text-white">
-                                Studio
-                              </h1>
+                              <h1 className="text-center text-white">Studio</h1>
 
                               <div className="bg-white rounded-lg flex-1 w-70">
                                 <ul className="p-2 space-y-3">
-                                  <ListItem
-                                    href="/services/product-photography"
-                                    title="Product Photography"
-                                  >
-                                    Product Photography (Bags, Shoes, Jewelry,
-                                    Watches, etc.)
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/apparel-and-garment-photography"
-                                    title="Apparel and Garment Photography"
-                                  >
-                                    Optimized product photos sized and edited
-                                    for online listings and ads.
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/corporate-head-shots"
-                                    title="Corporate Headshots"
-                                  >
-                                    Professional headshots for corporate
-                                    branding and personal use.
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/fashion-and-model-photography"
-                                    title="Fashion and Model Photography"
-                                  >
-                                    Headshots, facility photography and
-                                    editorial assets for comms.
-                                  </ListItem>
+                                  {serviceSubMenu
+                                    .slice(0, 4)
+                                    .map((item, index) => (
+                                      <ListItem
+                                        key={index}
+                                        href={item.href}
+                                        title={item.label}
+                                      >
+                                        {item.desc}
+                                      </ListItem>
+                                    ))}
                                 </ul>
                               </div>
                             </div>
 
-                            {/* Column 2 */}
+                            {/* Column 2: Platform (Items 4+ from array) */}
                             <div className="flex-1 flex flex-col">
                               <h1 className="text-center text-white">
                                 Platform
@@ -192,37 +201,17 @@ export default function MainNav() {
 
                               <div className="bg-white rounded-lg flex-1 w-70">
                                 <ul className="p-2 space-y-3">
-                                  <ListItem
-                                    href="/services/furniture-photography"
-                                    title="Furniture Photography"
-                                  >
-                                    Controlled lighting and crisp detail for
-                                    high-res deliverables.
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/photo-retouching"
-                                    title="Photo Retouching"
-                                  >
-                                    Concept, styling and art direction to fit
-                                    your brand voice.
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/product-photography"
-                                    title="Product Photography"
-                                  >
-                                    Showcase your products with professional,
-                                    high-quality images.
-                                  </ListItem>
-
-                                  <ListItem
-                                    href="/services/product-photography"
-                                    title="Product Photography"
-                                  >
-                                    Showcase your products with professional,
-                                    high-quality images.
-                                  </ListItem>
+                                  {serviceSubMenu
+                                    .slice(4)
+                                    .map((item, index) => (
+                                      <ListItem
+                                        key={index}
+                                        href={item.href}
+                                        title={item.label}
+                                      >
+                                        {item.desc}
+                                      </ListItem>
+                                    ))}
                                 </ul>
                               </div>
                             </div>
@@ -338,12 +327,12 @@ export default function MainNav() {
                   </SheetClose>
 
                   {/* Services Parent */}
-                  {/* <div className="w-full overflow-hidden rounded-lg">
+                  <div className="w-full overflow-hidden rounded-lg">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                       className={`w-full flex justify-between items-center py-2 px-6 mx-5 font-bold rounded-lg ${
                         pathName?.startsWith("/services")
-                          ? "bg-primary text-white dark:text-black"
+                          ? "bg-destructive text-white dark:text-black"
                           : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
@@ -368,54 +357,13 @@ export default function MainNav() {
 
                   {mobileServicesOpen && (
                     <div className="ml-4 mt-1 space-y-1">
-                      {[
-                        {
-                          href: "/services/product-photography",
-                          label: "Product Photography",
-                        },
-                        {
-                          href: "/services/ecommerce-photography",
-                          label: "E-Commerce Photography",
-                        },
-                        {
-                          href: "/services/apparel-photography",
-                          label: "Apparel Photography",
-                        },
-                        {
-                          href: "/services/headshot-photography",
-                          label: "Headshot Photography",
-                        },
-                        {
-                          href: "/services/jewelry-photography",
-                          label: "Jewelry Photography",
-                        },
-                        {
-                          href: "/services/portrait-photography",
-                          label: "Portrait Photography",
-                        },
-                        {
-                          href: "/services/wedding-photography",
-                          label: "Wedding Photography",
-                        },
-                        {
-                          href: "/services/event-photography",
-                          label: "Event Photography",
-                        },
-                        {
-                          href: "/services/real-estate-photography",
-                          label: "Real-Estate Photography",
-                        },
-                        {
-                          href: "/services/video-cinematography",
-                          label: "Videography & Cinematography",
-                        },
-                      ].map((item) => (
+                      {serviceSubMenu.map((item) => (
                         <SheetClose asChild key={item.href}>
                           <Link
                             href={item.href}
-                            className={`block py-1 pl-4 rounded mx-7 ${
+                            className={`block py-1 px-4 rounded mx-7 ${
                               isActive(item.href)
-                                ? "bg-primary text-white dark:text-black"
+                                ? "bg-destructive text-white dark:text-black"
                                 : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
                             }`}
                           >
@@ -424,10 +372,10 @@ export default function MainNav() {
                         </SheetClose>
                       ))}
                     </div>
-                  )} */}
+                  )}
 
                   {/* Services */}
-                  <SheetClose asChild>
+                  {/* <SheetClose asChild>
                     <Link
                       href="/services"
                       className={`py-2 px-6 font-bold rounded-lg block ${
@@ -438,7 +386,7 @@ export default function MainNav() {
                     >
                       Services
                     </Link>
-                  </SheetClose>
+                  </SheetClose> */}
 
                   {/* Portfolio */}
                   <SheetClose asChild>
