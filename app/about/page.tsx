@@ -121,7 +121,7 @@ export default function AboutPage() {
         </div>
       </section>
        <section className="w-full container mx-auto px-4 mt-10">
-        <div className="relative w-full pb-[56.25%]">
+        <div className="relative w-full pb-200 border-2 rounded-lg shadow">
           <iframe
             className="absolute top-0 left-0 h-full w-full rounded-lg"
             src="https://www.youtube.com/embed/3fQPBoDUpik?si=7nR6MSC1lSLfwXRg" 
