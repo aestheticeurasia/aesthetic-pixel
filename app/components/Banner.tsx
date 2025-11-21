@@ -8,6 +8,8 @@ import {
   Settings,
   User,
 } from "lucide-react";
+import { FaGoogle, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { SiG2, SiTrustpilot } from "react-icons/si";
 import Image from "next/image";
 import {
   Accordion,
@@ -29,7 +31,6 @@ import ServicesComponents from "./ServiceCard";
 import BrandSlider from "./BrandSlider";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
 import BookASlotForm from "./BookASlotForm";
 
 interface Author {
@@ -260,16 +261,19 @@ export default function Banner() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-gray-50 font-sans py-16">
+      <section className="font-sans py-16">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
           </div>
+           <div className="flex justify-center">
+             <h1 className="text-center font-xl font-bold text-gray-500 mt-10 flex items-center"> 25K+ BRANDS LOVE US &nbsp; <FaStar/> <FaStar/><FaStar/><FaStar/><FaStarHalfAlt/>  &nbsp; 4.6 RATING ON  &nbsp; <FaGoogle />  &nbsp;<SiTrustpilot />  &nbsp;<SiG2 /></h1>
+           </div>
         </div>
       </section>
 
       {/* Works Steps Section */}
-      <section className="bg-[#f8f7fa] py-16 md:py-24">
+      <section className="pt-10 pb-20">
         <div className="container mx-auto px-14">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
