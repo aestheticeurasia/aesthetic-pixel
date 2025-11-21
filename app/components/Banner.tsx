@@ -137,18 +137,22 @@ const testimonials = [
     id: 1,
     name: "Harley Scotson",
     role: "CUSTOMER",
-    quote: "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
+    quote:
+      "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
   },
   {
     id: 2,
     name: "Sally Walter",
     role: "CUSTOMER",
-    quote: "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
+    quote:
+      "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
     rating: 4,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
-  }
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+  },
 ];
 
 const StarRating = ({ rating }) => {
@@ -159,8 +163,8 @@ const StarRating = ({ rating }) => {
           key={index}
           size={18}
           className={`${
-            index < rating 
-              ? "fill-red-500 text-red-500" 
+            index < rating
+              ? "fill-red-500 text-red-500"
               : "fill-transparent text-red-500"
           }`}
         />
@@ -173,13 +177,12 @@ const TestimonialCard = ({ data }) => {
     <div className="flex flex-col items-center w-full max-w-lg mx-auto group">
       {/* Card Content Box */}
       <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-300 relative w-full flex flex-col items-center text-center">
-        
         {/* Large Quote Icon */}
         <div className="mb-6">
-          <Quote 
-            size={64} 
-            strokeWidth={0.5} 
-            className="text-red-400 rotate-180 opacity-60" 
+          <Quote
+            size={64}
+            strokeWidth={0.5}
+            className="text-red-400 rotate-180 opacity-60"
           />
         </div>
 
@@ -195,9 +198,11 @@ const TestimonialCard = ({ data }) => {
       {/* Floating Avatar - Overlaps using negative margin */}
       <div className="-mt-10 z-10 relative">
         <div className="p-1 bg-white rounded-full shadow-sm">
-          <img 
-            src={data.image} 
-            alt={data.name} 
+          <Image
+            width={200}
+            height={200}
+            src={data.image}
+            alt={data.name}
             className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-sm"
           />
         </div>
@@ -205,9 +210,7 @@ const TestimonialCard = ({ data }) => {
 
       {/* Name & Role */}
       <div className="text-center mt-4">
-        <h3 className="text-xl font-bold text-slate-900">
-          {data.name}
-        </h3>
+        <h3 className="text-xl font-bold text-slate-900">{data.name}</h3>
         <p className="text-red-500 text-xs font-bold tracking-widest mt-1 uppercase">
           {data.role}
         </p>
@@ -637,7 +640,7 @@ export default function Banner() {
               >
                 {faqItems.slice(Math.ceil(faqItems.length / 2)).map(
                   (
-                    item // Render the second half of items
+                    item 
                   ) => (
                     <AccordionItem
                       key={item.id}
@@ -658,50 +661,44 @@ export default function Banner() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
       <section className="py-20 px-4 bg-slate-50 min-h-screen font-sans">
-      <div className="max-w-6xl mx-auto">
-        
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          {/* Top decorative label */}
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="text-red-500 font-bold text-xs tracking-widest uppercase">
-              Client Feedback
-            </span>
-            <div className="flex items-center">
-              <div className="w-2 h-2 rounded-full bg-red-500"></div>
-              <div className="h-[1px] w-12 bg-red-500"></div>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="text-red-500 font-bold text-xs tracking-widest uppercase">
+                Client Feedback
+              </span>
+              <div className="flex items-center">
+                <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                <div className="h-[1px] w-12 bg-red-500"></div>
+              </div>
             </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Our Client's <span className="text-red-500">Testimonial</span>
+            </h2>
+
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              Rerum veritatis eu amet facilisis consectetur scelerisque.
+            </p>
           </div>
 
-          {/* Main Heading */}
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Our Client's <span className="text-red-500">Testimonial</span>
-          </h2>
-          
-          {/* Subheading */}
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Rerum veritatis eu amet facilisis consectetur scelerisque.
-          </p>
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 mb-16">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} data={testimonial} />
+            ))}
+          </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 mb-16">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.id} data={testimonial} />
-          ))}
+          <div className="flex justify-center">
+            <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-500/30 cursor-pointer">
+              VIEW ALL REVIEWS
+              <ArrowRight size={16} />
+            </button>
+          </div>
         </div>
-
-        {/* Bottom Button */}
-        <div className="flex justify-center">
-          <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-500/30">
-            VIEW ALL REVIEWS
-            <ArrowRight size={16} />
-          </button>
-        </div>
-
-      </div>
-    </section>
+      </section>
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -827,4 +824,4 @@ export default function Banner() {
       </section>
     </div>
   );
-};
+}
