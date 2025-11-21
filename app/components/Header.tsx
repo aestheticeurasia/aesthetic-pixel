@@ -259,7 +259,7 @@ export default function MainNav() {
                 </nav>
               </div>
             </div>
-            <div className="">
+            <div>
               <span className="hidden md:inline-flex text-foreground me-3">
                 <Link
                   href="/studio-rent"
@@ -438,11 +438,19 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-5 px-8 block"
                     >
-                      <Button variant="secondary" className="w-full font-bold">
-                        <ArrowLeftRight className="w-5 h-5" />
-                        Rent Studio
-                      </Button>
+                     <button className="w-full border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                    Rent Studio
+                  </button>
                     </Link>
+                     {/* <Link
+                  href="/studio-rent"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                    Rent Studio
+                  </button>
+                </Link> */}
                   </SheetClose>
                   <SheetClose asChild>
                     <Link
@@ -451,14 +459,19 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-2 px-8 block"
                     >
-                      <Button
-                        variant="destructive"
-                        className="w-full font-bold"
-                      >
-                        <Clipboard className="w-5 h-5" />
+                      <button className="w-full border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
                         Book a Slot
-                      </Button>
+                      </button>
                     </Link>
+                     {/* <Link
+                  href="/book-a-slot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                    Book a Slot
+                  </button>
+                </Link> */}
                   </SheetClose>
                 </nav>
               </SheetContent>
