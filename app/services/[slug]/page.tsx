@@ -93,7 +93,7 @@ export default function ServiceDetails({ params }: Props) {
 
   return (
     <div className="container max-w-full">
-      <section className="bg-[#f2f2f2] flex flex-col md:flex-row justify-between items-center md:py-20 px-4 md:px-15">
+      <section className="bg-[#f2f2f2] flex flex-col md:flex-row justify-between items-center py-15 md:py-20 px-4 md:px-15">
         <motion.div
           key={1}
           initial={{ x: -100, opacity: 0 }}
