@@ -40,8 +40,8 @@ export default function ServicesComponents() {
       {loading ? (
         <Spinner className="size-8 mx-auto" />
       ) : (
-        <div className="flex space-x-3">
-          <div className="space-y-2">
+        <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+          <div className="space-y-4">
             <Image
               src="/service1.png"
               alt="Services Overview"
@@ -57,7 +57,8 @@ export default function ServicesComponents() {
               className="h-85 rounded-2xl"
             />
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-4">
             <Image
               src="/service1.png"
               alt="Services Overview"
@@ -73,7 +74,8 @@ export default function ServicesComponents() {
               className="h-113 rounded-2xl"
             />
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-4">
             <Image
               src="/service1.png"
               alt="Services Overview"
@@ -89,7 +91,8 @@ export default function ServicesComponents() {
               className="h-93 rounded-2xl"
             />
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-4">
             <Image
               src="/service1.png"
               alt="Services Overview"
