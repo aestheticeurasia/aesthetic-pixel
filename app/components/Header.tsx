@@ -99,7 +99,7 @@ export default function MainNav() {
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 px-10 w-full z-50 transition-all duration-300 ${
           isHome
             ? scrolled
               ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"

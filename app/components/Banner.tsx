@@ -1,12 +1,13 @@
 "use client";
 import {
   ArrowRight,
-  Check,
+  Star,
   Clock,
   Mail,
   Phone,
-  Settings,
+  Trophy,
   User,
+  Quote,
 } from "lucide-react";
 import { FaGoogle, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { SiG2, SiTrustpilot } from "react-icons/si";
@@ -28,10 +29,10 @@ import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ServicesComponents from "./ServiceCard";
-import BrandSlider from "./BrandSlider";
 import dayjs from "dayjs";
 import Link from "next/link";
 import BookASlotForm from "./BookASlotForm";
+import { Progress } from "@/components/ui/progress";
 
 interface Author {
   id: string;
@@ -92,33 +93,6 @@ const faqItems = [
   },
 ];
 
-const features = [
-  "Turn Your Ordinary Product Into Extraordinary Photos",
-  "Stronger Customer Connection Through Impactful Visuals.",
-  "Our Photography Style Drives Your Business Sales",
-];
-
-const testimonials = [
-  {
-    rating: 5,
-    text: "Amazing experience! The team was professional and the photos turned out fantastic. Highly recommend their services for anyone looking to enhance their product images.",
-    author: {
-      name: "Maria Clayer",
-      title: "Founder",
-      imageSrc: "/client1.svg",
-    },
-  },
-  {
-    rating: 5,
-    text: "Amazing experience! The team was professional and the photos turned out fantastic. Highly recommend their services for anyone looking to enhance their product images.",
-    author: {
-      name: "Leonard Cooper",
-      title: "Founder",
-      imageSrc: "/client2.svg",
-    },
-  },
-];
-
 const workSteps = [
   {
     number: "1",
@@ -157,8 +131,90 @@ const LongArrowRight = () => (
     <path d="M173 6.5l6 5.5-6 5.5" />
   </svg>
 );
-const carouselImages = ["/heroBg.png", "/gridBanner.png", "/product.jpg"];
 
+const testimonials = [
+  {
+    id: 1,
+    name: "Harley Scotson",
+    role: "CUSTOMER",
+    quote: "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+  },
+  {
+    id: 2,
+    name: "Sally Walter",
+    role: "CUSTOMER",
+    quote: "Venenatis delectus delectus facilis diamlorem platea magni cumque accumsan euismod, ratione quasi congue placeat vulputate id aptent mattis cupidatat, ac deserunt, aperiam. Egestas recusandae iste id.",
+    rating: 4,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+  }
+];
+
+const StarRating = ({ rating }) => {
+  return (
+    <div className="flex gap-1 justify-center my-6">
+      {[...Array(5)].map((_, index) => (
+        <Star
+          key={index}
+          size={18}
+          className={`${
+            index < rating 
+              ? "fill-red-500 text-red-500" 
+              : "fill-transparent text-red-500"
+          }`}
+        />
+      ))}
+    </div>
+  );
+};
+const TestimonialCard = ({ data }) => {
+  return (
+    <div className="flex flex-col items-center w-full max-w-lg mx-auto group">
+      {/* Card Content Box */}
+      <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-300 relative w-full flex flex-col items-center text-center">
+        
+        {/* Large Quote Icon */}
+        <div className="mb-6">
+          <Quote 
+            size={64} 
+            strokeWidth={0.5} 
+            className="text-red-400 rotate-180 opacity-60" 
+          />
+        </div>
+
+        {/* Quote Text */}
+        <p className="text-gray-500 italic leading-relaxed font-light mb-4">
+          {data.quote}
+        </p>
+
+        {/* Stars */}
+        <StarRating rating={data.rating} />
+      </div>
+
+      {/* Floating Avatar - Overlaps using negative margin */}
+      <div className="-mt-10 z-10 relative">
+        <div className="p-1 bg-white rounded-full shadow-sm">
+          <img 
+            src={data.image} 
+            alt={data.name} 
+            className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-sm"
+          />
+        </div>
+      </div>
+
+      {/* Name & Role */}
+      <div className="text-center mt-4">
+        <h3 className="text-xl font-bold text-slate-900">
+          {data.name}
+        </h3>
+        <p className="text-red-500 text-xs font-bold tracking-widest mt-1 uppercase">
+          {data.role}
+        </p>
+      </div>
+    </div>
+  );
+};
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
@@ -192,9 +248,7 @@ export default function Banner() {
     <div>
       {/* Hero */}
       <section className="bg-transparent md:bg-transparent flex flex-col items-center text-center mt-40 relative">
-        <h1
-          className="text-4xl sm:text-5xl md:text-8xl font-extrabold leading-[1.15] tracking-[0.02em] max-w-7xl text-gray-900 dark:text-white font-bebas"
-        >
+        <h1 className="text-4xl sm:text-5xl md:text-8xl font-extrabold leading-[1.15] tracking-[0.02em] max-w-7xl text-gray-900 dark:text-white font-bebas">
           PRODUCT PHOTOGRAPHY THAT
           <br />
           SCALES WITH YOUR BRAND
@@ -266,9 +320,17 @@ export default function Banner() {
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
           </div>
-           <div className="flex justify-center">
-             <h1 className="text-center font-xl font-bold text-gray-500 mt-10 flex items-center"> 25K+ BRANDS LOVE US &nbsp; <FaStar/> <FaStar/><FaStar/><FaStar/><FaStarHalfAlt/>  &nbsp; 4.6 RATING ON  &nbsp; <FaGoogle />  &nbsp;<SiTrustpilot />  &nbsp;<SiG2 /></h1>
-           </div>
+          <div className="flex justify-center">
+            <h1 className="text-center font-xl font-bold text-gray-500 mt-10 flex items-center">
+              {" "}
+              25K+ BRANDS LOVE US &nbsp; <FaStar /> <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStarHalfAlt /> &nbsp; 4.6 RATING ON &nbsp; <FaGoogle /> &nbsp;
+              <SiTrustpilot /> &nbsp;
+              <SiG2 />
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -320,81 +382,133 @@ export default function Banner() {
           ></iframe>
         </div>
       </section>
-      <section className="bg-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Image
-                  src="/quoteBg.jpeg"
-                  alt="Studio photoshoot setup"
-                  width={300}
-                  height={500}
-                  className="w-full h-full object-cover rounded-l-lg shadow-lg"
-                />
+      <section className="bg-[#292929] text-white py-20 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-4 space-y-8">
+              <div className="flex items-center gap-3">
+                <span className="uppercase text-sm font-bold tracking-widest text-gray-300">
+                  About Us
+                </span>
+                <div className="h-[2px] w-12 bg-gray-600"></div>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <h2 className="text-4xl md:text-4xl font-bold leading-tight">
+                We Use Creativity To <br />
+                <span className="text-[#FF3366]">Get Our Clients</span>
+              </h2>
+
+              <p className="text-gray-400 leading-relaxed">
+                Quibusdam mollitia quas, placeat aliqua quisquam facere dicta
+                quos placerat vulputate consequun.
+              </p>
+
+              {/* Progress Bars */}
+              <div className="space-y-6 pt-4">
                 <div>
-                  <Image
-                    src="/carousel1.jpg"
-                    alt="Product photo editing"
-                    width={300}
-                    height={250}
-                    className="w-full h-auto object-cover rounded-tr-lg shadow-lg"
+                  <h5 className="font-bold mb-2">Business Skills</h5>
+                  <Progress
+                    className="bg-white [&>*]:bg-[#ff3366]"
+                    value={95}
                   />
                 </div>
-
-                <div className="bg-red-600 rounded-br-lg flex items-center justify-center p-4 space-x-6 shadow-lg">
-                  <div className="text-white">
-                    <Settings size={50} />
-                  </div>
-                  <div className="text-white">
-                    <p className="text-3xl lg:text-4xl font-bold">5+</p>
-                    <p className="text-xs lg:text-sm font-medium">
-                      Years Experience
-                    </p>
-                  </div>
+                <div>
+                  <h5 className="font-bold mb-2">Successful Projects</h5>
+                  <Progress
+                    className="bg-white [&>*]:bg-[#ff3366]"
+                    value={88}
+                  />
                 </div>
               </div>
             </div>
 
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                Make Your Product Shine
-                <br />
-                With APS
-              </h2>
+            <div className="lg:col-span-4 flex justify-center relative py-10 lg:py-0">
+              <div className="relative z-10 w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden">
+                <Image
+                  fill
+                  src="/aboutUsImg.png"
+                  alt="Team working together"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
 
-              <p className="mt-4 text-gray-700 text-justify">
-                We are just a step away from you. Our photography services are
-                designed to bring out the best in your product photos. Along
-                with the latest technology and techniques, our experienced
-                photographer and in-house expert retouching team ensure your
-                product photo looks its best, delivering exceptional results for
-                your business.
+            <div className="lg:col-span-4 space-y-8 pl-0 lg:pl-8">
+              <p className="text-gray-400 leading-relaxed">
+                Quibusdam mollitia quas, placeat aliqua quisquam facere dicta
+                quos placerat.
               </p>
 
-              <ul className="mt-6 space-y-3">
-                {features.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="flex-shrink-0 bg-red-500 rounded-full p-1 flex items-center justify-center w-5 h-5">
-                      <Check className="text-white font-bold" />
-                    </span>
-                    <span className="ml-3 font-semibold text-gray-800">
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex items-start gap-8 ">
+                <div className="bg-[#2a1a1a] p-3 rounded-full shrink-0">
+                  <Trophy className="w-8 h-8 text-[#FF3366]" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold text-lg leading-tight">
+                    We're In This Business Since 2020 & We Provide Best
+                    Services.
+                  </h4>
+                </div>
+              </div>
 
-              <Link
-                href="/services"
-                className="mt-8 inline-flex items-center bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
-              >
-                Discover More
-                <ArrowRight />
-              </Link>
+              <div>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-10 pt-4">
+                  <div
+                    className="text-2xl text-gray-400 italic transform -rotate-6"
+                    style={{ fontFamily: "'Brush Script MT', cursive" }}
+                  >
+                    George Smith
+                  </div>
+                  <div className=" space-y-2">
+                    <div className="text-lg font-bold text-white mt-1">
+                      George Smith
+                    </div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wider">
+                      CEO, Founder
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-20 flex justify-center">
+                  <Link href="/about">
+                    <button className="bg-[#FF3366] hover:bg-[#e02e5a] text-white px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-red-900/20 group">
+                      MORE ABOUT US
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Trusted Partners Section */}
+          <div className="mt-15 pt-12">
+            <div className="text-center mb-15">
+              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+                Our Trusted Partners
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+              <div className="flex flex-col items-center gap-2">
+                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
+                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
+                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
+                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
+                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
+                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
+              </div>
             </div>
           </div>
         </div>
@@ -544,49 +658,50 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-[#f8f7fa] py-16 md:py-24 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            What Customer Say About Us
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 max-w-5xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="w-full bg-white rounded-lg p-8 shadow-sm relative">
-                  <div className="flex space-x-1 text-red-400">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} />
-                    ))}
-                  </div>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
-                    {testimonial.text}
-                  </p>
-                  <div className="absolute right-8 text-7xl text-black font-serif opacity-20 select-none pointer-events-none">
-                    ”
-                  </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-6 h-6 bg-white border-b border-r border-gray-300 transform rotate-45 -mb-3"></div>
-                </div>
-
-                <div className="mt-6 flex flex-col items-center text-center">
-                  <Image
-                    src={testimonial.author.imageSrc}
-                    alt={testimonial.author.name}
-                    width={6}
-                    height={6}
-                    className="w-16 h-16 rounded-full object-cover shadow-md"
-                  />
-                  <h3 className="mt-3 font-bold text-lg text-gray-900">
-                    {testimonial.author.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    {testimonial.author.title}
-                  </p>
-                </div>
-              </div>
-            ))}
+      <section className="py-20 px-4 bg-slate-50 min-h-screen font-sans">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          {/* Top decorative label */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="text-red-500 font-bold text-xs tracking-widest uppercase">
+              Client Feedback
+            </span>
+            <div className="flex items-center">
+              <div className="w-2 h-2 rounded-full bg-red-500"></div>
+              <div className="h-[1px] w-12 bg-red-500"></div>
+            </div>
           </div>
+
+          {/* Main Heading */}
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            Our Client's <span className="text-red-500">Testimonial</span>
+          </h2>
+          
+          {/* Subheading */}
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            Rerum veritatis eu amet facilisis consectetur scelerisque.
+          </p>
         </div>
-      </section>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 mb-16">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.id} data={testimonial} />
+          ))}
+        </div>
+
+        {/* Bottom Button */}
+        <div className="flex justify-center">
+          <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-500/30">
+            VIEW ALL REVIEWS
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
+      </div>
+    </section>
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -712,4 +827,4 @@ export default function Banner() {
       </section>
     </div>
   );
-}
+};
