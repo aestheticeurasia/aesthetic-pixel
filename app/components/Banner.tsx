@@ -106,13 +106,13 @@ const services = [
     link: "#",
   },
   {
-    title: "Graphic Designing",
+    title: "UI/UX & Graphics Designing",
     description: "Molestie eos tempus culp aptent pariatur eos.",
     icon: <Paintbrush className="w-8 h-8 text-red-500" />,
     link: "#",
   },
   {
-    title: "Image Retouching",
+    title: "Image Editing & Retouching",
     description: "Molestie eos tempus culp aptent pariatur eos.",
     icon: <ImageIcon className="w-8 h-8 text-red-500" />,
     link: "#",
