@@ -319,7 +319,7 @@ export default function Banner() {
       </section>
 
       {/* Services Section */}
-      <section className="font-sans py-16 md:py-0 mx-5">
+      <section className="font-sans py-10 md:py-0 mx-5">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
@@ -382,7 +382,7 @@ export default function Banner() {
           </div>
         </div>
       </section> */}
-      <section className=" py-20">
+      <section className="md:py-18">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
@@ -407,22 +407,25 @@ export default function Banner() {
                 {workSteps.map((step) => (
                   <div
                     key={step.number}
-                    className="relative bg-gradient-to-br from-white to-red-100 rounded-r-2xl p-8 h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+                    className="relative bg-gradient-to-br from-white to-red-100 rounded-r-2xl p-8 h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 group overflow-hidden"
                   >
-                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-red-600" />
+                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-red-600 z-10" />
 
-                    <div className="px-8">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 z-20 pointer-events-none" />
+
+                    <div className="px-8 relative z-30">
                       <div className="text-7xl font-bold text-red-600 mb-3 leading-none">
                         {step.number}
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-gray-900 text-sm  leading-relaxed">
+                      <p className="text-gray-900 text-sm leading-relaxed">
                         {step.description}
                       </p>
                     </div>
-                    <div className="">
+
+                    <div className="relative z-30">
                       <LongArrowRight />
                     </div>
                   </div>
