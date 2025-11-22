@@ -1,9 +1,11 @@
 "use client";
 import { Spinner } from "@/components/ui/spinner";
 import axios from "axios";
+import {  ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 interface Services {
   title: string;
@@ -103,18 +105,16 @@ export default function ServicesComponents() {
             )}
 
             <button
-              className={`
-              pointer-events-auto border-1 hover:border-none
+              className={`pointer-events-auto border-1 hover:border-none
              text-white py-2 px-4 md:py-2 md:px-6 
               hover:bg-red-800 hover:text-white
-              transition-all duration-500 delay-300
               rounded-3xl cursor-pointer text-sm md:text-md
               transform translate-y-6 opacity-0
               group-hover:translate-y-0 group-hover:opacity-100
               ${showOverlay ? "translate-y-0 opacity-100" : ""}
             `}
             >
-              View More →
+              View More
             </button>
           </div>
         </Link>
