@@ -715,7 +715,7 @@ export default function Banner() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 relative z-10 px-10 md:px-30">
             {services.map((service, index) => (
               <div key={index} className="group relative">
-                <Card className="relative z-10 flex flex-col items-center text-center px-4 h-full transition-transform duration-300 group-hover:-translate-y-2">
+                <Card className="relative z-10 flex flex-col items-center text-center px-6 h-full transition-transform duration-300 group-hover:-translate-y-2">
                   <div className="p-3 rounded-full bg-red-50">
                     {service.icon}
                   </div>
