@@ -40,6 +40,7 @@ export default function ServicesComponents() {
     height,
     link,
     className,
+    heading,
   }: {
     src: string;
     alt: string;
@@ -47,11 +48,15 @@ export default function ServicesComponents() {
     height: number;
     link: string;
     className?: string;
+    heading?: string;
   }) => {
     const [showOverlay, setShowOverlay] = useState(false);
 
     const handleMobileClick = (e: React.MouseEvent) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth <= 768) {
+        e.preventDefault(); // prevent redirect
+        setShowOverlay((prev) => !prev);
+      }
     };
 
     return (
@@ -65,22 +70,52 @@ export default function ServicesComponents() {
             className={`${className} object-cover rounded-2xl`}
           />
 
+          {/* Overlay */}
           <div
             className={`
-    absolute inset-0
-    flex items-center justify-center
-    text-white text-xl font-semibold
-    transition-all duration-500 ease-out
-    translate-y-full group-hover:translate-y-0 group-hover:opacity-100
-    ${
-      showOverlay
-        ? "opacity-100 translate-y-0"
-        : "opacity-0 pointer-events-none"
-    }
-    bg-gradient-to-t from-black/60 via-black/20 to-transparent
-  `}
+            absolute inset-0
+            flex flex-col items-center justify-center
+            text-white text-center font-semibold
+            transition-all duration-500 ease-out
+            translate-y-full group-hover:translate-y-0 group-hover:opacity-100
+            ${
+              showOverlay
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 pointer-events-none"
+            }
+            bg-gradient-to-t from-black/60 via-black/20 to-transparent
+            px-4
+          `}
           >
-            View More →
+            {/* Heading slides from bottom */}
+            {heading && (
+              <h3
+                className={`
+                text-lg md:text-2xl font-extrabold mb-3
+                transform translate-y-6 opacity-0
+                transition-all duration-500 delay-150
+                group-hover:translate-y-0 group-hover:opacity-100
+                ${showOverlay ? "translate-y-0 opacity-100" : ""}
+              `}
+              >
+                {heading}
+              </h3>
+            )}
+
+            <button
+              className={`
+              pointer-events-auto border-1 hover:border-none
+             text-white py-2 px-4 md:py-2 md:px-6 
+              hover:bg-red-800 hover:text-white
+              transition-all duration-500 delay-300
+              rounded-3xl cursor-pointer text-sm md:text-md
+              transform translate-y-6 opacity-0
+              group-hover:translate-y-0 group-hover:opacity-100
+              ${showOverlay ? "translate-y-0 opacity-100" : ""}
+            `}
+            >
+              View More →
+            </button>
           </div>
         </Link>
       </div>
@@ -98,6 +133,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Product-Photography/7-F.jpg"
               alt="Product Photography"
+              heading="Product Photography"
               width={400}
               height={400}
               link="/services/product-photography"
@@ -106,6 +142,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Apparel-&-Garment-Photography/1-F.jpg"
               alt="Garment Photography"
+              heading="Garment Photography"
               width={400}
               height={200}
               link="/services/apparel-and-garment-photography"
@@ -119,6 +156,7 @@ export default function ServicesComponents() {
               <HoverImage
                 src="/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg"
                 alt="Corporate Headshots"
+                heading="Corporate Headshots"
                 width={400}
                 height={400}
                 link="/services/corporate-head-shots"
@@ -128,6 +166,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Fashion-&-Model-Photography/4-F.jpg"
               alt="Fashion Photography"
+              heading="Fashion Photography"
               width={400}
               height={200}
               link="/services/fashion-and-model-photography"
@@ -141,6 +180,7 @@ export default function ServicesComponents() {
               <HoverImage
                 src="/servicesImg/Furniture-Photography/2-F.jpg"
                 alt="Furniture Photography"
+                heading="Furniture Photography"
                 width={400}
                 height={400}
                 link="/services/furniture-photography"
@@ -151,6 +191,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
               alt="Jewelry Retouching"
+              heading="Jewelry Retouching"
               width={400}
               height={200}
               link="/services/photo-retouching"
@@ -163,6 +204,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Apparel-&-Garment-Photography/1-F.jpg"
               alt="Apparel Photography"
+              heading="Apparel Photography"
               width={400}
               height={400}
               link="/services/apparel-and-garment-photography"
@@ -171,6 +213,7 @@ export default function ServicesComponents() {
             <HoverImage
               src="/servicesImg/Fashion-&-Model-Photography/4-F.jpg"
               alt="Model Photography"
+              heading="Model Photography"
               width={400}
               height={200}
               link="/services/fashion-and-model-photography"
