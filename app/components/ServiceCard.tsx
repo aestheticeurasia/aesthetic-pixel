@@ -94,7 +94,7 @@ const HoverImage = ({
   return (
     <div>
       {loading ? (
-        <Spinner className="size-8 mx-auto" />
+        <Spinner className="size-8 mx-auto mt-10" />
       ) : (
         <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
 
