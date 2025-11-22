@@ -371,12 +371,12 @@ const TestimonialCard = ({ data }: { data: (typeof testimonials)[0] }) => {
 };
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const handleToggle = (index) => {
+  const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-
+  
   const getAllBlog = async () => {
     try {
       const { data } = await axios.get("/blogs.json");
