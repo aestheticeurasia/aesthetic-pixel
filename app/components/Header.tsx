@@ -163,7 +163,7 @@ export default function MainNav() {
                         <NavigationMenuTrigger
                           className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
                             pathName?.startsWith("/services")
-                              ? "bg-primary text-white dark:text-black"
+                              ? "bg-destructive text-white dark:text-black"
                               : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
                           }`}
                         >
@@ -491,9 +491,12 @@ function ListItem({
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link href={href} className="block py-3 rounded-lg hover:bg-muted">
-          <div className="text-lg leading-none">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm">
+        <Link
+          href={href}
+          className="group block py-3 rounded-lg hover:bg-red-600"
+        >
+          <div className="text-lg leading-none group-hover:text-white">{title}</div>
+          <p className="line-clamp-2 text-sm group-hover:text-gray-200">
             {children}
           </p>
         </Link>
