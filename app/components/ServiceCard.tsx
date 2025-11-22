@@ -52,10 +52,6 @@ export default function ServicesComponents() {
 
     const handleMobileClick = (e: React.MouseEvent) => {
       if (window.innerWidth > 768) return;
-      if (!showOverlay) {
-        e.preventDefault();
-        setShowOverlay(true);
-      }
     };
 
     return (
