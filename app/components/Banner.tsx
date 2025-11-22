@@ -346,8 +346,7 @@ export default function Banner() {
         </div>
       </section>
 
-      {/* Works Steps Section */}
-      <section className="pt-10 pb-20">
+      {/* <section className="pt-10 pb-20">
         <div className="container mx-auto px-14">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
@@ -382,8 +381,8 @@ export default function Banner() {
             ))}
           </div>
         </div>
-      </section>
-      <section className="bg-[#f8f7fa] py-16 md:py-24">
+      </section> */}
+      <section className=" py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
