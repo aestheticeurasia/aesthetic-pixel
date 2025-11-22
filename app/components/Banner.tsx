@@ -8,6 +8,10 @@ import {
   Trophy,
   User,
   Quote,
+  BarChart3,
+  Monitor,
+  ImageIcon,
+  Paintbrush,
 } from "lucide-react";
 import { FaGoogle, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { SiG2, SiTrustpilot } from "react-icons/si";
@@ -33,6 +37,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import BookASlotForm from "./BookASlotForm";
 import { Progress } from "@/components/ui/progress";
+import { Card } from "@/components/ui/card";
 
 interface Author {
   id: string;
@@ -90,6 +95,33 @@ const faqItems = [
     question: "What Kind Of Image Formats Do You Work With?",
     answer:
       "We accept all standard image formats, including JPEG, PNG, TIFF, PSD, and various RAW formats from different cameras. We can deliver the final images in any format you require.",
+  },
+];
+
+const services = [
+  {
+    title: "Web Design & Development",
+    description: "Molestie eos tempus culp aptent pariatur eos.",
+    icon: <Monitor className="w-8 h-8 text-red-500" />,
+    link: "#",
+  },
+  {
+    title: "Graphic Designing",
+    description: "Molestie eos tempus culp aptent pariatur eos.",
+    icon: <Paintbrush className="w-8 h-8 text-red-500" />,
+    link: "#",
+  },
+  {
+    title: "Image Retouching",
+    description: "Molestie eos tempus culp aptent pariatur eos.",
+    icon: <ImageIcon className="w-8 h-8 text-red-500" />,
+    link: "#",
+  },
+  {
+    title: "Digital Market Planning",
+    description: "Molestie eos tempus culp aptent pariatur eos.",
+    icon: <BarChart3 className="w-8 h-8 text-red-500" />,
+    link: "#",
   },
 ];
 
@@ -382,7 +414,7 @@ export default function Banner() {
           </div>
         </div>
       </section> */}
-      <section className="md:py-18">
+      <section className="md:py-18 pb-10">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
             Simple Steps of{" "}
@@ -656,6 +688,63 @@ export default function Banner() {
               Discover More
               <ArrowRight />
             </Link>
+          </div>
+        </div>
+      </section>
+      <section className=" pb-15 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-xs font-bold tracking-widest text-red-500 uppercase">
+                Popular Services
+              </span>
+              <div className="h-px w-12 bg-red-500/50 relative">
+                <div className="absolute -left-1 -top-[3px] w-2 h-2 bg-red-500 rounded-full"></div>
+              </div>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Our Offering & <span className="text-red-500">Expertise</span>
+            </h2>
+
+            <p className="text-slate-500 text-lg">
+              Rerum veritatis eu amet facilisis consectetur scelerisque.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 relative z-10">
+            {services.map((service, index) => (
+              <div key={index} className="group relative">
+                <Card className="relative z-10 flex flex-col items-center text-center  px-6 h-full transition-transform duration-300 group-hover:-translate-y-2">
+                    <div className=" p-3 rounded-full bg-red-50">
+                      {service.icon}
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 leading-tight px-2">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-sm mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  <Link
+                    href={service.link}
+                    className="mt-auto inline-flex items-center text-xs font-bold text-red-500 tracking-widest hover:text-red-600 transition-colors group-hover:gap-2 gap-1 uppercase"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase transition-all hover:shadow-lg hover:shadow-red-500/30 inline-flex items-center gap-2 group cursor-pointer">
+              View All Services
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
       </section>
