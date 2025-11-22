@@ -12,16 +12,16 @@ import {
   Monitor,
   ImageIcon,
   Paintbrush,
+  Plus,
+  Minus,
+  Lightbulb,
+  Pencil,
+  Cloud,
+  Zap,
 } from "lucide-react";
 import { FaGoogle, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { SiG2, SiTrustpilot } from "react-icons/si";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
   Carousel,
   CarouselContent,
@@ -30,7 +30,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ServicesComponents from "./ServiceCard";
 import dayjs from "dayjs";
@@ -38,6 +38,125 @@ import Link from "next/link";
 import BookASlotForm from "./BookASlotForm";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
+
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const FAQItem: FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => {
+  return (
+    <div
+      className={`mb-4 rounded-xl border transition-all duration-300 ${
+        isOpen
+          ? "border-teal-400 shadow-sm"
+          : "border-teal-400/60 hover:border-teal-400"
+      }`}
+    >
+      <button
+        onClick={onClick}
+        className="w-full flex items-center justify-between p-5 text-left focus:outline-none cursor-pointer"
+      >
+        <span className="text-lg font-medium text-gray-800 pr-4">
+          {question}
+        </span>
+        <span
+          className={`text-teal-500 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          {isOpen ? <Minus size={24} /> : <Plus size={24} />}
+        </span>
+      </button>
+
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="px-5 pb-5 text-gray-600 leading-relaxed text-sm md:text-base">
+            {answer}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const WavyUnderline = () => (
+  <svg
+    width="320"
+    height="20"
+    viewBox="0 0 320 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="mt-2"
+  >
+    <path
+      d="
+        M0 10
+        C10 0, 20 0, 30 10
+        S50 20, 60 10
+        S80 0, 90 10
+        S110 20, 120 10
+        S140 0, 150 10
+        S170 20, 180 10
+        S200 0, 210 10
+        S230 20, 240 10
+        S260 0, 270 10
+        S290 20, 300 10
+      "
+      stroke="#F97316"
+      strokeWidth="4"
+      strokeLinecap="round"
+      fill="none"
+    />
+  </svg>
+);
+
+const Doodles = () => (
+  <>
+    {/* Top Left Lightbulb */}
+    <div className="absolute -top-10 -left-10 text-cyan-200 opacity-60 hidden lg:block transform -rotate-12">
+      <Lightbulb size={64} strokeWidth={1.5} />
+    </div>
+
+    {/* Bottom Left Creativity Icons */}
+    <div className="absolute bottom-10 left-0 text-cyan-200 opacity-60 hidden lg:block">
+      <div className="relative">
+        <Pencil
+          size={48}
+          strokeWidth={1.5}
+          className="absolute top-0 left-0 transform -rotate-45"
+        />
+        <Cloud size={40} strokeWidth={1.5} className="absolute top-8 left-8" />
+      </div>
+    </div>
+
+    {/* Top Center/Right Icon */}
+    <div className="absolute top-0 right-1/2 text-cyan-200 opacity-60 hidden lg:block transform translate-x-12 -translate-y-8">
+      <div className="relative">
+        <Pencil size={32} strokeWidth={1.5} className="transform rotate-90" />
+        <Cloud
+          size={32}
+          strokeWidth={1.5}
+          className="absolute -top-4 -right-4 opacity-50"
+        />
+      </div>
+    </div>
+
+    {/* Bottom Right Brain/Idea Icon */}
+    <div className="absolute -bottom-5 right-20 text-cyan-200 opacity-60 hidden lg:block transform rotate-12">
+      <Zap size={48} strokeWidth={1.5} />
+      <div className="absolute -top-2 -right-2 text-cyan-200">
+        <Lightbulb size={24} />
+      </div>
+    </div>
+  </>
+);
 
 interface Author {
   id: string;
@@ -59,7 +178,7 @@ interface Blog {
   updatedAt: string;
 }
 
-const faqItems = [
+const faqData = [
   {
     id: "item-1",
     question: "Do You Offer Bulk Image Retouching Services?",
@@ -97,7 +216,6 @@ const faqItems = [
       "We accept all standard image formats, including JPEG, PNG, TIFF, PSD, and various RAW formats from different cameras. We can deliver the final images in any format you require.",
   },
 ];
-
 const services = [
   {
     title: "Web Design & Development",
@@ -253,6 +371,11 @@ const TestimonialCard = ({ data }: { data: (typeof testimonials)[0] }) => {
 };
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   const getAllBlog = async () => {
     try {
@@ -748,62 +871,9 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-white mb-20">
-        <div className="container mx-auto max-w-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid grid-cols-1 gap-x-12 md:grid-cols-2">
-            <Accordion
-              type="single"
-              collapsible
-              className="w-full space-y-4 col-span-1"
-              defaultValue="item-1"
-            >
-              {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map((item) => (
-                <AccordionItem
-                  key={item.id}
-                  value={item.id}
-                  className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
-                >
-                  <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="p-6 pt-0 text-gray-300">
-                    {item.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-
-            {faqItems.length > 1 && (
-              <Accordion
-                type="single"
-                collapsible
-                className="w-full space-y-4 col-span-1"
-              >
-                {faqItems.slice(Math.ceil(faqItems.length / 2)).map((item) => (
-                  <AccordionItem
-                    key={item.id}
-                    value={item.id}
-                    className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
-                  >
-                    <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="p-6 pt-0 text-gray-300">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-slate-50 min-h-screen font-sans">
+      <section className="py-10 px-4 bg-slate-50 min-h-screen font-sans">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -846,7 +916,57 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-16 md:py-24">
+
+      {/* FAQ Section */}
+      <section className="relative w-full py-16 bg-white overflow-hidden font-sans">
+        <div
+          className="absolute inset-0 z-0 opacity-[0.03]"
+          style={{
+            backgroundImage: "radial-gradient(#000 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        ></div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+            <div className="lg:w-5/12 relative">
+              <Doodles />
+              <div className="relative z-10 pt-4 text-center lg:text-left">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                  Frequently Asked <br />
+                  <span className="relative inline-block text-red-500">
+                    Questions
+                    <div className="absolute left-0  w-full overflow-hidden">
+                      <WavyUnderline />
+                    </div>
+                  </span>
+                </h2>
+                <p className="mt-8 text-lg text-gray-700 leading-relaxed max-w-md">
+                  From seamless execution to innovative solutions, we ensure you
+                  have everything you need—and more.
+                </p>
+              </div>
+            </div>
+
+            {/* Accordion */}
+            <div className="lg:w-7/12 flex flex-col justify-center">
+              <div className="w-full">
+                {faqData.map((item, index) => (
+                  <FAQItem
+                    key={index}
+                    question={item.question}
+                    answer={item.answer}
+                    isOpen={openIndex === index}
+                    onClick={() => handleToggle(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="bg-white pb-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="text-gray-800">
