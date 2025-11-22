@@ -173,7 +173,7 @@ const StarRating = ({ rating }: { rating: number }) => {
   );
 };
 
-const TestimonialCard = ({ data }: { data: typeof testimonials[0] }) => {
+const TestimonialCard = ({ data }: { data: (typeof testimonials)[0] }) => {
   return (
     <div className="flex flex-col items-center w-full max-w-lg mx-auto group">
       {/* Card Content Box */}
@@ -319,20 +319,28 @@ export default function Banner() {
       </section>
 
       {/* Services Section */}
-      <section className="font-sans">
+      <section className="font-sans py-16 md:py-0">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center items-center">
             <ServicesComponents />
           </div>
           <div className="flex justify-center">
-            <h1 className="text-center font-xl font-bold text-gray-500 mt-10 flex items-center">
-              {" "}
-              25K+ BRANDS LOVE US &nbsp; <FaStar /> <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStarHalfAlt /> &nbsp; 4.6 RATING ON &nbsp; <FaGoogle /> &nbsp;
-              <SiTrustpilot /> &nbsp;
-              <SiG2 />
+            <h1 className="text-center font-xl font-bold mt-10 flex flex-wrap items-center gap-3 text-gray-700 dark:text-gray-300">
+              <span className="flex items-center gap-1 w-full md:w-auto justify-center">
+                25K+ BRANDS LOVE US
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStarHalfAlt className="text-yellow-500" />
+              </span>
+
+              <span className="flex items-center gap-2 w-full md:w-auto justify-center text-gray-500 dark:text-gray-400">
+                4.6 RATING ON
+                <FaGoogle className="text-blue-500" />
+                <SiTrustpilot className="text-green-500" />
+                <SiG2 className="text-orange-500" />
+              </span>
             </h1>
           </div>
         </div>
@@ -639,24 +647,20 @@ export default function Banner() {
                 collapsible
                 className="w-full space-y-4 col-span-1"
               >
-                {faqItems.slice(Math.ceil(faqItems.length / 2)).map(
-                  (
-                    item 
-                  ) => (
-                    <AccordionItem
-                      key={item.id}
-                      value={item.id}
-                      className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
-                    >
-                      <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
-                        {item.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="p-6 pt-0 text-gray-300">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  )
-                )}
+                {faqItems.slice(Math.ceil(faqItems.length / 2)).map((item) => (
+                  <AccordionItem
+                    key={item.id}
+                    value={item.id}
+                    className="border rounded-lg shadow-sm transition-all duration-300 data-[state=open]:bg-black data-[state=open]:text-white data-[state=open]:border-black"
+                  >
+                    <AccordionTrigger className="w-full text-left p-6 font-semibold text-lg hover:no-underline cursor-pointer">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="p-6 pt-0 text-gray-300">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
               </Accordion>
             )}
           </div>
@@ -678,7 +682,8 @@ export default function Banner() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Our Client&apos;s <span className="text-red-500">Testimonial</span>
+              Our Client&apos;s{" "}
+              <span className="text-red-500">Testimonial</span>
             </h2>
 
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">

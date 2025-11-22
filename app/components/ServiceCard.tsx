@@ -1,7 +1,6 @@
 "use client";
 import { Spinner } from "@/components/ui/spinner";
 import axios from "axios";
-import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,7 +14,6 @@ interface Services {
 }
 
 export default function ServicesComponents() {
-  const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
   const [services, setServices] = useState<Services[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -35,79 +33,151 @@ export default function ServicesComponents() {
     getAllServices();
   }, []);
 
+
+const HoverImage = ({
+  src,
+  alt,
+  width,
+  height,
+  link,
+  className,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  link: string;
+  className?: string;
+}) => {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const handleMobileClick = (e: React.MouseEvent) => {
+    if (window.innerWidth > 768) return; 
+    if (!showOverlay) {
+      e.preventDefault(); 
+      setShowOverlay(true);
+    }
+  };
+
+  return (
+    <div className="relative group overflow-hidden rounded-2xl">
+      <Link href={link} onClick={handleMobileClick}>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={`${className} object-cover rounded-2xl`}
+        />
+
+        <div
+          className={`
+            absolute inset-0 bg-black/40 backdrop-blur-sm
+            flex items-center justify-center
+            text-white text-xl font-semibold
+
+            transition-all duration-500 ease-out
+
+            translate-y-full group-hover:translate-y-0 group-hover:opacity-100
+
+            ${showOverlay ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none"}
+          `}
+        >
+          View More →
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+
   return (
     <div>
       {loading ? (
         <Spinner className="size-8 mx-auto" />
       ) : (
         <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+
+          {/* Column 1 */}
           <div className="space-y-4">
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Product-Photography/7-F.jpg"
+              alt="Product Photography"
               width={400}
               height={400}
-              className="h-138 rounded-2xl"
+              link="/services/product-photography"
+              className="h-138"
             />
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Apparel-&-Garment-Photography/1-F.jpg"
+              alt="Garment Photography"
               width={400}
               height={200}
-              className="h-85 rounded-2xl"
+              link="/services/apparel-and-garment-photography"
+              className="h-85"
             />
           </div>
 
+          {/* Column 2 */}
           <div className="space-y-4">
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg"
+              alt="Corporate Headshots"
               width={400}
               height={400}
-              className="rounded-2xl h-90 mt-20"
+              link="/services/corporate-head-shots"
+              className="h-90 mt-0 md:mt-20"
             />
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Fashion-&-Model-Photography/4-F.jpg"
+              alt="Fashion Photography"
               width={400}
               height={200}
-              className="h-113 rounded-2xl"
+              link="/services/fashion-and-model-photography"
+              className="h-113"
             />
           </div>
 
+          {/* Column 3 */}
           <div className="space-y-4">
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Furniture-Photography/2-F.jpg"
+              alt="Furniture Photography"
               width={400}
               height={400}
-              className="h-100 mt-30 rounded-2xl"
+              link="/services/furniture-photography"
+              className="h-100 mt-0 md:mt-30"
             />
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
+              alt="Jewelry Retouching"
               width={400}
               height={200}
-              className="h-93 rounded-2xl"
+              link="/services/photo-retouching"
+              className="h-93"
             />
           </div>
 
+          {/* Column 4 */}
           <div className="space-y-4">
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Apparel-&-Garment-Photography/1-F.jpg"
+              alt="Apparel Photography"
               width={400}
               height={400}
-              className="rounded-2xl h-110"
+              link="/services/apparel-and-garment-photography"
+              className="h-110"
             />
-            <Image
-              src="/service1.png"
-              alt="Services Overview"
+            <HoverImage
+              src="/servicesImg/Fashion-&-Model-Photography/4-F.jpg"
+              alt="Model Photography"
               width={400}
               height={200}
-              className="rounded-2xl h-113"
+              link="/services/fashion-and-model-photography"
+              className="h-113"
             />
           </div>
+
         </div>
       )}
     </div>
