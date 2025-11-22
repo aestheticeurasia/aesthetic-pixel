@@ -33,45 +33,44 @@ export default function ServicesComponents() {
     getAllServices();
   }, []);
 
+  const HoverImage = ({
+    src,
+    alt,
+    width,
+    height,
+    link,
+    className,
+  }: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    link: string;
+    className?: string;
+  }) => {
+    const [showOverlay, setShowOverlay] = useState(false);
 
-const HoverImage = ({
-  src,
-  alt,
-  width,
-  height,
-  link,
-  className,
-}: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  link: string;
-  className?: string;
-}) => {
-  const [showOverlay, setShowOverlay] = useState(false);
+    const handleMobileClick = (e: React.MouseEvent) => {
+      if (window.innerWidth > 768) return;
+      if (!showOverlay) {
+        e.preventDefault();
+        setShowOverlay(true);
+      }
+    };
 
-  const handleMobileClick = (e: React.MouseEvent) => {
-    if (window.innerWidth > 768) return; 
-    if (!showOverlay) {
-      e.preventDefault(); 
-      setShowOverlay(true);
-    }
-  };
+    return (
+      <div className="relative group overflow-hidden rounded-2xl">
+        <Link href={link} onClick={handleMobileClick}>
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className={`${className} object-cover rounded-2xl`}
+          />
 
-  return (
-    <div className="relative group overflow-hidden rounded-2xl">
-      <Link href={link} onClick={handleMobileClick}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={`${className} object-cover rounded-2xl`}
-        />
-
-        <div
-          className={`
+          <div
+            className={`
             absolute inset-0 bg-black/40 backdrop-blur-sm
             flex items-center justify-center
             text-white text-xl font-semibold
@@ -80,16 +79,19 @@ const HoverImage = ({
 
             translate-y-full group-hover:translate-y-0 group-hover:opacity-100
 
-            ${showOverlay ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none"}
+            ${
+              showOverlay
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 pointer-events-none"
+            }
           `}
-        >
-          View More →
-        </div>
-      </Link>
-    </div>
-  );
-};
-
+          >
+            View More →
+          </div>
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -97,7 +99,6 @@ const HoverImage = ({
         <Spinner className="size-8 mx-auto mt-10" />
       ) : (
         <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-
           {/* Column 1 */}
           <div className="space-y-4">
             <HoverImage
@@ -120,14 +121,16 @@ const HoverImage = ({
 
           {/* Column 2 */}
           <div className="space-y-4">
-            <HoverImage
-              src="/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg"
-              alt="Corporate Headshots"
-              width={400}
-              height={400}
-              link="/services/corporate-head-shots"
-              className="h-90 mt-0 md:mt-20"
-            />
+            <div className="mt-0 md:mt-20">
+              <HoverImage
+                src="/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg"
+                alt="Corporate Headshots"
+                width={400}
+                height={400}
+                link="/services/corporate-head-shots"
+                className="h-90"
+              />
+            </div>
             <HoverImage
               src="/servicesImg/Fashion-&-Model-Photography/4-F.jpg"
               alt="Fashion Photography"
@@ -140,14 +143,17 @@ const HoverImage = ({
 
           {/* Column 3 */}
           <div className="space-y-4">
-            <HoverImage
-              src="/servicesImg/Furniture-Photography/2-F.jpg"
-              alt="Furniture Photography"
-              width={400}
-              height={400}
-              link="/services/furniture-photography"
-              className="h-100 mt-0 md:mt-30"
-            />
+            <div className="mt-0 md:mt-30">
+              <HoverImage
+                src="/servicesImg/Furniture-Photography/2-F.jpg"
+                alt="Furniture Photography"
+                width={400}
+                height={400}
+                link="/services/furniture-photography"
+                className="h-100"
+              />
+            </div>
+
             <HoverImage
               src="/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
               alt="Jewelry Retouching"
@@ -177,7 +183,6 @@ const HoverImage = ({
               className="h-113"
             />
           </div>
-
         </div>
       )}
     </div>
