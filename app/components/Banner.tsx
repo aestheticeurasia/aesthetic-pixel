@@ -383,7 +383,57 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="w-full container mx-auto px-4 mb-16 md:mb-24">
+      <section className="bg-[#f8f7fa] py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-16 text-center">
+            Simple Steps of{" "}
+            <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
+              Work
+            </span>
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div className="relative h-0 w-full pb-[56.25%]">
+              <iframe
+                className="absolute top-0 left-0 h-full w-full rounded-lg"
+                src="https://www.youtube.com/embed/jON-veDY13Q?si=W6_S-z8Ean2eXVUE"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="relative">
+              <div className="absolute left-6 top-0 h-full w-0.5 z-0" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {workSteps.map((step) => (
+                  <div
+                    key={step.number}
+                    className="relative bg-gradient-to-br from-white to-red-100 rounded-r-2xl p-8 h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+                  >
+                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-red-600" />
+
+                    <div className="px-8">
+                      <div className="text-7xl font-bold text-red-600 mb-3 leading-none">
+                        {step.number}
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-900 text-sm  leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                    <div className="">
+                      <LongArrowRight />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <section className="w-full container mx-auto px-4 mb-16 md:mb-24">
         <div className="relative h-0 w-full pb-[56.25%]">
           <iframe
             className="absolute top-0 left-0 h-full w-full rounded-lg"
@@ -393,7 +443,7 @@ export default function Banner() {
             allowFullScreen
           ></iframe>
         </div>
-      </section>
+      </section> */}
       <section className="bg-[#292929] text-white py-20 overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -407,7 +457,7 @@ export default function Banner() {
 
               <h2 className="text-4xl md:text-4xl font-bold leading-tight">
                 We Use Creativity To <br />
-                <span className="text-[#FF3366]">Get Our Clients</span>
+                <span className="text-red-500">Get Our Clients</span>
               </h2>
 
               <p className="text-gray-400 leading-relaxed">
@@ -419,17 +469,11 @@ export default function Banner() {
               <div className="space-y-6 pt-4">
                 <div>
                   <h5 className="font-bold mb-2">Business Skills</h5>
-                  <Progress
-                    className="bg-white [&>*]:bg-[#ff3366]"
-                    value={95}
-                  />
+                  <Progress className="bg-white [&>*]:bg-red-500" value={95} />
                 </div>
                 <div>
                   <h5 className="font-bold mb-2">Successful Projects</h5>
-                  <Progress
-                    className="bg-white [&>*]:bg-[#ff3366]"
-                    value={88}
-                  />
+                  <Progress className="bg-white [&>*]:bg-red-500" value={88} />
                 </div>
               </div>
             </div>
@@ -483,7 +527,7 @@ export default function Banner() {
 
                 <div className="mt-20 flex justify-center">
                   <Link href="/about">
-                    <button className="bg-[#FF3366] hover:bg-[#e02e5a] text-white px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-red-900/20 group">
+                    <button className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-red-900/20 group cursor-pointer">
                       MORE ABOUT US
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
@@ -698,10 +742,16 @@ export default function Banner() {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-500/30 cursor-pointer">
-              VIEW ALL REVIEWS
-              <ArrowRight size={16} />
-            </button>
+            <Link
+              href="https://maps.app.goo.gl/PDHdsJ7XwWSj89rq7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-red-900/20 group cursor-pointer">
+                VIEW ALL TESTIMONIALS
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
           </div>
         </div>
       </section>
