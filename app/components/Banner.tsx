@@ -18,8 +18,9 @@ import {
   Pencil,
   Cloud,
   Zap,
+  CircleCheck,
 } from "lucide-react";
-import { FaGoogle, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaGoogle, FaStar, FaStarHalfAlt, FaWhatsapp } from "react-icons/fa";
 import { SiG2, SiTrustpilot } from "react-icons/si";
 import Image from "next/image";
 import {
@@ -49,10 +50,8 @@ interface FAQItemProps {
 const FAQItem: FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => {
   return (
     <div
-      className={`mb-4 rounded-xl border transition-all duration-300 ${
-        isOpen
-          ? "border-teal-400 shadow-sm"
-          : "border-teal-400/60 hover:border-teal-400"
+      className={`mb-4 rounded-xl border-3 border-red-500 transition-all duration-300 ${
+        isOpen ? "shadow-sm" : "hover:border-red-700"
       }`}
     >
       <button
@@ -67,7 +66,11 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => {
             isOpen ? "rotate-180" : ""
           }`}
         >
-          {isOpen ? <Minus size={24} /> : <Plus size={24} />}
+          {isOpen ? (
+            <Minus className="text-red-500" size={24} />
+          ) : (
+            <Plus className="text-red-500" size={24} />
+          )}
         </span>
       </button>
 
@@ -86,46 +89,15 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => {
   );
 };
 
-const WavyUnderline = () => (
-  <svg
-    width="320"
-    height="20"
-    viewBox="0 0 320 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="mt-2"
-  >
-    <path
-      d="
-        M0 10
-        C10 0, 20 0, 30 10
-        S50 20, 60 10
-        S80 0, 90 10
-        S110 20, 120 10
-        S140 0, 150 10
-        S170 20, 180 10
-        S200 0, 210 10
-        S230 20, 240 10
-        S260 0, 270 10
-        S290 20, 300 10
-      "
-      stroke="#F97316"
-      strokeWidth="4"
-      strokeLinecap="round"
-      fill="none"
-    />
-  </svg>
-);
-
 const Doodles = () => (
   <>
     {/* Top Left Lightbulb */}
-    <div className="absolute -top-10 -left-10 text-cyan-200 opacity-60 hidden lg:block transform -rotate-12">
+    <div className="absolute -top-10 -left-10 text-red-500 opacity-60 hidden lg:block transform -rotate-12">
       <Lightbulb size={64} strokeWidth={1.5} />
     </div>
 
     {/* Bottom Left Creativity Icons */}
-    <div className="absolute bottom-10 left-0 text-cyan-200 opacity-60 hidden lg:block">
+    <div className="absolute bottom-10 left-0 text-red-500 opacity-60 hidden lg:block">
       <div className="relative">
         <Pencil
           size={48}
@@ -137,7 +109,7 @@ const Doodles = () => (
     </div>
 
     {/* Top Center/Right Icon */}
-    <div className="absolute top-0 right-1/2 text-cyan-200 opacity-60 hidden lg:block transform translate-x-12 -translate-y-8">
+    <div className="absolute top-0 right-1/2 text-red-500 opacity-60 hidden lg:block transform translate-x-12 -translate-y-8">
       <div className="relative">
         <Pencil size={32} strokeWidth={1.5} className="transform rotate-90" />
         <Cloud
@@ -149,9 +121,9 @@ const Doodles = () => (
     </div>
 
     {/* Bottom Right Brain/Idea Icon */}
-    <div className="absolute -bottom-5 right-20 text-cyan-200 opacity-60 hidden lg:block transform rotate-12">
+    <div className="absolute -bottom-5 right-20 text-red-500 opacity-60 hidden lg:block transform rotate-12">
       <Zap size={48} strokeWidth={1.5} />
-      <div className="absolute -top-2 -right-2 text-cyan-200">
+      <div className="absolute -top-2 -right-2 text-red-500">
         <Lightbulb size={24} />
       </div>
     </div>
@@ -376,7 +348,7 @@ export default function Banner() {
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  
+
   const getAllBlog = async () => {
     try {
       const { data } = await axios.get("/blogs.json");
@@ -935,9 +907,6 @@ export default function Banner() {
                   Frequently Asked <br />
                   <span className="relative inline-block text-red-500">
                     Questions
-                    <div className="absolute left-0  w-full overflow-hidden">
-                      <WavyUnderline />
-                    </div>
                   </span>
                 </h2>
                 <p className="mt-8 text-lg text-gray-700 leading-relaxed max-w-md">
@@ -966,48 +935,64 @@ export default function Banner() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="bg-white pb-16">
+     <section className="bg-gradient-to-bl from-gray-800 via-gray-900 to-black text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div className="text-gray-800">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Ready To Sell More Online? You Need Great Images
-              </h2>
-              <p className="mt-6 text-gray-600">
-                Entrust your product ranges to the team at our professional
-                ecommerce photography studio. Get in touch today for a free,
-                no-obligation quote.
-              </p>
-              <div className="mt-8 space-y-4">
-                <a
-                  href="mailto:Info@Portfolio.Com"
-                  className="flex items-center group"
-                >
-                  <Mail />
-                  <span className="ml-3 font-semibold group-hover:text-red-600 transition-colors">
-                    info@aestheticeurasia.com
-                  </span>
-                </a>
-                <a
-                  href="tel:+8801970831822"
-                  className="flex items-center group"
-                >
-                  <Phone />
-                  <span className="ml-3 font-semibold group-hover:text-red-600 transition-colors">
-                    +880 1970-831822
-                  </span>
-                </a>
+            <div className="bg-gradient-to-bl space-y-4">
+              <button className="py-2 px-5 border-3 border-red-600 text-red-700 rounded-full font-bold">
+                Claim a $799 Consultation. On US!
+              </button>
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mt-6 mb-6">
+                Enhance your Brand Potelntial
+                <br />
+                <span className="font-cursive">At No Cost!</span>
+              </h1>
+              <div className="space-y-4 text-sm leading-relaxed font-bold my-5 text-white">
+                <div className="flex gap-2">
+                  <CircleCheck className="text-red-600" /> Expect a response
+                  from us withing 24 hours.
+                </div>
+                <div className="flex gap-2">
+                  <CircleCheck className="text-red-600" /> We&apos;re happy sign
+                  an NDA upon request.
+                </div>
+                <div className="flex gap-2">
+                  <CircleCheck className="text-red-600" /> Get access to a team
+                  of dedicated product specialists.
+                </div>
+              </div>
+              <div className="space-y-4">
+                <Image
+                  src="/apsTeam/abidHasan.jpg"
+                  alt="Consultation Image"
+                  width={200}
+                  height={300}
+                  className="mt-6 rounded-lg shadow-md"
+                />
+                <span>
+                  <h3 className="font-bold text-lg">Abid Hasan Neil</h3>
+                  <h5 className="text-muted-foreground">
+                    Chief Executive Officer (CEO)
+                  </h5>
+                </span>
+              </div>
+              <div className="mt-6">
+                <span className="text-base text-gray-500 font-bold flex items-center gap-2">
+                  <FaWhatsapp className="text-green-500 w-6 h-6" />
+                  +880 1970-831822
+                </span>
+                <h5 className="font-bold text-red-700 mt-2">Book a Call Directly</h5>
               </div>
             </div>
 
             {/* --- Contact Form --- */}
-            <div id="booking">
+            <div id="booking" className="border-2 p-3 rounded-2xl">
               <BookASlotForm />
             </div>
           </div>
         </div>
       </section>
-      <section className="bg-white mb-20">
+      <section className="bg-white my-15">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Learn About Sustainable Marketing
