@@ -3,8 +3,6 @@ import {
   ArrowRight,
   Star,
   Clock,
-  Mail,
-  Phone,
   Trophy,
   User,
   Quote,
@@ -341,6 +339,7 @@ const TestimonialCard = ({ data }: { data: (typeof testimonials)[0] }) => {
     </div>
   );
 };
+
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -364,10 +363,6 @@ export default function Banner() {
 
   //carousel play
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
-
-  const heroPlugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
 
   // scroll to booking form
   const scrollToBooking = () => {
@@ -667,37 +662,43 @@ export default function Banner() {
           </div>
           {/* Trusted Partners Section */}
           <div className="mt-15 pt-12">
-            <div className="text-center mb-15">
+            <div className="text-center mb-10">
               <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">
                 Our Trusted Partners
               </h3>
             </div>
-
-            <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="flex flex-col items-center gap-2">
-                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
-                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
-                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
-                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
-                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Image width={100} height={100} alt="Brand" src="/aelogo.png" />
-                <h3 className="text-white font-bold">Aesthetic Eurasia</h3>
-              </div>
+            <div className="flex flex-wrap justify-center md:justify-between items-start gap-8 md:gap-12">
+              {[
+                { src: "/bigShot.png", name: "BIG SHOT" },
+                { src: "/sewnco.jpg", name: "SewnCo" },
+                { src: "/shishuParibahan.png", name: "Shishu Paribahan" },
+                { src: "/frontPlay.png", name: "FrontPlay Headware" },
+                { src: "/wearix.jpg", name: "Wearix" },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="w-[140px] flex flex-col items-center gap-3"
+                >
+                  <div className="h-[100px] w-full flex items-center justify-center">
+                    <Image
+                      width={100}
+                      height={100}
+                      alt={item.name}
+                      src={item.src}
+                      className="object-contain max-h-full w-auto"
+                    />
+                  </div>
+                  <h3 className="text-white font-bold text-center text-sm min-h-[40px] flex items-start justify-center">
+                    {item.name}
+                  </h3>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Portfolio Section */}
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-10 text-center">
@@ -785,7 +786,11 @@ export default function Banner() {
             </Link>
           </div>
         </div>
+
+        {/* Extra curricular section */}
       </section>
+
+      {/* Extra Curricular Section */}
       <section className=" pb-15 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 max-w-2xl mx-auto">
@@ -935,11 +940,11 @@ export default function Banner() {
       </section>
 
       {/* Contact Form Section */}
-     <section className="bg-gradient-to-bl from-gray-800 via-gray-900 to-black text-white py-16">
+      <section className="bg-gradient-to-bl from-gray-800 via-gray-900 to-black text-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="bg-gradient-to-bl space-y-4">
-              <button className="py-2 px-5 border-3 border-red-600 text-red-700 rounded-full font-bold">
+              <button className="py-2 px-5 border-3 border-red-600 text-red-200 rounded-full font-bold">
                 Claim a $799 Consultation. On US!
               </button>
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mt-6 mb-6">
@@ -969,6 +974,7 @@ export default function Banner() {
                   height={300}
                   className="mt-6 rounded-lg shadow-md"
                 />
+
                 <span>
                   <h3 className="font-bold text-lg">Abid Hasan Neil</h3>
                   <h5 className="text-muted-foreground">
@@ -981,7 +987,9 @@ export default function Banner() {
                   <FaWhatsapp className="text-green-500 w-6 h-6" />
                   +880 1970-831822
                 </span>
-                <h5 className="font-bold text-red-700 mt-2">Book a Call Directly</h5>
+                <h5 className="font-bold text-red-700 mt-2">
+                  Book a Call Directly
+                </h5>
               </div>
             </div>
 
@@ -992,6 +1000,8 @@ export default function Banner() {
           </div>
         </div>
       </section>
+
+      {/* Blog Section */}
       <section className="bg-white my-15">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
