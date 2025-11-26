@@ -22,7 +22,7 @@ const apsTeam = [
   },
   {
     name: "Nazmus Sakib",
-    role: "Lead Photographer",
+    role: "Lead Photographer & Managing Partner",
     imageUrl: "/apsTeam/nazmusSakib.jpg",
   },
 ];
