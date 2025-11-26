@@ -966,24 +966,43 @@ export default function Banner() {
                   of dedicated product specialists.
                 </div>
               </div>
-              <div className="space-y-4">
-                <Image
-                  src="/apsTeam/abidHasan.jpg"
-                  alt="Consultation Image"
-                  width={200}
-                  height={300}
-                  className="mt-6 rounded-lg shadow-md"
-                />
 
-                <span>
-                  <h3 className="font-bold text-lg">Abid Hasan Neil</h3>
-                  <h5 className="text-muted-foreground">
-                    Chief Executive Officer (CEO)
-                  </h5>
-                </span>
+              <div className="flex flex-col md:flex-row md:space-x-10 space-y-10 md:space-y-0">
+                <div className="flex flex-col items-center space-y-4 md:mt-0 mt-5">
+                  <Image
+                    src="/apsTeam/abidHasan.jpg"
+                    alt="Consultation Image"
+                    width={200}
+                    height={300}
+                    className="mt-6 rounded-lg shadow-md w-full max-w-[200px] h-auto"
+                  />
+
+                  <div className="text-center">
+                    <h3 className="font-bold text-lg">Abid Hasan Neil</h3>
+                    <h5 className="text-muted-foreground">
+                      Chief Executive Officer (CEO)
+                    </h5>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center space-y-4">
+                  <Image
+                    src="/apsTeam/nazmusSakib.jpg"
+                    alt="Consultation Image"
+                    width={200}
+                    height={300}
+                    className="mt-6 rounded-lg shadow-md w-full max-w-[200px] h-auto"
+                  />
+
+                  <div className="text-center">
+                    <h3 className="font-bold text-lg">Nazmus Sakib</h3>
+                    <h5 className="text-muted-foreground">
+                      Lead Photographer & Managing Partner
+                    </h5>
+                  </div>
+                </div>
               </div>
-              <div className="mt-6">
-                <span className="text-base text-gray-500 font-bold flex items-center gap-2">
+              <div className="md:mt-6 mt-10 text-center md:text-left">
+                <span className="text-base text-gray-500 font-bold flex items-center justify-center md:justify-start gap-2">
                   <FaWhatsapp className="text-green-500 w-6 h-6" />
                   +880 1970-831822
                 </span>
