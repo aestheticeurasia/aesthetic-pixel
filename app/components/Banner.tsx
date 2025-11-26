@@ -976,7 +976,6 @@ export default function Banner() {
                     height={300}
                     className="mt-6 rounded-lg shadow-md w-full max-w-[200px] h-auto"
                   />
-
                   <div className="text-center">
                     <h3 className="font-bold text-lg">Abid Hasan Neil</h3>
                     <h5 className="text-muted-foreground">
