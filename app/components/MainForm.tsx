@@ -15,25 +15,25 @@ const SERVICE_OPTIONS: ServiceOption[] = [
   {
     id: "Photography",
     label: "Photography",
-    subOptions: ["Wedding", "Portrait", "Product", "Event"],
-    radioQuestion: "Do you have a location selected?",
+    subOptions: ["Portrait", "Product"],
+    radioQuestion: "Do you photo editing & retouching?",
   },
   {
     id: "Videography",
     label: "Videography",
-    subOptions: ["Commercial", "Music Video", "Documentary", "Social Reels"],
-    radioQuestion: "Do you have a script/storyboard?",
+    subOptions: ["Commercial", "Product Promotional Video", "Reels Making"],
+    radioQuestion: "Do you video editing also?",
   },
   {
     id: "Web Design & Development",
     label: "Web Design & Development",
-    subOptions: ["E-commerce", "Portfolio", "Corporate Site", "Landing Page"],
-    radioQuestion: "Do you have a domain & hosting?",
+    subOptions: ["E-commerce", "Portfolio", "Corporate Site", "Landing Page","Custom Website/Application"],
+    radioQuestion: "Do you have any design for your website / application?",
   },
   {
     id: "Digital Marketing Solution",
     label: "Digital Marketing Solution",
-    subOptions: ["SEO", "Social Media", "PPC Ads", "Content Strategy"],
+    subOptions: ["SEO", "Social Media", "Ads Management", "Content Strategy"],
     radioQuestion: "Do you have existing brand guidelines?",
   },
 ];
@@ -42,6 +42,7 @@ interface ServiceDetailState {
   [key: string]: {
     checkboxes: string[];
     radioValue: string;
+    otherDetail: string; // Added to store text for "Other"
   };
 }
 
@@ -52,21 +53,24 @@ export default function MainForm() {
   const [message, setMessage] = useState<string>("");
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  // CHANGED: Single string instead of array for exclusive selection
+  const [selectedService, setSelectedService] = useState<string | null>(null);
   const [serviceDetails, setServiceDetails] = useState<ServiceDetailState>({});
 
   const toggleService = (serviceId: string) => {
-    if (selectedServices.includes(serviceId)) {
-      setSelectedServices(selectedServices.filter((s) => s !== serviceId));
-      const newDetails = { ...serviceDetails };
-      delete newDetails[serviceId];
-      setServiceDetails(newDetails);
+    // If clicking the already selected one, deselect it. Otherwise, select new one.
+    if (selectedService === serviceId) {
+      setSelectedService(null);
     } else {
-      setSelectedServices([...selectedServices, serviceId]);
-      setServiceDetails({
-        ...serviceDetails,
-        [serviceId]: { checkboxes: [], radioValue: "No" },
-      });
+      setSelectedService(serviceId);
+      // Initialize state for this service if it doesn't exist yet
+      if (!serviceDetails[serviceId]) {
+        setServiceDetails((prev) => ({
+          ...prev,
+          [serviceId]: { checkboxes: [], radioValue: "No", otherDetail: "" },
+        }));
+      }
     }
   };
 
@@ -74,6 +78,7 @@ export default function MainForm() {
     const current = serviceDetails[serviceId] || {
       checkboxes: [],
       radioValue: "No",
+      otherDetail: "",
     };
     const isChecked = current.checkboxes.includes(option);
 
@@ -87,11 +92,17 @@ export default function MainForm() {
     });
   };
 
+  // NEW: Handle text input for "Other"
+  const handleOtherInputChange = (serviceId: string, value: string) => {
+    const current = serviceDetails[serviceId];
+    setServiceDetails({
+      ...serviceDetails,
+      [serviceId]: { ...current, otherDetail: value },
+    });
+  };
+
   const handleSubRadioChange = (serviceId: string, value: string) => {
-    const current = serviceDetails[serviceId] || {
-      checkboxes: [],
-      radioValue: "No",
-    };
+    const current = serviceDetails[serviceId];
     setServiceDetails({
       ...serviceDetails,
       [serviceId]: { ...current, radioValue: value },
@@ -109,19 +120,29 @@ export default function MainForm() {
     form.append("phone", phone);
 
     let servicesSummary = "";
-    if (selectedServices.length > 0) {
-      servicesSummary = selectedServices
-        .map((serviceId) => {
-          const details = serviceDetails[serviceId];
-          return `
-          ${serviceId}
-          - Interests: ${details?.checkboxes.join(", ") || "None"}
-          - ${
-            SERVICE_OPTIONS.find((s) => s.id === serviceId)?.radioQuestion
-          }: ${details?.radioValue}
-          `;
+
+    // Process the single selected service
+    if (selectedService) {
+      const details = serviceDetails[selectedService];
+      const serviceConfig = SERVICE_OPTIONS.find(
+        (s) => s.id === selectedService
+      );
+
+      // Format interests, including specific text for "Other" if applicable
+      const interests = details?.checkboxes
+        .map((item) => {
+          if (item === "Other" && details.otherDetail) {
+            return `Other (${details.otherDetail})`;
+          }
+          return item;
         })
-        .join("\n--------------------------------\n");
+        .join(", ");
+
+      servicesSummary = `
+          Service: ${selectedService}
+          - Interests: ${interests || "None selected"}
+          - ${serviceConfig?.radioQuestion}: ${details?.radioValue}
+          `;
     }
 
     form.append("Services_Requested", servicesSummary);
@@ -137,12 +158,11 @@ export default function MainForm() {
 
       if (response.ok) {
         setStatus("Message sent successfully!");
-        // Reset Form
         setName("");
         setEmail("");
         setPhone("");
         setMessage("");
-        setSelectedServices([]);
+        setSelectedService(null);
         setServiceDetails({});
       } else {
         setStatus(result.message || "There was an error sending your message.");
@@ -199,11 +219,11 @@ export default function MainForm() {
           {/* --- Service Selection Area --- */}
           <div>
             <label className="block text-gray-700 font-bold mb-3">
-              Choose your desired services:
+              Select a service:
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {SERVICE_OPTIONS.map((service) => {
-                const isSelected = selectedServices.includes(service.id);
+                const isSelected = selectedService === service.id;
                 return (
                   <div
                     key={service.id}
@@ -229,99 +249,138 @@ export default function MainForm() {
           </div>
 
           {/* --- Conditional Submenus --- */}
-          <AnimatePresence>
-            {selectedServices.map((serviceId) => {
-              const serviceConfig = SERVICE_OPTIONS.find(
-                (s) => s.id === serviceId
-              );
-              if (!serviceConfig) return null;
+          <AnimatePresence mode="wait">
+            {selectedService && (
+              <motion.div
+                key={selectedService}
+                initial={{ opacity: 0, height: 0, y: -10 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                {(() => {
+                  const serviceConfig = SERVICE_OPTIONS.find(
+                    (s) => s.id === selectedService
+                  );
+                  if (!serviceConfig) return null;
 
-              return (
-                <motion.div
-                  key={serviceId}
-                  initial={{ opacity: 0, height: 0, y: -10 }}
-                  animate={{ opacity: 1, height: "auto", y: 0 }}
-                  exit={{ opacity: 0, height: 0, y: -10 }}
-                  className="overflow-hidden"
-                >
-                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-2 shadow-sm">
-                    <h3 className="font-bold text-lg text-red-600 mb-4 border-b border-gray-200 pb-2">
-                      {serviceConfig.label} Options
-                    </h3>
+                  // Dynamically add "Other" to options
+                  const displayOptions = [...serviceConfig.subOptions, "Other"];
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Column 1: 4 Checkboxes */}
-                      <div>
-                        <p className="text-sm font-semibold text-gray-700 mb-3">
-                          What do you need?
-                        </p>
-                        <div className="flex flex-wrap gap-4">
-                          {serviceConfig.subOptions.map((option) => (
-                            <label
-                              key={option}
-                              className="flex items-center space-x-2 cursor-pointer"
-                            >
+                  return (
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-2 shadow-sm">
+                      <h3 className="font-bold text-lg text-red-600 mb-4 border-b border-gray-200 pb-2">
+                        {serviceConfig.label} Options
+                      </h3>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Column 1: Checkboxes */}
+                        <div>
+                          <p className="text-sm font-semibold text-gray-700 mb-3">
+                            What do you need?
+                          </p>
+                          <div className="flex flex-col gap-3">
+                            {displayOptions.map((option) => {
+                              const isChecked =
+                                serviceDetails[
+                                  selectedService
+                                ]?.checkboxes.includes(option);
+                              return (
+                                <div key={option} className="flex">
+                                  <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input
+                                      type="checkbox"
+                                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                      checked={isChecked || false}
+                                      onChange={() =>
+                                        handleSubCheckboxChange(
+                                          selectedService,
+                                          option
+                                        )
+                                      }
+                                    />
+                                    <span className="text-gray-600">
+                                      {option}
+                                    </span>
+                                  </label>
+
+                                  {/* Conditional Input for Other */}
+                                  {option === "Other" && isChecked && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: "auto" }}
+                                      className="ml-6 mt-2"
+                                    >
+                                      <input
+                                        type="text"
+                                        placeholder="Please specify..."
+                                        className="w-full p-2 text-sm border border-gray-300 rounded focus:border-red-500 focus:outline-none"
+                                        value={
+                                          serviceDetails[selectedService]
+                                            ?.otherDetail || ""
+                                        }
+                                        onChange={(e) =>
+                                          handleOtherInputChange(
+                                            selectedService,
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </motion.div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Column 2: Yes/No Radio */}
+                        <div>
+                          <p className="text-sm font-semibold text-gray-700 mb-3">
+                            {serviceConfig.radioQuestion}
+                          </p>
+                          <div className="flex items-center space-x-4">
+                            <label className="flex items-center space-x-2 cursor-pointer">
                               <input
-                                type="checkbox"
-                                className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                type="radio"
+                                name={`${selectedService}-radio`}
+                                value="Yes"
                                 checked={
-                                  serviceDetails[
-                                    serviceId
-                                  ]?.checkboxes.includes(option) || false
+                                  serviceDetails[selectedService]
+                                    ?.radioValue === "Yes"
                                 }
                                 onChange={() =>
-                                  handleSubCheckboxChange(serviceId, option)
+                                  handleSubRadioChange(selectedService, "Yes")
                                 }
+                                className="w-4 h-4 text-red-600 focus:ring-red-500"
                               />
-                              <span className="text-gray-600">{option}</span>
+                              <span className="text-gray-600">Yes</span>
                             </label>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Column 2: Yes/No Radio */}
-                      <div>
-                        <p className="text-sm font-semibold text-gray-700 mb-3">
-                          {serviceConfig.radioQuestion}
-                        </p>
-                        <div className="flex items-center space-x-4">
-                          <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name={`${serviceId}-radio`}
-                              value="Yes"
-                              checked={
-                                serviceDetails[serviceId]?.radioValue === "Yes"
-                              }
-                              onChange={() =>
-                                handleSubRadioChange(serviceId, "Yes")
-                              }
-                              className="w-4 h-4 text-red-600 focus:ring-red-500"
-                            />
-                            <span className="text-gray-600">Yes</span>
-                          </label>
-                          <label className="flex items-center space-x-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name={`${serviceId}-radio`}
-                              value="No"
-                              checked={
-                                serviceDetails[serviceId]?.radioValue === "No"
-                              }
-                              onChange={() =>
-                                handleSubRadioChange(serviceId, "No")
-                              }
-                              className="w-4 h-4 text-red-600 focus:ring-red-500"
-                            />
-                            <span className="text-gray-600">No</span>
-                          </label>
+                            <label className="flex items-center space-x-2 cursor-pointer">
+                              <input
+                                type="radio"
+                                name={`${selectedService}-radio`}
+                                value="No"
+                                checked={
+                                  serviceDetails[selectedService]
+                                    ?.radioValue === "No"
+                                }
+                                onChange={() =>
+                                  handleSubRadioChange(selectedService, "No")
+                                }
+                                className="w-4 h-4 text-red-600 focus:ring-red-500"
+                              />
+                              <span className="text-gray-600">No</span>
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  );
+                })()}
+              </motion.div>
+            )}
           </AnimatePresence>
 
           <textarea
