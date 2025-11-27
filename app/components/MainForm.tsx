@@ -114,7 +114,7 @@ export default function MainForm() {
         .map((serviceId) => {
           const details = serviceDetails[serviceId];
           return `
-          <b>${serviceId}</b>
+          ${serviceId}
           - Interests: ${details?.checkboxes.join(", ") || "None"}
           - ${
             SERVICE_OPTIONS.find((s) => s.id === serviceId)?.radioQuestion
