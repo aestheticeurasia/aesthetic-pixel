@@ -6,6 +6,16 @@ import CountUp from "react-countup";
 
 const apsTeam = [
   {
+    name: "Nazmus Sakib",
+    role: "Managing Partner & Lead Photographer",
+    imageUrl: "/apsTeam/nazmusSakib.jpg",
+  },
+    {
+    name: "MD Ashaduzzaman",
+    role: "Director",
+    imageUrl: "/apsTeam/mdAshaduzzaman.jpg",
+  },
+  {
     name: "Abid Hasan Neil",
     role: "CEO",
     imageUrl: "/apsTeam/abidHasan.jpg",
@@ -14,16 +24,6 @@ const apsTeam = [
     name: "Jamirul Islam",
     role: "COO",
     imageUrl: "/apsTeam/jamirulIslam.jpg",
-  },
-  {
-    name: "MD Ashaduzzaman",
-    role: "Director",
-    imageUrl: "/apsTeam/mdAshaduzzaman.jpg",
-  },
-  {
-    name: "Nazmus Sakib",
-    role: "Lead Photographer & Managing Partner",
-    imageUrl: "/apsTeam/nazmusSakib.jpg",
   },
 ];
 
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 className="rounded-lg object-cover"
               />
               <h2 className="mt-4 text-xl font-semibold">{member?.name}</h2>
-              <p className="text-gray-500">{member?.role}</p>
+              <p className="text-gray-500 text-center">{member?.role}</p>
             </div>
           ))}
         </div>
