@@ -15,7 +15,7 @@ const SERVICE_OPTIONS: ServiceOption[] = [
   {
     id: "Photography",
     label: "Photography",
-    subOptions: ["Portrait", "Product"],
+    subOptions: ["Portrait", "Product Photography"],
     radioQuestion: "Do you photo editing & retouching?",
   },
   {
