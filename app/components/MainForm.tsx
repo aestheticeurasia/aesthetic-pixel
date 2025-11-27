@@ -16,18 +16,24 @@ const SERVICE_OPTIONS: ServiceOption[] = [
     id: "Photography",
     label: "Photography",
     subOptions: ["Portrait", "Product Photography"],
-    radioQuestion: "Do you photo editing & retouching?",
+    radioQuestion: "Do you need photo editing & retouching?",
   },
   {
     id: "Videography",
     label: "Videography",
     subOptions: ["Commercial", "Product Promotional Video", "Reels Making"],
-    radioQuestion: "Do you video editing also?",
+    radioQuestion: "Do you need video editing also?",
   },
   {
     id: "Web Design & Development",
     label: "Web Design & Development",
-    subOptions: ["E-commerce", "Portfolio", "Corporate Site", "Landing Page","Custom Website/Application"],
+    subOptions: [
+      "E-commerce",
+      "Portfolio",
+      "Corporate Site",
+      "Landing Page",
+      "Custom Website/Application",
+    ],
     radioQuestion: "Do you have any design for your website / application?",
   },
   {
@@ -42,7 +48,7 @@ interface ServiceDetailState {
   [key: string]: {
     checkboxes: string[];
     radioValue: string;
-    otherDetail: string; // Added to store text for "Other"
+    otherDetail: string;
   };
 }
 
@@ -54,17 +60,14 @@ export default function MainForm() {
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // CHANGED: Single string instead of array for exclusive selection
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [serviceDetails, setServiceDetails] = useState<ServiceDetailState>({});
 
   const toggleService = (serviceId: string) => {
-    // If clicking the already selected one, deselect it. Otherwise, select new one.
     if (selectedService === serviceId) {
       setSelectedService(null);
     } else {
       setSelectedService(serviceId);
-      // Initialize state for this service if it doesn't exist yet
       if (!serviceDetails[serviceId]) {
         setServiceDetails((prev) => ({
           ...prev,
@@ -92,7 +95,6 @@ export default function MainForm() {
     });
   };
 
-  // NEW: Handle text input for "Other"
   const handleOtherInputChange = (serviceId: string, value: string) => {
     const current = serviceDetails[serviceId];
     setServiceDetails({
@@ -121,14 +123,12 @@ export default function MainForm() {
 
     let servicesSummary = "";
 
-    // Process the single selected service
     if (selectedService) {
       const details = serviceDetails[selectedService];
       const serviceConfig = SERVICE_OPTIONS.find(
         (s) => s.id === selectedService
       );
 
-      // Format interests, including specific text for "Other" if applicable
       const interests = details?.checkboxes
         .map((item) => {
           if (item === "Other" && details.otherDetail) {
@@ -178,8 +178,13 @@ export default function MainForm() {
     }
   };
 
+  // Reusable styles for inputs
+  const inputClasses =
+    "w-full p-4 bg-transparent border-2 border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder:text-gray-400 transition-colors";
+
   return (
-    <div>
+    <div className="w-full">
+      <h2 className="text-2xl font-bold text-center pb-10 pt-5">Get in Touch</h2>
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           {/* Basic Info */}
@@ -188,7 +193,7 @@ export default function MainForm() {
             name="name"
             placeholder="Your Name"
             required
-            className="w-full p-4 bg-white border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className={inputClasses}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -199,7 +204,7 @@ export default function MainForm() {
               name="email"
               placeholder="Email address"
               required
-              className="w-full p-4 bg-white border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+              className={inputClasses}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -208,17 +213,17 @@ export default function MainForm() {
               name="phone"
               placeholder="Enter Phone"
               required
-              className="w-full p-4 bg-white border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+              className={inputClasses}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
 
-          <hr className="border-gray-300 my-4" />
+          <hr className="border-white/20 my-4" />
 
           {/* --- Service Selection Area --- */}
           <div>
-            <label className="block text-gray-700 font-bold mb-3">
+            <label className="block text-white font-bold mb-3">
               Select a service:
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -230,18 +235,18 @@ export default function MainForm() {
                     onClick={() => toggleService(service.id)}
                     className={`cursor-pointer p-4 rounded-md border-2 transition-all duration-200 flex items-center justify-between ${
                       isSelected
-                        ? "border-red-500 bg-red-50"
-                        : "border-gray-200 bg-white hover:border-red-300"
+                        ? "border-red-500 bg-red-500/10"
+                        : "border-white/20 bg-transparent hover:bg-white/5 hover:border-white/40"
                     }`}
                   >
                     <span
                       className={`font-medium ${
-                        isSelected ? "text-red-700" : "text-gray-600"
+                        isSelected ? "text-red-400" : "text-gray-200"
                       }`}
                     >
                       {service.label}
                     </span>
-                    {isSelected && <Check size={18} className="text-red-600" />}
+                    {isSelected && <Check size={18} className="text-red-500" />}
                   </div>
                 );
               })}
@@ -265,19 +270,19 @@ export default function MainForm() {
                   );
                   if (!serviceConfig) return null;
 
-                  // Dynamically add "Other" to options
                   const displayOptions = [...serviceConfig.subOptions, "Other"];
 
                   return (
-                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-2 shadow-sm">
-                      <h3 className="font-bold text-lg text-red-600 mb-4 border-b border-gray-200 pb-2">
+                    // Submenu Container
+                    <div className="bg-white/5 p-6 rounded-lg border border-white/10 mt-2 shadow-sm backdrop-blur-sm">
+                      <h3 className="font-bold text-lg text-red-400 mb-4 border-b border-white/10 pb-2">
                         {serviceConfig.label} Options
                       </h3>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Column 1: Checkboxes */}
                         <div>
-                          <p className="text-sm font-semibold text-gray-700 mb-3">
+                          <p className="text-sm font-semibold text-gray-200 mb-3">
                             What do you need?
                           </p>
                           <div className="flex flex-col gap-3">
@@ -287,11 +292,11 @@ export default function MainForm() {
                                   selectedService
                                 ]?.checkboxes.includes(option);
                               return (
-                                <div key={option} className="flex">
-                                  <label className="flex items-center space-x-2 cursor-pointer">
+                                <div key={option} className="flex flex-col">
+                                  <label className="flex items-center space-x-2 cursor-pointer group">
                                     <input
                                       type="checkbox"
-                                      className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                      className="w-4 h-4 text-red-600 bg-transparent border-white/40 rounded focus:ring-red-500 focus:ring-offset-0"
                                       checked={isChecked || false}
                                       onChange={() =>
                                         handleSubCheckboxChange(
@@ -300,7 +305,7 @@ export default function MainForm() {
                                         )
                                       }
                                     />
-                                    <span className="text-gray-600">
+                                    <span className="text-gray-300 group-hover:text-white transition-colors">
                                       {option}
                                     </span>
                                   </label>
@@ -309,13 +314,16 @@ export default function MainForm() {
                                   {option === "Other" && isChecked && (
                                     <motion.div
                                       initial={{ opacity: 0, height: 0 }}
-                                      animate={{ opacity: 1, height: "auto" }}
+                                      animate={{
+                                        opacity: 1,
+                                        height: "auto",
+                                      }}
                                       className="ml-6 mt-2"
                                     >
                                       <input
                                         type="text"
                                         placeholder="Please specify..."
-                                        className="w-full p-2 text-sm border border-gray-300 rounded focus:border-red-500 focus:outline-none"
+                                        className="w-full p-2 text-sm bg-transparent border border-white/30 text-white rounded focus:border-red-500 focus:outline-none placeholder:text-gray-500"
                                         value={
                                           serviceDetails[selectedService]
                                             ?.otherDetail || ""
@@ -337,7 +345,7 @@ export default function MainForm() {
 
                         {/* Column 2: Yes/No Radio */}
                         <div>
-                          <p className="text-sm font-semibold text-gray-700 mb-3">
+                          <p className="text-sm font-semibold text-gray-200 mb-3">
                             {serviceConfig.radioQuestion}
                           </p>
                           <div className="flex items-center space-x-4">
@@ -353,9 +361,9 @@ export default function MainForm() {
                                 onChange={() =>
                                   handleSubRadioChange(selectedService, "Yes")
                                 }
-                                className="w-4 h-4 text-red-600 focus:ring-red-500"
+                                className="w-4 h-4 text-red-600 bg-transparent border-white/40 focus:ring-red-500 focus:ring-offset-0"
                               />
-                              <span className="text-gray-600">Yes</span>
+                              <span className="text-gray-300">Yes</span>
                             </label>
                             <label className="flex items-center space-x-2 cursor-pointer">
                               <input
@@ -369,9 +377,9 @@ export default function MainForm() {
                                 onChange={() =>
                                   handleSubRadioChange(selectedService, "No")
                                 }
-                                className="w-4 h-4 text-red-600 focus:ring-red-500"
+                                className="w-4 h-4 text-red-600 bg-transparent border-white/40 focus:ring-red-500 focus:ring-offset-0"
                               />
-                              <span className="text-gray-600">No</span>
+                              <span className="text-gray-300">No</span>
                             </label>
                           </div>
                         </div>
@@ -388,7 +396,7 @@ export default function MainForm() {
             placeholder="Additional details or message..."
             rows={5}
             required
-            className="w-full p-4 bg-white border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className={inputClasses}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
@@ -419,7 +427,7 @@ export default function MainForm() {
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               >
-                <p className="font-bold">{status}</p>
+                <p className="font-bold text-white">{status}</p>
               </motion.div>
             )}
           </AnimatePresence>

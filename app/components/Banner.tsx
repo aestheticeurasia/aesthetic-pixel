@@ -37,6 +37,7 @@ import Link from "next/link";
 import BookASlotForm from "./BookASlotForm";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
+import MainForm from "./MainForm";
 
 interface FAQItemProps {
   question: string;
@@ -1020,8 +1021,8 @@ export default function Banner() {
             </div>
 
             {/* --- Contact Form --- */}
-            <div id="booking" className="border-2 p-3 rounded-2xl">
-              <BookASlotForm />
+            <div id="booking" className="p-5 rounded-2xl border">
+              <MainForm />
             </div>
           </div>
         </div>

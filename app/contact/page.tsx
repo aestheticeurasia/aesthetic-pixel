@@ -39,14 +39,9 @@ export default function Contact() {
         </div>
 
         <div className="md:w-2/3 w-full">
-          <Card className="bg-[#edeef0] dark:bg-card p-6 rounded-lg shadow-md w-full h-auto flex flex-col justify-between">
-            <h2 className="text-2xl font-bold text-center mt-5">
-              Get in Touch
-            </h2>
-            <div>
-              <MainForm />
-            </div>
-          </Card>
+          <div className="p-5 rounded-2xl border text-white bg-gray-700">
+            <MainForm />
+          </div>
         </div>
       </div>
     </div>
