@@ -49,7 +49,7 @@ export default function Portfolio() {
       <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mt-10 mb-13 text-center">
         Our{" "}
         <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
-          Portfolio
+          Work
         </span>
       </h1>
       {loading ? (
