@@ -110,154 +110,126 @@ export default function MainNav() {
         <div className="px-10 flex h-30 items-center">
           <div className="flex justify-between items-center w-full py-4">
             <div>
-              <div className="flex">
-                <div>
-                  <Link href="/" className="flex-shrink-0">
-                    <Image
-                      src="/logo.png"
-                      alt="Aesthetic Pixel Logo"
-                      width={100}
-                      height={40}
-                      className="block dark:hidden"
-                    />
-                    <Image
-                      src="/logoDark.png"
-                      alt="Aesthetic Pixel Logo Dark"
-                      width={100}
-                      height={40}
-                      className="hidden dark:block"
-                    />
-                  </Link>
-                </div>
+              <Link href="/" className="flex-shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="Aesthetic Pixel Logo"
+                  width={100}
+                  height={40}
+                  className="block dark:hidden"
+                />
+                <Image
+                  src="/logoDark.png"
+                  alt="Aesthetic Pixel Logo Dark"
+                  width={100}
+                  height={40}
+                  className="hidden dark:block"
+                />
+              </Link>
+            </div>
 
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex justify-start items-center space-x-1 text-lg font-bold relative ms-4">
-                  {/* Home */}
-                  <Link
-                    href="/"
-                    className={`py-2 px-3 rounded-lg ${
-                      isActive("/")
-                        ? "bg-destructive text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                    }`}
-                  >
-                    Home
-                  </Link>
+            {/* Desktop Nav */}
+            <div>
+              <nav className="hidden md:flex justify-start items-center space-x-1 text-lg font-bold relative ms-4">
+                {/* Services Dropdown */}
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger
+                        className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
+                          pathName?.startsWith("/services")
+                            ? "bg-destructive text-white dark:text-black"
+                            : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                        }`}
+                      >
+                        Services
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="bg-red-500">
+                        <div className="flex flex-col md:flex-row gap-4  min-h-[300px]">
+                          {/* Column 1: Studio (Items 0-3 from array) */}
+                          <div className="flex-1 flex flex-col">
+                            <h1 className="text-center text-white">Studio</h1>
 
-                  {/* About */}
-                  <Link
-                    href="/about"
-                    className={`py-2 px-3 rounded-lg ${
-                      isActive("/about")
-                        ? "bg-destructive text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                    }`}
-                  >
-                    About
-                  </Link>
-
-                  {/* Services Dropdown */}
-                  <NavigationMenu>
-                    <NavigationMenuList>
-                      <NavigationMenuItem>
-                        <NavigationMenuTrigger
-                          className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
-                            pathName?.startsWith("/services")
-                              ? "bg-destructive text-white dark:text-black"
-                              : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                          }`}
-                        >
-                          Services
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent className="bg-red-500">
-                          <div className="flex flex-col md:flex-row gap-4  min-h-[300px]">
-                            {/* Column 1: Studio (Items 0-3 from array) */}
-                            <div className="flex-1 flex flex-col">
-                              <h1 className="text-center text-white">Studio</h1>
-
-                              <div className="bg-white rounded-lg flex-1 w-70">
-                                <ul className="p-2 space-y-3">
-                                  {serviceSubMenu
-                                    .slice(0, 4)
-                                    .map((item, index) => (
-                                      <ListItem
-                                        key={index}
-                                        href={item.href}
-                                        title={item.label}
-                                      >
-                                        {item.desc}
-                                      </ListItem>
-                                    ))}
-                                </ul>
-                              </div>
-                            </div>
-
-                            {/* Column 2: Platform (Items 4+ from array) */}
-                            <div className="flex-1 flex flex-col">
-                              <h1 className="text-center text-white">
-                                Platform
-                              </h1>
-
-                              <div className="bg-white rounded-lg flex-1 w-70">
-                                <ul className="p-2 space-y-3">
-                                  {serviceSubMenu
-                                    .slice(4)
-                                    .map((item, index) => (
-                                      <ListItem
-                                        key={index}
-                                        href={item.href}
-                                        title={item.label}
-                                      >
-                                        {item.desc}
-                                      </ListItem>
-                                    ))}
-                                </ul>
-                              </div>
+                            <div className="bg-white rounded-lg flex-1 w-70">
+                              <ul className="p-2 space-y-3">
+                                {serviceSubMenu
+                                  .slice(0, 4)
+                                  .map((item, index) => (
+                                    <ListItem
+                                      key={index}
+                                      href={item.href}
+                                      title={item.label}
+                                    >
+                                      {item.desc}
+                                    </ListItem>
+                                  ))}
+                              </ul>
                             </div>
                           </div>
-                        </NavigationMenuContent>
-                      </NavigationMenuItem>
-                    </NavigationMenuList>
-                  </NavigationMenu>
 
-                  {/* Portfolio */}
-                  <Link
-                    href="/portfolio"
-                    className={`py-2 px-3 rounded-lg ${
-                      isActive("/portfolio")
-                        ? "bg-destructive text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                    }`}
-                  >
-                    Portfolio
-                  </Link>
+                          {/* Column 2: Platform (Items 4+ from array) */}
+                          <div className="flex-1 flex flex-col">
+                            <h1 className="text-center text-white">Platform</h1>
 
-                  {/* Contact */}
-                  <Link
-                    href="/contact"
-                    className={`py-2 px-3 rounded-lg ${
-                      isActive("/contact")
-                        ? "bg-destructive text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                    }`}
-                  >
-                    Contact
-                  </Link>
+                            <div className="bg-white rounded-lg flex-1 w-70">
+                              <ul className="p-2 space-y-3">
+                                {serviceSubMenu.slice(4).map((item, index) => (
+                                  <ListItem
+                                    key={index}
+                                    href={item.href}
+                                    title={item.label}
+                                  >
+                                    {item.desc}
+                                  </ListItem>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
 
-                  {/* Blog */}
-                  <Link
-                    href="/blog"
-                    className={`py-2 px-3 rounded-lg ${
-                      isActive("/blog")
-                        ? "bg-destructive text-white dark:text-black"
-                        : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
-                    }`}
-                  >
-                    Blogs
-                  </Link>
-                </nav>
-              </div>
+                {/* Pricing */}
+                <Link
+                  href="/pricing"
+                  className={`py-2 px-3 rounded-lg ${
+                    isActive("/pricing")
+                      ? "bg-destructive text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                >
+                  Pricing
+                </Link>
+
+                {/* Our Work */}
+                <Link
+                  href="/our-work"
+                  className={`py-2 px-3 rounded-lg ${
+                    isActive("/our-work")
+                      ? "bg-destructive text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                >
+                  Our Work
+                </Link>
+
+                {/* Blog */}
+                <Link
+                  href="/blog"
+                  className={`py-2 px-3 rounded-lg ${
+                    isActive("/blog")
+                      ? "bg-destructive text-white dark:text-black"
+                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                >
+                  Blogs
+                </Link>
+              </nav>
             </div>
+
+            {/* Landing Page Button */}
             <div>
               <span className="hidden md:inline-flex text-foreground me-3">
                 <Link
@@ -266,7 +238,7 @@ export default function MainNav() {
                   rel="noopener noreferrer"
                 >
                   <button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
-                    Rent Studio
+                    Studio Hire
                   </button>
                 </Link>
               </span>
@@ -437,11 +409,11 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-5 px-8 block"
                     >
-                     <button className="w-full border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
-                    Rent Studio
-                  </button>
+                      <button className="w-full border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                        Rent Studio
+                      </button>
                     </Link>
-                     {/* <Link
+                    {/* <Link
                   href="/studio-rent"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -462,7 +434,7 @@ export default function MainNav() {
                         Book a Slot
                       </button>
                     </Link>
-                     {/* <Link
+                    {/* <Link
                   href="/book-a-slot"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -495,7 +467,9 @@ function ListItem({
           href={href}
           className="group block py-3 rounded-lg hover:bg-red-600"
         >
-          <div className="text-lg leading-none group-hover:text-white">{title}</div>
+          <div className="text-lg leading-none group-hover:text-white">
+            {title}
+          </div>
           <p className="line-clamp-2 text-sm group-hover:text-gray-200">
             {children}
           </p>

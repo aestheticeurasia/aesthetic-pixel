@@ -127,7 +127,7 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold pb-5">Quick Links</h3>
               <div className="flex flex-col space-y-2 text-gray-300">
-                <a href="">About</a>
+                <a href="/about">About</a>
                 <a href="">Features</a>
                 <a href="">Pricing</a>
                 <a href="">Portfolio</a>
