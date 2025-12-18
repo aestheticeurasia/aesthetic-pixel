@@ -89,7 +89,6 @@ export default function MainNav() {
   };
 
   useEffect(() => {
-
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -99,9 +98,7 @@ export default function MainNav() {
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <header
         className={`fixed top-0 left-0 md:px-10 w-full z-50 py-[14px] transition-all duration-300 ${
-          scrolled
-              ? "bg-black/80 backdrop-blur-md shadow-sm"
-              : "bg-transparent"
+          scrolled ? "bg-black/80 backdrop-blur-md shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="px-10 flex h-15 items-center">
@@ -241,11 +238,11 @@ export default function MainNav() {
           <div className="md:hidden flex items-center gap-4">
             <Sheet>
               <SheetTrigger asChild>
-                <button className="p-2 rounded hover:bg-muted text-foreground">
-                  <Menu size={24} />
-                </button>
+                <Button className="p-[9px] rounded-md bg-[#101010] border-[#272727]">
+                  <Menu size={50} strokeWidth={1.5} className="text-white" />
+                </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-background">
+              <SheetContent side="left" className="bg-black/95 text-white border-none">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>

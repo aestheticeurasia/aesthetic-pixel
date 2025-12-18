@@ -44,9 +44,9 @@ const workSteps = [
 
 export default function Banner() {
   return (
-    <div className="lg:px-[160px]">
+    <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row min-h-screen pt-[80px] lg:pt-[120px] px-6 md:px-12 lg:px-20 gap-8 items-stretch justify-center">
+      <section className="flex flex-col lg:flex-row min-h-screen pt-[120px] px-6 md:px-12 lg:px-20 gap-8 items-stretch justify-center lg:px-[160px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -144,41 +144,93 @@ export default function Banner() {
       </section>
 
       {/* Work Steps */}
-      <section className="px-6 md:px-12 lg:px-20 mt-[32px]">
-        <div className="py-[32px]">
+      <section
+        className="
+    mt-[32px]
+    px-4 sm:px-8 
+    bg-[url('/layoutComponents/redishBlur-top.svg')]
+    bg-no-repeat
+    bg-right-bottom
+    lg:px-[160px]
+  "
+      >
+        <div className="py-8">
           <h1 className="text-4xl font-semibold text-white">
             Simple Steps of Work
           </h1>
           <p className="text-muted-foreground">
-            From concept to final devliery in 4 days
+            From concept to final delivery in 4 days
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4">
+
+        <div
+          className="
+      mx-auto
+      grid
+      grid-cols-1
+      sm:grid-cols-2
+      lg:grid-cols-4
+      gap-6
+    "
+        >
           {workSteps.map((step, index) => (
             <Card
               key={index}
-              className="group bg-[#0a0a0a] border border-[#222223] rounded-3xl p-[34px] max-w-[396px] max-h-[356px]"
+              className="
+          group
+          w-full
+          aspect-square
+          flex flex-col
+          justify-between
+
+          border border-[#222223]
+          rounded-3xl
+          p-6 md:p-8
+          bg-transparent
+
+          transition-colors duration-300
+          hover:border-[#7d0508]
+        "
             >
-              <h1
-                className="text-7xl font-extrabold text-muted-foreground text-end
-        transition-colors duration-300
-        group-hover:text-[#7d0508] mb-6"
-              >
-                {step.step}
-              </h1>
+              <div className="flex flex-col h-full">
+                <h1
+                  className="
+              text-6xl md:text-7xl font-extrabold
+              text-muted-foreground/30
+              text-end
+              transition-colors duration-300
+              group-hover:text-[#7d0508]
+            "
+                >
+                  {step.step}
+                </h1>
 
-              <div>
-                <step.icon
-                  className="px-[10px] text-[#A1A1AA] bg-[#27272A80] rounded-lg
-            transition-colors duration-300
-            group-hover:text-white group-hover:bg-red-600"
-                  size={50}
-                  strokeWidth={1.5}
-                />
+                <div className="mt-auto">
+                  <div className="mb-4 inline-block">
+                    <step.icon
+                      className="
+                  p-2
+                  text-[#A1A1AA]
+                  bg-[#27272A80]
+                  rounded-lg
+                  transition-all duration-300
+                  group-hover:text-white
+                  group-hover:bg-red-600
+                "
+                      size={48}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+
+                  <h2 className="text-2xl md:text-3xl text-white mb-2">
+                    {step.title}
+                  </h2>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-
-              <h2 className="text-3xl text-white">{step.title}</h2>
-              <p className="text-muted-foreground">{step.description}</p>
             </Card>
           ))}
         </div>
