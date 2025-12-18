@@ -154,15 +154,15 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:px-[160px]">
-            <div className="py-[32px] flex justify-between border-t border-t-[#121212] text-sm">
-              <span className="text-muted-foreground">
+          <div className="lg:px-[160px] px-10">
+            <div className="py-[32px] lg:flex text-center lg:justify-between border-t border-t-[#121212] text-sm">
+              <div className="text-muted-foreground">
                 &copy; {new Date().getFullYear()} Aesthetic Pixel Studio. All
                 rights reserved by Aesthetic Eurasia Ltd.
-              </span>
-              <span className="font-bold text-muted-foreground">
+              </div>
+              <div className="font-bold text-muted-foreground">
                 Aesthetic Eurasia
-              </span>
+              </div>
             </div>
           </div>
         </footer>
