@@ -238,11 +238,11 @@ export default function MainNav() {
           <div className="md:hidden flex items-center gap-4">
             <Sheet>
               <SheetTrigger asChild>
-                <Button className="p-[9px] rounded-md bg-[#101010] border-[#272727]">
+                <Button className="p-[9px] rounded-md bg-[#101010] border-white/10 hover:bg-gray-800">
                   <Menu size={50} strokeWidth={1.5} className="text-white" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-black/95 text-white border-none">
+              <SheetContent side="right" className="bg-black/95 text-white border-none">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>

@@ -68,15 +68,15 @@ export default function Banner() {
               your creative converts.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Button className="bg-red-600 rounded-full text-white border-none px-8 py-6 hover:bg-red-500 cursor-pointer text-base">
-                <span className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="flex-1 sm:flex-none bg-red-600 rounded-full text-white border-none px-5 lg:px-8 py-3 lg:py-6 hover:bg-red-500 cursor-pointer text-base">
+                <span className="flex items-center justify-center gap-2 w-full">
                   Talk to an Expert
                   <ArrowRight size={20} />
                 </span>
               </Button>
 
-              <Button className="px-8 py-6 rounded-full hover:bg-gray-800 cursor-pointer text-white border border-gray-700">
+              <Button className="flex-1 sm:flex-none px-5 lg:px-8 py-3 lg:py-6 rounded-full hover:bg-gray-800 cursor-pointer text-white border border-gray-700">
                 Get Started
               </Button>
             </div>
@@ -147,7 +147,7 @@ export default function Banner() {
       <section
         className="
     mt-[32px]
-    px-4 sm:px-8 
+    px-4 sm:px-18 
     bg-[url('/layoutComponents/redishBlur-top.svg')]
     bg-no-repeat
     bg-right-bottom
@@ -179,7 +179,7 @@ export default function Banner() {
               className="
           group
           w-full
-          aspect-square
+          lg:aspect-square
           flex flex-col
           justify-between
 
