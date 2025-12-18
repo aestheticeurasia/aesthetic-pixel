@@ -21,6 +21,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import HideOnRoutes from "./HideOnRoutes";
+import { Button } from "@/components/ui/button";
 
 const serviceSubMenu = [
   {
@@ -71,7 +72,6 @@ export default function MainNav() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(
     pathName?.startsWith("/services") || false
   );
-  const isHome = pathName === "/";
 
   useEffect(() => {
     if (pathName?.startsWith("/services")) {
@@ -89,101 +89,82 @@ export default function MainNav() {
   };
 
   useEffect(() => {
-    if (!isHome) return;
 
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, []);
 
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
       <header
-        className={`fixed top-0 left-0 md:px-10 w-full z-50 transition-all duration-300 ${
-          isHome
-            ? scrolled
-              ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
+        className={`fixed top-0 left-0 md:px-10 w-full z-50 py-[14px] transition-all duration-300 ${
+          scrolled
+              ? "bg-black/80 backdrop-blur-md shadow-sm"
               : "bg-transparent"
-            : "bg-white dark:bg-black shadow-sm"
         }`}
       >
-        <div className="px-10 flex h-30 items-center">
+        <div className="px-10 flex h-15 items-center">
           <div className="flex justify-between items-center w-full py-4">
+            {/* Logo */}
             <div>
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src="/logo.png"
-                  alt="Aesthetic Pixel Logo"
-                  width={100}
-                  height={40}
-                  className="block dark:hidden"
-                />
-                <Image
                   src="/logoDark.png"
                   alt="Aesthetic Pixel Logo Dark"
-                  width={100}
-                  height={40}
-                  className="hidden dark:block"
+                  width={70}
+                  height={20}
                 />
               </Link>
             </div>
 
             {/* Desktop Nav */}
             <div>
-              <nav className="hidden md:flex justify-start items-center space-x-1 text-lg font-bold relative ms-4">
+              <nav className="hidden md:flex justify-start items-center space-x-1 text-md relative ms-4">
                 {/* Services Dropdown */}
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className={`py-2 px-3 rounded-lg bg-transparent font-bold text-xl ${
+                        className={`py-2 px-3 rounded-lg bg-transparent text-lg ${
                           pathName?.startsWith("/services")
                             ? "bg-destructive text-white dark:text-black"
-                            : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                            : "text-[#A1A1AA]"
                         }`}
                       >
                         Services
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-red-500">
-                        <div className="flex flex-col md:flex-row gap-4  min-h-[300px]">
-                          {/* Column 1: Studio (Items 0-3 from array) */}
-                          <div className="flex-1 flex flex-col">
-                            <h1 className="text-center text-white">Studio</h1>
-
-                            <div className="bg-white rounded-lg flex-1 w-70">
-                              <ul className="p-2 space-y-3">
-                                {serviceSubMenu
-                                  .slice(0, 4)
-                                  .map((item, index) => (
-                                    <ListItem
-                                      key={index}
-                                      href={item.href}
-                                      title={item.label}
-                                    >
-                                      {item.desc}
-                                    </ListItem>
-                                  ))}
-                              </ul>
-                            </div>
+                      <NavigationMenuContent className="bg-gray-200 w-screen max-w-none left-1/2 -translate-x-1/2 p-6 rounded-none">
+                        <div className="flex flex-col md:flex-row gap-4 min-h-[300px] w-full">
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
                           </div>
-
-                          {/* Column 2: Platform (Items 4+ from array) */}
-                          <div className="flex-1 flex flex-col">
-                            <h1 className="text-center text-white">Platform</h1>
-
-                            <div className="bg-white rounded-lg flex-1 w-70">
-                              <ul className="p-2 space-y-3">
-                                {serviceSubMenu.slice(4).map((item, index) => (
-                                  <ListItem
-                                    key={index}
-                                    href={item.href}
-                                    title={item.label}
-                                  >
-                                    {item.desc}
-                                  </ListItem>
-                                ))}
-                              </ul>
-                            </div>
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
+                          </div>
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
+                          </div>
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
+                          </div>
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
+                          </div>
+                          <div>
+                            <h3 className="text-muted-foreground text-sm">
+                              PRODUCT PHOTOGRAPHY
+                            </h3>
                           </div>
                         </div>
                       </NavigationMenuContent>
@@ -197,7 +178,7 @@ export default function MainNav() {
                   className={`py-2 px-3 rounded-lg ${
                     isActive("/pricing")
                       ? "bg-destructive text-white dark:text-black"
-                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                      : "text-[#A1A1AA] hover:text-white"
                   }`}
                 >
                   Pricing
@@ -209,7 +190,7 @@ export default function MainNav() {
                   className={`py-2 px-3 rounded-lg ${
                     isActive("/our-work")
                       ? "bg-destructive text-white dark:text-black"
-                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                      : "text-[#A1A1AA] hover:text-white"
                   }`}
                 >
                   Our Work
@@ -221,7 +202,7 @@ export default function MainNav() {
                   className={`py-2 px-3 rounded-lg ${
                     isActive("/blog")
                       ? "bg-destructive text-white dark:text-black"
-                      : "text-primary hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 dark:hover:text-white"
+                      : "text-[#A1A1AA] hover:text-white"
                   }`}
                 >
                   Blogs
@@ -237,9 +218,9 @@ export default function MainNav() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                  <Button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 transition-colors rounded-md cursor-pointer text-sm md:text-l hover:text-white">
                     Studio Hire
-                  </button>
+                  </Button>
                 </Link>
               </span>
               <span className="hidden md:inline-flex text-foreground me-3">
@@ -248,9 +229,9 @@ export default function MainNav() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                  <Button className="rounded-3xl bg-white text-black hover:text-white hover:bg-red-700 cursor-pointer py-2 px-4">
                     Book a Slot
-                  </button>
+                  </Button>
                 </Link>
               </span>
             </div>

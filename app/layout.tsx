@@ -1,25 +1,17 @@
 "use client";
-import { Geist, Geist_Mono } from "next/font/google";
+
+import { Inter, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Toaster } from "sonner";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { Bebas_Neue } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400", // Bebas Neue has only one weight
-  variable: "--font-bebas",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -33,11 +25,12 @@ export default function RootLayout({
   const isHeaderHidden = hiddenHeaderRoutes.includes(pathname);
 
   return (
-    <html lang="en" suppressHydrationWarning className={bebas.variable}>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <title>Aesthetic Pixel Studio LLC</title>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
+
         <Script
           id="google-tag-manager"
           strategy="afterInteractive"
@@ -57,30 +50,30 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+
+      <body className={`${inter.variable} font-sans antialiased bg-[url('/layoutComponents/redishBlur-top.svg')] bg-no-repeat bg-top-left bg-black`}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MQHKVF8C"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+          />
         </noscript>
-   
-          {!isHeaderHidden && <Header />}
 
-          <Toaster theme="dark" position="top-center" offset={35} />
-          <main
-            className={`${
-              !isHome && !isHeaderHidden ? "pt-24" : ""
-            } w-full min-h-[100vh]`}
-          >
-            {children}
-          </main>
+        {!isHeaderHidden && <Header />}
 
-          <Footer />
+        <Toaster theme="dark" position="top-center" offset={35} />
+
+        <main
+          className={`${
+            !isHome && !isHeaderHidden ? "pt-24" : ""
+          } w-full min-h-[100vh]`}
+        >
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
