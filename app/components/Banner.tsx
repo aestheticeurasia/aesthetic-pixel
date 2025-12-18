@@ -183,7 +183,8 @@ export default function Banner() {
           flex flex-col
           justify-between
 
-          border border-[#222223]
+          border lg:border-[#222223]
+          border-[#7d0508]
           rounded-3xl
           p-6 md:p-8
           bg-transparent
@@ -196,10 +197,12 @@ export default function Banner() {
                 <h1
                   className="
               text-6xl md:text-7xl font-extrabold
-              text-muted-foreground/30
+              lg:text-muted-foreground/30
+              text-[#7d0508]
               text-end
               transition-colors duration-300
               group-hover:text-[#7d0508]
+
             "
                 >
                   {step.step}
@@ -210,12 +213,15 @@ export default function Banner() {
                     <step.icon
                       className="
                   p-2
-                  text-[#A1A1AA]
-                  bg-[#27272A80]
+                  lg:text-[#A1A1AA]
+                  lg:bg-[#27272A80]
+                text-white
+                 bg-red-600
                   rounded-lg
                   transition-all duration-300
                   group-hover:text-white
                   group-hover:bg-red-600
+                  
                 "
                       size={48}
                       strokeWidth={1.5}
