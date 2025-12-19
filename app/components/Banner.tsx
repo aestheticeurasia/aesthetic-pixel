@@ -46,7 +46,7 @@ const workSteps = [
 
 export default function Banner() {
   return (
-    <div>
+    <div className="lg:px-25">
       {/* Hero */}
       <section className="flex flex-col lg:flex-row min-h-screen pt-[120px] px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
@@ -256,7 +256,7 @@ export default function Banner() {
               APS STUDIO EST. 2018
             </Badge>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white leading-tight font-semibold">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight font-semibold">
               Creativity That Gets{" "}
               <span className="text-muted-foreground">Real Results</span>
             </h1>
