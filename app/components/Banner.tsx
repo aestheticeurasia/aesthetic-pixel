@@ -5,8 +5,13 @@ import {
   Camera,
   Check,
   ClipboardList,
+  PanelsTopLeft,
+  PenTool,
   ShoppingCartIcon,
+  Images,
   Sparkles,
+  TrendingUp,
+  ChevronRight,
 } from "lucide-react";
 import { GoDotFill } from "react-icons/go";
 import Image from "next/image";
@@ -42,6 +47,36 @@ const workSteps = [
     description:
       "Retouching, color grading, and final delivery via dark cloud.",
     icon: Sparkles,
+  },
+];
+const capabilities = [
+  {
+    id: "01",
+    title: "Web Design & Dev",
+    description: "React.js & Next.js custom storefronts designed for speed.",
+    url: "",
+    icon: PanelsTopLeft,
+  },
+  {
+    step: "02",
+    title: "UI/UX Design",
+    description: "Interfaces that convert visitors to buyers seamlessly",
+    url: "",
+    icon: PenTool,
+  },
+  {
+    step: "03",
+    title: "Image Retouching",
+    description: "High-end compositing, color grading and manipulation",
+    url: "",
+    icon: Images,
+  },
+  {
+    step: "04",
+    title: "Digital Marketing",
+    description: "Planning strategies to boost visibility and ROI",
+    url: "",
+    icon: TrendingUp,
   },
 ];
 
@@ -158,10 +193,10 @@ export default function Banner() {
   "
       >
         <div className="py-8">
-          <h1 className="text-4xl font-semibold text-white">
+          <h1 className="text-2xl font-semibold text-white">
             Simple Steps of Work
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             From concept to final delivery in 4 days
           </p>
         </div>
@@ -421,7 +456,6 @@ export default function Banner() {
             </div>
           </div>
 
-          {/* Right Side Grid - Rectangular (3:2 Ratio) */}
           <div className="grid grid-cols-2 gap-4">
             {[
               { src: "/portfolioB1.png", label: "Luxury Bag" },
@@ -446,6 +480,92 @@ export default function Banner() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Digital Skills */}
+      <section
+        className="
+    mt-[32px]
+    px-4 sm:px-18 
+    bg-[url('/layoutComponents/3rdBlur.svg')]
+    bg-no-repeat
+  bg-top-right
+    lg:px-[160px]
+  "
+      >
+        <div className="py-8">
+          <h1 className="text-2xl font-semibold text-white">
+            Digital Capabilities
+          </h1>
+        </div>
+
+        <div
+          className="
+      mx-auto
+      grid
+      grid-cols-1
+      sm:grid-cols-2
+      lg:grid-cols-4
+      gap-6
+    "
+        >
+          {capabilities.map((step, index) => (
+            <Card
+              key={index}
+              className="
+          group
+          w-full
+          lg:aspect-square
+          flex flex-col
+          justify-between
+          border lg:border-[#222223]
+          border-[#7d0508]
+          bg-[#0d0d0e]
+          rounded-3xl
+          p-6 md:p-8
+          transition-colors duration-300
+          hover:border-[#7d0508]
+        "
+            >
+              <div className="flex flex-col space-y-10">
+                <div className="mt-5">
+                  <step.icon
+                    className="
+                  p-2
+                  lg:text-[#A1A1AA]
+                  lg:bg-[#27272A80]
+                text-white
+                 bg-red-600
+                  rounded-lg
+                  transition-all duration-300
+                  group-hover:text-white
+                  group-hover:bg-red-600
+                  
+                "
+                    size={48}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold text-white mb-2">
+                    {step.title}
+                  </h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                    {step.description}
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href={step.url}
+                    className="font-semibold text-white group-hover:text-red-600 flex items-center gap-1"
+                  >
+                    Read More <ChevronRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
       </section>
     </div>
