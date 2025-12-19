@@ -440,7 +440,7 @@ export default function Banner() {
                   sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <Badge className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md border-none text-[10px] text-white py-0 px-2">
+                <Badge className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md border-none text-sm text-white py-0 px-2">
                   {item.label}
                 </Badge>
               </div>
