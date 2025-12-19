@@ -48,7 +48,7 @@ export default function Banner() {
   return (
     <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row min-h-screen pt-[120px] px-6 md:px-12 lg:px-20 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row min-h-screen pt-[120px] px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -256,7 +256,7 @@ export default function Banner() {
               APS STUDIO EST. 2018
             </Badge>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white leading-tight font-semibold">
               Creativity That Gets{" "}
               <span className="text-muted-foreground">Real Results</span>
             </h1>
@@ -329,6 +329,16 @@ export default function Banner() {
                 height={498}
                 className="object-contain w-full rounded-lg grayscale transition-all duration-300 hover:grayscale-0"
               />
+              <div
+                className="
+      pointer-events-none
+      absolute inset-x-0 bottom-0 h-1/3
+      bg-gradient-to-t
+      from-black/100
+      via-black/60
+      to-transparent
+    "
+              />
 
               {/* Floating Stats Card */}
               <Card className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-4 md:left-4 md:right-4 lg:left-10 lg:right-10 bg-black/90 border-[#3d3d3d] p-4 flex flex-row items-center justify-between rounded-xl shadow-2xl backdrop-blur-sm w-[90%] md:w-auto">
@@ -346,28 +356,25 @@ export default function Banner() {
                     <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
                       NS
                     </AvatarFallback>
-                      <AvatarImage
-                        src="/apsTeam/nazmusSakib.jpg"
-                        alt="@shadcn"
-                      />
+                    <AvatarImage src="/apsTeam/nazmusSakib.jpg" alt="@shadcn" />
                   </Avatar>
                   <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
                     <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
                       20+
                     </AvatarFallback>
-                      <AvatarImage
-                        src="/apsTeam/jamirulIslam.jpg"
-                        alt="@shadcn"
-                      />
+                    <AvatarImage
+                      src="/apsTeam/jamirulIslam.jpg"
+                      alt="@shadcn"
+                    />
                   </Avatar>
                   <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
                     <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
                       20+
                     </AvatarFallback>
-                      <AvatarImage
-                        src="/apsTeam/mdAshaduzzaman.jpg"
-                        alt="@shadcn"
-                      />
+                    <AvatarImage
+                      src="/apsTeam/mdAshaduzzaman.jpg"
+                      alt="@shadcn"
+                    />
                   </Avatar>
                   <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
                     <AvatarFallback className="bg-[#18181b] text-white text-[10px] md:text-xs font-bold">
