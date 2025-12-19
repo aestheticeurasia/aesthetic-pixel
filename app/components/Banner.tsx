@@ -408,7 +408,7 @@ export default function Banner() {
               alt="Fashion"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-5 z-10">
@@ -438,9 +438,9 @@ export default function Banner() {
                   alt={item.label}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                 />
-                <Badge className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md border-none text-sm text-white py-0 px-2">
+                <Badge className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md border-none text-sm text-white py-0 px-2 ">
                   {item.label}
                 </Badge>
               </div>
