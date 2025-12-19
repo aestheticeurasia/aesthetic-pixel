@@ -298,11 +298,11 @@ export default function Banner() {
               </div>
             </div>
 
-            <div className="mt-10 cursor-pointer border-b border-b-gray-400 hover:border-b-red-700 w-fit transition-colors group">
+            <button className="mt-10 cursor-pointer border-b border-b-gray-400 hover:border-b-red-700 w-fit transition-colors group">
               <h1 className="text-lg font-semibold text-white group-hover:text-red-700 flex items-center gap-2">
                 Get Started <ArrowRight className="w-5 h-5" />
               </h1>
-            </div>
+            </button>
 
             <hr className="border-[#161616] my-10" />
 
