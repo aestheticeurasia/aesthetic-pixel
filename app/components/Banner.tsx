@@ -1,6 +1,7 @@
 "use client";
 import {
   ArrowRight,
+  ArrowUpRight,
   Camera,
   Check,
   ClipboardList,
@@ -342,7 +343,7 @@ export default function Banner() {
               />
 
               {/* Floating Stats Card */}
-              <Card className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-4 md:left-4 md:right-4 lg:left-10 lg:right-10 bg-black/90 border-[#3d3d3d] p-4 flex flex-row items-center justify-between rounded-xl shadow-2xl backdrop-blur-sm w-[90%] md:w-auto">
+              <Card className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-4 md:left-4 md:right-4 lg:left-10 lg:right-10 bg-[#030303] border-[#1a1a1a] p-4 flex flex-row items-center justify-between rounded-xl shadow-2xl backdrop-blur-sm w-[90%] md:w-auto">
                 <div>
                   <h1 className="text-xl md:text-2xl text-white font-semibold">
                     500+
@@ -385,6 +386,65 @@ export default function Banner() {
                 </div>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio */}
+      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-white font-bold text-xl md:text-2xl">
+            Featured Our Works
+          </h1>
+          <button className="text-muted-foreground flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-sm">
+            View All <ArrowUpRight size={16} />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="relative group overflow-hidden rounded-2xl border-2 border-transparent hover:border-blue-500 transition-all duration-300 aspect-[3/2]">
+            <Image
+              src="/portfolioA.png"
+              alt="Fashion"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-5 z-10">
+              <h3 className="text-red-500 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-1">
+                Collection
+              </h3>
+              <h1 className="text-white text-lg md:text-xl font-bold">
+                Fashion Apparel 2024
+              </h1>
+            </div>
+          </div>
+
+          {/* Right Side Grid - Rectangular (3:2 Ratio) */}
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { src: "/portfolioB1.png", label: "Luxury Bag" },
+              { src: "/portfolioB2.png", label: "Watches" },
+              { src: "/portfolioB3.png", label: "Tech" },
+              { src: "/portfolioB4.png", label: "Footwear" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-2xl border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300 aspect-[3/2]"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <Badge className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md border-none text-[10px] text-white py-0 px-2">
+                  {item.label}
+                </Badge>
+              </div>
+            ))}
           </div>
         </div>
       </section>
