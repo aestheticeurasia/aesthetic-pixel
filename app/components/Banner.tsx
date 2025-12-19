@@ -337,6 +337,7 @@ export default function Banner() {
       from-black/100
       via-black/60
       to-transparent
+      rounded-lg
     "
               />
 
