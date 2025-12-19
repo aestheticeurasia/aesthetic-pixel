@@ -2,6 +2,7 @@
 import {
   ArrowRight,
   Camera,
+  Check,
   ClipboardList,
   ShoppingCartIcon,
   Sparkles,
@@ -11,6 +12,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const workSteps = [
   {
@@ -239,6 +241,143 @@ export default function Banner() {
               </div>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* About Us */}
+      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+        <div className="mt-12 border-[#161616] border-2 rounded-2xl bg-[#090909] p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Left Content Column */}
+          <div className="col-span-1 lg:col-span-6">
+            <Badge
+              variant="outline"
+              className="rounded-md text-red-500 border-[#2f0d0d] font-bold w-fit mb-6 px-2 py-1 bg-[#1b0909]"
+            >
+              APS STUDIO EST. 2018
+            </Badge>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white leading-tight">
+              Creativity That Gets{" "}
+              <span className="text-muted-foreground">Real Results</span>
+            </h1>
+
+            <p className="text-muted-foreground mt-5 max-w-lg">
+              We believe every product has a story. Our lens is the narrator.
+              From startups to Fortune 500s, we help brands visualize their
+              potential through distinct imagery.
+            </p>
+
+            {/* Stats/Features Row */}
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 mt-10">
+              <div className="flex gap-3 items-center">
+                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                  <Check className="text-red-400" size={20} />
+                </div>
+                <div>
+                  <h3 className="text-white text-lg font-medium">
+                    Professional Team
+                  </h3>
+                  <span className="text-muted-foreground text-sm">
+                    Award-winning stylists
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-center">
+                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                  <Check className="text-red-400" size={20} />
+                </div>
+                <div>
+                  <h3 className="text-white text-lg font-medium">
+                    Studio Setup
+                  </h3>
+                  <span className="text-muted-foreground text-sm">
+                    800 sqft facility
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 cursor-pointer border-b border-b-gray-400 hover:border-b-red-700 w-fit transition-colors group">
+              <h1 className="text-lg font-semibold text-white group-hover:text-red-700 flex items-center gap-2">
+                Get Started <ArrowRight className="w-5 h-5" />
+              </h1>
+            </div>
+
+            <hr className="border-[#161616] my-10" />
+
+            <div>
+              <h2 className="text-muted-foreground font-semibold uppercase text-xs tracking-widest">
+                Trusted by Industry Leaders
+              </h2>
+              <div className="text-muted-foreground flex flex-wrap gap-6 sm:gap-10 font-bold text-xl sm:text-2xl mt-6 opacity-70 hover:text-white">
+                <span>Linear</span>
+                <span>Stripe</span>
+                <span>Vercel</span>
+                <span>Arc</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Image Column */}
+          <div className="relative flex items-center justify-center col-span-1 lg:col-span-6">
+            <div className="w-full relative">
+              <Image
+                src="/layoutComponents/aboutCameraMan.png"
+                alt="About Us Illustration"
+                width={514}
+                height={498}
+                className="object-contain w-full rounded-lg grayscale transition-all duration-300 hover:grayscale-0"
+              />
+
+              {/* Floating Stats Card */}
+              <Card className="absolute -bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-4 md:left-4 md:right-4 lg:left-10 lg:right-10 bg-black/90 border-[#3d3d3d] p-4 flex flex-row items-center justify-between rounded-xl shadow-2xl backdrop-blur-sm w-[90%] md:w-auto">
+                <div>
+                  <h1 className="text-xl md:text-2xl text-white font-semibold">
+                    500+
+                  </h1>
+                  <p className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
+                    Projects Completed
+                  </p>
+                </div>
+
+                <div className="flex -space-x-3">
+                  <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
+                    <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
+                      NS
+                    </AvatarFallback>
+                      <AvatarImage
+                        src="/apsTeam/nazmusSakib.jpg"
+                        alt="@shadcn"
+                      />
+                  </Avatar>
+                  <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
+                    <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
+                      20+
+                    </AvatarFallback>
+                      <AvatarImage
+                        src="/apsTeam/jamirulIslam.jpg"
+                        alt="@shadcn"
+                      />
+                  </Avatar>
+                  <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
+                    <AvatarFallback className="bg-red-900 text-white text-[10px] md:text-xs font-bold">
+                      20+
+                    </AvatarFallback>
+                      <AvatarImage
+                        src="/apsTeam/mdAshaduzzaman.jpg"
+                        alt="@shadcn"
+                      />
+                  </Avatar>
+                  <Avatar className="border-2 border-black h-8 w-8 md:h-10 md:w-10">
+                    <AvatarFallback className="bg-[#18181b] text-white text-[10px] md:text-xs font-bold">
+                      +20
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
     </div>
