@@ -269,8 +269,8 @@ export default function Banner() {
 
             {/* Stats/Features Row */}
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 mt-10">
-              <div className="flex gap-3 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+              <div className="flex gap-3 ">
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
                   <Check className="text-red-400" size={20} />
                 </div>
                 <div>
@@ -283,8 +283,8 @@ export default function Banner() {
                 </div>
               </div>
 
-              <div className="flex gap-3 items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+              <div className="flex gap-3">
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
                   <Check className="text-red-400" size={20} />
                 </div>
                 <div>
