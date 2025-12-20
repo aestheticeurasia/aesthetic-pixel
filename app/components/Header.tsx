@@ -132,7 +132,7 @@ export default function MainNav() {
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className={`py-2 px-3 rounded-lg bg-transparent text-lg ${
+                        className={`rounded-lg bg-transparent text-lg ${
                           pathName?.startsWith("/services")
                             ? "bg-destructive text-white"
                             : "text-[#A1A1AA]"
@@ -140,8 +140,8 @@ export default function MainNav() {
                       >
                         Services
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-[#0c0c0d] text-[#A1A1AA]">
-                        <ul className="grid gap-5 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      <NavigationMenuContent className="bg-[#0c0c0d] text-[#A1A1AA] border-none">
+                        <ul className="grid gap-5 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[606px]">
                           {services.map((service) => (
                             <ListItem
                               key={service.id}
@@ -446,7 +446,7 @@ function ListItem({
           className="group block p-1"
         >
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-[#18181b] border-[#242427] rounded-lg group-hover:bg-[#dc2626] group-hover:text-white">
+            <div className="p-3 bg-[#18181b] border-[#242427] border-2 rounded-lg group-hover:bg-[#dc2626] group-hover:border-[#ef4444] group-hover:text-white">
               {icon}
             </div>
             <div>
