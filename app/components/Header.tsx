@@ -134,7 +134,7 @@ export default function MainNav() {
                       <NavigationMenuTrigger
                         className={`py-2 px-3 rounded-lg bg-transparent text-lg ${
                           pathName?.startsWith("/services")
-                            ? "bg-destructive text-white dark:text-black"
+                            ? "bg-destructive text-white"
                             : "text-[#A1A1AA]"
                         }`}
                       >
@@ -147,11 +147,9 @@ export default function MainNav() {
                               key={service.id}
                               title={service.label}
                               href={service.href}
-                              className="rounded-2xl"
                               icon={
                                 <service.icon
-                                  size={30}
-                                  className="hover:text-white font-bold"
+                                  className="hover:text-white"
                                 />
                               }
                             >
@@ -448,7 +446,7 @@ function ListItem({
           className="group block p-1"
         >
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-[#18181b] text-muted-foreground border-[#242427] rounded-lg group-hover:bg-[#dc2626] group-hover:text-white">
+            <div className="p-3 bg-[#18181b] border-[#242427] rounded-lg group-hover:bg-[#dc2626] group-hover:text-white">
               {icon}
             </div>
             <div>
