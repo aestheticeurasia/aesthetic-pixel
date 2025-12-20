@@ -601,7 +601,11 @@ export default function Banner() {
 
       {/* Testimonials */}
       <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/testimonialBlur.svg')] bg-no-repeat bg-cover bg-left-bottom">
-        <div className="border-[#1b0e0e] border-2 rounded-xl p-6 lg:p-[48px]">
+        <div className="border-[#1b0e0e] border-2 rounded-xl p-6 lg:p-[48px] relative overflow-hidden">
+          <div
+            className="md:absolute inset-0 bg-[url('/layoutComponents/testimonialQoute.svg')] 
+               bg-no-repeat bg-right-top opacity-5 pointer-events-none mr-5 mt-2" />
+
           <span className="text-sm font-bold text-[#f04545] uppercase">
             Testimonials
           </span>
@@ -623,7 +627,8 @@ export default function Banner() {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full">
+                className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full"
+              >
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
