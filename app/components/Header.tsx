@@ -440,17 +440,17 @@ function ListItem({
 }) {
   return (
     <li {...props}>
-      <NavigationMenuLink asChild className="hover:bg-[#161617] p-3">
+      <NavigationMenuLink asChild className="hover:bg-[#161617]">
           <Link
           href={href}
-          className="group block p-1"
+          className="group"
         >
           <div className="flex items-center gap-4">
             <div className="p-3 bg-[#18181b] border-[#242427] border-2 rounded-lg group-hover:bg-[#dc2626] group-hover:border-[#ef4444] group-hover:text-white">
               {icon}
             </div>
             <div>
-              <div className="text-lg leading-none font-bold text-[#e4e4e7]">
+              <div className="text-lg font-bold text-[#e4e4e7]">
                 {title}
               </div>
               <p className="text-sm text-[#71717a]">{children}</p>
