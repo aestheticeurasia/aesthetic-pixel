@@ -20,6 +20,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const workSteps = [
   {
@@ -82,7 +88,7 @@ const capabilities = [
 ];
 const testimonials = [
   {
-    id: "01",
+    id: "1",
     clientName: "Sarah Jenkins",
     clientAvatar: "SJ",
     role: "CMO, Fashion Nova",
@@ -91,7 +97,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    id: "02",
+    id: "2",
     clientName: "Michel Chen",
     clientAvatar: "MC",
     role: "Founder, TechFlow",
@@ -100,13 +106,33 @@ const testimonials = [
     rating: 5,
   },
   {
-    id: "03",
+    id: "3",
     clientName: "Emma Roberts",
     clientAvatar: "ER",
     role: "Director, Luxe",
     feedback:
       "Best Investment we've made. The team is incredibly telented, responsive and professional",
     rating: 5,
+  },
+];
+const faqs = [
+  {
+    id: "1",
+    question: "What industries do you specialize in?",
+    answer:
+      "We have experience across various industries including fashion, tech, lifestyle, and more. Our team adapts to the unique needs of each sector.",
+  },
+  {
+    id: "2",
+    question: "What is your typical project turnaround time?",
+    answer:
+      "Our typical project turnaround time ranges from 2 to 4 weeks, depending on the complexity and scope of the project. We prioritize quality and timely delivery.",
+  },
+  {
+    id: "3",
+    question: "What is your revision policy?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
 ];
 
@@ -604,7 +630,8 @@ export default function Banner() {
         <div className="border-[#1b0e0e] border-2 rounded-xl p-6 lg:p-[48px] relative overflow-hidden">
           <div
             className="md:absolute inset-0 bg-[url('/layoutComponents/testimonialQoute.svg')] 
-               bg-no-repeat bg-right-top opacity-5 pointer-events-none mr-5 mt-2" />
+               bg-no-repeat bg-right-top opacity-5 pointer-events-none mr-5 mt-2"
+          />
 
           <span className="text-sm font-bold text-[#f04545] uppercase">
             Testimonials
@@ -667,6 +694,34 @@ export default function Banner() {
                 </div>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-left-top">
+        <div className="lg:py-[48px] px-3 lg:px-[232px]">
+          <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-[32px]">
+            Frequently Asked Questions
+          </h1>
+          <div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className="border-2 border-[#24191a] bg-[#0b0b0c] rounded-2xl mb-[12px] px-4 py-2"
+                >
+                  <AccordionTrigger className="text-white text-md lg:text-lg hover:no-underline underline-offset-0 cursor-pointer">
+                    {faq.question}
+                  </AccordionTrigger>
+
+                  <AccordionContent className="flex flex-col gap-4 text-balance text-muted-foreground text-md">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
