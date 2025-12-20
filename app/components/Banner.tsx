@@ -601,13 +601,13 @@ export default function Banner() {
 
       {/* Testimonials */}
       <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/testimonialBlur.svg')] bg-no-repeat bg-cover bg-left-bottom">
-        <div className="border-[#1b0e0e] border-2 rounded-xl p-10 lg:p-[48px]">
+        <div className="border-[#1b0e0e] border-2 rounded-xl p-6 lg:p-[48px]">
           <span className="text-sm font-bold text-[#f04545] uppercase">
             Testimonials
           </span>
-          <div className="flex flex-col lg:flex-row lg:justify-between">
+          <div className="flex flex-col lg:flex-row lg:justify-between gap-2">
             <div>
-              <h1 className="text-3xl font-semibold text-white">
+              <h1 className="text-2xl lg:text-3xl font-semibold text-white">
                 What Our Clients Say
               </h1>
             </div>
@@ -623,8 +623,7 @@ export default function Banner() {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full"
-              >
+                className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full">
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
