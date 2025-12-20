@@ -12,6 +12,7 @@ import {
   Sparkles,
   TrendingUp,
   ChevronRight,
+  Star,
 } from "lucide-react";
 import { GoDotFill } from "react-icons/go";
 import Image from "next/image";
@@ -77,6 +78,35 @@ const capabilities = [
     description: "Planning strategies to boost visibility and ROI",
     url: "",
     icon: TrendingUp,
+  },
+];
+const testimonials = [
+  {
+    id: "01",
+    clientName: "Sarah Jenkins",
+    clientAvatar: "SJ",
+    role: "CMO, Fashion Nova",
+    feedback:
+      "The attention to detail is unmatched. Sales increased by 40% after updating our catalog with Red Studio.",
+    rating: 5,
+  },
+  {
+    id: "02",
+    clientName: "Michel Chen",
+    clientAvatar: "MC",
+    role: "Founder, TechFlow",
+    feedback:
+      "Revolution apporach to design! They transformed our brand completely in just two weeks",
+    rating: 5,
+  },
+  {
+    id: "03",
+    clientName: "Emma Roberts",
+    clientAvatar: "ER",
+    role: "Director, Luxe",
+    feedback:
+      "Best Investment we've made. The team is incredibly telented, responsive and professional",
+    rating: 5,
   },
 ];
 
@@ -566,6 +596,74 @@ export default function Banner() {
               </div>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/testimonialBlur.svg')] bg-no-repeat bg-cover bg-left-bottom">
+        <div className="border-[#1b0e0e] border-2 rounded-xl p-10 lg:p-[48px]">
+          <span className="text-sm font-bold text-[#f04545] uppercase">
+            Testimonials
+          </span>
+          <div className="flex flex-col lg:flex-row lg:justify-between">
+            <div>
+              <h1 className="text-3xl font-semibold text-white">
+                What Our Clients Say
+              </h1>
+            </div>
+            <div>
+              <p className="text-muted-foreground cursor-pointer hover:text-white transition-colors">
+                View All Reviews{" "}
+                <ArrowRight className="inline-block w-4 h-4 ml-1" />
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-[40px]">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full"
+              >
+                <div className="flex gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={
+                        i < testimonial.rating
+                          ? "fill-red-400 text-red-400"
+                          : "text-gray-500"
+                      }
+                    />
+                  ))}
+                </div>
+
+                <div className="flex-1">
+                  <p className="text-muted-foreground leading-relaxed">
+                    "{testimonial.feedback}"
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 mt-2">
+                  <Avatar>
+                    <AvatarImage src={""} alt={testimonial.clientName} />
+                    <AvatarFallback className="bg-[#27272a] text-white text-sm font-bold border-[#3c3c3f]">
+                      {testimonial.clientAvatar}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-bold text-white leading-none">
+                      {testimonial.clientName}
+                    </p>
+                    <p className="text-muted-foreground font-semibold text-xs mt-1">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
     </div>
