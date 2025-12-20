@@ -3,7 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { ArrowLeftRight, Clipboard, Menu } from "lucide-react";
+import {
+  Armchair,
+  User,
+  Camera,
+  Shirt,
+  Sparkles,
+  WandSparkles,
+  Menu,
+} from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -23,46 +31,48 @@ import {
 import HideOnRoutes from "./HideOnRoutes";
 import { Button } from "@/components/ui/button";
 
-const serviceSubMenu = [
+const services = [
   {
+    id: 1,
     href: "/services/product-photography",
     label: "Product Photography",
-    desc: "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
+    icon: Camera,
+    desc: "High conversion shorts",
   },
   {
+    id: 2,
     href: "/services/apparel-and-garment-photography",
-    label: "Apparel & Garment Photography",
-    desc: "Optimized product photos sized and edited for online listings and ads.",
+    label: "Apparel & Garment",
+    icon: Shirt,
+    desc: "Ghost mannequin styling",
   },
   {
+    id: 3,
     href: "/services/corporate-head-shots",
-    label: "Corporate Head Shots",
-    desc: "Professional headshots for corporate branding and personal use.",
+    label: "Corporate Headshots",
+    icon: User,
+    desc: "Professional branding",
   },
   {
+    id: 4,
     href: "/services/fashion-and-model-photography",
-    label: "Fashion & Model Photography",
-    desc: "Headshots, facility photography and editorial assets for comms.",
+    label: "Fashion & Model",
+    icon: Sparkles,
+    desc: "Editorial campaigns",
   },
   {
+    id: 5,
     href: "/services/furniture-photography",
     label: "Furniture Photography",
-    desc: "Controlled lighting and crisp detail for high-res deliverables.",
+    icon: Armchair,
+    desc: "Interior studio shots",
   },
   {
+    id: 6,
     href: "/services/photo-retouching",
     label: "Photo Retouching",
-    desc: "Concept, styling and art direction to fit your brand voice.",
-  },
-  {
-    href: "/services/product-photography",
-    label: "Product Photography",
-    desc: "Showcase your products with professional, high-quality images.",
-  },
-  {
-    href: "/services/product-photography",
-    label: "Product Photography",
-    desc: "Showcase your products with professional, high-quality images.",
+    icon: WandSparkles,
+    desc: "High-end editiong",
   },
 ];
 
@@ -118,7 +128,6 @@ export default function MainNav() {
             {/* Desktop Nav */}
             <div>
               <nav className="hidden md:flex justify-start items-center space-x-1 text-md relative ms-4">
-                {/* Services Dropdown */}
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
@@ -131,39 +140,25 @@ export default function MainNav() {
                       >
                         Services
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-gray-200 w-screen max-w-none left-1/2 -translate-x-1/2 p-6 rounded-none">
-                        <div className="flex flex-col md:flex-row gap-4 min-h-[300px] w-full">
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                          <div>
-                            <h3 className="text-muted-foreground text-sm">
-                              PRODUCT PHOTOGRAPHY
-                            </h3>
-                          </div>
-                        </div>
+                      <NavigationMenuContent className="bg-[#0c0c0d] text-[#A1A1AA]">
+                        <ul className="grid gap-5 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                          {services.map((service) => (
+                            <ListItem
+                              key={service.id}
+                              title={service.label}
+                              href={service.href}
+                              className="rounded-2xl"
+                              icon={
+                                <service.icon
+                                  size={30}
+                                  className="hover:text-white font-bold"
+                                />
+                              }
+                            >
+                              {service.desc}
+                            </ListItem>
+                          ))}
+                        </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                   </NavigationMenuList>
@@ -242,7 +237,10 @@ export default function MainNav() {
                   <Menu size={50} strokeWidth={1.5} className="text-white" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-black/95 text-white border-none">
+              <SheetContent
+                side="right"
+                className="bg-black/95 text-white border-none"
+              >
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
@@ -306,7 +304,7 @@ export default function MainNav() {
 
                   {mobileServicesOpen && (
                     <div className="ml-4 mt-1 space-y-1">
-                      {serviceSubMenu.map((item) => (
+                      {services.map((item) => (
                         <SheetClose asChild key={item.href}>
                           <Link
                             href={item.href}
@@ -436,21 +434,30 @@ function ListItem({
   title,
   children,
   href,
+  icon,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<"li"> & {
+  href: string;
+  icon: React.ReactNode;
+}) {
   return (
     <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link
+      <NavigationMenuLink asChild className="hover:bg-[#161617] p-3">
+          <Link
           href={href}
-          className="group block py-3 rounded-lg hover:bg-red-600"
+          className="group block p-1"
         >
-          <div className="text-lg leading-none group-hover:text-white">
-            {title}
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-[#18181b] text-muted-foreground border-[#242427] rounded-lg group-hover:bg-[#dc2626] group-hover:text-white">
+              {icon}
+            </div>
+            <div>
+              <div className="text-lg leading-none font-bold text-[#e4e4e7]">
+                {title}
+              </div>
+              <p className="text-sm text-[#71717a]">{children}</p>
+            </div>
           </div>
-          <p className="line-clamp-2 text-sm group-hover:text-gray-200">
-            {children}
-          </p>
         </Link>
       </NavigationMenuLink>
     </li>
