@@ -716,7 +716,7 @@ export default function Banner() {
                     {faq.question}
                   </AccordionTrigger>
 
-                  <AccordionContent className="flex flex-col gap-4 text-balance text-muted-foreground text-md">
+                  <AccordionContent className="text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
