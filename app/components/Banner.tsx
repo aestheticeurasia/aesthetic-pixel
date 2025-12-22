@@ -27,6 +27,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import MainForm from "./MainForm";
+import Link from "next/link";
+
+interface Blog {
+  id: string;
+  title: string;
+  excerpt: string;
+  coverImage: string;
+  slug: string;
+}
 
 const workSteps = [
   {
@@ -134,6 +143,39 @@ const faqs = [
     question: "What is your revision policy?",
     answer:
       "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+];
+
+const blogs = [
+  {
+    id: "1",
+    title: "5 Tips for Stunning Product Photography",
+    category: "Product Photography",
+    excerpt:
+      "Learn how to capture your products in the best light with these expert tips.",
+    coverImage:
+      "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZyUyMGNvdmVyfGVufDB8fDB8fHww",
+    slug: "5-tips-for-stunning-product-photography",
+  },
+  {
+    id: "2",
+    title: "5 Tips for Stunning Product Photography",
+    category: "Product Photography",
+    excerpt:
+      "Learn how to capture your products in the best light with these expert tips.",
+    coverImage:
+      "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    slug: "5-tips-for-stunning-product-photography",
+  },
+  {
+    id: "3",
+    title: "5 Tips for Stunning Product Photography",
+    category: "Product Photography",
+    excerpt:
+      "Learn how to capture your products in the best light with these expert tips.",
+    coverImage:
+      "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZyUyMGNvdmVyfGVufDB8fDB8fHww",
+    slug: "5-tips-for-stunning-product-photography",
   },
 ];
 
@@ -732,16 +774,16 @@ export default function Banner() {
         <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
           <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
             <div className="col-span-6 flex flex-col justify-between">
-             <div>
-               <h1 className="text-white text-4xl font-bold">
-                Enhance your Brand Potential at{" "}
-                <span className="text-[#ef4444]">No Cost</span>
-              </h1>
-              <p className="text-muted-foreground mt-[24px]">
-                Book a discovery call to see how we can align our creative
-                vision with your business goals.
-              </p>
-             </div>
+              <div>
+                <h1 className="text-white text-4xl font-bold">
+                  Enhance your Brand Potential at{" "}
+                  <span className="text-[#ef4444]">No Cost</span>
+                </h1>
+                <p className="text-muted-foreground mt-[24px]">
+                  Book a discovery call to see how we can align our creative
+                  vision with your business goals.
+                </p>
+              </div>
               <div>
                 <div className="flex gap-3 mt-[24px] items-center">
                   <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
@@ -820,6 +862,90 @@ export default function Banner() {
             <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6">
               <MainForm />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Insight */}
+      <section className="lg:mt-15 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+        <h1 className="py-2 lg:py-0 text-2xl font-bold text-white text-center lg:text-start">
+          Latest Insights
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {blogs.map((blog) => (
+            <Card
+              key={blog?.slug}
+              className="bg-transparent border-none px-5 lg:px-0"
+            >
+              <div className="relative group overflow-hidden transition-all duration-300 aspect-[3/2] rounded-lg">
+                <Badge className="absolute top-5 left-2 z-10">
+                  {blog?.category}
+                </Badge>
+                <Image
+                  src={blog?.coverImage}
+                  alt={blog?.title}
+                  width={400}
+                  height={250}
+                  className="w-full h-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-white text-lg font-bold mt-3">
+                {blog?.title}
+              </h3>
+              <p className="text-muted-foreground text-sm line-clamp-2">
+                {blog?.excerpt}
+              </p>
+              <Link
+                href={`/blog/${blog?.slug}`}
+                className="text-red-800 flex items-center gap-2 font-bold mt-2 hover:underline"
+              >
+                Read more <ArrowRight size={16} />
+              </Link>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-transparent">
+        <div className="relative px-[279px] py-[80px] border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
+          <div
+            className="
+      absolute top-0 right-0
+      w-[300px] h-[300px]
+      bg-[url('/layoutComponents/qouteBlur-top.svg')]
+      bg-no-repeat bg-contain
+      pointer-events-none
+      opacity-70
+    "
+          />
+
+          <div
+            className="
+      absolute bottom-0 left-0
+      w-[300px] h-[300px]
+      bg-[url('/layoutComponents/qouteBlur.svg')]
+      bg-no-repeat bg-contain
+      pointer-events-none
+      opacity-70
+    "
+          />
+
+          {/* Content */}
+          <h1 className="text-5xl font-bold text-white">
+            Get One Stop Digital Solutions Under One Roof
+          </h1>
+
+          <h4 className="text-muted-foreground my-10 text-lg">
+            Ready to Transform your brand image? Call us Directly:{" "}
+            <span className="font-bold text-red-800">+880 1711-205200</span>
+          </h4>
+
+          <div className="flex justify-center">
+            <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-gray-200">
+              Get Free Quote
+            </Button>
           </div>
         </div>
       </section>
