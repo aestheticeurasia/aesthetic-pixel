@@ -26,6 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import MainForm from "./MainForm";
 
 const workSteps = [
   {
@@ -359,7 +360,7 @@ export default function Banner() {
               potential through distinct imagery.
             </p>
 
-            {/* Stats/Features Row */}
+            {/* Stats Row */}
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 mt-10">
               <div className="flex gap-3 ">
                 <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
@@ -700,7 +701,7 @@ export default function Banner() {
 
       {/* FAQ */}
       <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-left-top">
-        <div className="lg:py-[48px] px-3 lg:px-[232px]">
+        <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
           <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-[32px]">
             Frequently Asked Questions
           </h1>
@@ -722,6 +723,103 @@ export default function Banner() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Form */}
+      <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+        <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
+          <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
+            <div className="col-span-6 flex flex-col justify-between">
+             <div>
+               <h1 className="text-white text-4xl font-bold">
+                Enhance your Brand Potential at{" "}
+                <span className="text-[#ef4444]">No Cost</span>
+              </h1>
+              <p className="text-muted-foreground mt-[24px]">
+                Book a discovery call to see how we can align our creative
+                vision with your business goals.
+              </p>
+             </div>
+              <div>
+                <div className="flex gap-3 mt-[24px] items-center">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                    <Check className="text-red-400" size={20} />
+                  </div>
+                  <h3 className="text-[#d4d4d8] text-md font-medium">
+                    Free 30-min strategy call
+                  </h3>
+                </div>
+                <div className="flex gap-3 mt-[24px] items-center">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                    <Check className="text-red-400" size={20} />
+                  </div>
+                  <h3 className="text-[#d4d4d8] text-md font-medium">
+                    Brand visual audit included
+                  </h3>
+                </div>
+                <div className="flex gap-3 mt-[24px] items-center">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                    <Check className="text-red-400" size={20} />
+                  </div>
+                  <h3 className="text-[#d4d4d8] text-md font-medium">
+                    Actionable growth recommendations
+                  </h3>
+                </div>
+                <div className="flex gap-3 mt-[24px] items-center">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#200d0d] border border-[#3c1212] shrink-0">
+                    <Check className="text-red-400" size={20} />
+                  </div>
+                  <h3 className="text-[#d4d4d8] text-md font-medium">
+                    Clear roadmap for your brand
+                  </h3>
+                </div>
+              </div>
+              <hr className="border-[#19191a]" />
+              <div>
+                <h1 className="text-md text-[#71717a] uppercase font-bold mt-10 md:mt-0">
+                  Meet the experts
+                </h1>
+                <div className="flex lg:flex-row flex-col lg:gap-0 gap-5 mt-[24px]">
+                  <div className="flex gap-3 items-center">
+                    <div>
+                      <Avatar className="border-2 h-15 w-15 border-[#b42121]">
+                        <AvatarFallback className="bg-red-900 text-white text-sm font-bold">
+                          NS{" "}
+                        </AvatarFallback>
+                        <AvatarImage src="/apsTeam/nazmusSakib.jpg" alt="aps" />
+                      </Avatar>
+                    </div>
+                    <div>
+                      <p className="font-bold text-white">Nazmus Sakib</p>
+                      <p className="text-[#71717a]">
+                        Managing Partner & Lead Photographer
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-center">
+                    <div>
+                      <Avatar className="border-2 h-15 w-15 border-[#b42121]">
+                        <AvatarFallback className="bg-red-900 text-white text-sm font-bold">
+                          NS{" "}
+                        </AvatarFallback>
+                        <AvatarImage src="/apsTeam/abidHasan.jpg" alt="aps" />
+                      </Avatar>
+                    </div>
+                    <div>
+                      <p className="font-bold text-white">Abid Hasan Neil</p>
+                      <p className="text-[#71717a]">
+                        Chief Executive Officer (CEO)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl p-6">
+              <MainForm />
+            </div>
           </div>
         </div>
       </section>

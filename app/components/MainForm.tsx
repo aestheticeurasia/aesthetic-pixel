@@ -178,13 +178,11 @@ export default function MainForm() {
     }
   };
 
-  // Reusable styles for inputs
   const inputClasses =
     "w-full p-4 bg-transparent border-2 border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder:text-gray-400 transition-colors";
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold text-center pb-10 pt-5">Get in Touch</h2>
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           {/* Basic Info */}
