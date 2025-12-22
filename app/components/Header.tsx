@@ -250,7 +250,7 @@ export default function MainNav() {
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/")
                           ? "bg-destructive mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : "text- mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       Home
@@ -264,7 +264,7 @@ export default function MainNav() {
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/about")
                           ? "bg-destructive mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       About
@@ -275,10 +275,10 @@ export default function MainNav() {
                   <div className="w-full overflow-hidden rounded-lg">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className={`w-full flex justify-between items-center py-2 px-6 mx-5 font-bold rounded-lg ${
+                      className={`w-full flex items-center py-2 px-6 mx-5 font-bold rounded-lg ${
                         pathName?.startsWith("/services")
                           ? "bg-destructive text-white dark:text-black"
-                          : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : " hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       <span>Services</span>
@@ -309,7 +309,7 @@ export default function MainNav() {
                             className={`block py-1 px-4 rounded mx-7 ${
                               isActive(item.href)
                                 ? "bg-destructive text-white dark:text-black"
-                                : "text-primary hover:bg-gray-200 dark:hover:bg-gray-700"
+                                : " hover:bg-gray-200 dark:hover:bg-gray-700"
                             }`}
                           >
                             {item.label}
@@ -340,7 +340,7 @@ export default function MainNav() {
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/portfolio")
                           ? "bg-destructive mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       Portfolio
@@ -354,7 +354,7 @@ export default function MainNav() {
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/contact")
                           ? "bg-destructive mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       Contact
@@ -368,7 +368,7 @@ export default function MainNav() {
                       className={`py-2 px-6 font-bold rounded-lg block ${
                         isActive("/blog")
                           ? "bg-destructive mx-5 text-white dark:text-black"
-                          : "text-primary mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                          : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
                       Blogs
@@ -383,8 +383,8 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-5 px-8 block"
                     >
-                      <button className="w-full border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
-                        Rent Studio
+                      <button className="w-full border-2 text-red-500 bg-[#151515] border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                        Studio Hire
                       </button>
                     </Link>
                     {/* <Link
@@ -404,7 +404,7 @@ export default function MainNav() {
                       rel="noopener noreferrer"
                       className="w-full mt-2 px-8 block"
                     >
-                      <button className="w-full border-2 text-white bg-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
+                      <button className="w-full border-2 text-primary bg-white py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-700 transition-colors rounded-3xl cursor-pointer text-sm md:text-lg">
                         Book a Slot
                       </button>
                     </Link>
