@@ -207,10 +207,12 @@ export default function Banner() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="flex-1 sm:flex-none bg-red-600 rounded-full text-white border-none px-5 lg:px-8 py-3 lg:py-6 hover:bg-red-500 cursor-pointer text-base">
-                <span className="flex items-center justify-center gap-2 w-full">
-                  Talk to an Expert
-                  <ArrowRight size={20} />
-                </span>
+                <a href="#quote">
+                  <span className="flex items-center justify-center gap-2 w-full">
+                    Talk to an Expert
+                    <ArrowRight size={20} />
+                  </span>
+                </a>
               </Button>
 
               <Button className="flex-1 sm:flex-none px-5 lg:px-8 py-3 lg:py-6 rounded-full hover:bg-gray-800 cursor-pointer text-white border border-gray-700">
@@ -771,7 +773,7 @@ export default function Banner() {
 
       {/* Form */}
       <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
-        <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
+        <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]" >
           <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
             <div className="col-span-6 flex flex-col justify-between">
               <div>
@@ -859,7 +861,7 @@ export default function Banner() {
                 </div>
               </div>
             </div>
-            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6">
+            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6" id="quote">
               <MainForm />
             </div>
           </div>
@@ -909,7 +911,7 @@ export default function Banner() {
 
       {/* Quote */}
       <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-transparent">
-        <div className="relative px-[279px] py-[80px] border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
+        <div className="relative lg:px-[279px] lg:py-[80px] px-10 py-15 border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
           <div
             className="
       absolute top-0 right-0
@@ -931,21 +933,23 @@ export default function Banner() {
       opacity-70
     "
           />
-
-          {/* Content */}
-          <h1 className="text-5xl font-bold text-white">
-            Get One Stop Digital Solutions Under One Roof
+          <h1 className="lg:text-5xl text-3xl font-bold text-white">
+            Get One Stop Digital <br className="lg:hidden" />
+            Solutions <br className="lg:hidden" /> Under One Roof
           </h1>
 
           <h4 className="text-muted-foreground my-10 text-lg">
             Ready to Transform your brand image? Call us Directly:{" "}
+            <br className="lg:hidden" />
             <span className="font-bold text-red-800">+880 1711-205200</span>
           </h4>
 
           <div className="flex justify-center">
-            <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-gray-200">
-              Get Free Quote
-            </Button>
+            <a href="#quote">
+              <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-gray-200 cursor-pointer">
+                Get Free Quote
+              </Button>
+            </a>
           </div>
         </div>
       </section>

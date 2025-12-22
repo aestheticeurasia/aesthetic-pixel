@@ -170,3 +170,7 @@
   mask-composite: exclude;
   -webkit-mask-composite: destination-out;
 }
+
+html {
+  scroll-behavior: smooth;
+}
