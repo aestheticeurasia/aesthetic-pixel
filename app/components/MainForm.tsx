@@ -2,6 +2,7 @@
 import { Loader2Icon, Send, Check } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 // --- Configuration for Services ---
 interface ServiceOption {
@@ -59,6 +60,7 @@ export default function MainForm() {
   const [message, setMessage] = useState<string>("");
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [serviceDetails, setServiceDetails] = useState<ServiceDetailState>({});
@@ -120,6 +122,7 @@ export default function MainForm() {
       "access_key",
       process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
     );
+    form.append("cf-turnstile-response", turnstileToken as string);
     form.append("name", name);
     form.append("email", email);
     form.append("phone", phone);
@@ -152,6 +155,12 @@ export default function MainForm() {
     form.append("message", message);
 
     try {
+      if (!turnstileToken) {
+        setStatus("Verification pending. Please try again.");
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: form,
@@ -401,6 +410,17 @@ export default function MainForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
+
+          {/* Cloudflare Turnstile — Managed */}
+          <div className="flex justify-center">
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
+               options={{ appearance: "always" }} 
+              onSuccess={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+            />
+          </div>
 
           <button
             type="submit"
