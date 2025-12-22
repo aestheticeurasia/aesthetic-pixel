@@ -773,7 +773,7 @@ export default function Banner() {
 
       {/* Form */}
       <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
-        <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]" >
+        <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
           <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
             <div className="col-span-6 flex flex-col justify-between">
               <div>
@@ -861,7 +861,10 @@ export default function Banner() {
                 </div>
               </div>
             </div>
-            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6" id="quote">
+            <div
+              className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6"
+              id="quote"
+            >
               <MainForm />
             </div>
           </div>
