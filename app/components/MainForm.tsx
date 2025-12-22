@@ -116,7 +116,10 @@ export default function MainForm() {
     setLoading(true);
 
     const form = new FormData();
-    form.append("access_key", "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd");
+    form.append(
+      "access_key",
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
+    );
     form.append("name", name);
     form.append("email", email);
     form.append("phone", phone);
@@ -278,7 +281,7 @@ export default function MainForm() {
                       </h3>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Column 1: Checkboxes */}
+                        {/* Checkboxes */}
                         <div>
                           <p className="text-sm font-semibold text-gray-200 mb-3">
                             What do you need?
@@ -341,7 +344,7 @@ export default function MainForm() {
                           </div>
                         </div>
 
-                        {/* Column 2: Yes/No Radio */}
+                        {/* Yes/No Radio */}
                         <div>
                           <p className="text-sm font-semibold text-gray-200 mb-3">
                             {serviceConfig.radioQuestion}
