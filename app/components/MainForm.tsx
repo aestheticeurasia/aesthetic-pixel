@@ -178,7 +178,6 @@ export default function MainForm() {
         setStatus(result.message);
       }
 
-      //reset
       setLoading(false);
       setTimeout(() => setStatus(null), 5000);
     } catch (error) {
