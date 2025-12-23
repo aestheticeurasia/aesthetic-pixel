@@ -77,8 +77,9 @@ const services = [
 ];
 
 export default function MainNav() {
-  const pathName = usePathname();
+const pathName = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(
     pathName?.startsWith("/services") || false
   );
@@ -91,18 +92,26 @@ export default function MainNav() {
     }
   }, [pathName]);
 
-  const isActive = (path: string) => {
-    if (path === "/") {
-      return pathName === "/";
-    }
-    return pathName.startsWith(path);
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (!mounted) {
+    return <div className="h-16" />; 
+  }
+
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return pathName === "/";
+    }
+    return pathName.startsWith(path);
+  };
 
   return (
     <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
