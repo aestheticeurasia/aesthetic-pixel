@@ -119,10 +119,7 @@ export default function MainForm() {
     setLoading(true);
 
     const form = new FormData();
-    form.append(
-      "access_key",
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
-    );
+    form.append("access_key", process.env.WEB3FORMS_ACCESS_KEY as string);
     form.append("cf-turnstile-response", turnstileToken as string);
     form.append("name", name);
     form.append("email", email);
@@ -181,6 +178,7 @@ export default function MainForm() {
         setStatus(result.message);
       }
 
+      //reset
       setLoading(false);
       setTimeout(() => setStatus(null), 5000);
     } catch (error) {
