@@ -66,6 +66,7 @@ const workSteps = [
     icon: Sparkles,
   },
 ];
+
 const capabilities = [
   {
     id: "01",
@@ -96,6 +97,7 @@ const capabilities = [
     icon: TrendingUp,
   },
 ];
+
 const testimonials = [
   {
     id: "1",
@@ -125,6 +127,7 @@ const testimonials = [
     rating: 5,
   },
 ];
+
 const faqs = [
   {
     id: "1",

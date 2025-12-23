@@ -3,7 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { CirclePlay, PhoneCall } from "lucide-react";
+import {
+  CirclePlay,
+  PhoneCall,
+  PenTool,
+  TrendingUp,
+  Video,
+  Code,
+} from "lucide-react";
 import Image from "next/image";
 import CountUp from "react-countup";
 import { GoDotFill } from "react-icons/go";
@@ -32,10 +39,38 @@ const apsTeam = [
   },
 ];
 
-export default function AboutPage() {
-  const pathData = "M2 2 H238 V78 H2 Z";
-  const pathLength = 2 * (238 + 78);
+const capabilities = [
+  {
+    id: "01",
+    title: "Graphics & Video",
+    description: "Edit & so on",
+    url: "",
+    icon: Video,
+  },
+  {
+    step: "02",
+    title: "Web Development",
+    description: "Custom design and development",
+    url: "",
+    icon: Code,
+  },
+  {
+    step: "03",
+    title: "Digital Marketing",
+    description: "Strategic growth for your brand",
+    url: "",
+    icon: TrendingUp,
+  },
+  {
+    step: "04",
+    title: "Creative Writing",
+    description: "Compelling copy that converts",
+    url: "",
+    icon: PenTool,
+  },
+];
 
+export default function AboutPage() {
   const stats = [
     { value: "500+", label: "Happy Clients" },
     { value: "5+", label: "Years of Experience" },
@@ -148,6 +183,86 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Other Services */}
+      <section
+        className="
+        mt-10
+    lg:mt-20
+    px-4 sm:px-18 
+    bg-[url('/layoutComponents/3rdBlur.svg')]
+    bg-no-repeat
+  bg-top-right
+    lg:px-[160px]
+  "
+      >
+        <div className="py-8 lg:text-start text-center">
+          <h1 className="text-3xl font-semibold text-white">
+            Get One Stop Digital Solutions
+          </h1>
+          <p className="text-muted-foreground mt-2">Under One Roof</p>
+        </div>
+
+        <div
+          className="
+      mx-auto
+      grid
+      grid-cols-1
+      sm:grid-cols-2
+      lg:grid-cols-4
+      gap-6
+    "
+        >
+          {capabilities.map((step, index) => (
+            <Card
+              key={index}
+              className="
+          group
+          w-full
+          lg:aspect-square
+          flex flex-col
+          justify-between
+          border lg:border-[#222223]
+          border-[#7d0508]
+          bg-[#0d0d0e]
+          rounded-3xl
+          p-6 md:p-8
+          transition-colors duration-300
+          hover:border-[#7d0508]
+        "
+            >
+              <div className="flex flex-col space-y-30">
+                <div className="mt-5">
+                  <step.icon
+                    className="
+                  p-2
+                  lg:text-[#A1A1AA]
+                  lg:bg-[#27272A80]
+                text-white
+                 bg-red-600
+                  rounded-lg
+                  transition-all duration-300
+                  group-hover:text-white
+                  group-hover:bg-red-600
+                  
+                "
+                    size={48}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold text-white mb-2">
+                    {step.title}
+                  </h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Management Team */}
       <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 border-[#151515] bg-[#090909] mt-20 py-10 rounded-xl">
         <div className="text-center">
@@ -183,19 +298,21 @@ export default function AboutPage() {
       </section>
 
       {/* YouTube Video Section */}
-      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 mt-20 py-10 rounded-xl">
-        <Badge
-          variant="outline"
-          className="rounded-2xl text-[#f87171] border-[#4e1111] border-2 font-bold w-fit mb-3 px-3 py-2"
-        >
-          <CirclePlay className="mr-2" /> SHOWREEL
-        </Badge>
+      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 mt-10 py-10 rounded-xl">
+        <div className="flex justify-center lg:justify-start">
+          <Badge
+            variant="outline"
+            className="rounded-2xl text-[#f87171] border-[#4e1111] border-2 font-bold w-fit mb-3 px-3 py-2"
+          >
+            <CirclePlay className="mr-2" /> SHOWREEL
+          </Badge>
+        </div>
 
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex lg:flex-row flex-col justify-between items-center mb-8">
           <h1 className="font-bold text-white text-3xl">
             Experience Our Craft
           </h1>
-          <span className="text-muted-foreground w-100">
+          <span className="text-muted-foreground w-100 lg:px-0 px-4 lg:text-start text-center mt-4 lg:mt-0">
             See how we bring products to life through cinematic motion, precise
             color grading, and creative direction.
           </span>
@@ -253,7 +370,7 @@ export default function AboutPage() {
             Start Your Project
           </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center my-10">
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-10 mb-4 lg:mb-10">
             <Input
               type="email"
               placeholder="Enter your email"
@@ -263,6 +380,7 @@ export default function AboutPage() {
           bg-[#070707]
           text-white
           placeholder:text-gray-500
+          paceholder:text-center
           text-lg
           rounded-full
           px-7 py-7
