@@ -952,7 +952,7 @@ export default function Banner() {
 
           <div className="flex justify-center">
             <a href="#quote">
-              <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-gray-200 cursor-pointer">
+              <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-red-700 hover:text-white cursor-pointer">
                 Get Free Quote
               </Button>
             </a>

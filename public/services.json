@@ -1,10 +1,11 @@
 [
    {
-    "title": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
+    "title": "Product Photography",
     "tag": "Product Photography",
     "slug": "product-photography",
     "desc": "Product Photography (Bags, Shoes, Jewelry, Watches, etc.)",
-    "img": "/servicesImg/Product-Photography/7-F.jpg",
+    "content": "We specialize in high-quality product photography that highlights the unique features of your products. Our team uses advanced lighting techniques and professional equipment to ensure that every shot is crisp, clear, and visually appealing. Whether you're looking to showcase bags, shoes, jewelry, or watches, we tailor our approach to meet your specific needs and brand aesthetics. Let us help you create stunning visuals that captivate your audience and drive sales.",
+    "img": "/servicesImg/Product-Photography/Hero.png",
     "sampleImg": [
       "/servicesImg/Product-Photography/1.jpg",
       "/servicesImg/Product-Photography/2.jpg",
@@ -20,7 +21,8 @@
     "tag": "Apparel",
     "slug": "apparel-and-garment-photography",
     "desc": "Optimized product photos sized and edited for online listings and ads. Optimized product photos sized and edited for online listings and ads. Optimized product photos sized and edited for online listings and ads.",
-    "img": "/servicesImg/Apparel-&-Garment-Photography/1-F.jpg",
+    "content": "Our apparel and garment photography services focus on creating visually appealing images that highlight the texture, color, and fit of your clothing items. We use professional lighting and styling techniques to ensure your products look their best for online listings and advertising campaigns.",
+    "img": "/servicesImg/Apparel-&-Garment-Photography/Hero.png",
     "sampleImg": [
       "/servicesImg/Apparel-&-Garment-Photography/1-F.jpg",
       "/servicesImg/Apparel-&-Garment-Photography/2.jpg",
@@ -28,11 +30,12 @@
     ]
   },
   {
-    "title": "Corporate Head Shots",
+    "title": "Corporate Headshots",
     "tag": "Corporate Head-Shots",
     "slug": "corporate-head-shots",
     "desc": "Professional headshots for corporate branding and personal use.",
-    "img": "/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg",
+    "content": "We provide professional corporate headshot photography services that help individuals and businesses present a polished and approachable image. Our experienced photographers work with you to capture the perfect shot that reflects your personality and professionalism, ideal for LinkedIn profiles, company websites, and marketing materials.",
+    "img": "/servicesImg/Corporate-Head-Shots/Hero.png",
     "sampleImg": [
       "/servicesImg/Corporate-Head-Shots/Jamirul-1-F.jpg",
       "/servicesImg/Corporate-Head-Shots/Jamirul-2.jpg"
@@ -43,6 +46,7 @@
     "tag": "Fashion",
     "slug": "fashion-and-model-photography",
     "desc": "Headshots, facility photography and editorial assets for comms.",
+    "content": "Our fashion and model photography services are designed to capture the essence of style and elegance. We work with models to create stunning images that showcase clothing, accessories, and fashion trends. Whether for editorial spreads, advertising campaigns, or portfolio development, our team ensures that every shot is visually striking and professionally executed.",
     "img": "/servicesImg/Fashion-&-Model-Photography/4-F.jpg",
     "sampleImg": [
       "/servicesImg/Fashion-&-Model-Photography/1.jpg",
@@ -57,6 +61,7 @@
     "tag": "Furniture",
     "slug": "furniture-photography",
     "desc": "Controlled lighting and crisp detail for high-res deliverables.",
+    "content": "We specialize in furniture photography that highlights the design, craftsmanship, and functionality of your pieces. Our team uses controlled lighting techniques to capture crisp details and textures, ensuring that each photograph showcases the furniture in its best light. Whether for catalogs, online stores, or promotional materials, we deliver high-resolution images that effectively represent your products.",
     "img": "/servicesImg/Furniture-Photography/2-F.jpg",
     "sampleImg": [
       "/servicesImg/Furniture-Photography/1.jpg",
@@ -68,6 +73,7 @@
       "tag": "Retouching",
       "slug": "photo-retouching",
       "desc": "Concept, styling and art direction to fit your brand voice.",
+      "content": "Our photo retouching services enhance your images to perfection, ensuring they align with your brand's voice and aesthetic. We offer expert editing, color correction, and styling to bring out the best in every photograph, making them ready for marketing, advertising, or personal use.",
       "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
       "sampleImg": [
         "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
@@ -78,6 +84,7 @@
       "tag": "Retouching",
       "slug": "photo-retouching",
       "desc": "Concept, styling and art direction to fit your brand voice.",
+      "content": "Our photo retouching services enhance your images to perfection, ensuring they align with your brand's voice and aesthetic. We offer expert editing, color correction, and styling to bring out the best in every photograph, making them ready for marketing, advertising, or personal use.",
       "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
       "sampleImg": [
         "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
@@ -88,6 +95,7 @@
       "tag": "Retouching",
       "slug": "photo-retouching",
       "desc": "Concept, styling and art direction to fit your brand voice.",
+      "content": "Our photo retouching services enhance your images to perfection, ensuring they align with your brand's voice and aesthetic. We offer expert editing, color correction, and styling to bring out the best in every photograph, making them ready for marketing, advertising, or personal use.",
       "img": "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg",
       "sampleImg": [
         "/servicesImg/Photo-Retouching/Jewelry-Photo-Retouching-Services.jpg"
