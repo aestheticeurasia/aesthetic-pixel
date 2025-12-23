@@ -169,8 +169,8 @@ export default function AboutPage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, delay: i * 0.2, type: "spring" }}
             >
-              <Card className="border-[#1a1a1b] bg-[#0e0e0f] rounded-xl text-center py-[32px]">
-                <h1 className="text-6xl font-extrabold text-gray-100">
+              <Card className="border-[#1a1a1b] hover:border-[#521e1f] bg-[#0e0e0f] rounded-xl text-center py-[32px]">
+                <h1 className="text-6xl font-extrabold text-gray-100 hover:text-[#ef4444]">
                   <CountUp end={parseInt(stat.value)} duration={6.75} />
                   {stat.value.includes("+") ? "+" : ""}
                 </h1>
