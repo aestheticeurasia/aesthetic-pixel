@@ -113,6 +113,7 @@ export default function MainForm() {
     });
   };
 
+  //submit form handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -177,7 +178,7 @@ export default function MainForm() {
         setSelectedService(null);
         setServiceDetails({});
       } else {
-        setStatus(result.message || "There was an error sending your message.");
+        setStatus(result.message);
       }
 
       setLoading(false);
@@ -411,11 +412,11 @@ export default function MainForm() {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
 
-          {/* Cloudflare Turnstile — Managed */}
+          {/* Cloudflare Turnstile */}
           <div className="flex justify-center">
             <Turnstile
               siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
-               options={{ appearance: "always" }} 
+              options={{ appearance: "always" }}
               onSuccess={(token) => setTurnstileToken(token)}
               onExpire={() => setTurnstileToken(null)}
               onError={() => setTurnstileToken(null)}

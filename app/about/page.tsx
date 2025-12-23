@@ -1,8 +1,13 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { CirclePlay, PhoneCall } from "lucide-react";
 import Image from "next/image";
 import CountUp from "react-countup";
+import { GoDotFill } from "react-icons/go";
+import { Input } from "@/components/ui/input";
 
 const apsTeam = [
   {
@@ -10,7 +15,7 @@ const apsTeam = [
     role: "Managing Partner & Lead Photographer",
     imageUrl: "/apsTeam/nazmusSakib.jpg",
   },
-    {
+  {
     name: "MD Ashaduzzaman",
     role: "Director",
     imageUrl: "/apsTeam/mdAshaduzzaman.jpg",
@@ -38,47 +43,89 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="container mx-auto p-6 mt-7">
-      <section className=" text-center items-center justify-center flex flex-col">
-        <div className="relative mb-10 w-60 h-20 rounded-xl overflow-hidden shadow-md">
-          <div className="absolute inset-0 bg-muted rounded-xl z-0"></div>
+    <div className="lg:px-25">
+      {/* Hero */}
+      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
+        <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
+          <div className="max-w-xl">
+            <Badge
+              variant="outline"
+              className="rounded-xl text-red-500 border-red-900 font-bold w-fit mb-6"
+            >
+              <GoDotFill className="mr-2" /> WHAT WE DO
+            </Badge>
 
-          <motion.svg
-            className="absolute inset-0 w-full h-full z-10"
-            viewBox="0 0 240 80"
-            fill="none"
-          >
-            <motion.path
-              d={pathData}
-              stroke="url(#gradient)"
-              strokeWidth="2"
-              strokeDasharray={pathLength}
-              strokeDashoffset={pathLength}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-            />
-            <defs>
-              <linearGradient id="gradient">
-                <stop offset="0%" stopColor="#00f2fe" />
-                <stop offset="50%" stopColor="#ff00ff" />
-                <stop offset="100%" stopColor="#00f2fe" />
-              </linearGradient>
-            </defs>
-          </motion.svg>
+            <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              We are a
+              <span className="text-[#f00004]"> Photography Studio</span>
+            </h1>
 
-          <div className="relative z-20 p-4 flex items-center justify-center h-full">
-            <h1 className="text-2xl font-bold">What we do</h1>
+            <p className="text-[#7e7c83] text-lg mb-10">
+              Producing high-quality images that make your product look amazing.
+              With 7 years of experience and a passionate team of 100+
+              professionals.
+            </p>
           </div>
         </div>
-        <div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-snug">
-            We are a photography studio
-            <br />
-            producing high-quality images that
-            <br />
-            make your product look amazing
-          </h1>
+
+        <div className="flex-1 flex flex-col gap-4">
+          <div
+            className="relative flex-1 min-h-[260px] group overflow-hidden rounded-2xl
+       border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
+          >
+            <Image
+              src="/layoutComponents/aboutCameraMan.png"
+              alt="retouching"
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+            <div className="absolute bottom-6 left-6 z-10">
+              <h1 className="text-white text-xl md:text-2xl font-bold">
+                Retouching
+              </h1>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 min-h-[220px] sm:min-h-[280px] lg:flex-1">
+            <div
+              className="relative group overflow-hidden rounded-2xl min-h-[160px] sm:min-h-[200px]
+         border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
+            >
+              <Image
+                src="/garments.png"
+                alt="Garments"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+
+              <Badge className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md">
+                Apparel & Garments
+              </Badge>
+            </div>
+
+            <div
+              className="relative group overflow-hidden rounded-2xl min-h-[160px] sm:min-h-[200px]
+         border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
+            >
+              <Image
+                src="/Apparel.png"
+                alt="Apparel"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+
+              <Badge className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md">
+                Apparel
+              </Badge>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* CountDown */}
+      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           {stats.map((stat, i) => (
             <motion.div
@@ -87,12 +134,12 @@ export default function AboutPage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, delay: i * 0.2, type: "spring" }}
             >
-              <Card className="p-10 bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl rounded-2xl hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+              <Card className="border-[#1a1a1b] bg-[#0e0e0f] rounded-xl text-center py-[32px]">
                 <h1 className="text-6xl font-extrabold text-gray-100">
                   <CountUp end={parseInt(stat.value)} duration={6.75} />
                   {stat.value.includes("+") ? "+" : ""}
                 </h1>
-                <h3 className="mt-3 text-xl font-semibold text-gray-200">
+                <h3 className="text-muted-foreground uppercase">
                   {stat.label}
                 </h3>
               </Card>
@@ -100,10 +147,20 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <section className="mt-30">
-        <h1 className="text-3xl md:text-5xl font-bold leading-snug text-center">
-          Our Team
-        </h1>
+
+      {/* Management Team */}
+      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 border-[#151515] bg-[#090909] mt-20 py-10 rounded-xl">
+        <div className="text-center">
+          <Badge
+            variant="outline"
+            className="rounded-xl text-red-500 border-red-900 font-bold w-fit mb-6 uppercase"
+          >
+            Leadership
+          </Badge>
+          <h1 className="text-3xl md:text-5xl font-bold leading-snug text-center text-white">
+            Our Team
+          </h1>
+        </div>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {apsTeam.map((member, index) => (
             <div key={index} className="flex flex-col items-center p-4">
@@ -114,21 +171,148 @@ export default function AboutPage() {
                 height={250}
                 className="rounded-lg object-cover"
               />
-              <h2 className="mt-4 text-xl font-semibold">{member?.name}</h2>
-              <p className="text-gray-500 text-center">{member?.role}</p>
+              <h2 className="mt-5 text-xl font-semibold text-white">
+                {member?.name}
+              </h2>
+              <p className="text-center text-[#ef4444] px-5 mt-2">
+                {member?.role}
+              </p>
             </div>
           ))}
         </div>
       </section>
-       <section className="w-full container mx-auto px-4 mt-10">
+
+      {/* YouTube Video Section */}
+      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 mt-20 py-10 rounded-xl">
+        <Badge
+          variant="outline"
+          className="rounded-2xl text-[#f87171] border-[#4e1111] border-2 font-bold w-fit mb-3 px-3 py-2"
+        >
+          <CirclePlay className="mr-2" /> SHOWREEL
+        </Badge>
+
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="font-bold text-white text-3xl">
+            Experience Our Craft
+          </h1>
+          <span className="text-muted-foreground w-100">
+            See how we bring products to life through cinematic motion, precise
+            color grading, and creative direction.
+          </span>
+        </div>
         <div className="relative w-full pb-200 border-2 rounded-lg shadow">
           <iframe
             className="absolute top-0 left-0 h-full w-full rounded-lg"
-            src="https://www.youtube.com/embed/3fQPBoDUpik?si=7nR6MSC1lSLfwXRg" 
+            src="https://www.youtube.com/embed/3fQPBoDUpik?si=7nR6MSC1lSLfwXRg"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+        </div>
+      </section>
+
+      {/* Newslater */}
+      <section className="mx-6 md:mx-12 lg:mx-[160px] px-4 py-12">
+        <div
+          className="
+      relative
+      px-6 sm:px-10 lg:px-[279px]
+      py-12 lg:py-[80px]
+      border-2 border-[#221919]
+      hover:border-red-900
+      rounded-3xl
+      bg-[#0a0a0b]
+      text-center
+      overflow-hidden
+      transition-colors duration-300
+    "
+        >
+          <div
+            className="
+        absolute top-0 right-0
+        w-[260px] h-[260px] sm:w-[300px] sm:h-[300px]
+        bg-[url('/layoutComponents/qouteBlur-top.svg')]
+        bg-no-repeat bg-contain
+        pointer-events-none
+        opacity-70
+      "
+          />
+
+          <div
+            className="
+        absolute bottom-0 left-0
+        w-[260px] h-[260px] sm:w-[300px] sm:h-[300px]
+        bg-[url('/layoutComponents/qouteBlur.svg')]
+        bg-no-repeat bg-contain
+        pointer-events-none
+        opacity-70
+      "
+          />
+
+          <h1 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            Start Your Project
+          </h1>
+
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center my-10">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              className="
+          w-full sm:w-[360px]
+          border-[#3f3f46]
+          bg-[#070707]
+          text-white
+          placeholder:text-gray-500
+          text-lg
+          rounded-full
+          px-7 py-7
+          focus:border-red-600
+          focus:ring-2 focus:ring-red-600/30
+          transition-all
+        "
+            />
+
+            <Button
+              className="
+          bg-[#d00f2c]
+          text-white
+          text-md
+          rounded-full
+          px-8 py-7
+          hover:bg-[#a70b1e]
+          active:scale-[0.98]
+          transition-all
+          shadow-lg shadow-red-900/20
+          cursor-pointer
+        "
+            >
+              Start Free Trial
+            </Button>
+          </div>
+
+          <div className="flex justify-center">
+            <Button
+              className="
+          flex items-center gap-3
+          bg-[#1a1a1b]
+          border-2 border-[#dc2626]
+          text-white
+          text-lg
+          rounded-full
+          px-10 sm:px-20
+          py-6
+          hover:bg-[#131316]
+          hover:border-red-500
+          transition-all
+          shadow-md shadow-black/40
+          cursor-pointer
+        "
+            >
+              <PhoneCall />
+              <span className="text-[#d4d4d8]">Call Now:</span>
+              +880 1711-205200
+            </Button>
+          </div>
         </div>
       </section>
     </div>

@@ -186,6 +186,18 @@ export default function MainNav() {
                   Our Work
                 </Link>
 
+                {/* About */}
+                <Link
+                  href="/about"
+                  className={`py-2 px-3 rounded-lg ${
+                    isActive("/about")
+                      ? "bg-destructive text-white dark:text-black"
+                      : "text-[#A1A1AA] hover:text-white"
+                  }`}
+                >
+                  About
+                </Link>
+
                 {/* Blog */}
                 <Link
                   href="/blog"
