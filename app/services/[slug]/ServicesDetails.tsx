@@ -212,18 +212,50 @@ export default function ServiceDetails({ slug }: Props) {
 
       {/* Work Sample */}
       <section className="px-6 lg:px-[160px]">
-        <div className="px-7 mb-10">
-          <h1 className="text-3xl font-semibold text-white mb-3">
+        <div className="px-7 mb-5">
+          <h1 className="text-3xl font-semibold text-white mb-2">
             Work Sample
           </h1>
           <p className="text-muted-foreground">
             Curated selection of our finest shots.
           </p>
         </div>
+        <div className="px-5">
+          {service.sampleImg && service.sampleImg.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="lg:col-span-6 overflow-hidden rounded-lg">
+                <Image
+                  src={service.sampleImg[0]}
+                  alt="Sample 1"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              {/* Right Grid */}
+              <div className="lg:col-span-6 grid grid-cols-2 grid-rows-2 gap-6">
+                {service.sampleImg.slice(1, 5).map((imgUrl, index) => (
+                  <div key={index} className="overflow-hidden rounded-lg">
+                    <Image
+                      src={imgUrl}
+                      alt={`Sample ${index + 2}`}
+                      width={200}
+                      height={200}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No samples available.</p>
+          )}
+        </div>
       </section>
 
       {/* Brand Slider */}
-      <section className="px-6 lg:px-[160px]">
+      <section className="px-6 lg:px-[160px] mt-20">
         <div className="border-t-[#4f1313] border-b-[#4f1313] border-t-2 border-b-2 bg-[#120b0b] py-15 rounded-xl">
           <h1 className="font-semibold text-[#dc2626] text-center mb-10 uppercase">
             Trusted by Global Brands

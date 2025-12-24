@@ -883,7 +883,7 @@ export default function Banner() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {blogs.map((blog) => (
             <Card
-              key={blog?.slug}
+              key={blog?.id}
               className="bg-transparent border-none px-5 lg:px-0"
             >
               <div className="relative group overflow-hidden transition-all duration-300 aspect-[3/2] rounded-lg">
