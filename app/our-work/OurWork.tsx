@@ -44,107 +44,124 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mt-10 mb-13 text-center">
-        Our{" "}
-        <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
-          Work
-        </span>
-      </h1>
-      {loading ? (
-        <Spinner className="size-8 m-auto" />
-      ) : (
-        <>
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <button
-              onClick={() => setActiveCategory("All")}
-              className={`px-4 py-2 rounded-full font-semibold transition-all duration-200
-              ${
-                activeCategory === "All"
-                  ? "bg-gray-600 text-white hover:cursor-pointer"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-400 hover:cursor-pointer"
-              }`}
-            >
-              All
-            </button>
-            {portfolioItems.map((item) => (
-              <button
-                key={item.category}
-                onClick={() => setActiveCategory(item.category)}
-                className={`px-4 py-2 rounded-full font-semibold transition-all duration-200
-                ${
-                  activeCategory === item.category
-                    ? "bg-gray-600 text-white hover:cursor-pointer"
-                    : "bg-gray-200 text-gray-800 hover:bg-gray-400 hover:cursor-pointer"
-                }`}
-              >
-                {item.category}
-              </button>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {activeCategory === "All"
-              ? portfolioItems.map((item) => (
-                  <div
+    <div>
+      <section className="mt-8 px-4 sm:px-8 lg:px-[160px]">
+        {loading ? (
+          <Spinner className="size-8 m-auto" />
+        ) : (
+          <>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10">
+              {/* Left: Title */}
+              <div className="text-center md:text-left">
+                <h1 className="font-extrabold text-4xl text-white mb-3">
+                  Our Work
+                </h1>
+                <p className="text-muted-foreground max-w-xl">
+                  Explore our diverse portfolio of digital assets, product
+                  photography, and creative campaigns.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center md:justify-end gap-3">
+                <button
+                  onClick={() => setActiveCategory("All")}
+                  className={`
+        px-5 py-2 rounded-full text-sm font-semibold cursor-pointer
+        transition-all duration-300
+        ${
+          activeCategory === "All"
+            ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
+            : "bg-[#1a1a1a] text-gray-300 hover:bg-[#262626] hover:text-white"
+        }
+      `}
+                >
+                  All
+                </button>
+
+                {portfolioItems.map((item) => (
+                  <button
                     key={item.category}
-                    className="group relative w-full rounded-md overflow-hidden flex items-center justify-center p-2 cursor-pointer"
                     onClick={() => setActiveCategory(item.category)}
+                    className={`
+          px-5 py-2 rounded-full text-sm font-semibold cursor-pointer
+          transition-all duration-300
+          ${
+            activeCategory === item.category
+              ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
+              : "bg-[#1a1a1a] text-gray-300 hover:bg-[#262626] hover:text-white"
+          }
+        `}
                   >
-                    <div className="absolute inset-0 z-10 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
-                      <span className="text-white text-lg font-bold tracking-wide flex items-center gap-1 hover:text-gray-300">
-                        View More
-                        <ArrowRightIcon className="inline-block size-5" />
-                      </span>
-                    </div>
-                    <Image
-                      priority
-                      src={item.images[0]}
-                      alt={item.category}
-                      width={350}
-                      height={350}
-                      className="transition-transform duration-200 rounded-md group-hover:scale-105 group-hover:shadow-2xl group-hover:border-5 border-gray-900 dark:group-hover:border-white"
-                    />
-                  </div>
-                ))
-              : (
-                  portfolioItems.find(
-                    (item) => item.category === activeCategory
-                  )?.images || []
-                ).map((image) => (
-                  <div
-                    key={image}
-                    className="relative w-full rounded-md overflow-hidden flex items-center justify-center p-2"
-                  >
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Image
-                          priority
-                          src={image}
-                          alt={activeCategory}
-                          width={350}
-                          height={350}
-                          className="cursor-pointer hover:scale-105 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
-                        />
-                      </DialogTrigger>
-                      <DialogContent className="flex justify-center p-4 max-w-[90vw] max-h-[90vh]">
-                        <DialogTitle>
-                          <span className="sr-only">{activeCategory}</span>
-                        </DialogTitle>
-                        <InnerImageZoom
-                          src={image}
-                          zoomSrc={image}
-                          zoomType="hover"
-                          zoomPreload={true}
-                          zoomScale={1.5}
-                          hideCloseButton={true}
-                        />
-                      </DialogContent>
-                    </Dialog>
-                  </div>
+                    {item.category}
+                  </button>
                 ))}
-          </div>
-        </>
-      )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {activeCategory === "All"
+                ? portfolioItems.map((item) => (
+                    <div
+                      key={item.category}
+                      className="group relative w-full rounded-md overflow-hidden flex items-center justify-center p-2 cursor-pointer"
+                      onClick={() => setActiveCategory(item.category)}
+                    >
+                      <div className="absolute inset-0 z-10 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
+                        <span className="text-white text-lg font-bold tracking-wide flex items-center gap-1 hover:text-gray-300">
+                          View More
+                          <ArrowRightIcon className="inline-block size-5" />
+                        </span>
+                      </div>
+                      <Image
+                        priority
+                        src={item.images[0]}
+                        alt={item.category}
+                        width={350}
+                        height={350}
+                        className="transition-transform duration-200 rounded-md group-hover:scale-105 group-hover:shadow-2xl group-hover:border-5 border-gray-900 dark:group-hover:border-white"
+                      />
+                    </div>
+                  ))
+                : (
+                    portfolioItems.find(
+                      (item) => item.category === activeCategory
+                    )?.images || []
+                  ).map((image) => (
+                    <div
+                      key={image}
+                      className="relative w-full rounded-md overflow-hidden flex items-center justify-center p-2"
+                    >
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Image
+                            priority
+                            src={image}
+                            alt={activeCategory}
+                            width={350}
+                            height={350}
+                            className="cursor-pointer hover:scale-105 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
+                          />
+                        </DialogTrigger>
+                        <DialogContent className="flex justify-center p-4 max-w-[90vw] max-h-[90vh]">
+                          <DialogTitle>
+                            <span className="sr-only">{activeCategory}</span>
+                          </DialogTitle>
+                          <InnerImageZoom
+                            src={image}
+                            zoomSrc={image}
+                            zoomType="hover"
+                            zoomPreload={true}
+                            zoomScale={1.5}
+                            hideCloseButton={true}
+                          />
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                  ))}
+            </div>
+          </>
+        )}
+      </section>
     </div>
   );
-};
+}
