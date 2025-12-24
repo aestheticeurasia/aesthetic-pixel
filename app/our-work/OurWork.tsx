@@ -54,7 +54,6 @@ export default function Portfolio() {
         ) : (
           <>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10">
-              {/* Left: Title */}
               <div className="text-center md:text-left">
                 <h1 className="font-extrabold text-4xl text-white mb-3">
                   Our Work
@@ -64,7 +63,6 @@ export default function Portfolio() {
                   photography, and creative campaigns.
                 </p>
               </div>
-
               <div className="flex flex-wrap justify-center md:justify-end gap-3">
                 <button
                   onClick={() => setActiveCategory("All")}
@@ -100,7 +98,7 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-
+<hr className="mb-20 border-[#1f1f1f]"/>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {activeCategory === "All"
                 ? portfolioItems.map((item) => (

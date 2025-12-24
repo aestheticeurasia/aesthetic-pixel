@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { ArrowRight, Clock, User } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
 
 // Define the Blog type
 interface Author {
@@ -50,71 +51,125 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-3xl font-bold text-center my-12 text-white">Blogs</h1>
-      {loading ? (
-        <Spinner className="size-8 m-auto" />
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6 cursor-pointer">
-          {blogs.map((blog) => (
-            <Link
-              key={blog.slug}
-              href={`/blog/${blog.slug}`}
-              className="cursor-pointer"
-            >
-              <div className="mx-5 md:mx-0 bg-[#0c0c0d] rounded-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg h-full">
-                <div className="relative">
-                  <a href={`/blog/${blog.slug}`} className="block">
-                    <Image
-                      src={blog.coverImage}
-                      alt={blog.title}
-                      width={400}
-                      height={208}
-                      className="w-full h-52 object-cover"
-                      loading="lazy"
-                    />
-                  </a>
-                  {blog.tags && blog.tags.length > 0 && (
-                    <span className="absolute top-4 left-4 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm capitalize">
-                      {blog.tags[0]}
-                    </span>
-                  )}
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between space-x-4 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1.5">
-                      <User className="w-4 h-4" />
-                      <span>By {blog.author.name}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4" />
-                      <span>{dayjs(blog.publishedAt).format("MMM D, YYYY")}</span>
-                    </div>
+    <div>
+      {/* Blogs */}
+      <section className=" px-6 md:px-12 lg:px-[320px]">
+        <div className="py-12 bg-[url('/layoutComponents/blogBlur.svg')] bg-no-repeat bg-center">
+          <h1 className="text-3xl font-bold text-center text-white">Blogs</h1>
+        </div>
+        {loading ? (
+          <Spinner className="size-8 m-auto" />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6 cursor-pointer">
+            {blogs.map((blog) => (
+              <Link
+                key={blog.slug}
+                href={`/blog/${blog.slug}`}
+                className="cursor-pointer"
+              >
+                <div className="mx-5 md:mx-0 bg-[#0a0a0a] border-[#222222] border-1 rounded-lg overflow-hidden flex flex-col h-full">
+                  <div className="relative">
+                    <a href={`/blog/${blog.slug}`} className="block">
+                      <Image
+                        src={blog.coverImage}
+                        alt={blog.title}
+                        width={400}
+                        height={250}
+                        className="h-70 object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                    {blog.tags && blog.tags.length > 0 && (
+                      <span className="absolute top-4 left-4 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm capitalize">
+                        {blog.tags[0]}
+                      </span>
+                    )}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between space-x-4 text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1.5">
+                        <User className="w-4 h-4" />
+                        <span>By {blog.author.name}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        <span>
+                          {dayjs(blog.publishedAt).format("MMM D, YYYY")}
+                        </span>
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <a
+                        href={`/blog/${blog.slug}`}
+                        className="text-white hover:text-red-600 transition-colors"
+                      >
+                        {blog.title}
+                      </a>
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                      {blog.description}
+                    </p>
                     <a
                       href={`/blog/${blog.slug}`}
-                      className="text-white hover:text-red-600 transition-colors"
+                      className="inline-flex items-center text-red-600 font-semibold mt-6 hover:text-red-700 transition-colors"
                     >
-                      {blog.title}
+                      Read More
+                      <ArrowRight className="w-4 h-4 ml-2" />
                     </a>
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                    {blog.description}
-                  </p>
-                  <a
-                    href={`/blog/${blog.slug}`}
-                    className="inline-flex items-center text-red-600 font-semibold mt-6 hover:text-red-700 transition-colors"
-                  >
-                    Read More
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Quote */}
+      <section className="border-t border-b border-[#481414]/50 py-5 mt-10 lg:mt-20">
+        <div className="px-6 md:px-12 lg:px-[320px]">
+          <div className="relative lg:px-[279px] lg:py-[80px] px-10 py-15 border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
+            <div
+              className="
+      absolute top-0 right-0
+      w-[300px] h-[300px]
+      bg-[url('/layoutComponents/qouteBlur-top.svg')]
+      bg-no-repeat bg-contain
+      pointer-events-none
+      opacity-70
+    "
+            />
+
+            <div
+              className="
+      absolute bottom-0 left-0
+      w-[300px] h-[300px]
+      bg-[url('/layoutComponents/qouteBlur.svg')]
+      bg-no-repeat bg-contain
+      pointer-events-none
+      opacity-70
+    "
+            />
+            <h1 className="lg:text-5xl text-3xl font-bold text-white">
+              Get One Stop Digital <br className="lg:hidden" />
+              Solutions <br className="lg:hidden" /> Under One Roof
+            </h1>
+
+            <h4 className="text-muted-foreground my-10 text-lg">
+              Ready to Transform your brand image? Call us Directly:{" "}
+              <br className="lg:hidden" />
+              <span className="font-bold text-red-800">+880 1711-205200</span>
+            </h4>
+
+            <div className="flex justify-center">
+              <a href="#quote">
+                <Button className="bg-white font-bold text-black text-xl rounded-4xl px-12 py-7 hover:bg-red-700 hover:text-white cursor-pointer">
+                  Get Free Quote
+                </Button>
+              </a>
+            </div>
+          </div>
         </div>
-      )}
+      </section>
     </div>
   );
 }
