@@ -169,7 +169,7 @@ export default function Portfolio() {
       {/* Call Details */}
       <section className="bg-[#0c0c0d] py-[48px] mt-20">
         <div className="flex flex-col lg:flex-row px-4 sm:px-8 lg:px-[160px] gap-10 lg:gap-0 justify-center lg:justify-between items-center">
-          <div className="space-y-6 max-w-xl text-center lg:text-left">
+          <div className="space-y-6 text-center lg:text-left">
             <div className="space-y-2">
               <h4 className="text-red-600 uppercase font-bold text-sm tracking-wide">
                 Call Now
