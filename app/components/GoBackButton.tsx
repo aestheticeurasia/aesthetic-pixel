@@ -9,11 +9,10 @@ export default function GoBackButton() {
 
   return (
     <Button
-      variant="ghost"
       onClick={() => router.back()}
-      className="cursor-pointer"
+      className="bg-black text-white hover:bg-zinc-800 cursor-pointer"
     >
-      <ArrowLeft size={16} />
+      <ArrowLeft size={16} className="text-white" />
     </Button>
   );
 }

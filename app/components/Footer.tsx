@@ -99,36 +99,36 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold pb-5">Quick Links</h3>
               <div className="flex flex-col space-y-2 text-muted-foreground group">
-                <a className="hover:text-white" href="/about">
+                <Link className="hover:text-red-600" href="/about">
                   About
-                </a>
-                <a className="hover:text-white" href="">
-                  Features
-                </a>
-                <a className="hover:text-white" href="">
+                </Link>
+                <Link className="hover:text-red-600" href="/services">
+                  Services
+                </Link>
+                <Link className="hover:text-red-600" href="/pricing">
                   Pricing
-                </a>
-                <a className="hover:text-white" href="">
-                  Portfolio
-                </a>
-                <a className="hover:text-white" href="">
+                </Link>
+                <Link className="hover:text-red-600" href="/our-work">
+                  Our Work
+                </Link>
+                <Link className="hover:text-red-600" href="/blog">
                   Blog
-                </a>
-                <a className="hover:text-white" href="">
+                </Link>
+                <Link className="hover:text-red-600" href="/contact">
                   Contact
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold pb-5">Services</h3>
               <div className="flex flex-col space-y-2 text-muted-foreground">
-                <a href="">Apparel & Garment Photography</a>
-                <a href="">Product Photography</a>
-                <a href="">Photo Retouching</a>
-                <a href="">Corporate Headshots</a>
-                <a href="">Furniture Photography</a>
-                <a href="">Fashion & Model</a>
+                <Link className="hover:text-red-600" href="/services/product-photography">Product Photography</Link>
+                <Link className="hover:text-red-600" href="/services/apparel-and-garment-photography">Apparel & Garment Photography</Link>
+                <Link className="hover:text-red-600" href="/services/photo-retouching">Photo Retouching</Link>
+                <Link className="hover:text-red-600" href="/services/corporate-head-shots">Corporate Headshots</Link>
+                <Link className="hover:text-red-600" href="/services/furniture-photography">Furniture Photography</Link>
+                <Link className="hover:text-red-600" href="/services/fashion-and-model-photography">Fashion & Model</Link>
               </div>
             </div>
 

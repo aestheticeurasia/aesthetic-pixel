@@ -13,6 +13,8 @@ import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/styles.min.css";
 import { Spinner } from "@/components/ui/spinner";
 import { ArrowRightIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface PortfolioItem {
   category: string;
@@ -45,6 +47,7 @@ export default function Portfolio() {
 
   return (
     <div>
+      {/* Main Images */}
       <section className="mt-8 px-4 sm:px-8 lg:px-[160px]">
         {loading ? (
           <Spinner className="size-8 m-auto" />
@@ -161,6 +164,77 @@ export default function Portfolio() {
             </div>
           </>
         )}
+      </section>
+
+      {/* Call Details */}
+      <section className="bg-[#0c0c0d] py-[48px] mt-20">
+        <div className="flex flex-col lg:flex-row px-4 sm:px-8 lg:px-[160px] gap-10 lg:gap-0 justify-center lg:justify-between items-center">
+          <div className="space-y-6 max-w-xl text-center lg:text-left">
+            <div className="space-y-2">
+              <h4 className="text-red-600 uppercase font-bold text-sm tracking-wide">
+                Call Now
+              </h4>
+              <h1 className="font-bold text-red-600 text-3xl">
+                +880 1711-205200
+              </h1>
+            </div>
+
+            <div>
+              <h1 className="text-white font-bold text-2xl leading-tight">
+                Get One Step Digital Solution Under One Roof
+              </h1>
+              <p className="text-muted-foreground mt-3">
+                Web Development, Creative Writing, Digital Marketing, Graphics &
+                Video Editing, & so on.
+              </p>
+            </div>
+          </div>
+
+          <div className="w-full flex justify-center lg:justify-end">
+            <div className="relative w-full sm:w-[420px]">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="
+          w-full
+          border-[#3f3f46]
+          bg-[#070707]
+          text-white
+          placeholder:text-gray-500
+          text-lg
+          rounded-full
+          pl-7 pr-[150px]
+          py-7
+          focus:border-red-600
+          focus:ring-2 focus:ring-red-600/30
+          transition-all
+        "
+              />
+
+              <Button
+                className="
+          absolute
+          right-2
+          top-1/2
+          -translate-y-1/2
+          bg-[#d00f2c]
+          text-white
+          text-md
+          rounded-full
+          px-6
+          py-5
+          hover:bg-[#a70b1e]
+          active:scale-[0.98]
+          transition-all
+          shadow-lg shadow-red-900/20
+          cursor-pointer
+        "
+              >
+                Get Quote
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -44,6 +44,7 @@ const capabilities = [
     id: "01",
     title: "Graphics & Video",
     description: "Edit & so on",
+    coverImg:"/graphicsVideo.png",
     url: "",
     icon: Video,
   },
@@ -51,6 +52,7 @@ const capabilities = [
     step: "02",
     title: "Web Development",
     description: "Custom design and development",
+    coverImg:"/webDev.png",
     url: "",
     icon: Code,
   },
@@ -58,6 +60,7 @@ const capabilities = [
     step: "03",
     title: "Digital Marketing",
     description: "Strategic growth for your brand",
+    coverImg:"/digitalMarketing.png",
     url: "",
     icon: TrendingUp,
   },
@@ -65,6 +68,7 @@ const capabilities = [
     step: "04",
     title: "Creative Writing",
     description: "Compelling copy that converts",
+    coverImg:"/creativeWriting.png",
     url: "",
     icon: PenTool,
   },
@@ -183,7 +187,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Other Services */}
+      {/* One Stop Digital Solutions */}
       <section
         className="
         mt-10
@@ -225,13 +229,13 @@ export default function AboutPage() {
           border-[#7d0508]
           bg-[#0d0d0e]
           rounded-3xl
-          p-6 md:p-8
+          p-6
           transition-colors duration-300
           hover:border-[#7d0508]
         "
             >
-              <div className="flex flex-col space-y-30">
-                <div className="mt-5">
+              <div className="flex flex-col space-y-5">
+                <div className="">
                   <step.icon
                     className="
                   p-2
@@ -249,6 +253,13 @@ export default function AboutPage() {
                     strokeWidth={1.5}
                   />
                 </div>
+                <Image
+                  src={step.coverImg}
+                  alt={step.title}
+                  width={400}
+                  height={300}
+                  className="rounded-lg object-cover"
+                />
                 <div>
                   <h2 className="text-2xl font-semibold text-white mb-2">
                     {step.title}

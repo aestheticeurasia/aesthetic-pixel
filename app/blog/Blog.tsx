@@ -51,7 +51,7 @@ export default function Blog() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-3xl font-bold text-center my-12">Blogs</h1>
+      <h1 className="text-3xl font-bold text-center my-12 text-white">Blogs</h1>
       {loading ? (
         <Spinner className="size-8 m-auto" />
       ) : (
