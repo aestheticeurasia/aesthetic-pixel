@@ -16,9 +16,8 @@ function scanFolders(dir, categoryName = "") {
     const fullPath = path.join(dir, item.name);
 
     if (item.isDirectory()) {
-      scanFolders(fullPath, item.name); // recursive scan
-    } else {
-      const relativePath = `/images/${categoryName}/${item.name}`;
+      scanFolders(fullPath, item.name); 
+      const relativePath = `/portfolioItems/${categoryName}/${item.name}`;
 
       if (!outputJson[categoryName]) {
         outputJson[categoryName] = [];

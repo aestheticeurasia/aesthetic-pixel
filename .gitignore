@@ -43,3 +43,4 @@ next-env.d.ts
 # temporary ignore
 /public/portfolio
 /generatePortfolioJSON.js
+/public/portfolioImg
