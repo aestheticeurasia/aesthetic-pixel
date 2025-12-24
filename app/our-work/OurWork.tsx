@@ -98,28 +98,30 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-<hr className="mb-20 border-[#1f1f1f]"/>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <hr className="mb-20 border-[#1f1f1f]" />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {activeCategory === "All"
                 ? portfolioItems.map((item) => (
                     <div
                       key={item.category}
-                      className="group relative w-full rounded-md overflow-hidden flex items-center justify-center p-2 cursor-pointer"
+                      className="group relative rounded-md overflow-hidden flex items-center justify-center p-2 cursor-pointer hover:border-2 hover:border-[#dc2626]/20 bg-[#262626]/20 h-130"
                       onClick={() => setActiveCategory(item.category)}
                     >
-                      <div className="absolute inset-0 z-10 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-500">
-                        <span className="text-white text-lg font-bold tracking-wide flex items-center gap-1 hover:text-gray-300">
-                          View More
-                          <ArrowRightIcon className="inline-block size-5" />
+                      <div className="absolute bottom-4 left-5">
+                        <span className="text-[#ef4444]  text-sm">
+                          VIEW MORE
                         </span>
+                        <h3 className="text-white font-bold">
+                          {item.category}
+                        </h3>
                       </div>
                       <Image
                         priority
                         src={item.images[0]}
                         alt={item.category}
-                        width={350}
-                        height={350}
-                        className="transition-transform duration-200 rounded-md group-hover:scale-105 group-hover:shadow-2xl group-hover:border-5 border-gray-900 dark:group-hover:border-white"
+                        width={294}
+                        height={368}
+                        className="rounded-md"
                       />
                     </div>
                   ))
@@ -130,7 +132,7 @@ export default function Portfolio() {
                   ).map((image) => (
                     <div
                       key={image}
-                      className="relative w-full rounded-md overflow-hidden flex items-center justify-center p-2"
+                      className="relative rounded-md overflow-hidden flex items-center justify-center p-2 hover:border-2 hover:border-[#dc2626]/20 bg-[#262626]/20 h-100"
                     >
                       <Dialog>
                         <DialogTrigger asChild>
@@ -138,9 +140,9 @@ export default function Portfolio() {
                             priority
                             src={image}
                             alt={activeCategory}
-                            width={350}
-                            height={350}
-                            className="cursor-pointer hover:scale-105 hover:transition-transform duration-100 rounded-md hover:shadow-2xl hover:border-5 border-gray-900 dark:hover:border-white"
+                            width={294}
+                            height={368}
+                            className="cursor-pointer rounded-md"
                           />
                         </DialogTrigger>
                         <DialogContent className="flex justify-center p-4 max-w-[90vw] max-h-[90vh]">
@@ -215,16 +217,15 @@ export default function Portfolio() {
           right-2
           top-1/2
           -translate-y-1/2
-          bg-[#d00f2c]
+          bg-[#e7000b]
           text-white
           text-md
           rounded-full
           px-6
           py-5
-          hover:bg-[#a70b1e]
+          hover:bg-[#ef4444]
           active:scale-[0.98]
           transition-all
-          shadow-lg shadow-red-900/20
           cursor-pointer
         "
               >
