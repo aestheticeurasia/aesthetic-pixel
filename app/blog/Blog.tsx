@@ -62,7 +62,7 @@ export default function Blog() {
               href={`/blog/${blog.slug}`}
               className="cursor-pointer"
             >
-              <div className="mx-5 md:mx-0 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg h-full">
+              <div className="mx-5 md:mx-0 bg-[#0c0c0d] rounded-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg h-full">
                 <div className="relative">
                   <a href={`/blog/${blog.slug}`} className="block">
                     <Image
@@ -81,7 +81,7 @@ export default function Blog() {
                   )}
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between space-x-4 text-sm text-gray-600 mb-4">
+                  <div className="flex items-center justify-between space-x-4 text-sm text-muted-foreground mb-4">
                     <div className="flex items-center gap-1.5">
                       <User className="w-4 h-4" />
                       <span>By {blog.author.name}</span>
@@ -94,12 +94,12 @@ export default function Blog() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     <a
                       href={`/blog/${blog.slug}`}
-                      className="hover:text-red-600 transition-colors"
+                      className="text-white hover:text-red-600 transition-colors"
                     >
                       {blog.title}
                     </a>
                   </h3>
-                  <p className="text-gray-700 text-sm leading-relaxed flex-grow">
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
                     {blog.description}
                   </p>
                   <a

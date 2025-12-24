@@ -67,10 +67,10 @@ export default function BlogDetail({ params }: Props) {
           <GoBackButton />
         </div>
         <div className="flex flex-col text-center">
-          <h1 className="text-3xl font-semibold mt-6 text-gray-700 dark:text-gray-200">
+          <h1 className="text-3xl font-semibold mt-6 text-white">
             Blog Not Found
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-2 px-3">
+          <p className="text-muted-foreground mt-2 px-3">
             The blog you’re looking for doesn’t exist or may have been removed.
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function BlogDetail({ params }: Props) {
         <div className="absolute left-4 sm:left-5 md:left-0 lg:left-0">
           <GoBackButton />
         </div>
-        <h1 className="text-3xl font-bold text-center">{blog?.title}</h1>
+        <h1 className="text-3xl text-white font-bold text-center">{blog?.title}</h1>
       </div>
       <div>
         <Image
@@ -95,12 +95,12 @@ export default function BlogDetail({ params }: Props) {
           height={400}
         />
 
-        <p className="text-gray-500 dark:text-gray-300 md:my-4 text-between flex flex-row justify-between  md:px-10">
+        <p className="text-muted-foreground md:my-4 text-between flex flex-row justify-between  md:px-10">
           <span>Written by: {blog?.author?.name}</span>{" "}
           <span>Published on: {dayjs().format("DD MMM YYYY")}</span>
         </p>
         <div
-          className="prose dark:prose-invert md:mx-10 mt-8 text-xl text-justify text-space-y-4"
+          className="prose dark:prose-invert md:mx-10 mt-8 text-xl text-justify text-space-y-4 text-white"
           dangerouslySetInnerHTML={{ __html: blog?.content }}
         />
       </div>

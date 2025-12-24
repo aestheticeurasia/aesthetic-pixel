@@ -28,11 +28,14 @@ import {
 } from "@/components/ui/accordion";
 import MainForm from "./MainForm";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Blog {
   id: string;
   title: string;
-  excerpt: string;
+  category: string;
+  description: string;
   coverImage: string;
   slug: string;
 }
@@ -149,40 +152,27 @@ const faqs = [
   },
 ];
 
-const blogs = [
-  {
-    id: "1",
-    title: "5 Tips for Stunning Product Photography",
-    category: "Product Photography",
-    excerpt:
-      "Learn how to capture your products in the best light with these expert tips.",
-    coverImage:
-      "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZyUyMGNvdmVyfGVufDB8fDB8fHww",
-    slug: "5-tips-for-stunning-product-photography",
-  },
-  {
-    id: "2",
-    title: "5 Tips for Stunning Product Photography",
-    category: "Product Photography",
-    excerpt:
-      "Learn how to capture your products in the best light with these expert tips.",
-    coverImage:
-      "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    slug: "5-tips-for-stunning-product-photography",
-  },
-  {
-    id: "3",
-    title: "5 Tips for Stunning Product Photography",
-    category: "Product Photography",
-    excerpt:
-      "Learn how to capture your products in the best light with these expert tips.",
-    coverImage:
-      "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZyUyMGNvdmVyfGVufDB8fDB8fHww",
-    slug: "5-tips-for-stunning-product-photography",
-  },
-];
-
 export default function Banner() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const getAllBlog = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get("/blogs.json");
+      setBlogs(data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllBlog();
+  }, []);
+
   return (
     <div className="lg:px-25">
       {/* Hero */}
@@ -881,7 +871,7 @@ export default function Banner() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {blogs.map((blog) => (
+          {blogs.slice(0, 3).map((blog) => (
             <Card
               key={blog?.id}
               className="bg-transparent border-none px-5 lg:px-0"
@@ -902,7 +892,7 @@ export default function Banner() {
                 {blog?.title}
               </h3>
               <p className="text-muted-foreground text-sm line-clamp-2">
-                {blog?.excerpt}
+                {blog?.description}
               </p>
               <Link
                 href={`/blog/${blog?.slug}`}
