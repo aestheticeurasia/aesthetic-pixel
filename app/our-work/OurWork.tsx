@@ -167,7 +167,7 @@ export default function Portfolio() {
       </section>
 
       {/* Call Details */}
-      <section className="bg-[#0c0c0d] py-[48px] mt-20">
+      <section className="bg-[#0c0c0d] py-[48px] mt-20 border-b-3 border-transparent hover:border-red-700 transition-all duration-300">
         <div className="flex flex-col lg:flex-row px-4 sm:px-8 lg:px-[160px] gap-10 lg:gap-0 justify-center lg:justify-between items-center">
           <div className="space-y-6 text-center lg:text-left">
             <div className="space-y-2">
