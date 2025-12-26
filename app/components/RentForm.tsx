@@ -1,6 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Phone, Send, Calendar as CalendarIcon } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  CalendarCheck,
+  User,
+  Smartphone,
+  Clock,
+  ArrowRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -13,6 +20,15 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
 
 interface RentFormProps {
   className?: string;
@@ -93,165 +109,232 @@ export default function RentForm({ className }: RentFormProps) {
   };
 
   return (
-    <section className={cn(className)}>
-      {/* 👇 all text inherits the color from parent via Tailwind */}
-      <div className={cn("space-y-4", className)}>
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Studio Rent Inquiry
-        </h2>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <section className="py-13 px-10 border-[#1b0e0e] border-2 rounded-3xl">
+        <form onSubmit={handleSubmit}>
+          <div className="flex justify-between mb-10">
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Your Name *
-              </label>
-              <Input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="John Doe"
-                required
-              />
+              <h1 className="text-white text-xl font-bold">Reserve Space</h1>
+              <p className="text-muted-foreground mt-3">
+                Coomplete details below
+              </p>
             </div>
-
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Phone Number *
-              </label>
-              <div className="relative">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Phone className="h-5 w-5" />
-                </div>
-                <Input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+880 1XXXX XXXXX"
-                  className="pl-10"
-                  required
-                />
+              <div className="border-[#4a1b1b] bg-[#211010] border-1 p-[9px] rounded-full text-[#ef4444]">
+                <CalendarCheck />
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Renting Hour
-              </label>
-              <Input
-                type="number"
-                name="rentingHour"
-                min={2}
+          {/* Name */}
+          <div className="relative">
+            <Label className="mb-3 block text-muted-foreground font-medium uppercase">
+              Full Name
+            </Label>
+            <User className="absolute left-4 top-[52px] -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="e.g. Alex Smith"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="
+      mb-4
+      bg-[#121212] border-[#2d2d2d] border-2 text-white
+      py-[13px] h-12
+      pl-11
+    "
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div className="relative mt-8">
+            <Label className="mb-3 block text-muted-foreground font-medium uppercase">
+              Phone Number
+            </Label>
+            <Smartphone className="absolute left-4 top-[52px] -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="+880 1XXX-XXXXXX"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="
+      mb-4
+      bg-[#121212] border-[#2d2d2d] border-2 text-white
+      py-[13px] h-12
+      pl-11
+    "
+            />
+          </div>
+
+          {/* Renting Hour */}
+          <div className="mt-8">
+            <Label className="mb-3 block text-muted-foreground font-medium uppercase">
+              Renting Hour
+            </Label>
+
+            <div className="relative">
+              <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4 z-10" />
+
+              <Select
                 value={formData.rentingHour}
-                onChange={handleChange}
-                placeholder="How many hours you need?"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Target Booking Date
-              </label>
-              <Popover
-                open={!!bookingDatePopoverOpen}
-                onOpenChange={(state) => setBookingDatePopoverOpen(state)}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, rentingHour: value })
+                }
+                required
               >
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      "w-full pl-3 text-left flex items-center bg-transparent",
-                      !bookingDate && "text-gray-400",
-                      "cursor-pointer"
-                    )}
-                  >
-                    {bookingDate ? format(bookingDate, "PPP") : "Pick a date"}
-                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
+                <SelectTrigger
+                  className="
+       mb-4
+      bg-[#121212] border-[#2d2d2d] border-2 text-white
+      cursor-pointer
+      pl-11 w-full h-12"
+                >
+                  <SelectValue placeholder="Select renting hour" />
+                </SelectTrigger>
 
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={bookingDate}
-                    onSelect={(date) => {
-                      setBookingDate(date);
-                      setBookingDatePopoverOpen(false);
-                    }}
-                    disabled={(date) => date < new Date()}
-                    className="cursor-pointer bg-transparent"
-                  />
-                </PopoverContent>
-              </Popover>
+                <SelectContent className="bg-[#121212] border-[#2d2d2d] border-2 text-white">
+                  <SelectItem
+                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    value="2"
+                  >
+                    2 hours
+                  </SelectItem>
+                  <SelectItem
+                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    value="3"
+                  >
+                    3 hours
+                  </SelectItem>
+                  <SelectItem
+                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    value="4"
+                  >
+                    4 hours
+                  </SelectItem>
+                  <SelectItem
+                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    value="5"
+                  >
+                    5 hours
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">
+          {/* Booking Date */}
+          <div className="relative mt-8">
+            <Label className="mb-3 block text-muted-foreground font-medium uppercase">
+              Booking Date
+            </Label>
+
+            <CalendarIcon className="absolute left-4 top-[52px] -translate-y-1/2 text-muted-foreground h-4 w-4 z-10" />
+
+            <Popover
+              open={bookingDatePopoverOpen}
+              onOpenChange={setBookingDatePopoverOpen}
+            >
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="
+          cursor-pointer
+          w-full
+          h-12
+          pl-11
+          justify-start
+          bg-[#121212]
+          border-[#2d2d2d] border-2
+          text-white
+          font-normal
+        "
+                >
+                  {bookingDate ? (
+                    format(bookingDate, "PPP")
+                  ) : (
+                    <span className="text-muted-foreground">Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent className="w-auto p-0 bg-[#272727] border-[#2d2d2d] text-white">
+                <Calendar
+                  mode="single"
+                  selected={bookingDate}
+                  onSelect={(date) => {
+                    setBookingDate(date);
+                    setBookingDatePopoverOpen(false);
+                  }}
+                  disabled={(date) => date < new Date()}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          {/* Project Details */}
+          <div className="relative mt-8">
+            <Label className="mb-3 block text-muted-foreground font-medium uppercase">
               Project Details
-            </label>
+            </Label>
             <Textarea
+              placeholder="Describe your project"
               name="project"
               value={formData.project}
               onChange={handleChange}
-              placeholder="Your Message..."
-              rows={4}
+              required
+              className="
+      mb-4
+      bg-[#121212] border-[#2d2d2d] border-2 text-white
+      py-[13px] h-24
+      pl-4
+    "
             />
           </div>
-          <AnimatePresence>
-            {submissionMessage && (
-              <motion.div
-                key={submissionMessage}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <p className="text-center text-sm font-bold rounded-lg">{submissionMessage}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center cursor-pointer bg-red-700 hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300"
+            className="
+    w-full mt-8 h-12
+    bg-white text-primary
+    font-bold text-lg
+    flex items-center justify-center gap-2
+    cursor-pointer
+    hover:bg-gray-200
+    transition-colors duration-300
+    disabled:opacity-60 disabled:cursor-not-allowed
+  "
           >
             {isSubmitting ? (
               <>
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Sending...
+                <Spinner /> Submitting...
               </>
             ) : (
               <>
-                <Send className="w-5 h-5 mr-2" />
-                Submit Inquiry
+                Submit Request
+                <ArrowRight className="h-5 w-5" />
               </>
             )}
           </Button>
+          <AnimatePresence>
+            {submissionMessage && (
+              <motion.p
+                key="submission-message"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="mt-8 text-center text-sm text-white font-semibold"
+              >
+                {submissionMessage}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </form>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

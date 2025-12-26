@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const hiddenHeaderRoutes = ["/book-a-slot", "/studio-rent"];
+  const hiddenHeaderRoutes = ["/book-a-slot", "/studio-hire"];
   const isHeaderHidden = hiddenHeaderRoutes.includes(pathname);
 
   return (

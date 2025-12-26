@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
+    <HideOnRoutes routes={["/book-a-slot", "/studio-hire"]}>
       <div className="mt-20">
         <footer className="w-full text-white">
           <div className="container mx-auto flex flex-col md:flex-row gap-8 px-6 py-10 items-center md:items-start justify-between">

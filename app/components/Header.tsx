@@ -114,7 +114,7 @@ const pathName = usePathname();
   };
 
   return (
-    <HideOnRoutes routes={["/book-a-slot", "/studio-rent"]}>
+    <HideOnRoutes routes={["/book-a-slot", "/studio-hire"]}>
       <header
         className={`fixed top-0 left-0 md:px-10 w-full z-50 py-[14px] transition-all duration-300 ${
           scrolled ? "bg-black/80 backdrop-blur-md shadow-sm" : "bg-transparent"
@@ -225,7 +225,7 @@ const pathName = usePathname();
             <div>
               <span className="hidden md:inline-flex text-foreground me-3">
                 <Link
-                  href="/studio-rent"
+                  href="/studio-hire"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -399,7 +399,7 @@ const pathName = usePathname();
                   {/* Quote */}
                   <SheetClose asChild>
                     <Link
-                      href="/studio-rent"
+                      href="/studio-hire"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full mt-5 px-8 block"
@@ -409,12 +409,12 @@ const pathName = usePathname();
                       </button>
                     </Link>
                     {/* <Link
-                  href="/studio-rent"
+                  href="/studio-hire"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 font-bold hover:bg-red-100 transition-colors rounded-md cursor-pointer text-sm md:text-lg">
-                    Rent Studio
+                     Studio Hire
                   </button>
                 </Link> */}
                   </SheetClose>
