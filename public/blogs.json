@@ -1,5 +1,6 @@
 [
   {
+    "id": "101",
     "title": "Why High-Quality Product Photography Increases Sales by 30%",
     "slug": "high-quality-product-photography-increases-sales",
     "category": "ecommerce",
@@ -18,6 +19,7 @@
     "updatedAt": "2025-09-20T09:45:00Z"
   },
   {
+    "id": "102",
     "title": "Top 5 Mistakes to Avoid in E-commerce Product Photography",
     "slug": "ecommerce-photography-mistakes",
     "category": "ecommerce",
@@ -36,6 +38,7 @@
     "updatedAt": "2025-09-18T14:45:00Z"
   },
   {
+    "id": "103",
     "title": "The Role of Lifestyle Images in Online Shopping",
     "slug": "lifestyle-images-in-ecommerce",
     "category": "lifestyle",
@@ -54,6 +57,7 @@
     "updatedAt": "2025-09-15T11:40:00Z"
   },
   {
+    "id": "104",
     "title": "How Consistent Product Images Build Brand Trust",
     "slug": "consistent-product-images-build-trust",
     "category": "branding",
@@ -72,6 +76,7 @@
     "updatedAt": "2025-09-10T08:45:00Z"
   },
   {
+    "id": "105",
     "title": "Editing Tips for Stunning Product Photos",
     "slug": "editing-tips-for-product-photos",
     "category": "photo editing",
@@ -90,6 +95,7 @@
     "updatedAt": "2025-09-05T13:45:00Z"
   },
   {
+    "id": "106",
     "title": "Why Mobile-Friendly Product Photography Matters",
     "slug": "mobile-friendly-product-photography",
     "category": "mobile commerce",

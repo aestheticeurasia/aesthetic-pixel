@@ -118,43 +118,6 @@ export default function MainForm() {
     e.preventDefault();
     setLoading(true);
 
-    const form = new FormData();
-    form.append(
-      "access_key",
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
-    );
-    form.append("cf-turnstile-response", turnstileToken as string);
-    form.append("name", name);
-    form.append("email", email);
-    form.append("phone", phone);
-
-    let servicesSummary = "";
-
-    if (selectedService) {
-      const details = serviceDetails[selectedService];
-      const serviceConfig = SERVICE_OPTIONS.find(
-        (s) => s.id === selectedService
-      );
-
-      const interests = details?.checkboxes
-        .map((item) => {
-          if (item === "Other" && details.otherDetail) {
-            return `Other (${details.otherDetail})`;
-          }
-          return item;
-        })
-        .join(", ");
-
-      servicesSummary = `
-          Service: ${selectedService}
-          - Interests: ${interests || "None selected"}
-          - ${serviceConfig?.radioQuestion}: ${details?.radioValue}
-          `;
-    }
-
-    form.append("Services_Requested", servicesSummary);
-    form.append("message", message);
-
     try {
       if (!turnstileToken) {
         setStatus("Verification pending. Please try again.");
@@ -162,32 +125,79 @@ export default function MainForm() {
         return;
       }
 
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: form,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
-        setSelectedService(null);
-        setServiceDetails({});
-      } else {
-        setStatus(result.message);
+      if (!name || !email || !message) {
+        setStatus("Name, email and message are required.");
+        setLoading(false);
+        return;
       }
 
+      let servicesSummary = "";
+
+      if (selectedService) {
+        const details = serviceDetails[selectedService];
+        const serviceConfig = SERVICE_OPTIONS.find(
+          (s) => s.id === selectedService
+        );
+
+        const interests =
+          details?.checkboxes
+            ?.map((item) => {
+              if (item === "Other" && details.otherDetail) {
+                return `Other (${details.otherDetail})`;
+              }
+              return item;
+            })
+            .join(", ") || "None selected";
+
+        servicesSummary = `
+Service: ${selectedService}
+Interests: ${interests}
+${serviceConfig?.radioQuestion}: ${details?.radioValue || "N/A"}
+      `.trim();
+      }
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          turnstileToken,
+          name,
+          email,
+          phone,
+          message,
+          servicesSummary,
+        }),
+      });
+
+      const text = await response.text();
+      let result: any = {};
+
+      try {
+        result = JSON.parse(text);
+      } catch {
+        console.error("Non-JSON response from server:", text);
+        throw new Error("Server returned invalid response");
+      }
+
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      setStatus("Message sent successfully!");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setSelectedService(null);
+      setServiceDetails({});
+    } catch (error: any) {
+      console.error("Submit error:", error);
+      setStatus(error.message || "An error occurred");
+    } finally {
       setLoading(false);
       setTimeout(() => setStatus(null), 5000);
-    } catch (error) {
-      console.error("Error:", error);
-      setStatus("An error occurred");
-      setLoading(false);
-      setTimeout(() => setStatus(null), 10000);
     }
   };
 
