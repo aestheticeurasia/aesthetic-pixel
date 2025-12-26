@@ -136,7 +136,7 @@ export default function StudioHire() {
                   src="/fur-life.png"
                   alt="Lifestyle"
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-transform duration-300 group-hover:animate-pulse"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -218,7 +218,7 @@ export default function StudioHire() {
                   src={`${feature.img}`}
                   alt={feature.tag}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="object-cover group-hover:animate-pulse transition-transform duration-300"
                 />
 
                 <div className="absolute inset-0 bg-black/50" />
