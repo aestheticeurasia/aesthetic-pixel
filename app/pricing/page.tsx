@@ -156,7 +156,7 @@ export default function Pricing() {
   return (
     <div>
       {/* Main Pricing */}
-      <section className="py-10 px-6 lg:px-24 max-w-7xl mx-auto text-center">
+      <section className="py-10 px-6 max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold text-white">
           Pricing for every stage
         </h2>
