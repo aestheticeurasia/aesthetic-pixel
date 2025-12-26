@@ -27,7 +27,7 @@ const features = [
     type: "video",
     tag: "Backdrop",
     desc: "Lifestyle shoots that connect your products with real-life moments.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120025/Backdrop_wzq4fv.mp4",
+    img: "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea",
   },
   {
     icon: Briefcase,
@@ -35,7 +35,7 @@ const features = [
     type: "video",
     tag: "Changing Room",
     desc: "Headshots, facility photography and editorial assets for comms.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761213010/Studio_changing_room_vxdimj.mp4",
+    img: "https://images.unsplash.com/photo-1736761814010-1e16c2fabee6",
   },
   {
     icon: Camera,
@@ -43,7 +43,7 @@ const features = [
     type: "video",
     tag: "Lighting Setup",
     desc: "Controlled lighting and crisp detail for high-res deliverables.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120027/Lighting-Setup_r6kgt8.mp4",
+    img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
   },
   {
     icon: Lightbulb,
@@ -51,15 +51,15 @@ const features = [
     type: "video",
     tag: "Mackup Room",
     desc: "Concept, styling and art direction to fit your brand voice.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/video/upload/v1761120037/Mackup-Room_aocn8c.mp4",
+    img: "https://images.unsplash.com/photo-1646020276968-0d408da1124c",
   },
   {
     icon: Package,
     title: "Additional Colored-Backdrop",
     type: "image",
-    tag: "Additional Colored-Backdrop",
+    tag: "Colored-Backdrop",
     desc: "Optimized product photos sized and edited for online listings and ads.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120010/Additional-Colored-Backdrop_wx2dgb.jpg",
+    img: "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea",
   },
   {
     icon: Zap,
@@ -67,7 +67,46 @@ const features = [
     type: "image",
     tag: "Studio Propos",
     desc: "Clear timelines and reliable delivery without compromising quality.",
-    img: "https://res.cloudinary.com/aesthetic-pixel-studio/image/upload/v1761120038/Studio-Propos_mt6v4d.jpg",
+    img: "https://images.unsplash.com/photo-1646020276968-0d408da1124c",
+  },
+];
+
+const faqs = [
+  {
+    id: "1",
+    question: "What industries do you specialize in?",
+    answer:
+      "We have experience across various industries including fashion, tech, lifestyle, and more. Our team adapts to the unique needs of each sector.",
+  },
+  {
+    id: "2",
+    question: "What is your typical project turnaround time?",
+    answer:
+      "Our typical project turnaround time ranges from 2 to 4 weeks, depending on the complexity and scope of the project. We prioritize quality and timely delivery.",
+  },
+  {
+    id: "3",
+    question: "What is your revision policy?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+  {
+    id: "4",
+    question: "What is your revision policy?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+  {
+    id: "5",
+    question: "What is your revision policy?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+  {
+    id: "6",
+    question: "What is your revision policy?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
 ];
 
@@ -156,6 +195,75 @@ export default function StudioHire() {
 
         <div className="flex-1 flex flex-col gap-4">
           <RentForm />
+        </div>
+      </section>
+
+      {/* Studio Features */}
+      <section className="px-6 md:px-12 py-15 lg:px-[320px] border-t-1 border-b-1 border-t-[#1c1c1c] border-b-[#1c1c1c] mt-20">
+        <div>
+          <div className="text-center">
+            <h1 className="text-3xl font-bold f56565 text-[#f56565]">
+              Studio Features
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Everything included in your booking
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-10 text-center">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="
+      relative group border-[#261b1c] border-2 rounded-xl 
+   overflow-hidden
+      px-15 py-20
+      cursor-pointer
+      w-full h-auto
+    "
+              >
+                <Image
+                  src={`${feature.img}`}
+                  alt={feature.tag}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+
+                <div className="absolute inset-0 bg-black/50" />
+
+                <h1 className="relative z-10 text-2xl font-bold text-white">
+                  {feature.tag}
+                </h1>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mt-5 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
+        <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
+          <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-[32px]">
+            Frequently Asked Questions
+          </h1>
+          <div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className="border-2 border-[#24191a] bg-[#0b0b0c] rounded-2xl mb-[12px] px-4 py-2"
+                >
+                  <AccordionTrigger className="text-white text-md lg:text-lg hover:no-underline underline-offset-0 cursor-pointer">
+                    {faq.question}
+                  </AccordionTrigger>
+
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </section>
     </div>
