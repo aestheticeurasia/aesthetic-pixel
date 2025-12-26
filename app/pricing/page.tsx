@@ -12,9 +12,36 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Badge } from "@/components/ui/badge";
 
-export const pricingPlans = [
+type PricingPlan = {
+    id: string;
+  title: string;
+  description: string;
+  highlight?: boolean;
+  badge?: string;
+  pricing: {
+    monthly: {
+      price: number | null;
+      label?: string;
+      note?: string;
+      save?: string;
+    };
+    yearly: {
+      price: number | null;
+      label?: string;
+      note?: string;
+      save?: string;
+    };
+  };
+  cta: string;
+  features: {
+    label: string;
+    value?: string;
+    highlight?: boolean;
+  }[];
+}
+
+export const pricingPlans: PricingPlan[] = [
   {
     id: "studio-pass",
     title: "Studio pass",
