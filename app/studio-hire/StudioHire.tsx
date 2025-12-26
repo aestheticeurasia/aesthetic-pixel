@@ -17,7 +17,6 @@ import {
 import Image from "next/image";
 import RentForm from "../components/RentForm";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { GoDotFill } from "react-icons/go";
 
 const features = [
@@ -74,37 +73,31 @@ const features = [
 const faqs = [
   {
     id: "1",
-    question: "What industries do you specialize in?",
+    question: "What types of shoots can I book Aesthetic Pixel Studio for?",
     answer:
       "We have experience across various industries including fashion, tech, lifestyle, and more. Our team adapts to the unique needs of each sector.",
   },
   {
     id: "2",
-    question: "What is your typical project turnaround time?",
+    question: "What equipment and props are included in the studio rental?",
     answer:
       "Our typical project turnaround time ranges from 2 to 4 weeks, depending on the complexity and scope of the project. We prioritize quality and timely delivery.",
   },
   {
     id: "3",
-    question: "What is your revision policy?",
+    question: "How can I book the studio and what is the payment process?",
     answer:
       "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
   {
     id: "4",
-    question: "What is your revision policy?",
+    question: "What are your studio rental rates and available pricing packages?",
     answer:
       "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
   {
     id: "5",
-    question: "What is your revision policy?",
-    answer:
-      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
-  },
-  {
-    id: "6",
-    question: "What is your revision policy?",
+    question: "Can I bring my own team, camera and lighting setup",
     answer:
       "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
