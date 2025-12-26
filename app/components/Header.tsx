@@ -354,31 +354,31 @@ const pathName = usePathname();
                     </Link>
                   </SheetClose> */}
 
-                  {/* Portfolio */}
+                  {/* Our Work */}
                   <SheetClose asChild>
                     <Link
-                      href="/portfolio"
+                      href="/our-work"
                       className={`py-2 px-6 font-bold rounded-lg block ${
-                        isActive("/portfolio")
+                        isActive("/our-work")
                           ? "bg-destructive mx-5 text-white dark:text-black"
                           : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
-                      Portfolio
+                      Our Work
                     </Link>
                   </SheetClose>
 
-                  {/* Contact */}
+                  {/* Pricing */}
                   <SheetClose asChild>
                     <Link
-                      href="/contact"
+                      href="/pricing"
                       className={`py-2 px-6 font-bold rounded-lg block ${
-                        isActive("/contact")
+                        isActive("/pricing")
                           ? "bg-destructive mx-5 text-white dark:text-black"
                           : "mx-5 hover:bg-gray-200 dark:hover:bg-gray-700"
                       }`}
                     >
-                      Contact
+                      Pricing
                     </Link>
                   </SheetClose>
 
