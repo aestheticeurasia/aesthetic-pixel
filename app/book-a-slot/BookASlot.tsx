@@ -185,17 +185,17 @@ const heroImg = [
   {
     name: "Client 2",
     img: "/bookingHero3.png",
-    size: "h-90",
+    size: "h-80 hidden md:block",
   },
   {
     name: "Client 3",
     img: "/bookingHero2.png",
-    size: "h-100",
+    size: "h-70 hidden md:block",
   },
   {
     name: "Client 4",
     img: "/bookingHero4.png",
-    size: "h-100 -mt-20",
+    size: "h-90 -mt-30 hidden md:block",
   },
 ];
 
@@ -203,7 +203,7 @@ const BookASlot = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row pt-20 px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px] bg-[url('/layoutComponents/bookingPage.svg')] bg-no-repeat bg-top-left">
+      <section className="flex flex-col lg:flex-row pt-10 px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[240px] bg-[url('/layoutComponents/bookingPage.svg')] bg-no-repeat bg-top-left">
         <div className="flex-1 p-8 lg:p-12 flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -263,16 +263,16 @@ const BookASlot = () => {
               key={index}
               src={feature.img}
               alt={feature.name}
-              width={330}
+              width={300}
               height={400}
-              className={`${feature.size} rounded-2xl object-cover opacity-85 hover:opacity-100 transition-opacity duration-500`}
+              className={`lg:${feature.size} rounded-2xl object-cover opacity-85 hover:opacity-100 transition-opacity duration-500`}
             />
           ))}
         </div>
       </section>
 
       {/* Service */}
-      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
+      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
         <div className="flex lg:flex-row flex-col justify-center lg:justify-between items-center space-y-6 lg:space-y-0">
           <div className="text-center lg:text-start">
             <h1 className="font-bold text-2xl text-white">
@@ -282,7 +282,7 @@ const BookASlot = () => {
               Select the category that best fits your project needs.
             </p>
           </div>
-          <div className="flex gap-6 items-center justify-center">
+          <div className="flex lg:flex-row flex-col gap-6 items-center justify-center">
             <span className="flex gap-2">
               <CircleCheckBig className="text-[#ef4444]" />
               <p className="text-muted-foreground uppercase">Mordern Tech</p>
@@ -322,14 +322,14 @@ const BookASlot = () => {
       </section>
 
       {/* Booking Form */}
-      <section className="pt-20 px-6 md:px-12 gap-8 lg:px-[160px] mb-20 flex justify-center items-center bg-[url('/layoutComponents/bookingPageForm.svg')] bg-no-repeat bg-bottom-left">
-        <div className="bg-[#141417] text-white max-w-3xl rounded-xl border-[#2c2b2e] border">
+      <section className="pt-20 px-6 md:px-12 gap-8 lg:px-[240px] mb-20 flex justify-center items-center bg-[url('/layoutComponents/bookingPageForm.svg')] bg-no-repeat bg-bottom-left">
+        <div className="bg-[#141417] max-w-3xl rounded-xl border-[#2c2b2e] border p-8 w-full">
           <BookASlotForm />
         </div>
       </section>
 
       {/* Testimonial */}
-      <section className="px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
+      <section className="px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
         <div className="space-y-2 text-center lg:text-start mb-8 lg:mb-3">
           <p className="text-[#ef4444] uppercase font-bold text-sm">
             Real Feedback
@@ -384,10 +384,11 @@ const BookASlot = () => {
           ))}
         </div>
       </section>
+
       {/* FAQ */}
-      <section className="mt-5 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
+      <section className="px-4 sm:px-8 lg:px-20 xl:px-[240px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
         <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
-          <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-10">
+          <h1 className="text-white text-xl lg:text-4xl font-bold text-center my-10">
             Frequently Asked Questions
           </h1>
           <div>

@@ -1,7 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import { Phone, Send, Calendar as CalendarIcon, EarthIcon } from "lucide-react";
+import {
+  Phone,
+  Send,
+  Calendar as CalendarIcon,
+  EarthIcon,
+  ArrowRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -11,17 +17,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Spinner } from "@/components/ui/spinner";
+import { GoDotFill } from "react-icons/go";
+import { Label } from "@/components/ui/label";
+import { AnimatePresence, motion } from "framer-motion";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BookASlotFormProps {
-  buttonColor?: string; // optional, default: "bg-red-600"
+  buttonColor?: string;
 }
 
-export default function BookASlotForm({
-  buttonColor = "bg-red-600",
-}: BookASlotFormProps) {
+export default function BookASlotForm({}: BookASlotFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -30,7 +38,7 @@ export default function BookASlotForm({
     company: "",
     website: "",
     angle: [] as string[],
-    retouching: "",
+    editing: "",
     totalProjects: "",
     remarks: "",
   });
@@ -77,7 +85,7 @@ export default function BookASlotForm({
           company: formData.company,
           website: formData.website,
           angle: formData.angle,
-          retouching: formData.retouching,
+          editing: formData.editing,
           totalProjects: formData.totalProjects,
           remarks: formData.remarks,
         }),
@@ -95,7 +103,7 @@ export default function BookASlotForm({
           company: "",
           website: "",
           angle: [],
-          retouching: "",
+          editing: "",
           totalProjects: "",
           remarks: "",
         });
@@ -113,14 +121,20 @@ export default function BookASlotForm({
   };
 
   return (
-    <div className="p-8 rounded-xl shadow-lg flex flex-col h-full text-current">
-      <h3 className="text-2xl font-bold mb-4 text-center">
-        Fast-Track Booking Inquiry
-      </h3>
-      <p className="text-sm mb-6 text-center">
-        Fill in the details and we’ll get back to you within 24 hours.
-      </p>
-
+    <div>
+      <div>
+        <span className="text-sm font-semibold mb-3 text-[#dc2626] flex items-center">
+          <GoDotFill className="mr-1 w-5 h-5" />
+          FAST-TRACK
+        </span>
+        <h1 className="font-bold text-white text-3xl leading-relaxed">
+          Booking Inquiry
+        </h1>
+        <p className="text-sm mb-6 lg:text-start text-center text-muted-foreground">
+          Fill in the details and we’ll get back to you within 24 hours.
+        </p>
+      </div>
+      <hr className="my-7 border-[#0f0e0e]" />
       <form
         onSubmit={handleSubmit}
         className="space-y-4 flex flex-col flex-grow"
@@ -128,25 +142,31 @@ export default function BookASlotForm({
         {/* Name & Phone */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="name"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Your Name *
-            </label>
+            </Label>
             <Input
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="John Doe"
-              className="placeholder:text-current"
+              className="border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="phone"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Phone Number *
-            </label>
+            </Label>
             <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <Phone className="h-5 w-5 text-current opacity-50" />
+                <Phone className="h-5 w-5 text-white opacity-50" />
               </div>
               <Input
                 type="tel"
@@ -154,7 +174,7 @@ export default function BookASlotForm({
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+880 1XXXX XXXXX"
-                className="pl-10 placeholder:text-current"
+                className="pl-10 border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white"
                 required
               />
             </div>
@@ -164,22 +184,28 @@ export default function BookASlotForm({
         {/* Email & Booking Date */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="email"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Email
-            </label>
+            </Label>
             <Input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="email@domain.com"
-              className="placeholder:text-current"
+              className="border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="bookingDate"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Target Booking Date
-            </label>
+            </Label>
             <Popover
               open={!!bookingDatePopoverOpen}
               onOpenChange={(state) => setBookingDatePopoverOpen(state)}
@@ -187,11 +213,7 @@ export default function BookASlotForm({
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
-                  className={cn(
-                    "w-full pl-3 text-left flex items-center cursor-pointer",
-                    !bookingDate && "",
-                    "bg-transparent text-current border-current hover:bg-gray-100 dark:hover:bg-gray-800"
-                  )}
+                  className="border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white w-full"
                 >
                   {bookingDate ? format(bookingDate, "PPP") : "Pick a date"}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
@@ -217,24 +239,30 @@ export default function BookASlotForm({
         {/* Company & Website */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="company"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Company Name
-            </label>
+            </Label>
             <Input
               name="company"
               value={formData.company}
               onChange={handleChange}
               placeholder="Your Company"
-              className="placeholder:text-current"
+              className="border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1 text-current">
+            <Label
+              htmlFor="website"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
               Website URL
-            </label>
+            </Label>
             <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <EarthIcon className="h-5 w-5 text-current opacity-50" />
+                <EarthIcon className="h-5 w-5 text-white opacity-50" />
               </div>
               <Input
                 type="string"
@@ -242,122 +270,170 @@ export default function BookASlotForm({
                 value={formData.website}
                 onChange={handleChange}
                 placeholder="https://yourcompany.com"
-                className="pl-10 placeholder:text-current"
+                className="pl-10 border-[#242426] border-2 bg-[#0c0c0e] py-5 focus:border-red-800 text-white"
               />
             </div>
           </div>
         </div>
-
-        {/* Preferred Angle & Retouching */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-1 text-current">
-              Preferred Angle
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {["Front", "Back", "Side", "Details"].map((angle) => (
-                <label key={angle} className="flex items-center text-current">
-                  <input
-                    type="checkbox"
-                    name="angle"
-                    value={angle.toLowerCase()}
-                    checked={formData.angle?.includes(angle.toLowerCase())}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const currentAngles = formData.angle || [];
-                      const updatedAngles = e.target.checked
-                        ? [...currentAngles, value]
-                        : currentAngles.filter((a) => a !== value);
-                      handleChange({
-                        target: { name: "angle", value: updatedAngles },
-                      });
-                    }}
-                    className="h-4 w-4 accent-red-500 rounded border-current focus:ring-current"
-                  />
-                  <span className="ml-2 text-sm">{angle}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-1 text-current">
-              Retouching Requirements
-            </label>
-            <div className="flex gap-4">
-              {["yes", "no"].map((option) => (
-                <label key={option} className="flex items-center text-current">
-                  <input
-                    type="radio"
-                    name="retouching"
-                    value={option}
-                    checked={formData.retouching === option}
-                    onChange={handleChange}
-                    className="h-4 w-4 accent-red-500 border-current focus:ring-current"
-                  />
-                  <span className="ml-2 text-sm">
-                    {option.charAt(0).toUpperCase() + option.slice(1)}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
+        <div>
+          <Label
+            htmlFor="angle"
+            className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+          >
+            Preferred Angle
+          </Label>
+          <ToggleGroup
+            type="multiple"
+            value={formData.angle || []}
+            onValueChange={(value) =>
+              handleChange({
+                target: { name: "angle", value },
+              })
+            }
+            className="flex  w-full gap-3"
+          >
+            {["front", "back", "side", "details"].map((angle) => (
+              <ToggleGroupItem
+                key={angle}
+                value={angle}
+                className="
+        px-4 py-2 rounded-lg
+        border border-muted-foreground/40
+        text-sm text-white capitalize
+        data-[state=on]:border-red-500
+        data-[state=on]:bg-red-500/10
+        data-[state=on]:text-red-600
+      "
+              >
+                {angle}
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
         </div>
 
-        {/* Total Projects */}
-        <div>
-          <label className="block text-sm font-medium mb-1 text-current">
-            Total Projects
-          </label>
-          <Input
-            type="string"
-            name="totalProjects"
-            value={formData.totalProjects}
-            onChange={handleChange}
-            className="placeholder:text-current"
-          />
+        {/*Edit & Total Projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {/* Editing Requirements */}
+          <div className="w-full">
+            <Label
+              htmlFor="editing"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
+              Editing Requirements
+            </Label>
+
+            <Tabs
+              value={formData.editing}
+              onValueChange={(value) =>
+                handleChange({
+                  target: { name: "editing", value },
+                })
+              }
+              className="w-full"
+            >
+              <TabsList className="w-full rounded-lg bg-[#0f0c0e] grid grid-cols-2">
+                {["yes", "no"].map((option) => (
+                  <TabsTrigger
+                    key={option}
+                    value={option}
+                    className="
+              w-full
+              px-6 py-2 text-sm capitalize
+              bg-transparent
+              text-muted-foreground
+              data-[state=active]:bg-[#27272a]
+              data-[state=active]:text-white
+            "
+                  >
+                    {option}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+
+          {/* Total Projects */}
+          <div className="w-full">
+            <Label
+              htmlFor="totalProjects"
+              className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+            >
+              Total Projects
+            </Label>
+
+            <Input
+              type="text"
+              name="totalProjects"
+              value={formData.totalProjects}
+              onChange={handleChange}
+              className="
+        w-full
+        border-[#242426] border-2
+        bg-[#0c0c0e]
+        py-5
+        focus:border-red-800
+        text-white
+      "
+            />
+          </div>
         </div>
 
         {/* Remarks */}
         <div className="flex-1 flex flex-col">
-          <label className="block text-sm font-medium mb-1 text-current">
+          <Label
+            htmlFor="remarks"
+            className="block text-sm font-semibold mb-2 text-muted-foreground uppercase"
+          >
             Remarks
-          </label>
+          </Label>
           <Textarea
             name="remarks"
             value={formData.remarks}
             onChange={handleChange}
             placeholder="Remarks..."
-            rows={4}
-            className="flex-1 placeholder:text-current"
+            rows={5}
+            className="border-[#242426] border-2 bg-[#0c0c0e] focus:border-red-800 text-white"
           />
         </div>
 
         {/* Submission Message */}
-        {submissionMessage && (
-          <div className="mt-4 p-4 text-sm font-medium text-green-700 bg-green-100 rounded-lg">
-            {submissionMessage}
-          </div>
-        )}
-
+        <AnimatePresence>
+          {submissionMessage && (
+            <motion.p
+              key="submission-message"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="mt-8 text-center text-sm text-white font-semibold"
+            >
+              {submissionMessage}
+            </motion.p>
+          )}
+        </AnimatePresence>
         {/* Submit Button */}
         <Button
           type="submit"
           disabled={isSubmitting}
-          className={cn(
-            "w-full flex items-center justify-center mt-auto text-white hover:opacity-90 cursor-pointer",
-            buttonColor
-          )}
+          className="
+    w-full mt-3 h-12
+    bg-white text-primary
+    font-bold text-md
+    flex items-center justify-center gap-2
+    cursor-pointer
+    hover:bg-gray-200
+    transition-colors duration-300
+    disabled:opacity-60 disabled:cursor-not-allowed
+  "
         >
           {isSubmitting ? (
             <>
-              <Spinner />
-              Sending...
+              <Spinner /> Submitting...
             </>
           ) : (
             <>
-              <Send className="w-5 h-5 mr-2" />
               Submit Inquiry
+              <ArrowRight className="h-5 w-5" />
             </>
           )}
         </Button>
