@@ -309,14 +309,12 @@ export default function StudioHire() {
             </div>
           </div>
           <hr className="my-10 border-[#0f0e0e]" />
-          <div className="flex lg:flex-row flex-col justify-between items-center">
+          <div className="flex lg:flex-row flex-col justify-between items-center text-center lg:text-start">
             <p className="text-muted-foreground lg:text-start text-center">
-              © 2025 Aesthetic Pixels Studio — All rights reserved.
+            &copy; 2025 Aesthetic Pixels Studio — All rights reserved.
             </p>
             <span className="text-muted-foreground flex justify-between items-center gap-4 mt-5 lg-mt-0">
-              <h5>Privacy Policy</h5>
-              <h5 className="text-muted-foreground">|</h5>
-              <h5>Terms & Conditions</h5>
+              Privacy Policy | Terms & Conditions
             </span>
           </div>
         </div>
