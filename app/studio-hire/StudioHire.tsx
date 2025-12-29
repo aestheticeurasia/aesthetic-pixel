@@ -198,7 +198,7 @@ export default function StudioHire() {
       <section className="px-6 md:px-12 py-15 lg:px-[320px] border-t-1 border-b-1 border-t-[#1c1c1c] border-b-[#1c1c1c] mt-20">
         <div>
           <div className="text-center">
-            <h1 className="text-3xl font-bold f56565 text-[#f56565]">
+            <h1 className="text-3xl font-bold text-[#f56565]">
               Studio Features
             </h1>
             <p className="text-muted-foreground mt-1">
@@ -282,24 +282,23 @@ export default function StudioHire() {
               </div>
               <div className="text-center lg:text-start lg:mt-0 mt-8">
                 <h1 className="text-white font-bold text-xl mb-3">Contact</h1>
-                <div className="border-2 border-[#181819]  bg-[#0c0c0d] rounded-xl p-3">
-                  <div className="flex justify-between items-center gap-6">
-                    <div className="rounded-lg border-2 border-[#dc2626] bg-[#231010] p-3">
-                      <Phone className="text-[#dc2626]" />
-                    </div>
-                    <div>
-                      <h3 className="uppercase font-bold text-white">
-                        Call Now
-                      </h3>
-                      <a
-                        href="tel:+8801711205200"
-                        className="font-bold text-[#dc2626]"
-                      >
-                        +880 1711 205200
-                      </a>
+                <a href="tel:+8801711205200">
+                  <div className="border-2 border-[#181819]  bg-[#0c0c0d] rounded-xl p-3">
+                    <div className="flex justify-between items-center gap-6">
+                      <div className="rounded-lg border-2 border-[#dc2626] bg-[#231010] p-3">
+                        <Phone className="text-[#dc2626]" />
+                      </div>
+                      <div>
+                        <h3 className="uppercase font-bold text-white">
+                          Call Now
+                        </h3>
+                        <span className="font-bold text-[#dc2626]">
+                          +880 1711 205200
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div className="text-center lg:text-end mt-8 lg:mg-0">
