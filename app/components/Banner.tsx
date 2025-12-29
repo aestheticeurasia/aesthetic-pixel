@@ -694,7 +694,7 @@ export default function Banner() {
                 className="border-[#181819] bg-[#0c0c0d] p-[24px] flex flex-col h-full"
               >
                 <div className="flex gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
                       key={i}
                       size={16}

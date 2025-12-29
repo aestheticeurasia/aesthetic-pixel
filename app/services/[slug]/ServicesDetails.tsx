@@ -103,7 +103,7 @@ export default function ServiceDetails({ slug }: Props) {
   return (
     <div>
       {/* Hero */}
-      <section className="pt-10 px-6 md:px-12 lg:px-[160px]">
+      <section className="pt-10 px-6 md:px-12 lg:px-[160px] animate-in fade-in slide-in-from-top-full duration-1000 delay-500">
         <div className="flex flex-col justify-center items-center">
           <Badge
             variant="outline"
@@ -134,14 +134,14 @@ export default function ServiceDetails({ slug }: Props) {
               Book a Shot <ArrowRight />
             </Button>
             <Button className="cursor-pointer px-10 py-5 bg-[#121212] border-[#2a2a2a] rounded-3xl">
-              View Samples
+              <a href="#work-sample"> View Samples</a>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Featured Image */}
-      <section className="pt-10 px-6 md:px-12 lg:px-[160px]">
+      <section className="pt-10 px-6 md:px-12 lg:px-[160px] animate-in fade-in slide-in-from-right-full duration-1000 delay-500">
         <div className="flex flex-col justify-center items-center">
           <Image
             src={service.img}
@@ -211,7 +211,7 @@ export default function ServiceDetails({ slug }: Props) {
       </section>
 
       {/* Work Sample */}
-      <section className="px-6 lg:px-[160px]">
+      <section className="px-6 lg:px-[160px]" id="work-sample">
         <div className="px-7 mb-5">
           <h1 className="text-3xl font-semibold text-white mb-2">
             Work Sample

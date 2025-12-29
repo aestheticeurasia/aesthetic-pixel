@@ -7,12 +7,9 @@ import {
   Lightbulb,
   Zap,
   Package,
-  Users,
   Star,
-  Award,
-  Cpu,
-  Edit3,
-  Smile,
+  CircleCheckBig,
+  Phone,
 } from "lucide-react";
 import {
   Accordion,
@@ -22,13 +19,16 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import BookASlotForm from "../components/BookASlotForm";
+import { Badge } from "@/components/ui/badge";
+import { GoDotFill } from "react-icons/go";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const features = [
   {
@@ -82,18 +82,21 @@ const testimonials = [
     role: "Head of Marketing",
     quote:
       "Incredible attention to detail. Delivered beautiful shots that lifted our conversion rate.",
+    rating: 5,
   },
   {
     img: "/testimonial-rafi.jpg",
     name: "Rafi Ahmed",
     role: "E-commerce Manager",
     quote: "Professional, on-time, and the images looked better than imagined.",
+    rating: 5,
   },
   {
     img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&q=80",
     name: "Maya Roy",
     role: "Founder",
     quote: "Great creative direction — they understood our brand immediately.",
+    rating: 5,
   },
   {
     img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
@@ -101,6 +104,7 @@ const testimonials = [
     role: "Brand Strategist",
     quote:
       "Their photography gave our catalog a premium and cohesive feel. Highly recommended!",
+    rating: 5,
   },
   {
     img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
@@ -108,6 +112,7 @@ const testimonials = [
     role: "Creative Director",
     quote:
       "The team was cooperative, creative, and fast. Our visuals now truly represent our brand.",
+    rating: 5,
   },
   {
     img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&q=80",
@@ -115,395 +120,357 @@ const testimonials = [
     role: "Product Manager",
     quote:
       "Exceptional experience from start to finish. Their product shots exceeded expectations.",
+    rating: 5,
   },
 ];
 
-const CarouselImg = [
+const faqs = [
   {
-    imgUrl: "/carousel1.jpg",
+    id: "1",
+    question: "What types of shoots can I book Aesthetic Pixel Studio for?",
+    answer:
+      "We have experience across various industries including fashion, tech, lifestyle, and more. Our team adapts to the unique needs of each sector.",
   },
   {
-    imgUrl: "/carousel2.jpg",
+    id: "2",
+    question: "What equipment and props are included in the studio rental?",
+    answer:
+      "Our typical project turnaround time ranges from 2 to 4 weeks, depending on the complexity and scope of the project. We prioritize quality and timely delivery.",
   },
   {
-    imgUrl: "/carousel3.jpg",
+    id: "3",
+    question: "How can I book the studio and what is the payment process?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+  {
+    id: "4",
+    question:
+      "What are your studio rental rates and available pricing packages?",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+  {
+    id: "5",
+    question: "Can I bring my own team, camera and lighting setup",
+    answer:
+      "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
+  },
+];
+
+const clientDP = [
+  {
+    name: "Client 1",
+    img: "/apsTeam/mdAshaduzzaman.jpg",
+    size: "h-100 mt-10",
+  },
+  {
+    name: "Client 2",
+    img: "/apsTeam/jamirulIslam.jpg",
+    size: "h-90",
+  },
+  {
+    name: "Client 3",
+    img: "/apsTeam/nazmusSakib.jpg",
+    size: "h-100",
+  },
+];
+
+const heroImg = [
+  {
+    name: "Client 1",
+    img: "/bookingHero1.png",
+    size: "h-100 mt-10",
+  },
+  {
+    name: "Client 2",
+    img: "/bookingHero3.png",
+    size: "h-90",
+  },
+  {
+    name: "Client 3",
+    img: "/bookingHero2.png",
+    size: "h-100",
+  },
+  {
+    name: "Client 4",
+    img: "/bookingHero4.png",
+    size: "h-100 -mt-20",
   },
 ];
 
 const BookASlot = () => {
-  const [openFeatureIndex, setOpenFeatureIndex] = useState<number | null>(null);
-
-  // scroll to booking form
-  const scrollToBooking = () => {
-    const el = document.getElementById("booking");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  // scroll to services
-  const scrollToServices = () => {
-    const el = document.getElementById("features");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
   return (
-    <main className="min-h-screen bg-[#edeef0] text-black font-sans">
-      {/* ---------- HERO ---------- */}
-      <section className="relative bg-black text-white">
-        <div className="container mx-auto max-w-7xl px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="inline-flex items-center gap-3 mb-4">
-              <Camera className="w-10 h-10 text-red-600 bg-white rounded-full p-2" />
-              <span className="text-sm uppercase font-semibold tracking-wider text-red-500">
-                Commercial Photography
-              </span>
-            </div>
+    <div>
+      {/* Hero */}
+      <section className="flex flex-col lg:flex-row pt-20 px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px] bg-[url('/layoutComponents/bookingPage.svg')] bg-no-repeat bg-top-left">
+        <div className="flex-1 p-8 lg:p-12 flex flex-col justify-center">
+          <div className="max-w-xl">
+            <Badge
+              variant="outline"
+              className="rounded-xl text-red-500 border-red-900 font-bold w-fit mb-6"
+            >
+              <GoDotFill className="mr-2" /> BOOKING OPEN
+            </Badge>
 
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
-              The Imagery Your Brand{" "}
-              <span className="text-red-600 landing-page-title-font">
-                Deserves
-              </span>
+            <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Commercial
+              <span className="text-[#f00004]"> Photography</span>
             </h1>
 
-            <p className="text-lg text-gray-300 max-w-xl mb-6">
+            <p className="text-[#7e7c83] text-lg mb-10">
               High-impact commercial photography — from product detail to
               full-scale lifestyle shoots. Build trust, increase conversions,
               and tell your brand story visually.
             </p>
 
-            <div className="flex gap-4">
-              <Button
-                onClick={scrollToBooking}
-                className="bg-red-600 hover:bg-red-700 text-white px-5 py-3 cursor-pointer"
-              >
-                Booking Inquiry
-              </Button>
-
-              <a
-                onClick={scrollToServices}
-                className="inline-flex items-center gap-2 text-sm font-medium px-4 py-3 border border-white/10 rounded-md hover:bg-white/5 cursor-pointer"
-              >
-                Explore Features
-              </a>
-            </div>
-
-            <div className="mt-8 flex items-center gap-6">
-              <div className="flex items-center gap-3">
-                <Users className="w-6 h-6 text-red-600" />
-                <div>
-                  <div className="text-sm font-semibold">Clients Served</div>
-                  <div className="text-xs text-gray-300">+120 brands</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Star className="w-6 h-6 text-yellow-400" />
-                <div>
-                  <div className="text-sm font-semibold">Avg. Rating</div>
-                  <div className="text-xs text-gray-300">4.9/5</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Carousel*/}
-          <div className="w-full overflow-hidden rounded-lg">
-            <Carousel
-              plugins={[Autoplay({ delay: 2500, stopOnInteraction: false })]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {CarouselImg.map((item, index) => (
-                  <CarouselItem key={index}>
-                    <div className="relative aspect-[4/3] w-full overflow-hidden">
-                      <Image
-                        src={item.imgUrl}
-                        alt={`carousel-${index}`}
-                        fill
-                        className="object-cover"
-                        priority={index === 0}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- HIGHLIGHT STRIP ---------- */}
-      <section className="py-10 bg-[#f9f9f9] border-y border-gray-200">
-        <div className="container mx-auto max-w-6xl px-6">
-          <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-x-14 gap-y-4 text-center md:text-left">
-            {[
-              { icon: Award, text: "Award-Winning Photographer" },
-              { icon: Cpu, text: "Modern Technology" },
-              { icon: Edit3, text: "In-House Editing Team" },
-              { icon: Smile, text: "Satisfaction Guaranteed" },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-3 text-gray-800 hover:text-red-600 transition-colors duration-200"
-              >
-                <item.icon className="w-5 h-5 text-red-500 shrink-0" />
-                <span className="font-semibold tracking-wide text-base md:text-lg relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-red-500 after:transition-all hover:after:w-full">
-                  {item.text}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- FEATURES ---------- */}
-      <section id="features" className="py-20 bg-white">
-        <div className="container mx-auto max-w-7xl px-6">
-          {/* <h2 className="text-3xl font-bold text-center mb-4 bg-gradient-to-tl from-red-700 via-pink-500 to-purple-900 bg-clip-text text-transparent">
-            STUNNING IMAGERY IS WHAT WE DO
-          </h2> */}
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
-            Stunning Imagery Is {""}
-            <span className="text-red-600 landing-page-title-font">
-              What We Do
-            </span>
-          </h1>
-          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
-            A full-suite offering for brands of every size — tailored shoots,
-            creative direction and rapid delivery.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative group overflow-hidden rounded-sm shadow-sm cursor-pointer"
-                onClick={() =>
-                  setOpenFeatureIndex(openFeatureIndex === idx ? null : idx)
-                }
-              >
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width={600}
-                  height={400}
-                  className={`object-cover group-hover:scale-110 w-full h-72 transition-transform duration-700 ${
-                    openFeatureIndex === idx ? "scale-110" : ""
-                  }`}
-                />
-
-                {/* Tag on bottom-left corner */}
-                <span className="absolute left-2 bottom-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                  {item.tag}
-                </span>
-
-                {/* Overlay */}
-                <div
-                  className={`absolute inset-x-0 bottom-0 bg-black/70 text-white px-5 py-5 flex flex-col justify-center transition-all duration-500 ease-out ${
-                    openFeatureIndex === idx
-                      ? "translate-y-[5%]" // visible
-                      : "translate-y-full" // hidden
-                  } group-hover:translate-y-[5%]`}
-                >
-                  <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-200">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- TESTIMONIALS ---------- */}
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto max-w-7xl px-6">
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-center">
-            What Clients {""}
-            <span className="text-red-600 landing-page-title-font">Say</span>
-          </h1>
-          <p className="text-center text-gray-300 mb-10 max-w-2xl mx-auto">
-            Real feedback from real projects — three highlights.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <aside
-                key={i}
-                className="bg-white text-black rounded-xl p-6 shadow-lg transform hover:-translate-y-2 transition"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <Image
-                    src={t.img}
-                    alt={t.name}
-                    width={56}
-                    height={56}
-                    className="w-14 h-14 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold">{t.name}</div>
-                    <div className="text-xs text-gray-600">{t.role}</div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-gray-700">“{t.quote}”</p>
-              </aside>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- BOOKING FORM + FAQ ---------- */}
-      <section id="booking" className="py-20 bg-gray-50">
-        <div className="container mx-auto max-w-8xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-            {/* Form */}
-            <BookASlotForm/>
-            {/* Faq*/}
-            <div className="flex flex-col h-full gap-4 items-center justify-center">
-              <h2 className="text-2xl font-bold mb-1">
-                Frequently Asked Questions
-              </h2>
-
-              <Accordion
-                type="single"
-                collapsible
-                className="flex flex-col gap-3"
-              >
-                {[
-                  {
-                    question: "What types of products do you photograph?",
-                    answer:
-                      "We provide professional photography for all types of products, except for model photography. Our specialties include apparel, fashion accessories, footwear, furniture, home décor, electronics, cosmetics, and more.",
-                  },
-                  {
-                    question:
-                      "Do you offer image retouching and editing services?",
-                    answer:
-                      "Yes! Every image we deliver goes through a professional editing process — including color correction, background removal, shadow creation, and overall enhancement to ensure your visuals look premium and consistent.",
-                  },
-                  {
-                    question:
-                      "Can I ship my products to your studio for photography?",
-                    answer:
-                      "Yes, you can send your products directly to our studio address. Once the shoot is completed, we’ll safely return your items as per your instructions.",
-                  },
-                  {
-                    question:
-                      "Do you provide ghost mannequin or flat-lay photography?",
-                    answer:
-                      "Yes, we specialize in ghost mannequin, flat-lay, and hanging apparel photography — ideal for e-commerce and catalog presentation.",
-                  },
-                  {
-                    question:
-                      "Can I review and approve sample shots before the full shoot?",
-                    answer:
-                      "Of course! We always send sample images for your approval before completing the full project to ensure we’re aligned with your expectations.",
-                  },
-                ].map((item, idx) => (
-                  <AccordionItem
-                    key={idx}
-                    value={`item-${idx + 1}`}
-                    className="rounded-xl shadow-lg bg-gray-50"
-                  >
-                    <AccordionTrigger
-                      className="text-lg font-semibold mb-0 cursor-pointer hover:underline-none focus:underline-none p-4"
-                      style={{ textDecoration: "none" }}
-                    >
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="mt-0 text-sm text-gray-700 p-4 pt-0">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call Center */}
-      <section className="pb-20 bg-white">
-        <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-center py-10">
-          Call For {""}
-          <span className="text-red-600 landing-page-title-font">Inquiry</span>
-        </h1>
-        <div className="container mx-auto max-w-5xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-25 items-center">
-            <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/call-center.jpg"
-                alt="Call Center"
-                width={500}
-                height={500}
-                className="rounded-xl object-cover shadow-lg"
-              />
-            </div>
-
-            <div className="flex flex-col justify-center items-center text-center">
-              <div className="flex flex-col items-center space-y-6">
-                {/* Ripple Phone Icon */}
-                <div className="relative w-24 h-24 flex items-center justify-center">
-                  {/* Smooth Ripple Effect */}
-                  <span className="absolute w-full h-full rounded-full bg-red-500/30 animate-ping"></span>
-                  <span className="absolute w-3/4 h-3/4 rounded-full bg-red-500/20 animate-ping delay-200"></span>
-                  <span className="absolute w-1/2 h-1/2 rounded-full bg-red-500/10 animate-ping delay-400"></span>
-
-                  {/* Phone Icon */}
-                  <a href="tel:+8801711205200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="relative h-10 w-10 text-red-600 z-10"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 
-          1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 
-          01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 
-          1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.41 2.41z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-
-                {/* Phone Number */}
-                <div className="flex flex-col items-center">
-                  <p className="text-gray-500 text-sm uppercase tracking-widest mb-1">
-                    Call Now
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
+              <div className="flex flex-row gap-8 items-center">
+                <div className="text-center lg:text-left">
+                  <h1 className="text-white font-bold text-3xl">+653</h1>
+                  <p className="text-muted-foreground uppercase text-sm">
+                    Brands Served
                   </p>
-                  <a
-                    href="tel:+8801711205200"
-                    className="text-4xl sm:text-5xl font-extrabold text-red-600 hover:text-red-700 transition-colors duration-300 whitespace-nowrap"
-                  >
-                    +880&nbsp;1711&nbsp;205200
-                  </a>
                 </div>
+
+                <div className="text-center lg:text-left">
+                  <h1 className="text-white font-bold text-3xl">4.9/5</h1>
+                  <p className="text-muted-foreground uppercase text-sm">
+                    Google Avg. Rating
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-center lg:justify-end">
+                {clientDP.map((dp, index) => (
+                  <Image
+                    key={index}
+                    src={dp?.img}
+                    alt="Client avatar"
+                    width={55}
+                    height={55}
+                    className="rounded-full border-2 border-[#f00004] -mr-3 last:mr-0"
+                  />
+                ))}
               </div>
             </div>
           </div>
         </div>
+
+        <div className="lg:grid lg:grid-cols-2 gap-4 flex flex-col justify-center items-center lg:items-start">
+          {heroImg.map((feature, index) => (
+            <Image
+              key={index}
+              src={feature.img}
+              alt={feature.name}
+              width={330}
+              height={400}
+              className={`${feature.size} rounded-2xl object-cover opacity-85 hover:opacity-100 transition-opacity duration-500`}
+            />
+          ))}
+        </div>
       </section>
 
-      {/* ---------- FOOTER ---------- */}
-      <footer className="bg-black text-white py-6">
-        <div className="container mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-sm">
-            © {new Date().getFullYear()} Aesthetic Pixels Studio — All rights
-            reserved.
+      {/* Service */}
+      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
+        <div className="flex lg:flex-row flex-col justify-center lg:justify-between items-center space-y-6 lg:space-y-0">
+          <div className="text-center lg:text-start">
+            <h1 className="font-bold text-2xl text-white">
+              Choose Your Service
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Select the category that best fits your project needs.
+            </p>
           </div>
-
-          <div className="flex items-center gap-4">
-            <a className="text-sm hover:underline" href="/privacy">
-              Privacy Policy
-            </a>
-            <span className="opacity-40">|</span>
-            <a className="text-sm hover:underline" href="/terms">
-              Terms &amp; Conditions
-            </a>
+          <div className="flex gap-6 items-center justify-center">
+            <span className="flex gap-2">
+              <CircleCheckBig className="text-[#ef4444]" />
+              <p className="text-muted-foreground uppercase">Mordern Tech</p>
+            </span>
+            <span className="flex gap-2">
+              <CircleCheckBig className="text-[#ef4444]" />
+              <p className="text-muted-foreground uppercase">
+                In-house Editing
+              </p>
+            </span>
+            <span className="flex gap-2">
+              <CircleCheckBig className="text-[#ef4444]" />
+              <p className="text-muted-foreground uppercase">Guranteed</p>
+            </span>
           </div>
         </div>
-      </footer>
-    </main>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-7 mt-10">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="bg-[#0b0b0c] border-[#171718] border-1"
+            >
+              <CardHeader>
+                <div className="">
+                  <feature.icon className="text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#18181b]" />
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <h1 className="text-white font-bold text-lg">
+                  {feature.title}
+                </h1>
+                <p className="text-muted-foreground">{feature.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Booking Form */}
+      <section className="pt-20 px-6 md:px-12 gap-8 lg:px-[160px] mb-20 flex justify-center items-center bg-[url('/layoutComponents/bookingPageForm.svg')] bg-no-repeat bg-bottom-left">
+        <div className="bg-[#141417] text-white max-w-3xl rounded-xl border-[#2c2b2e] border">
+          <BookASlotForm />
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
+        <div className="space-y-2 text-center lg:text-start mb-8 lg:mb-3">
+          <p className="text-[#ef4444] uppercase font-bold text-sm">
+            Real Feedback
+          </p>
+          <h1 className="font-bold text-2xl text-white">
+            What Our Clients Say
+          </h1>
+        </div>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-3">
+          {testimonials.slice(0, 3).map((testimonial, index) => (
+            <Card
+              key={index}
+              className="bg-[#0b0b0c] border-[#171718] border-1"
+            >
+              <CardHeader>
+                <div className="flex gap-1">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={
+                        i < testimonial.rating
+                          ? "fill-red-400 text-red-400"
+                          : "text-gray-500"
+                      }
+                    />
+                  ))}
+                </div>
+              </CardHeader>
+              <CardContent className="flex flex-col md:flex-row gap-6">
+                <p className="text-muted-foreground">"{testimonial.quote}"</p>
+              </CardContent>
+              <CardFooter className="gap-4">
+                <div>
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src={testimonial.img} alt={testimonial.name} />
+                    <AvatarFallback className="bg-[#27272a] text-white">
+                      {testimonial.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <div>
+                  <h1 className="text-white text-md font-bold">
+                    {testimonial.name}
+                  </h1>
+                  <p className="text-muted-foreground text-sm">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
+      {/* FAQ */}
+      <section className="mt-5 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
+        <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
+          <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-10">
+            Frequently Asked Questions
+          </h1>
+          <div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className="border-2 border-[#24191a] bg-[#0b0b0c] rounded-2xl mb-[12px] px-4 py-2"
+                >
+                  <AccordionTrigger className="text-white text-md lg:text-lg hover:no-underline underline-offset-0 cursor-pointer">
+                    {faq.question}
+                  </AccordionTrigger>
+
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <section className="mb-10 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/hireStudioFooterBlur.svg')] bg-no-repeat bg-left-bottom">
+        <div className="border-1 border-[#430c0c] p-10 rounded-xl">
+          <div className="flex lg:flex-row flex-col justify-between items-center">
+            <div className="flex lg:flex-row flex-col lg:gap-50 justify-center items-center">
+              <div className="flex flex-col items-center justify-center lg:items-start">
+                <Image
+                  src="/logoDark.png"
+                  alt="Studio Hire Footer"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <p className="text-muted-foreground w-50">
+                  Aesthetic Pixels Studio. Visuals that ignite sales.
+                </p>
+              </div>
+              <div className="text-center lg:text-start lg:mt-0 mt-8">
+                <h1 className="text-white font-bold text-xl mb-3">Contact</h1>
+                <a href="tel:+8801711205200">
+                  <div className="border-2 border-[#181819]  bg-[#0c0c0d] rounded-xl p-3">
+                    <div className="flex justify-between items-center gap-6">
+                      <div className="rounded-lg border-2 border-[#dc2626] bg-[#231010] p-3">
+                        <Phone className="text-[#dc2626]" />
+                      </div>
+                      <div>
+                        <h3 className="uppercase font-bold text-white">
+                          Call Now
+                        </h3>
+                        <span className="font-bold text-[#dc2626]">
+                          +880 1711 205200
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="text-center lg:text-end mt-8 lg:mg-0">
+              <h1 className="text-white mb-3">Ready to start your project?</h1>
+              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-amber-100 cursor-pointer">
+                Get a free Quote
+              </Button>
+            </div>
+          </div>
+          <hr className="my-10 border-[#0f0e0e]" />
+          <div className="flex lg:flex-row flex-col justify-between items-center">
+            <p className="text-muted-foreground lg:text-start text-center">
+              © 2025 Aesthetic Pixels Studio — All rights reserved.
+            </p>
+            <span className="text-muted-foreground flex justify-between items-center gap-4 mt-5 lg-mt-0">
+              <h5>Privacy Policy</h5>
+              <h5 className="text-muted-foreground">|</h5>
+              <h5>Terms & Conditions</h5>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
