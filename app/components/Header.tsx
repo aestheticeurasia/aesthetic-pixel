@@ -222,7 +222,7 @@ const pathName = usePathname();
             </div>
 
             {/* Landing Page Button */}
-            <div>
+            <div className="flex">
               <span className="hidden md:inline-flex text-foreground me-3">
                 <Link
                   href="/studio-hire"

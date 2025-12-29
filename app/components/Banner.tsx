@@ -306,70 +306,69 @@ export default function Banner() {
     "
         >
           {workSteps.map((step, index) => (
-            <Card
-              key={index}
-              className="
-          group
-          w-full
-          lg:aspect-square
-          flex flex-col
-          justify-between
+      <Card
+  key={index}
+  className="
+    group
+    h-full
+    lg:min-h-[320px] xl:min-h-[360px]
+    flex flex-col
+    justify-between
+    border lg:border-[#222223]
+    border-[#7d0508]
+    rounded-3xl
+    p-6 md:p-8
+    bg-transparent
+    transition-colors duration-300
+    hover:border-[#7d0508]
+  "
+>
+  <div className="flex flex-col h-full">
+    <h1
+      className="
+        text-6xl md:text-7xl
+        font-extrabold
+        leading-none
+        break-words
+        text-end
+        text-[#7d0508]
+        lg:text-muted-foreground/30
+        transition-colors duration-300
+        group-hover:text-[#7d0508]
+      "
+    >
+      {step.step}
+    </h1>
 
-          border lg:border-[#222223]
-          border-[#7d0508]
-          rounded-3xl
-          p-6 md:p-8
-          bg-transparent
+    <div className="mt-auto">
+      <div className="mb-4 inline-block">
+        <step.icon
+          className="
+            p-2
+            rounded-lg
+            lg:text-[#A1A1AA]
+            lg:bg-[#27272A80]
+            text-white
+            bg-red-600
+            transition-all duration-300
+            group-hover:text-white
+            group-hover:bg-red-600
+          "
+          size={48}
+          strokeWidth={1.5}
+        />
+      </div>
 
-          transition-colors duration-300
-          hover:border-[#7d0508]
-        "
-            >
-              <div className="flex flex-col h-full">
-                <h1
-                  className="
-              text-6xl md:text-7xl font-extrabold
-              lg:text-muted-foreground/30
-              text-[#7d0508]
-              text-end
-              transition-colors duration-300
-              group-hover:text-[#7d0508]
+      <h2 className="text-2xl md:text-3xl text-white mb-2">
+        {step.title}
+      </h2>
 
-            "
-                >
-                  {step.step}
-                </h1>
-
-                <div className="mt-auto">
-                  <div className="mb-4 inline-block">
-                    <step.icon
-                      className="
-                  p-2
-                  lg:text-[#A1A1AA]
-                  lg:bg-[#27272A80]
-                text-white
-                 bg-red-600
-                  rounded-lg
-                  transition-all duration-300
-                  group-hover:text-white
-                  group-hover:bg-red-600
-                  
-                "
-                      size={48}
-                      strokeWidth={1.5}
-                    />
-                  </div>
-
-                  <h2 className="text-2xl md:text-3xl text-white mb-2">
-                    {step.title}
-                  </h2>
-
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </Card>
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {step.description}
+      </p>
+    </div>
+  </div>
+</Card>
           ))}
         </div>
       </section>

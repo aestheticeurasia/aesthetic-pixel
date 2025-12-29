@@ -29,6 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Spinner } from "@/components/ui/spinner";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface RentFormProps {
   className?: string;
@@ -42,6 +43,7 @@ export default function RentForm({ className }: RentFormProps) {
     bookingDate: "",
     project: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionMessage, setSubmissionMessage] = useState("");
   const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
@@ -294,11 +296,21 @@ export default function RentForm({ className }: RentFormProps) {
             />
           </div>
 
+          {/* Cloudflare Turnstile */}
+          <div className="flex justify-center">
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
+              options={{ appearance: "always" }}
+              onSuccess={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+            />
+          </div>
           <Button
             type="submit"
             disabled={isSubmitting}
             className="
-    w-full mt-8 h-12
+    w-full mt-3 h-12
     bg-white text-primary
     font-bold text-lg
     flex items-center justify-center gap-2

@@ -7,6 +7,7 @@ import {
   Zap,
   Package,
   ArrowRight,
+  Phone,
 } from "lucide-react";
 import {
   Accordion,
@@ -18,6 +19,7 @@ import Image from "next/image";
 import RentForm from "../components/RentForm";
 import { Badge } from "@/components/ui/badge";
 import { GoDotFill } from "react-icons/go";
+import { Button } from "@/components/ui/button";
 
 const features = [
   {
@@ -91,7 +93,8 @@ const faqs = [
   },
   {
     id: "4",
-    question: "What are your studio rental rates and available pricing packages?",
+    question:
+      "What are your studio rental rates and available pricing packages?",
     answer:
       "We offer up to three rounds of revisions to ensure the final product meets your expectations. Additional revisions may be subject to extra charges.",
   },
@@ -256,6 +259,66 @@ export default function StudioHire() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <section className="my-20 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/hireStudioFooterBlur.svg')] bg-no-repeat bg-left-bottom">
+        <div className="border-1 border-[#430c0c] p-10 rounded-xl">
+          <div className="flex lg:flex-row flex-col justify-between items-center">
+            <div className="flex lg:flex-row flex-col lg:gap-50 justify-center items-center">
+              <div className="flex flex-col items-center justify-center lg:items-start">
+                <Image
+                  src="/logoDark.png"
+                  alt="Studio Hire Footer"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <p className="text-muted-foreground w-50">
+                  Aesthetic Pixels Studio. Visuals that ignite sales.
+                </p>
+              </div>
+              <div className="text-center lg:text-start lg:mt-0 mt-8">
+                <h1 className="text-white font-bold text-xl mb-3">Contact</h1>
+                <div className="border-2 border-[#181819]  bg-[#0c0c0d] rounded-xl p-3">
+                  <div className="flex justify-between items-center gap-6">
+                    <div className="rounded-lg border-2 border-[#dc2626] bg-[#231010] p-3">
+                      <Phone className="text-[#dc2626]" />
+                    </div>
+                    <div>
+                      <h3 className="uppercase font-bold text-white">
+                        Call Now
+                      </h3>
+                      <a
+                        href="tel:+8801711205200"
+                        className="font-bold text-[#dc2626]"
+                      >
+                        +880 1711 205200
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-center lg:text-end mt-8 lg:mg-0">
+              <h1 className="text-white mb-3">Ready to start your project?</h1>
+              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-amber-100 cursor-pointer">
+                Get a free Quote
+              </Button>
+            </div>
+          </div>
+          <hr className="my-10 border-[#0f0e0e]" />
+          <div className="flex lg:flex-row flex-col justify-between items-center">
+            <p className="text-muted-foreground lg:text-start text-center">
+              © 2025 Aesthetic Pixels Studio — All rights reserved.
+            </p>
+            <span className="text-muted-foreground flex justify-between items-center gap-4 mt-5 lg-mt-0">
+              <h5>Privacy Policy</h5>
+              <h5 className="text-muted-foreground">|</h5>
+              <h5>Terms & Conditions</h5>
+            </span>
           </div>
         </div>
       </section>

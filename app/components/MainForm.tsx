@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Turnstile } from "@marsidev/react-turnstile";
 
-// --- Configuration for Services ---
 interface ServiceOption {
   id: string;
   label: string;
@@ -61,7 +60,6 @@ export default function MainForm() {
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [serviceDetails, setServiceDetails] = useState<ServiceDetailState>({});
 
