@@ -1,13 +1,14 @@
 import ServicesComponents from "../components/ServiceCard";
 export default function Services() {
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-6">
-         <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight my-10 text-center">
-        Our{" "}
-        <span className="text-red-600 landing-page-title-font tracking-[0.15em]">
-          Services
-        </span>
-      </h1>
+    <div className="flex flex-col  justify-center items-center p-6">
+      <div className="text-center mb-10">
+        <h1 className="font-extrabold text-4xl text-white mb-3">Our Services</h1>
+        <p className="text-muted-foreground max-w-xl">
+          Explore our diverse portfolio of digital assets, product photography,
+          and creative campaigns.
+        </p>
+      </div>
       <ServicesComponents />
     </div>
   );

@@ -345,7 +345,7 @@ export default function BookASlotForm({}: BookASlotFormProps) {
               }
               className="w-full"
             >
-              <TabsList className="w-full rounded-lg bg-[#0f0c0e] grid grid-cols-2">
+              <TabsList className="w-full rounded-lg bg-[#0f0c0e] grid grid-cols-2 h-auto">
                 {["yes", "no"].map((option) => (
                   <TabsTrigger
                     key={option}

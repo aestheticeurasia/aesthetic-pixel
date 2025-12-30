@@ -30,6 +30,7 @@ import MainForm from "./MainForm";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ServicesComponents from "./ServiceCard";
 
 interface Blog {
   id: string;
@@ -275,6 +276,20 @@ export default function Banner() {
         </div>
       </section>
 
+      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+        <div className="mt-20">
+          <div className="text-center mb-10">
+            <h1 className="font-extrabold text-6xl text-white mb-10">
+              Our <span className="text-[#f00004]">
+                Services
+              </span>
+            </h1>
+    
+          </div>
+          <ServicesComponents />
+        </div>
+      </section>
+
       {/* Work Steps */}
       <section
         className="
@@ -306,9 +321,9 @@ export default function Banner() {
     "
         >
           {workSteps.map((step, index) => (
-      <Card
-  key={index}
-  className="
+            <Card
+              key={index}
+              className="
     group
     h-full
     lg:min-h-[320px] xl:min-h-[360px]
@@ -322,10 +337,10 @@ export default function Banner() {
     transition-colors duration-300
     hover:border-[#7d0508]
   "
->
-  <div className="flex flex-col h-full">
-    <h1
-      className="
+            >
+              <div className="flex flex-col h-full">
+                <h1
+                  className="
         text-6xl md:text-7xl
         font-extrabold
         leading-none
@@ -336,14 +351,14 @@ export default function Banner() {
         transition-colors duration-300
         group-hover:text-[#7d0508]
       "
-    >
-      {step.step}
-    </h1>
+                >
+                  {step.step}
+                </h1>
 
-    <div className="mt-auto">
-      <div className="mb-4 inline-block">
-        <step.icon
-          className="
+                <div className="mt-auto">
+                  <div className="mb-4 inline-block">
+                    <step.icon
+                      className="
             p-2
             rounded-lg
             lg:text-[#A1A1AA]
@@ -354,21 +369,21 @@ export default function Banner() {
             group-hover:text-white
             group-hover:bg-red-600
           "
-          size={48}
-          strokeWidth={1.5}
-        />
-      </div>
+                      size={48}
+                      strokeWidth={1.5}
+                    />
+                  </div>
 
-      <h2 className="text-2xl md:text-3xl text-white mb-2">
-        {step.title}
-      </h2>
+                  <h2 className="text-2xl md:text-3xl text-white mb-2">
+                    {step.title}
+                  </h2>
 
-      <p className="text-muted-foreground text-sm leading-relaxed">
-        {step.description}
-      </p>
-    </div>
-  </div>
-</Card>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
       </section>
