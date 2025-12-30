@@ -118,7 +118,7 @@ export default function MainForm() {
 
     try {
       if (!turnstileToken) {
-        setStatus("Verification pending. Please try again.");
+        setStatus("Please complete the CAPTCHA first.");
         setLoading(false);
         return;
       }
@@ -160,6 +160,7 @@ ${serviceConfig?.radioQuestion}: ${details?.radioValue || "N/A"}
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          type: "mainForm",
           turnstileToken,
           name,
           email,

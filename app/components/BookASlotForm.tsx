@@ -24,6 +24,7 @@ import { Label } from "@/components/ui/label";
 import { AnimatePresence, motion } from "framer-motion";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface BookASlotFormProps {
   buttonColor?: string;
@@ -44,6 +45,7 @@ export default function BookASlotForm({}: BookASlotFormProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionMessage, setSubmissionMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [bookingDate, setBookingDate] = useState<Date | undefined>(undefined);
   const [bookingDatePopoverOpen, setBookingDatePopoverOpen] = useState(false);
 
@@ -71,15 +73,22 @@ export default function BookASlotForm({}: BookASlotFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionMessage("");
+
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      if (!turnstileToken) {
+        setSubmissionMessage("Please complete the CAPTCHA first.");
+        return;
+      }
+
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd",
-          subject: "New Booking Inquiry",
-          sender_name: formData.name,
-          sender_email: formData.email,
+          type: "book_a_slot",
+          turnstileToken,
+
+          name: formData.name,
+          email: formData.email,
           phone: formData.phone,
           bookingDate: formData.bookingDate,
           company: formData.company,
@@ -90,34 +99,39 @@ export default function BookASlotForm({}: BookASlotFormProps) {
           remarks: formData.remarks,
         }),
       });
+
       const result = await response.json();
-      if (result.success) {
-        setSubmissionMessage(
-          "Thank you! We received your inquiry and will be in touch within 24 hours."
-        );
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          bookingDate: "",
-          company: "",
-          website: "",
-          angle: [],
-          editing: "",
-          totalProjects: "",
-          remarks: "",
-        });
-        setBookingDate(undefined);
-      } else {
-        setSubmissionMessage(
-          "Oops! Something went wrong. Please try again later."
-        );
+
+      if (!response.ok) {
+        throw new Error(result.message || "Submission failed");
       }
-    } catch (err) {
+
+      setSubmissionMessage(
+        "Thank you! We received your inquiry and will be in touch within 24 hours."
+      );
+
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        bookingDate: "",
+        company: "",
+        website: "",
+        angle: [],
+        editing: "",
+        totalProjects: "",
+        remarks: "",
+      });
+
+      setBookingDate(undefined);
+    } catch (err: any) {
       console.error(err);
-      setSubmissionMessage("Network error! Please try again later.");
+      setSubmissionMessage(
+        err.message || "Network error! Please try again later."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -396,27 +410,23 @@ export default function BookASlotForm({}: BookASlotFormProps) {
           />
         </div>
 
-        {/* Submission Message */}
-        <AnimatePresence>
-          {submissionMessage && (
-            <motion.p
-              key="submission-message"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mt-8 text-center text-sm text-white font-semibold"
-            >
-              {submissionMessage}
-            </motion.p>
-          )}
-        </AnimatePresence>
+        {/* Cloudflare Turnstile */}
+        <div className="flex justify-center">
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
+            options={{ appearance: "always" }}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken(null)}
+            onError={() => setTurnstileToken(null)}
+          />
+        </div>
+
         {/* Submit Button */}
         <Button
           type="submit"
           disabled={isSubmitting}
           className="
-    w-full mt-3 h-12
+    w-full mt-2 h-12
     bg-white text-primary
     font-bold text-md
     flex items-center justify-center gap-2
@@ -437,6 +447,22 @@ export default function BookASlotForm({}: BookASlotFormProps) {
             </>
           )}
         </Button>
+
+              {/* Submission Message */}
+        <AnimatePresence>
+          {submissionMessage && (
+            <motion.p
+              key="submission-message"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="mt-4 text-center text-sm text-white font-semibold"
+            >
+              {submissionMessage}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </form>
     </div>
   );

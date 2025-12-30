@@ -1,65 +1,60 @@
 import * as nodemailer from "nodemailer";
+import { renderMainFormEmail } from "@/lib/email/MainForm-Email";
+import { renderStudioRentEmail } from "@/lib/email/StudioRent-Email";
+import { renderBookingInquiryEmail } from "@/lib/email/BookASlotForm-Email";
+
 
 export async function POST(req: Request) {
   try {
-    const {
-      name,
-      email,
-      phone,
-      message,
-      servicesSummary,
-    } = await req.json();
+    const { type, ...payload } = await req.json();
 
-    if (!name || !email || !message) {
-      return Response.json(
-        { message: "Name, email, and message are required." },
-        { status: 400 }
-      );
-    }
+    let email;
 
-    const user = process.env.EMAIL_USER;
-    const pass = process.env.EMAIL_PASS;
+    switch (type) {
+      case "mainForm":
+        email = renderMainFormEmail(payload);
+        break;
 
-    if (!user || !pass) {
-      return Response.json(
-        { message: "Server email env is missing (EMAIL_USER / EMAIL_PASS)." },
-        { status: 500 }
-      );
+      case "studio_rent":
+        email = renderStudioRentEmail(payload);
+        break;
+        
+      case "book_a_slot":
+        email = renderBookingInquiryEmail(payload);
+        break;
+
+      default:
+        return Response.json(
+          { message: "Invalid email type" },
+          { status: 400 }
+        );
     }
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
-      auth: { user, pass },
-      tls: { rejectUnauthorized: false },
+      auth: {
+        user: process.env.EMAIL_USER!,
+        pass: process.env.EMAIL_PASS!,
+      },
     });
-
-    await transporter.verify();
 
     await transporter.sendMail({
-      from: `<${user}>`,
-      to: process.env.EMAIL_TO || user,
-      replyTo: email,
-      subject: `APS_HOME: ${name}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Phone: ${phone || "N/A"}
-
-${servicesSummary || "N/A"}
-
-Message:
-${message}
-      `,
+      from: `<${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER!,
+      subject: email.subject,
+      replyTo: email.replyTo,
+      text: email.text,
+      html: email.html,
     });
 
-    return Response.json({ message: "Sent successfully!" });
+    return Response.json({ message: "Email sent successfully" });
   } catch (err: any) {
-    console.error("NODEMAILER ERROR:", err);
+    console.error("MAIL ERROR:", err);
     return Response.json(
-      { message: "Failed to send email", error: err?.message },
+      { message: "Failed to send email" },
       { status: 500 }
     );
   }
-};
+}

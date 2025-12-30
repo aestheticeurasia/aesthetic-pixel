@@ -60,7 +60,7 @@ export default function Footer() {
     bg-[#27272A]
     text-gray-400
     transition-colors duration-300
-    hover:bg-pink-600 hover:text-white
+    hover:bg-[#a408f3] hover:text-white
   "
                   >
                     <a

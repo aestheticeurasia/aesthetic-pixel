@@ -66,48 +66,60 @@ export default function RentForm({ className }: RentFormProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  //handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionMessage("");
+
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      if (!turnstileToken) {
+        setSubmissionMessage("Please complete the CAPTCHA first.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          access_key: "241e599a-7dc1-4ecf-9d6f-ded6ddd0a9cd",
-          subject: "Studio Rent",
-          sender_name: formData.name,
+          type: "studio_rent",
+          name: formData.name,
           phone: formData.phone,
           bookingDate: formData.bookingDate,
-          hour_needed: formData.rentingHour,
-          message: formData.project,
+          rentingHour: formData.rentingHour,
+          project: formData.project,
         }),
       });
+
       const result = await response.json();
-      if (result.success) {
-        setSubmissionMessage(
-          "Thank you! We received your inquiry and will be in touch within 24 hours."
-        );
-        setFormData({
-          name: "",
-          phone: "",
-          rentingHour: "",
-          bookingDate: "",
-          project: "",
-        });
-        setBookingDate(undefined);
-      } else {
-        setSubmissionMessage(
-          "Oops! Something went wrong. Please try again later."
-        );
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit");
       }
+
+      setSubmissionMessage(
+        "Thank you! We received your inquiry and will be in touch within 24 hours."
+      );
+
+      setFormData({
+        name: "",
+        phone: "",
+        rentingHour: "",
+        bookingDate: "",
+        project: "",
+      });
+      setBookingDate(undefined);
+
       setTimeout(() => setSubmissionMessage(""), 5000);
     } catch (err) {
       console.error(err);
       setSubmissionMessage("Network error! Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
