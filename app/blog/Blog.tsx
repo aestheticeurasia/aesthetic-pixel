@@ -129,7 +129,7 @@ export default function Blog() {
                   className="cursor-pointer bg-transparent hover:bg-transparent hover:text-red-700 font-semibold"
                   onClick={() => setSearchBlog("")}
                 >
-                  <X /> Reset
+                  <X /> Clear Search
                 </Button>
               </div>
             ) : (
