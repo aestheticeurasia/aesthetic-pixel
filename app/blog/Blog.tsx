@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { ArrowRight, Clock, Search, User } from "lucide-react";
+import { ArrowRight, Clock, Search, User, X } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -98,12 +98,12 @@ export default function Blog() {
         {/* Filtered Buttons */}
         <div className="flex flex-wrap gap-3 my-10 justify-center ">
           {categories.map((category) => (
-            <button
+            <Button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`
         px-5 py-2 rounded-full text-sm font-semibold
-        transition-all duration-300
+        transition-all duration-300 cursor-pointer
         ${
           activeCategory === category
             ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
@@ -112,7 +112,7 @@ export default function Blog() {
       `}
             >
               {category}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -121,9 +121,17 @@ export default function Blog() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
             {visibleBlogs.length === 0 ? (
-              <p className="text-center text-white col-span-3 font-bold text-2xl my-10">
-                No blogs found.
-              </p>
+    <div className="col-span-full flex flex-col items-center justify-center text-center">
+                <p className="text-center text-white col-span-3 font-bold text-3xl mb-4">
+                  No blogs found
+                </p>
+                <Button
+                  className="cursor-pointer bg-transparent hover:bg-transparent hover:text-red-700 font-semibold"
+                  onClick={() => setSearchBlog("")}
+                >
+                  <X /> Reset
+                </Button>
+              </div>
             ) : (
               visibleBlogs.map((blog) => (
                 <Link
