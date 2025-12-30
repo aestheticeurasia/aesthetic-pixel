@@ -231,7 +231,7 @@ ${serviceConfig?.radioQuestion}: ${details?.radioValue || "N/A"}
             <input
               type="text"
               name="phone"
-              placeholder="Enter Phone"
+              placeholder="+880 1XXX XXXXXX"
               required
               className={inputClasses}
               value={phone}
