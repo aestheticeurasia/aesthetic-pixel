@@ -60,6 +60,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <script src="//code.tidio.co/lqxoffpysbqlfrvvh6mouphj0rrzgyk4.js" async></script>
 
         {!isHeaderHidden && <Header />}
 
