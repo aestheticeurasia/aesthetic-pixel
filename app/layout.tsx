@@ -51,7 +51,9 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${inter.variable} font-sans antialiased bg-[url('/layoutComponents/redishBlur-top.svg')] bg-no-repeat bg-top-left bg-black`}>
+      <body
+        className={`${inter.variable} font-sans antialiased bg-[url('/layoutComponents/redishBlur-top.svg')] bg-no-repeat bg-top-left bg-black`}
+      >
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MQHKVF8C"
@@ -60,7 +62,10 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <script src="//code.tidio.co/lqxoffpysbqlfrvvh6mouphj0rrzgyk4.js" async></script>
+        <Script
+          src="https://code.tidio.co/lqxoffpysbqlfrvvh6mouphj0rrzgyk4.js"
+          strategy="afterInteractive"
+        />
 
         {!isHeaderHidden && <Header />}
 
