@@ -304,11 +304,11 @@ const BookASlot = () => {
             <div className="group">
               <Card
               key={index}
-              className="bg-[#0b0b0c] border-[#171718] border-1 group-hover:border-[#ef4444] transition-all duration-300 cursor-pointer"
+              className="bg-[#0b0b0c] lg:border-[#171718] border-[#ef4444]  border-1 group-hover:border-[#ef4444] transition-all duration-300 cursor-pointer"
             >
               <CardHeader>
                 <div>
-                  <feature.icon className="text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#18181b] group-hover:bg-[#dc2626] group-hover:text-white" />
+                  <feature.icon className="lg:text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#dc2626] text-white lg:bg-[#18181b] group-hover:bg-[#dc2626] group-hover:text-white" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">

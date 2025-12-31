@@ -304,7 +304,7 @@ export default function AboutPage() {
                   alt={member?.name}
                   width={250}
                   height={250}
-                  className="rounded-lg object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                  className="rounded-lg object-cover"
                 />
               </CardContent>
               <CardFooter className="flex flex-col items-start text-left">
