@@ -303,7 +303,7 @@ export default function StudioHire() {
             </div>
             <div className="text-center lg:text-end mt-8 lg:mg-0">
               <h1 className="text-white mb-3">Ready to start your project?</h1>
-              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-amber-100 cursor-pointer">
+              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-[#dc2626] hover:text-white cursor-pointer">
                 Get a free Quote
               </Button>
             </div>

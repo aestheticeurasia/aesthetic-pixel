@@ -77,7 +77,7 @@ export default function ServiceDetails({ slug }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <Spinner className="size-8" />
+        <Spinner className="size-8 text-white" />
       </div>
     );
   }
@@ -141,7 +141,7 @@ export default function ServiceDetails({ slug }: Props) {
       </section>
 
       {/* Featured Image */}
-      <section className="pt-10 px-6 md:px-12 lg:px-[160px] animate-in fade-in slide-in-from-right-full duration-1000 delay-500">
+      <section className="pt-10 px-6 md:px-12 lg:px-[160px] animate-in fade-in slide-in-from-bottom-full duration-1000 delay-500">
         <div className="flex flex-col justify-center items-center">
           <Image
             src={service.img}

@@ -77,7 +77,7 @@ const services = [
 ];
 
 export default function MainNav() {
-const pathName = usePathname();
+  const pathName = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(
@@ -103,7 +103,7 @@ const pathName = usePathname();
   }, []);
 
   if (!mounted) {
-    return <div className="h-16" />; 
+    return <div className="h-16" />;
   }
 
   const isActive = (path: string) => {
@@ -157,9 +157,7 @@ const pathName = usePathname();
                               title={service.label}
                               href={service.href}
                               icon={
-                                <service.icon
-                                  className="hover:text-white"
-                                />
+                                <service.icon className="hover:text-white" />
                               }
                             >
                               {service.desc}
@@ -222,31 +220,31 @@ const pathName = usePathname();
             </div>
 
             {/* Landing Page Button */}
-            <div className="flex">
-              <span className="hidden md:inline-flex text-foreground me-3">
-                <Link
-                  href="/studio-hire"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="border-2 text-red-500 border-red-500 py-3 px-5 md:py-2 md:px-6 transition-colors rounded-md cursor-pointer text-sm md:text-l hover:text-white">
+              <div className="hidden md:flex items-center text-white relative p-[2px] overflow-hidden rounded-md group">
+         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+                <div className="relative flex items-center bg-[#060607] px-1 lg:px-3 py-2 rounded-md">
+                  <Link
+                    href="/studio-hire"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 hover:text-red-500 transition-colors"
+                  >
                     Studio Hire
-                  </Button>
-                </Link>
-              </span>
-              <span className="hidden md:inline-flex text-foreground me-3">
-                <Link
-                  href="/book-a-slot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="rounded-3xl bg-white text-black hover:text-white hover:bg-red-700 cursor-pointer py-2 px-4">
+                  </Link>
+
+                  <span className="mx-2 h-5 w-px bg-zinc-600" />
+
+                  <Link
+                    href="/book-a-slot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 hover:text-red-500 transition-colors"
+                  >
                     Book a Slot
-                  </Button>
-                </Link>
-              </span>
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-4">
@@ -462,18 +460,13 @@ function ListItem({
   return (
     <li {...props}>
       <NavigationMenuLink asChild className="hover:bg-[#161617]">
-          <Link
-          href={href}
-          className="group"
-        >
+        <Link href={href} className="group">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-[#18181b] border-[#242427] border-2 rounded-lg group-hover:bg-[#dc2626] group-hover:border-[#ef4444] group-hover:text-white">
               {icon}
             </div>
             <div>
-              <div className="text-lg font-bold text-[#e4e4e7]">
-                {title}
-              </div>
+              <div className="text-lg font-bold text-[#e4e4e7]">{title}</div>
               <p className="text-sm text-[#71717a]">{children}</p>
             </div>
           </div>

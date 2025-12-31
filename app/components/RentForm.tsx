@@ -177,8 +177,7 @@ export default function RentForm({ className }: RentFormProps) {
       mb-4
       bg-[#121212] border-[#2d2d2d] border-2 text-white
       py-[13px] h-12
-      pl-11
-    "
+      pl-11"
             />
           </div>
 
@@ -203,30 +202,15 @@ export default function RentForm({ className }: RentFormProps) {
                 </SelectTrigger>
 
                 <SelectContent className="bg-[#121212] border-[#2d2d2d] border-2 text-white">
-                  <SelectItem
-                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
-                    value="2"
-                  >
-                    2 hours
-                  </SelectItem>
-                  <SelectItem
-                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
-                    value="3"
-                  >
-                    3 hours
-                  </SelectItem>
-                  <SelectItem
-                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
-                    value="4"
-                  >
-                    4 hours
-                  </SelectItem>
-                  <SelectItem
-                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
-                    value="5"
-                  >
-                    5 hours
-                  </SelectItem>
+                  {[2, 3, 4, 5, 6, "Custom"].map((hour) => (
+                    <SelectItem
+                      key={hour}
+                      value={hour.toString()}
+                      className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
+                    >
+                      {hour} hours
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -321,10 +305,10 @@ export default function RentForm({ className }: RentFormProps) {
             className="
     w-full mt-3 h-12
     bg-white text-primary
-    font-bold text-lg
+    font-bold text-md
     flex items-center justify-center gap-2
     cursor-pointer
-    hover:bg-gray-200
+    hover:bg-[#dc2626] hover:text-white
     transition-colors duration-300
     disabled:opacity-60 disabled:cursor-not-allowed
   "

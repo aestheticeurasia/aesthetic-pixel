@@ -301,13 +301,14 @@ const BookASlot = () => {
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-7 mt-10">
           {features.map((feature, index) => (
-            <Card
+            <div className="group">
+              <Card
               key={index}
-              className="bg-[#0b0b0c] border-[#171718] border-1"
+              className="bg-[#0b0b0c] border-[#171718] border-1 group-hover:border-[#ef4444] transition-all duration-300 cursor-pointer"
             >
               <CardHeader>
-                <div className="">
-                  <feature.icon className="text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#18181b]" />
+                <div>
+                  <feature.icon className="text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#18181b] group-hover:bg-[#dc2626] group-hover:text-white" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -317,6 +318,7 @@ const BookASlot = () => {
                 <p className="text-muted-foreground">{feature.desc}</p>
               </CardContent>
             </Card>
+            </div>
           ))}
         </div>
       </section>
@@ -453,7 +455,7 @@ const BookASlot = () => {
             </div>
             <div className="text-center lg:text-end mt-8 lg:mg-0">
               <h1 className="text-white mb-3">Ready to start your project?</h1>
-              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-amber-100 cursor-pointer">
+              <Button className="bg-white text-primary font-bold rounded-3xl hover:bg-[#dc2626] hover:text-white  cursor-pointer">
                 Get a free Quote
               </Button>
             </div>

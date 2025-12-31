@@ -306,19 +306,17 @@ export default function BookASlotForm({}: BookASlotFormProps) {
             }
             className="flex  w-full gap-3"
           >
-            {["front", "back", "side", "details"].map((angle) => (
+            {["Front", "Back", "Side", "Details"].map((angle) => (
               <ToggleGroupItem
                 key={angle}
                 value={angle}
                 className="
-        px-4 py-2 rounded-lg
+        px-4 py-2 rounded-lg cursor-pointer
         border border-muted-foreground/40
         text-sm text-white capitalize
         data-[state=on]:border-red-500
         data-[state=on]:bg-red-500/10
-        data-[state=on]:text-red-600
-      "
-              >
+        data-[state=on]:text-red-600">
                 {angle}
               </ToggleGroupItem>
             ))}
@@ -431,7 +429,7 @@ export default function BookASlotForm({}: BookASlotFormProps) {
     font-bold text-md
     flex items-center justify-center gap-2
     cursor-pointer
-    hover:bg-gray-200
+    hover:bg-[#dc2626] hover:text-white
     transition-colors duration-300
     disabled:opacity-60 disabled:cursor-not-allowed
   "
@@ -448,7 +446,7 @@ export default function BookASlotForm({}: BookASlotFormProps) {
           )}
         </Button>
 
-              {/* Submission Message */}
+        {/* Submission Message */}
         <AnimatePresence>
           {submissionMessage && (
             <motion.p

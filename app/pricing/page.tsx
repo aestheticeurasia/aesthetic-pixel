@@ -12,8 +12,15 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Camera, Layout, Share2, Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { ChevronsUpDown } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { cn } from "@/lib/utils";
 
 type PricingPlan = {
   id: string;
@@ -43,7 +50,7 @@ type PricingPlan = {
   }[];
 };
 
-export const pricingPlans: PricingPlan[] = [
+const pricingPlans: PricingPlan[] = [
   {
     id: "studio-pass",
     title: "Studio pass",
@@ -150,13 +157,68 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
+const featureLabels = pricingPlans[0]?.features.map((f) => f.label) ?? [];
+
+
+//components
+ // Sub-component for Category Headers
+  const CategoryRow = ({
+    title,
+    icon,
+    desc,
+  }: {
+    title: string;
+    icon: any;
+    desc: string;
+  }) => (
+    <tr className="bg-[#222222]">
+      <td colSpan={5} className="px-6 py-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-zinc-800 rounded-md">{icon}</div>
+          <div>
+            <div className="text-sm font-bold text-white leading-none">
+              {title}
+            </div>
+            <div className="text-[11px] text-zinc-500 mt-1">{desc}</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  );
+
+  // Sub-component for individual Feature Rows
+  const FeatureRow = ({ label }: { label: string }) => (
+    <tr className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors group">
+      <td className="px-6 py-4 text-sm text-zinc-400 group-hover:text-zinc-200">
+        {label}
+      </td>
+      {pricingPlans.map((plan) => {
+        const feature = plan.features.find((f) => f.label === label);
+        return (
+          <td
+            key={plan.id}
+            className={cn(
+              "px-6 py-4 text-center text-sm transition-colors",
+              plan.highlight && "bg-red-900/5", 
+              feature?.highlight ? "text-red-500 font-bold" : "text-zinc-300"
+            )}
+          >
+            {feature?.value ?? "—"}
+          </td>
+        );
+      })}
+    </tr>
+  );
+
 export default function Pricing() {
   const [yearly, setYearly] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       {/* Main Pricing */}
       <section className="py-10 px-6 max-w-7xl mx-auto text-center">
+        <div className="bg-[url('/layoutComponents/pricingBlurBottom.svg')] bg-transparent bg-no-repeat bg-bottom-right bg-contain" />
         <h2 className="text-4xl font-extrabold text-white">
           Pricing for every stage
         </h2>
@@ -165,7 +227,7 @@ export default function Pricing() {
           best.
         </p>
 
-        {/* TOGGLE */}
+        {/* Main Pricing: Toggle */}
         <div className="mt-8 flex flex-col lg:flex-row items-center justify-center gap-4">
           <div className="flex gap-5 justify-center items-center">
             <span className="text-sm text-zinc-300">Monthly</span>
@@ -196,7 +258,7 @@ export default function Pricing() {
           </span>
         </div>
 
-        {/* CARDS */}
+        {/*Main Pricing: Cards */}
         <div className="lg:mt-10 mt-3 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {pricingPlans.map((plan) => {
             const price = yearly ? plan.pricing.yearly : plan.pricing.monthly;
@@ -265,9 +327,109 @@ export default function Pricing() {
             );
           })}
         </div>
+
+        <p className="text-center text-muted-foreground mt-5 lg:mt-15 text-sm">
+          *Production costs are not included in the membership. Your shoot cost
+          is the combination of models & services + how many assets you order.
+        </p>
       </section>
 
-      {/* custom Qoute */}
+      {/* Collapsible Pricing */}
+      <div className="flex flex-col w-full md:px-30">
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          {/* Trigger */}
+          <div className="w-full flex justify-center">
+            <CollapsibleTrigger asChild>
+              <Button
+                size="lg"
+                className="rounded-2xl bg-[#18181b] border-[#2f2f31] flex items-center gap-2 cursor-pointer"
+              >
+                <h4 className="text-sm font-semibold">Full Feature List</h4>
+                <ChevronsUpDown />
+              </Button>
+            </CollapsibleTrigger>
+          </div>
+
+          {/* Content */}
+          <CollapsibleContent
+            className="lg:px-20 px-6 overflow-hidden
+    data-[state=open]:animate-in
+    data-[state=open]:fade-in
+    data-[state=open]:slide-in-from-top-4
+    data-[state=open]:duration-700
+    data-[state=open]:ease-out
+
+    data-[state=closed]:animate-out
+    data-[state=closed]:fade-out
+    data-[state=closed]:slide-out-to-top-4
+    data-[state=closed]:duration-300"
+          >
+            <div className="relative bg-black py-8 px-4">
+              {/* Heading */}
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-white">
+                  Full Feature Details
+                </h2>
+                <p className="mt-3 text-sm text-zinc-400">
+                  Find the perfect set of tools for your content production
+                  needs.
+                </p>
+              </div>
+
+              <div className="max-w-8xl mx-auto overflow-hidden rounded-lg border border-zinc-800 bg-[#121212] shadow-2xl">
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-left">
+                    <thead>
+                      <tr className="bg-[#1a1a1a]">
+                        <th className="px-6 py-8 text-sm font-medium text-zinc-400 w-1/4">
+                          Feature Category
+                        </th>
+                        {pricingPlans.map((plan) => (
+                          <th
+                            key={plan.id}
+                            className={cn(
+                              "px-6 py-8 text-center text-sm font-semibold transition-all relative",
+                              plan.highlight
+                                ? "bg-[#1e1a1a] text-white border-t-2 border-red-500"
+                                : "text-zinc-300 border-t-2 border-transparent"
+                            )}
+                          >
+                            {plan.title}
+                            {plan.badge && (
+                              <div className="absolute top-2 left-0 right-0 text-[10px] uppercase tracking-wider text-red-500 font-bold">
+                                {plan.badge}
+                              </div>
+                            )}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <CategoryRow
+                        title="Studio services"
+                        icon={<Camera className="w-4 h-4 text-red-500" />}
+                        desc="Professional photo & video production services."
+                      />
+                      {featureLabels.map((label) => (
+                        <FeatureRow key={label} label={label} />
+                      ))}
+
+                      <CategoryRow
+                        title="Platform"
+                        icon={<Layout className="w-4 h-4 text-red-500" />}
+                        desc="Manage, optimize and edit content."
+                      />
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
+      </div>
+
+      {/* Custom Quote */}
       <section className="px-6 lg:px-24 my-10">
         <div className="flex flex-col lg:flex-row text-center lg:text-start justify-center lg:justify-between items-center p-10 border-[#242426] border-2 rounded-xl bg-gradient-to-r from-[#18181b] to-[#090102] gap-5">
           <div>

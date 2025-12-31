@@ -537,13 +537,13 @@ export default function Banner() {
           <h1 className="text-white font-bold text-xl md:text-2xl">
             Featured Our Works
           </h1>
-          <button className="text-muted-foreground flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-sm">
+          <Link href="/our-work" className="text-muted-foreground flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-sm">
             View All <ArrowUpRight size={16} />
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="relative group overflow-hidden rounded-2xl border-2 border-transparent hover:border-blue-500 transition-all duration-300 aspect-[3/2]">
+          <div className="relative group overflow-hidden rounded-2xl border-1 border-transparent hover:border-white transition-all duration-300 aspect-[3/2]">
             <Image
               src="/portfolioA.png"
               alt="Fashion"
@@ -693,10 +693,10 @@ export default function Banner() {
               </h1>
             </div>
             <div>
-              <p className="text-muted-foreground cursor-pointer hover:text-white transition-colors">
+              <Link href="https://maps.app.goo.gl/fqtfteJ9sJjir3jY6" target="_blank" className="text-muted-foreground cursor-pointer hover:text-white transition-colors">
                 View All Reviews{" "}
                 <ArrowRight className="inline-block w-4 h-4 ml-1" />
-              </p>
+              </Link>
             </div>
           </div>
 

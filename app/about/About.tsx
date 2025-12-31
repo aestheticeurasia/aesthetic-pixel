@@ -1,6 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import {
@@ -44,7 +49,7 @@ const capabilities = [
     id: "01",
     title: "Graphics & Video",
     description: "Edit & so on",
-    coverImg:"/graphicsVideo.png",
+    coverImg: "/graphicsVideo.png",
     url: "",
     icon: Video,
   },
@@ -52,7 +57,7 @@ const capabilities = [
     step: "02",
     title: "Web Development",
     description: "Custom design and development",
-    coverImg:"/webDev.png",
+    coverImg: "/webDev.png",
     url: "",
     icon: Code,
   },
@@ -60,7 +65,7 @@ const capabilities = [
     step: "03",
     title: "Digital Marketing",
     description: "Strategic growth for your brand",
-    coverImg:"/digitalMarketing.png",
+    coverImg: "/digitalMarketing.png",
     url: "",
     icon: TrendingUp,
   },
@@ -68,7 +73,7 @@ const capabilities = [
     step: "04",
     title: "Creative Writing",
     description: "Compelling copy that converts",
-    coverImg:"/creativeWriting.png",
+    coverImg: "/creativeWriting.png",
     url: "",
     icon: PenTool,
   },
@@ -289,21 +294,26 @@ export default function AboutPage() {
         </div>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {apsTeam.map((member, index) => (
-            <div key={index} className="flex flex-col items-center p-4">
-              <Image
-                src={member?.imageUrl}
-                alt={member?.name}
-                width={250}
-                height={250}
-                className="rounded-lg object-cover"
-              />
-              <h2 className="mt-5 text-xl font-semibold text-white">
-                {member?.name}
-              </h2>
-              <p className="text-center text-[#ef4444] px-5 mt-2">
-                {member?.role}
-              </p>
-            </div>
+            <Card
+              key={index}
+              className="flex flex-col justify-center py-2 bg-[#050505] border-[#121212] hover:border-[#5a2626] border-1 rounded-2xl"
+            >
+              <CardContent className="flex justify-center items-center">
+                <Image
+                  src={member?.imageUrl}
+                  alt={member?.name}
+                  width={250}
+                  height={250}
+                  className="rounded-lg object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </CardContent>
+              <CardFooter className="flex flex-col items-start text-left">
+                <p className="text-xl font-semibold text-white">
+                  {member?.name}
+                </p>
+                <p className="text-[#ef4444]">{member?.role}</p>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </section>
