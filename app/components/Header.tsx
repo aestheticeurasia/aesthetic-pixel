@@ -106,6 +106,7 @@ export default function MainNav() {
     return <div className="h-16" />;
   }
 
+  //check path
   const isActive = (path: string) => {
     if (path === "/") {
       return pathName === "/";
