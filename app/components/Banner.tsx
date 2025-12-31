@@ -276,15 +276,13 @@ export default function Banner() {
         </div>
       </section>
 
-      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      {/*Imported Our Services */}
+      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px] hidden md:block">
         <div className="mt-20">
           <div className="text-center mb-10">
             <h1 className="font-extrabold text-6xl text-white mb-10">
-              Our <span className="text-[#f00004]">
-                Services
-              </span>
+              Our <span className="text-[#f00004]">Services</span>
             </h1>
-    
           </div>
           <ServicesComponents />
         </div>
@@ -779,7 +777,7 @@ export default function Banner() {
       </section>
 
       {/* Form */}
-      <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      <section className="my-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
         <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
           <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
             <div className="col-span-6 flex flex-col justify-between">

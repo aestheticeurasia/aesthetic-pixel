@@ -198,37 +198,31 @@ export default function RentForm({ className }: RentFormProps) {
                 }
                 required
               >
-                <SelectTrigger
-                  className="
-       mb-4
-      bg-[#121212] border-[#2d2d2d] border-2 text-white
-      cursor-pointer
-      pl-11 w-full h-12"
-                >
+                <SelectTrigger className=" mb-4 w-full bg-[#121212] border-[#2d2d2d] border-2 text-white cursor-pointer min-h-12 px-4 pl-11 flex items-center">
                   <SelectValue placeholder="Select renting hour" />
                 </SelectTrigger>
 
                 <SelectContent className="bg-[#121212] border-[#2d2d2d] border-2 text-white">
                   <SelectItem
-                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
                     value="2"
                   >
                     2 hours
                   </SelectItem>
                   <SelectItem
-                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
                     value="3"
                   >
                     3 hours
                   </SelectItem>
                   <SelectItem
-                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
                     value="4"
                   >
                     4 hours
                   </SelectItem>
                   <SelectItem
-                    className="py-[13px] bg-[#121212] border-[#2d2d2d] cursor-pointer"
+                    className="py-[9px] border-[#2d2d2d] cursor-pointer data-[highlighted]:bg-[#1e1e1e] data-[highlighted]:text-white"
                     value="5"
                   >
                     5 hours
@@ -260,11 +254,14 @@ export default function RentForm({ className }: RentFormProps) {
           h-12
           pl-11
           justify-start
-          bg-[#121212]
-          border-[#2d2d2d] border-2
           text-white
-          font-normal
-        "
+          bg-[#121212]
+          border-[#2d2d2d] 
+          border-2
+          hover:text-white
+          hover:bg-[#201c1c]
+          hover:border-[#2d2d2d] 
+          hover:border-2"
                 >
                   {bookingDate ? (
                     format(bookingDate, "PPP")

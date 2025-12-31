@@ -213,7 +213,7 @@ export default function Footer() {
                 </Tooltip>
                <Link href="https://webbriks.com" target="_blank">
                 <Image
-                  src="/WB_Logo.png"
+                  src="/WB_Logo_W.svg"
                   alt="Web Briks LLC Logo"
                   width={50}
                   height={50}

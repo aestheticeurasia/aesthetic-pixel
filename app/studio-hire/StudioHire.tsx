@@ -110,7 +110,7 @@ export default function StudioHire() {
   return (
     <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row pt-10 px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row pt-10 px-6 gap-8 items-stretch justify-center lg:px-[160px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-5 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div>
             <Badge
