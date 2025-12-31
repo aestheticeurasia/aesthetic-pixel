@@ -866,10 +866,7 @@ export default function Banner() {
                 </div>
               </div>
             </div>
-            <div
-              className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6"
-              id="quote"
-            >
+            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6" id="quote">
               <MainForm />
             </div>
           </div>

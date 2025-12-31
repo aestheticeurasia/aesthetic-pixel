@@ -185,17 +185,17 @@ const heroImg = [
   {
     name: "Client 2",
     img: "/bookingHero3.png",
-    size: "h-80 hidden md:block",
+    size: "h-80 hidden lg:flex",
   },
   {
     name: "Client 3",
     img: "/bookingHero2.png",
-    size: "h-70 hidden md:block",
+    size: "h-70 hidden lg:flex",
   },
   {
     name: "Client 4",
     img: "/bookingHero4.png",
-    size: "h-90 -mt-30 hidden md:block",
+    size: "h-90 -mt-30 hidden lg:flex",
   },
 ];
 
@@ -223,33 +223,43 @@ const BookASlot = () => {
               full-scale lifestyle shoots. Build trust, increase conversions,
               and tell your brand story visually.
             </p>
-
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
-              <div className="flex flex-row gap-8 items-center">
-                <div className="text-center lg:text-left">
-                  <h1 className="text-white font-bold text-3xl">+653</h1>
-                  <p className="text-muted-foreground uppercase text-sm">
-                    Brands Served
-                  </p>
-                </div>
-
-                <div className="text-center lg:text-left">
-                  <h1 className="text-white font-bold text-3xl">4.9/5</h1>
-                  <p className="text-muted-foreground uppercase text-sm">
-                    Google Avg. Rating
-                  </p>
-                </div>
+            <div className="flex items-center lg:justify-between gap-3 lg:gap-6">
+              <div className="text-center lg:text-left shrink-0">
+                <h1 className="text-white font-bold text-xl lg:text-3xl">
+                  +653
+                </h1>
+                <p className="text-muted-foreground uppercase text-[10px] lg:text-sm">
+                  Brands Served
+                </p>
               </div>
 
-              <div className="flex justify-center lg:justify-end">
+              <span className="h-6 lg:h-8 w-px bg-zinc-600 shrink-0" />
+
+              <div className="text-center lg:text-left shrink-0">
+                <h1 className="text-white font-bold text-xl lg:text-3xl">
+                  4.9/5
+                </h1>
+                <p className="text-muted-foreground uppercase text-[10px] lg:text-sm">
+                  Google Avg. Rating
+                </p>
+              </div>
+
+              <span className="h-6 lg:h-8 w-px bg-zinc-600 shrink-0" />
+
+              <div className="flex justify-end shrink-0">
                 {clientDP.map((dp, index) => (
                   <Image
                     key={index}
-                    src={dp?.img}
+                    src={dp.img}
                     alt="Client avatar"
                     width={55}
                     height={55}
-                    className="rounded-full border-2 border-[#f00004] -mr-3 last:mr-0"
+                    className="
+          rounded-full
+          border-2 border-[#f00004]
+          -mr-2 lg:-mr-3 last:mr-0
+          w-8 h-8 sm:w-9 sm:h-9 lg:w-[55px] lg:h-[55px]
+        "
                   />
                 ))}
               </div>
@@ -257,7 +267,7 @@ const BookASlot = () => {
           </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-2 gap-4 flex flex-col justify-center items-center lg:items-start">
+        <div className="lg:grid lg:grid-cols-2 gap-4 flex flex-col justify-center items-center lg:items-start lg:mt-0 -mt-10">
           {heroImg.map((feature, index) => (
             <Image
               key={index}
@@ -272,7 +282,7 @@ const BookASlot = () => {
       </section>
 
       {/* Service */}
-      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
+      <section className="lg:pt-20 pt-12 px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
         <div className="flex lg:flex-row flex-col justify-center lg:justify-between items-center space-y-6 lg:space-y-0">
           <div className="text-center lg:text-start">
             <h1 className="font-bold text-2xl text-white">
@@ -282,7 +292,7 @@ const BookASlot = () => {
               Select the category that best fits your project needs.
             </p>
           </div>
-          <div className="flex lg:flex-row flex-col gap-6 items-center justify-center">
+          <div className="flex md:flex-row flex-col gap-6 items-center justify-center">
             <span className="flex gap-2">
               <CircleCheckBig className="text-[#ef4444]" />
               <p className="text-muted-foreground uppercase">Mordern Tech</p>
@@ -303,21 +313,21 @@ const BookASlot = () => {
           {features.map((feature, index) => (
             <div className="group">
               <Card
-              key={index}
-              className="bg-[#0b0b0c] lg:border-[#171718] border-[#ef4444]  border-1 group-hover:border-[#ef4444] transition-all duration-300 cursor-pointer"
-            >
-              <CardHeader>
-                <div>
-                  <feature.icon className="lg:text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#dc2626] text-white lg:bg-[#18181b] group-hover:bg-[#dc2626] group-hover:text-white" />
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <h1 className="text-white font-bold text-lg">
-                  {feature.title}
-                </h1>
-                <p className="text-muted-foreground">{feature.desc}</p>
-              </CardContent>
-            </Card>
+                key={index}
+                className="bg-[#0b0b0c] lg:border-[#171718] border-[#ef4444]  border-1 group-hover:border-[#ef4444] transition-all duration-300 cursor-pointer"
+              >
+                <CardHeader>
+                  <div>
+                    <feature.icon className="lg:text-muted-foreground w-12 h-12 p-3 rounded-xl bg-[#dc2626] text-white lg:bg-[#18181b] group-hover:bg-[#dc2626] group-hover:text-white" />
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <h1 className="text-white font-bold text-lg">
+                    {feature.title}
+                  </h1>
+                  <p className="text-muted-foreground">{feature.desc}</p>
+                </CardContent>
+              </Card>
             </div>
           ))}
         </div>
