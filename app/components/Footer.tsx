@@ -171,7 +171,7 @@ export default function Footer() {
             <div className="py-[32px] lg:flex text-center lg:justify-between border-t border-t-[#121212] text-sm">
               <div className="text-muted-foreground">
                 &copy; {new Date().getFullYear()} Aesthetic Pixel Studio. All
-                rights reserved by Aesthetic Eurasia Ltd.
+                rights reserved by <a className="font-bold" href="https://www.aestheticeurasia.com" target="_blank">Aesthetic Eurasia Group</a>
               </div>
 
               {/* Credit */}

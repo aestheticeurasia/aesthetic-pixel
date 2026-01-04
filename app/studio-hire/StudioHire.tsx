@@ -110,7 +110,7 @@ export default function StudioHire() {
   return (
     <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row pt-10 px-6 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row pt-10 px-6 gap-8 items-stretch justify-center lg:px-[80px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-5 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div>
             <Badge
@@ -195,7 +195,7 @@ export default function StudioHire() {
       </section>
 
       {/* Studio Features */}
-      <section className="px-6 md:px-12 py-15 lg:px-[320px] border-t-1 border-b-1 border-t-[#1c1c1c] border-b-[#1c1c1c] mt-20">
+      <section className="px-6 md:px-12 py-15 lg:px-[160px] border-t-1 border-b-1 border-t-[#1c1c1c] border-b-[#1c1c1c] mt-20">
         <div>
           <div className="text-center">
             <h1 className="text-3xl font-bold text-[#f56565]">
@@ -236,7 +236,7 @@ export default function StudioHire() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-5 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
+      <section className="mt-5 px-4 sm:px-8 lg:px-[80px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
         <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
           <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-[32px]">
             Frequently Asked Questions
@@ -264,7 +264,7 @@ export default function StudioHire() {
       </section>
 
       {/* Footer */}
-      <section className="my-20 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/hireStudioFooterBlur.svg')] bg-no-repeat bg-left-bottom">
+      <section className="mb-20 mt-10 px-4 sm:px-8 lg:px-[80px] bg-[url('/layoutComponents/hireStudioFooterBlur.svg')] bg-no-repeat bg-left-bottom">
         <div className="border-1 border-[#430c0c] p-10 rounded-xl">
           <div className="flex lg:flex-row flex-col justify-between items-center">
             <div className="flex lg:flex-row flex-col lg:gap-50 justify-center items-center">

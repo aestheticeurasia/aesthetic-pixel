@@ -89,7 +89,7 @@ export default function AboutPage() {
   return (
     <div className="lg:px-25">
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[80px]">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -169,7 +169,7 @@ export default function AboutPage() {
       </section>
 
       {/* CountDown */}
-      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[85px]">
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           {stats.map((stat, i) => (
             <motion.div
@@ -201,7 +201,7 @@ export default function AboutPage() {
     bg-[url('/layoutComponents/3rdBlur.svg')]
     bg-no-repeat
   bg-top-right
-    lg:px-[160px]
+    lg:px-[80px]
   "
       >
         <div className="py-8 lg:text-start text-center">
@@ -280,7 +280,7 @@ export default function AboutPage() {
       </section>
 
       {/* Management Team */}
-      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 border-[#151515] bg-[#090909] mt-20 py-10 rounded-xl">
+      <section className="mx-6 md:mx-12 lg:mx-[80px] px-5 border-[#151515] bg-[#090909] mt-20 py-10 rounded-xl">
         <div className="text-center">
           <Badge
             variant="outline"
@@ -319,7 +319,7 @@ export default function AboutPage() {
       </section>
 
       {/* YouTube Video Section */}
-      <section className="mx-6 md:mx-12 lg:mx-[160px] px-5 mt-10 py-10 rounded-xl">
+      <section className="mx-6 md:mx-12 lg:mx-[80px] px-5 mt-10 py-10 rounded-xl">
         <div className="flex justify-center lg:justify-start">
           <Badge
             variant="outline"
@@ -350,12 +350,12 @@ export default function AboutPage() {
       </section>
 
       {/* Newslater */}
-      <section className="mx-6 md:mx-12 lg:mx-[160px] px-4 py-12">
-        <div
-          className="
+     <section className="mx-4 sm:mx-6 md:mx-10 lg:mx-[80px] py-10">
+  <div
+    className="
       relative
-      px-6 sm:px-10 lg:px-[279px]
-      py-12 lg:py-[80px]
+      px-5 sm:px-8 md:px-12 lg:px-32 xl:px-[279px]
+      py-10 sm:py-12 lg:py-[80px]
       border-2 border-[#221919]
       hover:border-red-900
       rounded-3xl
@@ -364,96 +364,104 @@ export default function AboutPage() {
       overflow-hidden
       transition-colors duration-300
     "
-        >
-          <div
-            className="
+  >
+    {/* TOP BLUR */}
+    <div
+      className="
         absolute top-0 right-0
-        w-[260px] h-[260px] sm:w-[300px] sm:h-[300px]
+        w-[160px] h-[160px]
+        sm:w-[220px] sm:h-[220px]
+        lg:w-[300px] lg:h-[300px]
         bg-[url('/layoutComponents/qouteBlur-top.svg')]
         bg-no-repeat bg-contain
+        opacity-60
         pointer-events-none
-        opacity-70
       "
-          />
+    />
 
-          <div
-            className="
+    {/* BOTTOM BLUR */}
+    <div
+      className="
         absolute bottom-0 left-0
-        w-[260px] h-[260px] sm:w-[300px] sm:h-[300px]
+        w-[160px] h-[160px]
+        sm:w-[220px] sm:h-[220px]
+        lg:w-[300px] lg:h-[300px]
         bg-[url('/layoutComponents/qouteBlur.svg')]
         bg-no-repeat bg-contain
+        opacity-60
         pointer-events-none
-        opacity-70
       "
-          />
+    />
 
-          <h1 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
-            Start Your Project
-          </h1>
+    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+      Start Your Project
+    </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-10 mb-4 lg:mb-10">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="
-          w-full sm:w-[360px]
+    {/* EMAIL CTA */}
+    <div className="flex flex-col sm:flex-row gap-3 items-center justify-center mt-8 mb-6">
+      <Input
+        type="email"
+        placeholder="Enter your email"
+        className="
+          w-full sm:w-[340px]
           border-[#3f3f46]
           bg-[#070707]
           text-white
           placeholder:text-gray-500
-          paceholder:text-center
-          text-lg
+          text-base sm:text-lg
           rounded-full
-          px-7 py-7
+          px-6 py-4 sm:py-5
           focus:border-red-600
           focus:ring-2 focus:ring-red-600/30
           transition-all
         "
-            />
+      />
 
-            <Button
-              className="
+      <Button
+        className="
+          w-full sm:w-auto
           bg-[#d00f2c]
           text-white
-          text-md
+          text-base sm:text-md
           rounded-full
-          px-8 py-7
+          px-8 py-4 sm:py-5
           hover:bg-[#a70b1e]
           active:scale-[0.98]
           transition-all
           shadow-lg shadow-red-900/20
-          cursor-pointer
         "
-            >
-              Start Free Trial
-            </Button>
-          </div>
+      >
+        Start Free Trial
+      </Button>
+    </div>
 
-          <div className="flex justify-center">
-            <Button
-              className="
+    {/* CALL CTA */}
+    <div className="flex justify-center">
+      <Button
+        className="
           flex items-center gap-3
           bg-[#1a1a1b]
           border-2 border-[#dc2626]
-          text-white
-          text-lg
+          text-base sm:text-lg
           rounded-full
-          px-10 sm:px-20
-          py-6
+          px-6 sm:px-14
+          py-4 sm:py-6
           hover:bg-[#131316]
           hover:border-red-500
           transition-all
           shadow-md shadow-black/40
-          cursor-pointer
         "
-            >
-              <PhoneCall />
-              <span className="text-[#d4d4d8]">Call Now:</span>
-              +880 1711-205200
-            </Button>
-          </div>
-        </div>
-      </section>
+      >
+        <PhoneCall className="w-5 h-5" />
+        <span className="text-[#d4d4d8] hidden sm:inline">
+          Call Now:
+        </span>
+        +880&nbsp;1711-205200
+      </Button>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 }

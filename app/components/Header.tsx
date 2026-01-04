@@ -173,79 +173,115 @@ export default function MainNav() {
                 {/* Pricing */}
                 <Link
                   href="/pricing"
-                  className={`py-2 px-3 rounded-lg ${
+                  className={`relative py-2 px-3 rounded-lg transition-colors ${
                     isActive("/pricing")
-                      ? "bg-destructive text-white dark:text-black"
-                      : "text-[#A1A1AA] hover:text-white"
+                      ? "text-white"
+                      : "text-[#A1A1AA] hover:text-white hover:bg-destructive"
                   }`}
                 >
-                  Pricing
+                  {isActive("/pricing") ? (
+                    <div className="hidden md:flex items-center relative p-[2px] overflow-hidden rounded-md">
+                      <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+                      <div className="relative flex items-center bg-[#060607] px-2 lg:px-3 py-2 rounded-md">
+                        Pricing
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="px-2 lg:px-3 py-2">Pricing</span>
+                  )}
                 </Link>
 
                 {/* Our Work */}
                 <Link
                   href="/our-work"
-                  className={`py-2 px-3 rounded-lg ${
+                  className={`relative py-2 px-3 rounded-lg transition-colors ${
                     isActive("/our-work")
-                      ? "bg-destructive text-white dark:text-black"
-                      : "text-[#A1A1AA] hover:text-white"
+                      ? "text-white"
+                      : "text-[#A1A1AA] hover:text-white hover:bg-destructive"
                   }`}
                 >
-                  Our Work
+                  {isActive("/our-work") ? (
+                    <div className="hidden md:flex items-center relative p-[2px] overflow-hidden rounded-md">
+                      <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+                      <div className="relative flex items-center bg-[#060607] px-2 lg:px-3 py-2 rounded-md">
+                        Our Work
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="px-2 lg:px-3 py-2">Our Work</span>
+                  )}
                 </Link>
 
                 {/* About */}
-                <Link
+            <Link
                   href="/about"
-                  className={`py-2 px-3 rounded-lg ${
+                  className={`relative py-2 px-3 rounded-lg transition-colors ${
                     isActive("/about")
-                      ? "bg-destructive text-white dark:text-black"
-                      : "text-[#A1A1AA] hover:text-white"
+                      ? "text-white"
+                      : "text-[#A1A1AA] hover:text-white hover:bg-destructive"
                   }`}
                 >
-                  About
+                  {isActive("/about") ? (
+                    <div className="hidden md:flex items-center relative p-[2px] overflow-hidden rounded-md">
+                      <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+                      <div className="relative flex items-center bg-[#060607] px-2 lg:px-3 py-2 rounded-md">
+                        About
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="px-2 lg:px-3 py-2">About</span>
+                  )}
                 </Link>
 
                 {/* Blog */}
                 <Link
                   href="/blog"
-                  className={`py-2 px-3 rounded-lg ${
+                  className={`relative py-2 px-3 rounded-lg transition-colors ${
                     isActive("/blog")
-                      ? "bg-destructive text-white dark:text-black"
-                      : "text-[#A1A1AA] hover:text-white"
+                      ? "text-white"
+                      : "text-[#A1A1AA] hover:text-white hover:bg-destructive"
                   }`}
                 >
-                  Blogs
+                  {isActive("/blog") ? (
+                    <div className="hidden md:flex items-center relative p-[2px] overflow-hidden rounded-md">
+                      <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+                      <div className="relative flex items-center bg-[#060607] px-2 lg:px-3 py-2 rounded-md">
+                        Blogs
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="px-2 lg:px-3 py-2">Blogs</span>
+                  )}
                 </Link>
               </nav>
             </div>
 
             {/* Landing Page Button */}
-              <div className="hidden md:flex items-center text-white relative p-[2px] overflow-hidden rounded-md group">
-         <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
-                <div className="relative flex items-center bg-[#060607] px-1 lg:px-3 py-2 rounded-md">
-                  <Link
-                    href="/studio-hire"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2 hover:text-red-500 transition-colors"
-                  >
-                    Studio Hire
-                  </Link>
+            <div className="hidden md:flex items-center text-white relative p-[2px] overflow-hidden rounded-md group">
+              <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_30%,#ffffff_50%,#ef4444_70%,transparent_100%)] animate-[spin_3s_linear_infinite] blur-[1px]" />
+              <div className="relative flex items-center bg-[#060607] px-1 lg:px-3 py-2 rounded-md">
+                <Link
+                  href="/studio-hire"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 hover:text-red-500 transition-colors"
+                >
+                  Studio Hire
+                </Link>
 
-                  <span className="mx-2 h-5 w-px bg-zinc-600" />
+                <span className="mx-2 h-5 w-px bg-zinc-600" />
 
-                  <Link
-                    href="/book-a-slot"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2 hover:text-red-500 transition-colors"
-                  >
-                    Book a Slot
-                  </Link>
-                </div>
+                <Link
+                  href="/book-a-slot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 hover:text-red-500 transition-colors"
+                >
+                  Book a Slot
+                </Link>
               </div>
             </div>
+          </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-4">

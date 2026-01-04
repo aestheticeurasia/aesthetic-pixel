@@ -195,7 +195,7 @@ const heroImg = [
   {
     name: "Client 4",
     img: "/bookingHero4.png",
-    size: "h-90 -mt-30 hidden lg:flex",
+    size: "h-90 -mt-35 hidden lg:flex",
   },
 ];
 
@@ -203,7 +203,7 @@ const BookASlot = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row pt-10 px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[240px] bg-[url('/layoutComponents/bookingPage.svg')] bg-no-repeat bg-top-left">
+      <section className="flex flex-col lg:flex-row pt-10 px-6 md:px-12 gap-8 justify-center lg:px-[160px] bg-[url('/layoutComponents/bookingPage.svg')] bg-no-repeat bg-top-left">
         <div className="flex-1 p-8 lg:p-12 flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -272,7 +272,7 @@ const BookASlot = () => {
       </section>
 
       {/* Service */}
-      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
+      <section className="pt-20 px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
         <div className="flex lg:flex-row flex-col justify-center lg:justify-between items-center space-y-6 lg:space-y-0">
           <div className="text-center lg:text-start">
             <h1 className="font-bold text-2xl text-white">
@@ -324,14 +324,14 @@ const BookASlot = () => {
       </section>
 
       {/* Booking Form */}
-      <section className="pt-20 px-6 md:px-12 gap-8 lg:px-[240px] mb-20 flex justify-center items-center bg-[url('/layoutComponents/bookingPageForm.svg')] bg-no-repeat bg-bottom-left">
+      <section className="pt-20 px-6 md:px-12 gap-8 lg:px-[160px] mb-20 flex justify-center items-center bg-[url('/layoutComponents/bookingPageForm.svg')] bg-no-repeat bg-bottom-left">
         <div className="bg-[#141417] max-w-3xl rounded-xl border-[#2c2b2e] border p-8 w-full">
           <BookASlotForm />
         </div>
       </section>
 
       {/* Testimonial */}
-      <section className="px-6 md:px-12 gap-8 justify-center lg:px-[240px]">
+      <section className="px-6 md:px-12 gap-8 justify-center lg:px-[160px]">
         <div className="space-y-2 text-center lg:text-start mb-8 lg:mb-3">
           <p className="text-[#ef4444] uppercase font-bold text-sm">
             Real Feedback
@@ -388,7 +388,7 @@ const BookASlot = () => {
       </section>
 
       {/* FAQ */}
-      <section className="px-4 sm:px-8 lg:px-20 xl:px-[240px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
+      <section className="px-4 sm:px-8 lg:px-[80px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-right-top">
         <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
           <h1 className="text-white text-xl lg:text-4xl font-bold text-center my-10">
             Frequently Asked Questions

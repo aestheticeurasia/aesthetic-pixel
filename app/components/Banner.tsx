@@ -18,7 +18,12 @@ import { GoDotFill } from "react-icons/go";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Accordion,
@@ -31,6 +36,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ServicesComponents from "./ServiceCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Blog {
   id: string;
@@ -153,6 +164,25 @@ const faqs = [
   },
 ];
 
+const footwearCarousel = [
+  { src: "/Footwaer/Footwaer (1).jpg", alt: "Footwear" },
+  { src: "/Footwaer/Footwaer (2).jpg", alt: "Footwear" },
+  { src: "/Footwaer/Footwaer (3).jpg", alt: "Footwear" },
+];
+
+const apparelCarousel = [
+  { src: "/Apparel/Apparel (1).jpg", alt: "Apparel" },
+  { src: "/Apparel/Apparel (2).jpg", alt: "Apparel" },
+  { src: "/Apparel/Apparel (3).jpg", alt: "Apparel" },
+  { src: "/Apparel/Apparel (4).jpg", alt: "Apparel" },
+];
+
+const accesoriesCarousel = [
+  { src: "/Accessories/Accessories (1).jpg", alt: "Accessories" },
+  { src: "/Accessories/Accessories (2).jpg", alt: "Accessories" },
+  { src: "/Accessories/Accessories (3).jpg", alt: "Accessories" },
+];
+
 export default function Banner() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -177,7 +207,7 @@ export default function Banner() {
   return (
     <div className="lg:px-25">
       {/* Hero */}
-      <section className="flex flex-col lg:flex-row min-h-screen pt-[120px] px-6 md:px-12 gap-8 items-stretch justify-center lg:px-[160px]">
+      <section className="flex flex-col lg:flex-row pt-[120px] px-6 md:px-12 gap-8 justify-center max-h-screen">
         <div className="flex-1 bg-[url('/layoutComponents/redishBlur.svg')] bg-no-repeat bg-bottom-right p-8 lg:p-12 border border-[#222223] rounded-3xl flex flex-col justify-center">
           <div className="max-w-xl">
             <Badge
@@ -217,17 +247,33 @@ export default function Banner() {
         </div>
 
         <div className="flex-1 flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4 min-h-[220px] sm:min-h-[280px] lg:flex-1">
+          <div className="grid grid-cols-2 gap-4 lg:flex-1">
             <div
-              className="relative group overflow-hidden rounded-2xl min-h-[160px] sm:min-h-[200px]
+              className="relative group overflow-hidden rounded-2xl 
         border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
             >
-              <Image
-                src="/shoes.png"
-                alt="Footwear"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              <Carousel
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                    stopOnInteraction: false,
+                  }),
+                ]}
+              >
+                <CarouselContent>
+                  {footwearCarousel.map((item, index) => (
+                    <CarouselItem key={index}>
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        width={100}
+                        height={145}
+                        className="w-full transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
 
               <Badge className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md">
                 Footwear
@@ -235,15 +281,31 @@ export default function Banner() {
             </div>
 
             <div
-              className="relative group overflow-hidden rounded-2xl min-h-[160px] sm:min-h-[200px]
+              className="relative group overflow-hidden rounded-2xl 
         border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
             >
-              <Image
-                src="/model.png"
-                alt="Apparel"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              <Carousel
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                    stopOnInteraction: false,
+                  }),
+                ]}
+              >
+                <CarouselContent>
+                  {apparelCarousel.map((item, index) => (
+                    <CarouselItem key={index}>
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        width={100}
+                        height={145}
+                        className="w-full transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
 
               <Badge className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md">
                 Apparel
@@ -252,15 +314,31 @@ export default function Banner() {
           </div>
 
           <div
-            className="relative flex-1 min-h-[260px] group overflow-hidden rounded-2xl
+            className="relative flex-1 group overflow-hidden rounded-2xl
       border-2 border-transparent hover:border-[#d00f2c] transition-all duration-300"
           >
-            <Image
-              src="/fur-life.png"
-              alt="Lifestyle"
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+            <Carousel
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                  stopOnInteraction: false,
+                }),
+              ]}
+            >
+              <CarouselContent>
+                {accesoriesCarousel.map((item, index) => (
+                  <CarouselItem key={index}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={606}
+                      height={100}
+                      className="h-auto object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
@@ -277,7 +355,7 @@ export default function Banner() {
       </section>
 
       {/*Imported Our Services */}
-      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px] hidden md:block">
+      <section className="mt-8 px-4 sm:px-8 lg:px-[80px] hidden md:block">
         <div className="mt-20">
           <div className="text-center mb-10">
             <h1 className="font-extrabold text-6xl text-white mb-10">
@@ -295,9 +373,7 @@ export default function Banner() {
     px-4 sm:px-18 
     bg-[url('/layoutComponents/redishBlur-top.svg')]
     bg-no-repeat
-    bg-right-bottom
-    lg:px-[160px]
-  "
+    bg-right-bottom"
       >
         <div className="py-8">
           <h1 className="text-2xl font-semibold text-white">
@@ -308,55 +384,53 @@ export default function Banner() {
           </p>
         </div>
 
-        <div
-          className="
-      mx-auto
-      grid
-      grid-cols-1
-      sm:grid-cols-2
-      lg:grid-cols-4
-      gap-6
-    "
-        >
-          {workSteps.map((step, index) => (
-            <Card
-              key={index}
-              className="
-    group
-    h-full
-    lg:min-h-[320px] xl:min-h-[360px]
-    flex flex-col
-    justify-between
-    border lg:border-[#222223]
-    border-[#7d0508]
-    rounded-3xl
-    p-6 md:p-8
-    bg-transparent
-    transition-colors duration-300
-    hover:border-[#7d0508]
+    <div
+  className="
+    mx-auto
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    lg:grid-cols-4
+    gap-6
   "
-            >
-              <div className="flex flex-col h-full">
-                <h1
-                  className="
-        text-6xl md:text-7xl
-        font-extrabold
-        leading-none
-        break-words
-        text-end
-        text-[#7d0508]
-        lg:text-muted-foreground/30
+>
+  {workSteps.map((step, index) => (
+    <Card
+      key={index}
+      className="
+        group
+        flex flex-col
+        h-full
+        min-h-[300px] sm:min-h-[320px] lg:min-h-[340px]
+        border border-[#222223]
+        hover:border-[#7d0508]
+        rounded-3xl
+        bg-transparent
         transition-colors duration-300
-        group-hover:text-[#7d0508]
       "
-                >
-                  {step.step}
-                </h1>
+    >
+      {/* STEP NUMBER */}
+      <CardHeader className="pb-0">
+        <h1
+          className="
+            text-6xl lg:text-7xl
+            font-extrabold
+            leading-none
+            text-end
+            text-[#7d0508]
+            lg:text-muted-foreground/30
+            transition-colors duration-300
+            group-hover:text-[#7d0508]
+          "
+        >
+          {step.step}
+        </h1>
+      </CardHeader>
 
-                <div className="mt-auto">
-                  <div className="mb-4 inline-block">
-                    <step.icon
-                      className="
+      {/* CONTENT */}
+      <CardContent className="mt-auto">
+        <step.icon
+          className="
             p-2
             rounded-lg
             lg:text-[#A1A1AA]
@@ -367,27 +441,28 @@ export default function Banner() {
             group-hover:text-white
             group-hover:bg-red-600
           "
-                      size={48}
-                      strokeWidth={1.5}
-                    />
-                  </div>
+          size={48}
+          strokeWidth={1.5}
+        />
 
-                  <h2 className="text-2xl md:text-3xl text-white mb-2">
-                    {step.title}
-                  </h2>
+        <div className="mt-3">
+          <h2 className="text-2xl text-white mb-2">
+            {step.title}
+          </h2>
 
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </Card>
-          ))}
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            {step.description}
+          </p>
         </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
       </section>
 
       {/* About Us */}
-      <section className="mt-8 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      <section className="mt-8 px-4 sm:px-8 lg:px-[80px]">
         <div className="mt-12 border-[#161616] border-2 rounded-2xl bg-[#090909] p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Content Column */}
           <div className="col-span-1 lg:col-span-6">
@@ -532,12 +607,15 @@ export default function Banner() {
       </section>
 
       {/* Portfolio */}
-      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      <section className="mt-16 px-4 sm:px-8 lg:px-[80px]">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-white font-bold text-xl md:text-2xl">
             Featured Our Works
           </h1>
-          <Link href="/our-work" className="text-muted-foreground flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-sm">
+          <Link
+            href="/our-work"
+            className="text-muted-foreground flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-sm"
+          >
             View All <ArrowUpRight size={16} />
           </Link>
         </div>
@@ -589,7 +667,7 @@ export default function Banner() {
         </div>
       </section>
 
-      {/* Digital Skills */}
+      {/* Digital Capabilities */}
       <section
         className="
     mt-[32px]
@@ -597,7 +675,6 @@ export default function Banner() {
     bg-[url('/layoutComponents/3rdBlur.svg')]
     bg-no-repeat
   bg-top-right
-    lg:px-[160px]
   "
       >
         <div className="py-8">
@@ -629,13 +706,12 @@ export default function Banner() {
           border-[#7d0508]
           bg-[#0d0d0e]
           rounded-3xl
-          p-6 md:p-8
           transition-colors duration-300
           hover:border-[#7d0508]
         "
             >
               <div className="flex flex-col space-y-10">
-                <div className="mt-5">
+                <CardHeader>
                   <step.icon
                     className="
                   p-2
@@ -646,29 +722,27 @@ export default function Banner() {
                   rounded-lg
                   transition-all duration-300
                   group-hover:text-white
-                  group-hover:bg-red-600
-                  
-                "
+                  group-hover:bg-red-600"
                     size={48}
                     strokeWidth={1.5}
                   />
-                </div>
-                <div>
+                </CardHeader>
+                <CardContent>
                   <h2 className="text-2xl font-semibold text-white mb-2">
                     {step.title}
                   </h2>
                   <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
                     {step.description}
                   </p>
-                </div>
-                <div>
+                </CardContent>
+                <CardFooter>
                   <a
                     href={step.url}
                     className="font-semibold text-white group-hover:text-red-600 flex items-center gap-1"
                   >
                     Read More <ChevronRight size={16} />
                   </a>
-                </div>
+                </CardFooter>
               </div>
             </Card>
           ))}
@@ -676,7 +750,7 @@ export default function Banner() {
       </section>
 
       {/* Testimonials */}
-      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/testimonialBlur.svg')] bg-no-repeat bg-cover bg-left-bottom">
+      <section className="mt-16 px-4 sm:px-8 lg:px-[80px] bg-[url('/layoutComponents/testimonialBlur.svg')] bg-no-repeat bg-cover bg-left-bottom">
         <div className="border-[#1b0e0e] border-2 rounded-xl p-6 lg:p-[48px] relative overflow-hidden">
           <div
             className="md:absolute inset-0 bg-[url('/layoutComponents/testimonialQoute.svg')] 
@@ -693,7 +767,11 @@ export default function Banner() {
               </h1>
             </div>
             <div>
-              <Link href="https://maps.app.goo.gl/fqtfteJ9sJjir3jY6" target="_blank" className="text-muted-foreground cursor-pointer hover:text-white transition-colors">
+              <Link
+                href="https://maps.app.goo.gl/fqtfteJ9sJjir3jY6"
+                target="_blank"
+                className="text-muted-foreground cursor-pointer hover:text-white transition-colors"
+              >
                 View All Reviews{" "}
                 <ArrowRight className="inline-block w-4 h-4 ml-1" />
               </Link>
@@ -749,7 +827,7 @@ export default function Banner() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-16 px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-left-top">
+      <section className="mt-16 px-4 sm:px-8 lg:px-[80px] bg-[url('/layoutComponents/3rdBlur.svg')] bg-no-repeat bg-left-top">
         <div className="lg:py-[48px] px-3 lg:px-[232px] pb-10 md:pb-0">
           <h1 className="text-white text-2xl lg:text-4xl font-bold text-center mb-[32px]">
             Frequently Asked Questions
@@ -777,7 +855,7 @@ export default function Banner() {
       </section>
 
       {/* Form */}
-      <section className="my-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      <section className="my-[32px] px-4 sm:px-8 lg:px-[80px]">
         <div className=" border-[#181819] rounded-xl bg-[#0c0c0d]">
           <div className="grid lg:grid-cols-12 p-[48px] gap-[52px]">
             <div className="col-span-6 flex flex-col justify-between">
@@ -866,7 +944,10 @@ export default function Banner() {
                 </div>
               </div>
             </div>
-            <div className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6" id="quote">
+            <div
+              className="col-span-6 bg-[#080808] border-[#1f0c0c] rounded-xl lg:p-6"
+              id="quote"
+            >
               <MainForm />
             </div>
           </div>
@@ -874,7 +955,7 @@ export default function Banner() {
       </section>
 
       {/* Blog Insight */}
-      <section className="lg:mt-15 px-4 sm:px-8 lg:px-20 xl:px-[160px]">
+      <section className="lg:mt-15 px-4 sm:px-8 lg:px-[80px]">
         <h1 className="py-2 lg:py-0 text-2xl font-bold text-white text-center lg:text-start">
           Latest Insights
         </h1>
@@ -915,7 +996,7 @@ export default function Banner() {
       </section>
 
       {/* Quote */}
-      <section className="mt-[32px] px-4 sm:px-8 lg:px-20 xl:px-[160px] bg-transparent">
+      <section className="mt-[32px] px-4 sm:px-8 lg:px-[80px] bg-transparent">
         <div className="relative lg:px-[279px] lg:py-[80px] px-10 py-15 border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
           <div
             className="

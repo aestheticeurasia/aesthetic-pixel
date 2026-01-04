@@ -78,7 +78,7 @@ export default function Blog() {
   return (
     <div>
       {/* Blogs */}
-      <section className=" px-6 md:px-12 lg:px-[320px]">
+      <section className=" px-6 md:px-12 lg:px-[160px]">
         <div className="py-12 bg-[url('/layoutComponents/blogBlur.svg')] bg-no-repeat bg-center">
           <h1 className="text-3xl font-bold text-center text-white">Blogs</h1>
         </div>
@@ -199,7 +199,7 @@ export default function Blog() {
 
       {/* Quote */}
       <section className="border-t border-b border-[#481414]/50 py-5 mt-10 lg:mt-20">
-        <div className="px-6 md:px-12 lg:px-[320px]">
+        <div className="px-6 md:px-12 lg:px-[160px]">
           <div className="relative lg:px-[279px] lg:py-[80px] px-10 py-15 border-2 border-[#221919] hover:border-red-900 rounded-3xl bg-[#0a0a0b] text-center overflow-hidden">
             <div
               className="

@@ -1,11 +1,9 @@
 "use client";
 import { Spinner } from "@/components/ui/spinner";
 import axios from "axios";
-import {  ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaArrowRight } from "react-icons/fa";
 
 interface Services {
   title: string;
@@ -56,7 +54,7 @@ export default function ServicesComponents() {
 
     const handleMobileClick = (e: React.MouseEvent) => {
       if (window.innerWidth <= 768) {
-        e.preventDefault(); // prevent redirect
+        e.preventDefault(); 
         setShowOverlay((prev) => !prev);
       }
     };
