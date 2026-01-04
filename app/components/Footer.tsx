@@ -195,18 +195,6 @@ export default function Footer() {
                             <AvatarFallback>FL</AvatarFallback>
                           </Avatar>
                         </Link>
-                        <Link
-                          href="https://github.com/ashikurrb"
-                          target="_blank"
-                        >
-                          <Avatar>
-                            <AvatarImage
-                              src="https://github.com/ashikurrb.png"
-                              alt="@ashikurrb"
-                            />
-                            <AvatarFallback>ARB</AvatarFallback>
-                          </Avatar>
-                        </Link>
                       </div>
                     </div>
                   </TooltipContent>
